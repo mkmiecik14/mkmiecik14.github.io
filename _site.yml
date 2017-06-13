@@ -1,15 +1,18 @@
-name: "my-website"
+name: "Matthew J. Kmiecik"
 output_dir: "."
+exclude: ["README.md"]
 navbar:
-  title: "My Website"
+  title: "Matthew J. Kmiecik"
   left:
     - text: "Home"
       href: index.html
     - text: "About"
       href: about.html
+    - text: "Test Blog"
+      href: testblog.html
 output:
   html_document:
-    theme: cosmo
+    theme: yeti
     highlight: textmate
     include:
       after_body: footer.html
