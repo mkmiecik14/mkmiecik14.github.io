@@ -5,19 +5,71 @@ output:
     toc: true
     toc_depth: 2
     toc_float:
-      collapsed: false
+      collapsed: true
       smooth_scroll: true
 ---
+<br />
 
 # Education
+<hr />
+* 2014 – current: Cognition and Neuroscience PhD Student at The University of Texas at Dallas
+* 2009 – 2013:    Psychology: Natural Science B.S., Biology and Neuroscience Minors at Loyola University Chicago
+
+<br />
 
 # Publications
+<hr />
+* Stockdale, L. A., Morrison, R. G., Kmiecik, M. J., Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) Social Cognitive and Affective Neuroscience, 10(10), 1373-1382. doi: 10.1093/scan/nsv025
+
+* Kmiecik, M. & Morrison, R.G. (2013). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N. Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive Science Society. Austin, TX: Cognitive Science Society.
+
+<br />
 
 # Conference Participation
+<hr />
+<br />
 
 ## Talks
 
+* Kmiecik, M. & Morrison, R.G. (2013, August). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) Paper presented at the 35th Annual Conference of the Cognitive Science Society, Berlin, Germany.
+
+<br />
+
 ## Workshops
 
+* Dutcher, A., Kmiecik, M.J., & Beaton, D. (2016, April). Analyzing multi-block data: A tutorial of Multiple Factor Analysis in R. Workshop presented at the Society for Applied Multivariate Research, Dallas, Texas. (*[MFA Workshop Slides](https://www.researchgate.net/publication/301200852_Analyzing_Multi-Block_Data_A_Tutorial_of_Multiple_Factor_Analysis_in_R)* / *[MFA Workshop R Code](https://www.researchgate.net/publication/301201126_FinalCode)* )
+
+<br />
+
 ## Poster Presentations
+
+* Kmiecik, M.J., Martinez, D., Young, L.R., Krawczyk, D.C. (2016, November). [Functional and Structural Neural Patterns in Mild-Moderate Chronic-Phase Traumatic Brain Injury.](https://www.researchgate.net/publication/309457305_Functional_and_Structural_Neural_Patterns_in_Mild-Moderate_Chronic-Phase_Traumatic_Brain_Injury) Archives of Physical Medicine and Rehabilitation, 97(10), e55. doi: 10.1016/j.apmr.2016.08.167
+
+* Martinez, D., Kmiecik, M.J., Chapman, S., Krawczyk, D.C. (2016, November). [Observing Changes in Cognition, Mood, and White Matter in Chronic TBI Using Multiple Factor Analysis After Cognitive Intervention.](https://www.researchgate.net/publication/308601754_Observing_Changes_in_Cognition_Mood_and_White_Matter_in_Chronic_TBI_Using_Multiple_Factor_Analysis_After_Cognitive_Intervention) Archives of Physical Medicine and Rehabilitation, 97(10), e75. doi: 10.1016/j.apmr.2016.08.229
+
+* Kmiecik, M.J., Schauer, G.F., Martinez, D., & Krawczyk, D.C. (2016, April). [The Similar Situations Task: An Assessment of Analogical Reasoning in Healthy and Clinical Populations.](https://www.researchgate.net/publication/299782139_The_Similar_Situations_Task_An_Assessment_of_Analogical_Reasoning_in_Healthy_and_Clinical_Populations) Poster presented at the Cognitive Neuroscience Society Annual Meeting, New York, NY.
+
+* Kmiecik, M. J., Chapman, S., & Krawczyk, D., (2015). Executive Functioning in Traumatic Brain Injury: A Detailed Investigation of the Hayling Test. Archives of Physical Medicine and Rehabilitation, 96(10), e97-e98. doi: 10.1016/j.apmr.2015.08.326
+
+* Stockdale, L., Morrison, R. G., Kmiecik, M., Palumbo, R., Garbarino, J., & Silton, R. L. (September, 2014). Negative valence systems distinctly influence bottom-up and top-down attentional processes. Paper presented at the Society for Psychophysiological Research, Atlanta, GA.
+
+* Palumbo, R. T., Stockdale, L., Kmiecik, M. J., Silton, R. L., Morrison, R. G. (2014, July). The effect of short-term exposure to film violence on emotional facial processing. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+
+* Brisson, R., Kmiecik, M.J., & Morrison, R. G. (2014, July). The effect of semantic and relational similarity on the N400 event-related potential in verbal analogical reasoning. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+
+* Irwin, J.L., Jones, L.L., Kmiecik, M.J., Unsworth, N., & Morrison, R. G. (2014, July). Attention to detail predicts better verbal analogy performance. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+
+* Jones, L.L., Irwin, J.L., Kmiecik, M.J., Unsworth, N., & Morrison, R. G. (2014, July). Working memory and interference control in verbal analogy. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+
+* Morrison, R. G., Kmiecik, M.J., Irwin, J.L., Unsworth, N., Jones, L.L. (2014, July). Working memory and crystallized knowledge in visual analogy. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+
+* Brisson, R.J., Kmiecik, M.J., Sweis, A.S. & Morrison, R.G. (2014, April). The Effect of Semantic and Relational Similarity on the N400 in Verbal Analogical Reasoning. Poster presented at the Cognitive Neuroscience Society Annual Meeting, Boston, MA.
+
+* Stockdale, L., Palumbo, R., Kmiecik, M., Silton, R.L. & Morrison, R.G. (2014, April). The Effects of Media Violence on the Neural Correlates of Emotional Facial Processing: An ERP Investigation. Poster presented at the Cognitive Neuroscience Society Annual Meeting, Boston, MA.
+
+* Kmiecik, M.J., Brisson, R.J., & Morrison, R.G. (2013, April). Semantic distance in verbal analogical reasoning modulates the N400 event-related potential. Poster presented at the Cognitive Neuroscience Society Annual Meeting, San Francisco, CA.
+
+* Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, April). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Cognitive Neuroscience Society Annual Meeting, Chicago, IL.
+
+* Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, March). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Society for Neuroscience Chicago Chapter 2012 Annual Meeting, Chicago, IL.
 

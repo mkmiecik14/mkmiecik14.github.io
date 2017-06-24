@@ -2,6 +2,11 @@
 title: "About Me"
 ---
 
+<img 
+src="_images/me.jpg" alt="Matt Kmiecik in New Orleans" 
+title="Me in New Orleans" 
+width="400"/>
+
 Currently, I am a graduate student studying cognitive neuroscience. Most of the time, I research human reasoning, executive impairments following traumatic brain injury, and multivariate statistics. When I get home from school, I enjoy reading, fishing, and anything/everything that revolves around hockey...especially the Blackhawks! As I begin to grow my blog, I will be focusing on several aspects, including hockey analytics, academics, and my professional achievements.
 
 Recent Blog Posts:
