@@ -3,7 +3,7 @@ output_dir: "."
 exclude: ["README.md"]
 output:
   html_document:
-    theme: yeti
+    theme: flatly
     highlight: textmate
     include:
       after_body: footer.html
