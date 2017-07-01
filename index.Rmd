@@ -2,7 +2,27 @@
 title: "About Me"
 ---
 
-<p class="about-me"><img src="_images/me.jpg" alt="Matt Kmiecik in New Orleans" title="Me in New Orleans" class="front-page-pic" /> Currently, I am a graduate student studying cognitive neuroscience. Most of the time, I research human reasoning, executive impairments following traumatic brain injury, and multivariate statistics. When I get home from school, I enjoy reading, fishing, and anything/everything that revolves around hockey...especially the Blackhawks! As I begin to grow my blog, I will be focusing on several aspects, including hockey analytics, academics, and my professional achievements.</p>
+<section class="portfolio">
+<div class="container">
+<div class="row">
+<div class="col-md-4">
+<img src="images/the-blue-line-logo.png" alt="The Blue Line" title="The Blue Line"/>
+<h3>The Blue Line</h3>
+<p>My hockey analytics blog where I post some of my hockey analyses with R code</p>
+</div>
+<div class="col-md-4">
+<img src="images/flobe.png" alt="Academic Blog" title="Academic Blog"/>
+<h3>Academic Blog</h3>
+<p>A blog about all things R, cognitive neuroscience, and statistics</p>
+</div>
+<div class="col-md-4">
+<img src="images/cvLogo.png" alt="CV" title="CV"/>
+<h3>Curriculum Vitae</h3>
+<p>My publications and conference participation</p>
+</div>
+</div>
+</div>
+</section>
 
 Recent Blog Posts:
 
@@ -14,4 +34,5 @@ Recent Blog Posts:
 <a class="btn btn-outline-primary btn-sm" href="testblog.html">Full Post</a>
 </div>
 </article>
+
 

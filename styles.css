@@ -1,13 +1,5 @@
-img.front-page-pic {
-  float: left;
-  width: 400px;
-  margin-right: 10px;
-}
-
-p.about-me {
-  float: right;
-  text-align: center;
-  vertical-align: middle;
+.portfolio {
+ text-align: center; 
 }
 
 blockquote {
