@@ -6,7 +6,7 @@ title: "About Me"
 <div class="container">
 <div class="row">
 <div class="col-md-4">
-<img src="images/the-blue-line-logo.png" alt="The Blue Line" title="The Blue Line"/>
+<img src="images/the-blue-line-logo.png" class="inline" alt="The Blue Line" title="The Blue Line"/>
 <h3>The Blue Line</h3>
 <p>My hockey analytics blog where I post some of my hockey analyses with R code</p>
 </div>
