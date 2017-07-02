@@ -6,6 +6,7 @@ output:
     theme: flatly
     highlight: textmate
     include:
+      before_body: icons.html
       after_body: footer.html
     css: styles.css
 
