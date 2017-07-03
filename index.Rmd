@@ -9,7 +9,7 @@ title: ""
 <h4>Matthew J. Kmiecik</h4>
 <h5>PhD Student</h5>
 <ul class="nav nav-pills nav-stacked">
-<li class="active"><a href="#section1">Home</a></li>
+<li><a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a></li>
 <li><a href="#section2">About Me</a></li>
 <li><a href="#section3">CV</a></li>
 <li><a href="#section3">Contact</a></li>
@@ -23,8 +23,6 @@ title: ""
 <li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en"><i class="ai ai-google-scholar ai-fw"></i></a></li>
 </ul>
 </div>
-
-<i class="fa fa-google-plus"></i> 
 
 <div class="col-sm-9">
 <h4><small>Portfolio</small></h4>
