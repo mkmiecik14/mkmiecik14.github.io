@@ -5,7 +5,7 @@
 .sidenav {
   background-color: #f1f1f1;
   height: 100%;
-  padding: 10px;
+  /*padding: 10px;*/
   text-align: center;
 }
 
@@ -20,23 +20,32 @@ footer {
 @media screen and (max-width: 767px) {
   .sidenav {
     height: auto;
-    padding: 15px;
+    /*padding: 15px;*/
   }
   .row.content {height: auto;} 
 }
 
 ul {
-	overflow: auto;
+  list-style-type: none;
+	/*overflow: auto;
+	text-align: center;*/
 }
 
 ul li {
-	list-style-type: none;
+	display: inline;
 	float: left;
+	text-align: center;
+  /*padding-right: 5px;*/
 }
 
 ul li a i {
-    color: #2C3E50;
+  display:block;
+  color: #2C3E50;
+  text-align: center;
 }
+
+
+
 
 
 
