@@ -2,11 +2,26 @@
 title: ""
 ---
 
-<br/>
+<br>
 
-# My Blogs
+<h1><span class="fa fa-paper-plane-o" aria-hidden="true"></span> My Blogs</h1> 
+<hr>
 
-## Academic Blog
+<h2><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="academicblog.html"> Academic Blog</a></h2> 
 
+As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others. Some current topics include:
 
-<span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015
+<h2><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="theblueline.html"> The Blue Line</a></h2> 
+
+I love the sport of hockey. In my spare time, I like to apply some of the statistical techniques that I've learned in my classes and research projects to hockey data. This hockey analytics blog serves to help hone my data science skills, teach R, and (hopefully) provide new insights to this amazing sport.
+
+<br>
+
+<h1><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h1> 
+<hr>
+
+<h2><span class="fa fa-sticky-note-o" aria-hidden="true"></span> ggplot2 Histogram Logo Fail</h2>
+<span class="glyphicon glyphicon-time"></span> May 15, 2017<br>
+
+A (probably) pointless post about forcing spaces in ggplot2 histograms.
+
