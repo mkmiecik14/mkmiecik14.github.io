@@ -1,5 +1,5 @@
 ---
-title: "Cirriculum Vitae"
+title: "CV"
 output: 
   html_document:
     toc: true
