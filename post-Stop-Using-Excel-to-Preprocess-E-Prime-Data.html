@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Kmiecik" />
+
+
+<title>Stop Using Excel to Preprocess E-Prime Data</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Matt's Blog</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="theblueline.html">The Blue Line</a>
+</li>
+<li>
+  <a href="academicblog.html">Academic Blog</a>
+</li>
+<li>
+  <a href="cv.html">CV</a>
+</li>
+<li>
+  <a href="testblog.html">Test Blog</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="academicons-1.8.0/css/academicons.css"/>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Stop Using Excel to Preprocess E-Prime Data</h1>
+<h4 class="author"><em>Matt Kmiecik</em></h4>
+<h4 class="date"><em>Last updated: 13 July 2017</em></h4>
+
+</div>
+
+
+<p>Excel is a great tool for processing data. Whether it’s calculating a quick average, standard deviation, or t-test, Excel is fast and simple to learn and use. In fact, most of my colleagues use Excel to preprocess their data from experiments programmed in E-Prime, a software tool for running psychological experiments. However, preprocessing your E-Prime data in Excel will:</p>
+<ol style="list-style-type: decimal">
+<li>limit the statistical methods used to analyze your data</li>
+<li>become burdensome with large samples ( &gt; 20 participants)</li>
+<li>create large workbooks that are slow and susceptible to crashes</li>
+<li>create roadbumps down the line when reviewer #2 asks for a new analysis (I swear, it’s always reviewer #2)</li>
+</ol>
+<p>I’ll demonstrate a different method on how to preprocess your E-Prime data with R and the R package dplyr (Wickham &amp; Francois, 2016) using a small data set from a real experiment of mine. This method is much faster, efficient, and saves soooooo much time when it comes to reviewer #2’s requests.</p>
+<p>Just a few notes about the experiment: participants completed a task that required them to reason about items on the screen and press #1 or #2 on the keyboard. There were 3 conditions randomly distributed over 4 blocks with 24 trials per block (8 trials per condition). I was interested in the participants’ accuracy and reaction time for correct solutions across the conditions and blocks. Therefore, each participant has only 1 E-Prime file.</p>
+<div id="step-1---concatenate-e-dataaid-files-using-e-merge" class="section level2">
+<h2>Step 1 - Concatenate E-DataAid Files Using E-Merge</h2>
+<p>E-Prime spat out an E-DataAid file (*.edat2) for every participant upon completion of the experiment. Let’s first concatenate these files row-wise (on top of each other) so that we end up with one big file that has each participant’s data. This is done using E-Prime’s E-Merge software.</p>
+<div id="concatenating-with-e-merge" class="section level3">
+<h3>Concatenating with E-Merge</h3>
+<ol style="list-style-type: decimal">
+<li>Open E-Merge and navigate to the directory where all the E-DataAid files are stored using the Folder Tree</li>
+<li>Select all the E-DataAid files and click Merge…</li>
+<li>Choose the appropriate option and click Next &gt;:
+<ol style="list-style-type: upper-alpha">
+<li>Standard Merge if all your files are in one directory (<strong>option chosen in this tutorial</strong>)</li>
+<li>Recursive Merge if all your files are stored in folders within folders</li>
+</ol></li>
+<li>Name your file and save it as a *.emrg2 file (the default)</li>
+</ol>
+<p>As long as your E-DataAids are consistent with each other, they should seamlessly merge. Next, we have to convert this to a format R and other programs can read using E-DataAid:</p>
+</div>
+<div id="converting-to-.txt-using-e-dataaid" class="section level3">
+<h3>Converting to .TXT Using E-DataAid</h3>
+<ol style="list-style-type: decimal">
+<li>Double click on the *.emrg2 file that you just created</li>
+<li>Go to File &gt; Export</li>
+<li>Ensure the “Export to:” option is: StatView and SPSS</li>
+<li><strong>Ensure that the Unicode box at the bottom is unchecked</strong></li>
+<li>Click OK and name/save the file as a *.txt (the default)</li>
+</ol>
+<p>Now these data are in one central file and prepared for R. Next, let’s import into R:</p>
+</div>
+</div>
+<div id="step-2---importing-into-r" class="section level2">
+<h2>Step 2 - Importing into R</h2>
+<ol style="list-style-type: decimal">
+<li>Open R or RStudio and **ensure your working directory is set to where you saved your text file (*.txt) from above.**</li>
+<li>Import the file into R and save it as a variable:</li>
+</ol>
+<pre class="r"><code>eData &lt;- read.table(&#39;data.txt&#39;, # The name of your *.txt file from above
+                    sep = &#39;\t&#39;, # These data are tab separated
+                    header = T) # Appends variables as column names </code></pre>
+<p>For the purposes of this tutorial, these data are available on this websites github repository and can be downloaded into R like this:</p>
+<pre class="r"><code>rm(list = ls())                 # Clears workspace
+library(RCurl)                  # To retrive data from github repo
+eData &lt;- read.table(text = getURL(&quot;https://mkmiecik14.github.io/data/data.txt&quot;), 
+                   sep = &#39;\t&#39;,
+                   header=T)
+dim(eData)</code></pre>
+<pre><code>&gt; [1] 480  47</code></pre>
+<p>As we can see, this dataframe has 480 rows and 47 columns. Each row is a trial from a participant and each column is a measure/information from your E-prime experiment. E-prime gives us way too much information, so I like to clean this up and only include the essentials (<em>Note: These variable names will vary based on your experiment</em>):</p>
+<pre class="r"><code># Variables that I want to keep
+vars &lt;- c(&#39;Subject&#39;,&#39;probType&#39;,&#39;stimulus.ACC&#39;,&#39;stimulus.RT&#39;)
+
+# Subsetting these variables
+eDataSimple &lt;- subset(eData, select = vars)
+
+# Let&#39;s take a look
+head(eDataSimple); tail(eDataSimple)</code></pre>
+<pre><code>&gt;   Subject probType stimulus.ACC stimulus.RT
+&gt; 1     413        a            1        5578
+&gt; 2     413        s            0        9889
+&gt; 3     413        a            0        4218
+&gt; 4     413        p            1        1376
+&gt; 5     413        s            0        6169
+&gt; 6     413        p            1        2663</code></pre>
+<pre><code>&gt;     Subject probType stimulus.ACC stimulus.RT
+&gt; 475     416        s            1        4671
+&gt; 476     416        a            1        2765
+&gt; 477     416        s            1       13400
+&gt; 478     416        p            1         957
+&gt; 479     416        a            1        2112
+&gt; 480     416        s            1        8193</code></pre>
+<p>I’ve printed the top and bottom 6 rows of this dataframe. As you can see, the first participant’s ID is 413, while the last participant’s ID is 416. Each trial is a row and has a problem type (either p, a, or s), an accuracy (1 for correct, 0 for incorrect), as well as an associated reaction time (RT) measure in milliseconds. Now, I forgot to program the block each trial appeared in my E-Prime experiment, but I can add it like this:</p>
+<pre class="r"><code># Adding block
+eDataSimple$Block &lt;- rep(c(1,2,3,4), each = 24) # 24 trials/block
+
+# Let&#39;s take another look
+head(eDataSimple); tail(eDataSimple)</code></pre>
+<pre><code>&gt;   Subject probType stimulus.ACC stimulus.RT Block
+&gt; 1     413        a            1        5578     1
+&gt; 2     413        s            0        9889     1
+&gt; 3     413        a            0        4218     1
+&gt; 4     413        p            1        1376     1
+&gt; 5     413        s            0        6169     1
+&gt; 6     413        p            1        2663     1</code></pre>
+<pre><code>&gt;     Subject probType stimulus.ACC stimulus.RT Block
+&gt; 475     416        s            1        4671     4
+&gt; 476     416        a            1        2765     4
+&gt; 477     416        s            1       13400     4
+&gt; 478     416        p            1         957     4
+&gt; 479     416        a            1        2112     4
+&gt; 480     416        s            1        8193     4</code></pre>
+<p>Now these data are in a perfect format to summarize using the R package dplyr.</p>
+</div>
+<div id="step-3---summarize-with-dplyr" class="section level2">
+<h2>Step 3 - Summarize with dplyr</h2>
+<p>Let’s calculate the mean accuracy for condition x block (3 x 4 repeated-measures factorial design). But first, let’s group based on our factors, which are 1) the subjects, 2) the conditions, and 3) the blocks. dplyr also lets you rename the columns easily:</p>
+<pre class="r"><code>library(dplyr) # Loads dplyr
+
+acc &lt;- group_by(eDataSimple,              # Dataframe   
+                ss = Subject,             # Subjects
+                cond = probType,          # Conditions 
+                block = as.factor(Block)) # Blocks</code></pre>
+<p>Next, let’s calculate the average based on these factors. In other words, for each subject, what was his or her accuracy for each condition crossed with block?</p>
+<pre class="r"><code>acc &lt;- summarise(acc, meanAcc = mean(stimulus.ACC))
+
+head(acc); tail(acc) </code></pre>
+<pre><code>&gt; Source: local data frame [6 x 4]
+&gt; Groups: ss, cond [2]
+&gt; 
+&gt;      ss   cond  block meanAcc
+&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;   &lt;dbl&gt;
+&gt; 1   413      a      1   0.875
+&gt; 2   413      a      2   1.000
+&gt; 3   413      a      3   1.000
+&gt; 4   413      a      4   0.750
+&gt; 5   413      p      1   0.750
+&gt; 6   413      p      2   1.000</code></pre>
+<pre><code>&gt; Source: local data frame [6 x 4]
+&gt; Groups: ss, cond [2]
+&gt; 
+&gt;      ss   cond  block meanAcc
+&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;   &lt;dbl&gt;
+&gt; 1   418      p      3   1.000
+&gt; 2   418      p      4   1.000
+&gt; 3   418      s      1   0.875
+&gt; 4   418      s      2   0.625
+&gt; 5   418      s      3   0.625
+&gt; 6   418      s      4   0.875</code></pre>
+<p>dplyr can also be used to create pipelines that streamline the code with the %&gt;% operator. Here is an example of a pipeline that calculates both accuracy and RT:</p>
+<pre class="r"><code>results &lt;-  eDataSimple %&gt;% 
+              group_by(ss = Subject,
+                       cond = probType,
+                       block = as.factor(Block)) %&gt;%
+              summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))
+
+head(results); tail(results)</code></pre>
+<pre><code>&gt; Source: local data frame [6 x 5]
+&gt; Groups: ss, cond [2]
+&gt; 
+&gt;      ss   cond  block stimulus.ACC stimulus.RT
+&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+&gt; 1   413      a      1        0.875    5776.375
+&gt; 2   413      a      2        1.000    2393.125
+&gt; 3   413      a      3        1.000    2516.875
+&gt; 4   413      a      4        0.750    1940.000
+&gt; 5   413      p      1        0.750    5911.625
+&gt; 6   413      p      2        1.000    3227.625</code></pre>
+<pre><code>&gt; Source: local data frame [6 x 5]
+&gt; Groups: ss, cond [2]
+&gt; 
+&gt;      ss   cond  block stimulus.ACC stimulus.RT
+&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+&gt; 1   418      p      3        1.000    2223.000
+&gt; 2   418      p      4        1.000    2332.750
+&gt; 3   418      s      1        0.875    6749.000
+&gt; 4   418      s      2        0.625    5387.250
+&gt; 5   418      s      3        0.625    7239.000
+&gt; 6   418      s      4        0.875    5255.125</code></pre>
+<p>The dataframe ‘results’ is ready for stats in R.</p>
+<p>Now what about that pesky reviewer #2? Let’s say reviewer #2 asks for a new analysis that, instead of looking at reaction time, asks for the results with reaction time for only correct solutions? If you preprocessed your data in Excel, you would probably have to re-compute all these values in each sheet and then re-do the analyses. But this is simple in R and is only one additional line of code:</p>
+<pre class="r"><code>corRT &lt;-  eDataSimple %&gt;%
+          filter(stimulus.ACC == 1) %&gt;%  # Filters out inaccurate trials
+          group_by(ss = Subject,
+                   cond = probType,
+                   block = as.factor(Block)) %&gt;%
+          summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))
+
+head(corRT); tail(corRT)</code></pre>
+<pre><code>&gt; Source: local data frame [6 x 5]
+&gt; Groups: ss, cond [2]
+&gt; 
+&gt;      ss   cond  block stimulus.ACC stimulus.RT
+&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+&gt; 1   413      a      1            1    5999.000
+&gt; 2   413      a      2            1    2393.125
+&gt; 3   413      a      3            1    2516.875
+&gt; 4   413      a      4            1    2069.000
+&gt; 5   413      p      1            1    5791.833
+&gt; 6   413      p      2            1    3227.625</code></pre>
+<pre><code>&gt; Source: local data frame [6 x 5]
+&gt; Groups: ss, cond [2]
+&gt; 
+&gt;      ss   cond  block stimulus.ACC stimulus.RT
+&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+&gt; 1   418      p      3            1    2223.000
+&gt; 2   418      p      4            1    2332.750
+&gt; 3   418      s      1            1    6574.000
+&gt; 4   418      s      2            1    5326.000
+&gt; 5   418      s      3            1    6407.000
+&gt; 6   418      s      4            1    4871.143</code></pre>
+<p>To summarize, the entire R script to process these data is quite concise and can accommodate <em>many</em> more participants with ease:</p>
+<pre class="r"><code>rm(list = ls()) # Clears workspace
+
+eData &lt;- read.table(&#39;data.txt&#39;, # The name of your *.txt file from above
+                    sep = &#39;\t&#39;, # These data are tab separated
+                    header = T) # Appends variables as column names
+
+# Variables that I want to keep
+vars &lt;- c(&#39;Subject&#39;,&#39;probType&#39;,&#39;stimulus.ACC&#39;,&#39;stimulus.RT&#39;)
+
+# Subsetting these variables
+eDataSimple &lt;- subset(eData, select = vars)
+
+# Adding block
+eDataSimple$Block &lt;- rep(c(1,2,3,4), each = 24) # 24 trials/block
+
+library(dplyr) # Loads dplyr
+
+# Results with regular RT
+results &lt;-  eDataSimple %&gt;% 
+              group_by(ss = Subject,
+                       cond = probType,
+                       block = as.factor(Block)) %&gt;%
+              summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))
+
+# Correct RT results
+corRT &lt;-  eDataSimple %&gt;%
+          filter(stimulus.ACC == 1) %&gt;%  # Filters out inaccurate trials
+          group_by(ss = Subject,
+                   cond = probType,
+                   block = as.factor(Block)) %&gt;%
+          summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))</code></pre>
+<p>After programming your experiment with the E-Prime beast, dragging undergraduate participants through your study, and wrangling the data into one place, why not make your life easier? Ditch the Excel templates. You’ll thank me when reviewer #2 comes around!</p>
+<div id="acknowledgments" class="section level3">
+<h3>Acknowledgments:</h3>
+<p>This tutorial was inspired by Dr. Jahn’s amazing <a href="http://andysbrainblog.blogspot.com/">blog</a> that helped me and I’m sure hundreds of other graduate students stumble through the crazy world that is fMRI analysis. Andy’s Brain Blog is the best!</p>
+</div>
+<div id="references" class="section level3">
+<h3>References:</h3>
+<p>Wickham, H., and R. Francois. 2016. dplyr: A Grammar of Data Manipulation. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="row content">
+<div class="col-sm-3 sidenav">
+</div>
+<div class="col-sm-9">
+<p>Copyright &copy; 2017 Matthew J. Kmiecik. All rights reserved.</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

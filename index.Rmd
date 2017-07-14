@@ -4,24 +4,29 @@ title: ""
 
 <br>
 
-<h1><span class="fa fa-paper-plane-o" aria-hidden="true"></span> My Blogs</h1> 
+<h2><span class="fa fa-paper-plane-o" aria-hidden="true"></span> My Blogs</h2> 
 <hr>
 
-<h2><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="academicblog.html"> Academic Blog</a></h2> 
+<h3><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="academicblog.html"> Academic Blog</a></h3> 
 
 As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others. Some current topics include:
 
-<h2><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="theblueline.html"> The Blue Line</a></h2> 
+<h3><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="theblueline.html"> The Blue Line</a></h3> 
 
 I love the sport of hockey. In my spare time, I like to apply some of the statistical techniques that I've learned in my classes and research projects to hockey data. This hockey analytics blog serves to help hone my data science skills, teach R, and (hopefully) provide new insights to this amazing sport.
 
 <br>
 
-<h1><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h1> 
+<h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h2> 
 <hr>
 
-<h2><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html"> ggplot2 Histogram Logo Fail</a></h2>
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html"> ggplot2 Histogram Logo Fail</a></h3>
 <span class="glyphicon glyphicon-time"></span> May 15, 2017<br>
 
 A (probably) pointless post about forcing spaces in ggplot2 histograms.
+
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
+<span class="glyphicon glyphicon-time"></span> May 15, 2017<br>
+
+A post demonstrating an efficient data pipeline for E-prime users.
 
