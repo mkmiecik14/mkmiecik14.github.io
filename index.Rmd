@@ -20,7 +20,7 @@ I love the sport of hockey. In my spare time, I like to apply some of the statis
 <h1><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h1> 
 <hr>
 
-<h2><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="ab_bp1.html"> ggplot2 Histogram Logo Fail</a></h2>
+<h2><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html"> ggplot2 Histogram Logo Fail</a></h2>
 <span class="glyphicon glyphicon-time"></span> May 15, 2017<br>
 
 A (probably) pointless post about forcing spaces in ggplot2 histograms.

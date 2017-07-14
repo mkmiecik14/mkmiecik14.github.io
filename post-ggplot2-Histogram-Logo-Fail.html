@@ -207,7 +207,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">ggplot2 Histogram Logo Fail</h1>
 <h4 class="author"><em>Matt Kmiecik</em></h4>
-<h4 class="date"><em>Last updated: 11 July 2017</em></h4>
+<h4 class="date"><em>Last updated: 13 July 2017</em></h4>
 
 </div>
 
@@ -239,7 +239,7 @@ ggplot(logoData, aes(x, fill = dist, colour = dist)) +
         axis.title = element_blank(),
         legend.position = &#39;none&#39;,
         panel.background = element_rect(fill = &#39;#eaeaea&#39;))</code></pre>
-<p><img src="ab_bp1_files/figure-html/two-histograms-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-ggplot2-Histogram-Logo-Fail_files/figure-html/two-histograms-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now, let’s make one of the histograms invisible by setting its fill and color to NA, giving the illusion that there is only one histogram plotted:</p>
 <pre class="r"><code>ggplot(logoData, aes(x, fill = dist, colour = dist)) +
   geom_histogram(aes(y = ..density..), 
@@ -255,7 +255,7 @@ ggplot(logoData, aes(x, fill = dist, colour = dist)) +
         axis.title = element_blank(),
         legend.position = &#39;none&#39;,
         panel.background = element_rect(fill = &#39;#eaeaea&#39;))</code></pre>
-<p><img src="ab_bp1_files/figure-html/one-histogram-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-ggplot2-Histogram-Logo-Fail_files/figure-html/one-histogram-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now we are left with a single histogram density plot with spaces between the bars. However, when I tried to make this my website logo, I couldn’t figure out a way to get a high resolution image at 100 x 100 pixels. Instead, my brother made me a sweet bar graph with hockey sticks through it in Photoshop! Either way, through this journey I was able to come up with a solution to having spaces between histogram bars in ggplot2. Hopefully this is useful to someone!</p>
 
 <div class="container-fluid">
