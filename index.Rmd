@@ -30,7 +30,7 @@ A (probably) pointless post about forcing spaces in ggplot2 histograms.
 
 A post demonstrating an efficient data pipeline for E-prime users.
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-The-Last-Decade-NHL’s-Best-and-Worst-Power-Play-Teams.html"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
 <span class="glyphicon glyphicon-time"></span> May 15, 2017<br>
 
 A hockey analytics post about 5 v. 4 NHL powerplays from 2007-2017.

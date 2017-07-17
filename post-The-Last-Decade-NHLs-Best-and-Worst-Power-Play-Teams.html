@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matt Kmiecik" />
+
+<meta name="date" content="2017-05-15" />
+
+<title>The Last Decade: NHL’s Best and Worst Power Play Teams</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Matt's Blog</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="theblueline.html">The Blue Line</a>
+</li>
+<li>
+  <a href="academicblog.html">Academic Blog</a>
+</li>
+<li>
+  <a href="cv.html">CV</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="academicons-1.8.0/css/academicons.css"/>
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">The Last Decade: NHL’s Best and Worst Power Play Teams</h1>
+<h4 class="author"><em>Matt Kmiecik</em></h4>
+<h4 class="date"><em>15 May 2017</em></h4>
+
+</div>
+
+
+<p>So you are watching your favorite NHL team and they finally draw a powerplay. Awesome! The ice opens up with the missing player and it shouldn’t be too hard to score…right? As a previous water polo player, I know what it is like to endure the wrath of a furious coach after a missed man advantage opportunity. In my experience, coaches semed convinced that the man-up should lead to a goal 100% of the time. But how important is this seemingly advantageous situation in the NHL?</p>
+<p>As a first pass, I analyzed the NHL regular-season over the past ten years (2007-2017) on the standard 5 vs. 4 power play. These data were retrieved via <a href="http://www.corsica.hockey/teams/">Corsica</a> shortly after the end of the 2017 regular season. The following will detail the analyses in R with steps along the way utilizing the wonderful R packages of ggplot2 (Wickham, 2009) and dplyr (Wickham &amp; Francois, 2016).</p>
+<p>First, I loaded the data and made sure to combine the entries of the Atlanta Thrashers and the Winnipeg Jets, as the Thrashers moved to Winnipeg after the 2011 season. Therefore, the Thrashers and the Jets are considered the same team in this analysis.</p>
+<pre class="r"><code># Set-up
+rm(list=ls()) # Clear workspace
+
+# Load packages
+library(ggplot2); library(dplyr); library(plotly); library(RCurl)
+
+# Step 1: Load data
+data5v4 &lt;- read.table(text = getURL(&quot;https://mkmiecik14.github.io/data/corsicaData_5v4.csv&quot;),
+                      sep = &#39;,&#39;,
+                      header = T)
+
+# Step 2: Clean up the data a little bit
+# ATL moved to WPG for 2011-2012 season
+data5v4$Team &lt;- plyr::revalue(data5v4$Team, c(ATL = &#39;ATL.WPG&#39;, WPG = &#39;ATL.WPG&#39;))</code></pre>
+<p>Next, I plotted the global trend of total regular-season power play goals for each of the 30 NHL teams over the last decade.</p>
+<pre class="r"><code># Step 2a: Look at power play goals 5v4 for every team in the past 
+ggplot(data5v4, aes(factor(Season), GF, group = 1)) +
+    geom_line(aes(group = factor(Team)), alpha = 1/2) + 
+    geom_line(stat = &#39;summary&#39;, fun.y = &#39;mean&#39;, colour = &#39;red&#39;) +
+    xlab(&#39;Season&#39;) +
+    ylab(&#39;Total Season Power Play Goals (5v4)&#39;) +
+    theme(axis.text.x = element_text(angle = 15, hjust = 1))</code></pre>
+<p><img src="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams_files/figure-html/decade-nhl-power-play-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In this above plot, each team is a grey line, while the average total power play goals for each season is plotted in the red trend line. However, we see that this doesn’t control for the shortened lockout season that occurred in 2012-2013. Let’s control for this by dividing the total power play goals (GF) by the total games played (GP) each season.</p>
+<pre class="r"><code># Step 2b: Control for games played due to partial lockout season (2012-2013)
+ggplot(data5v4, aes(factor(Season), GF/GP, group = 1)) +
+    geom_line(aes(group = factor(Team)), alpha = 1/2) + 
+    geom_line(stat = &#39;summary&#39;, fun.y = &#39;mean&#39;, colour = &#39;red&#39;) +
+    xlab(&#39;Season&#39;) +
+    ylab(&#39;Total Season Power Play Goals/Games Played (5v4)&#39;) +
+    theme(axis.text.x = element_text(angle = 15, hjust = 1))</code></pre>
+<p><img src="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams_files/figure-html/decade-nhl-power-play-controlled-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We now see each team’s power play performance controlled for the games played that season. What is interesting about this above plot is the seemingly decrease in power play goals across time. Let’s model this with a linear regression that predicts the total season power play goals controlled for games played as a function of time/season.</p>
+<pre class="r"><code># Step 3a: Linearly model this negative relationship between 
+# power play goals/game and season
+mod &lt;- lm((GF/GP) ~ factor(Season), data = data5v4)
+summary(mod) # Very significant negative trend over time</code></pre>
+<pre><code>&gt; 
+&gt; Call:
+&gt; lm(formula = (GF/GP) ~ factor(Season), data = data5v4)
+&gt; 
+&gt; Residuals:
+&gt;      Min       1Q   Median       3Q      Max 
+&gt; -0.24268 -0.06463 -0.00878  0.05407  0.33333 
+&gt; 
+&gt; Coefficients:
+&gt;                        Estimate Std. Error t value Pr(&gt;|t|)    
+&gt; (Intercept)             0.64176    0.01890  33.953  &lt; 2e-16 ***
+&gt; factor(Season)20082009  0.03628    0.02673   1.357 0.175726    
+&gt; factor(Season)20092010 -0.04644    0.02673  -1.737 0.083394 .  
+&gt; factor(Season)20102011 -0.09420    0.02673  -3.524 0.000494 ***
+&gt; factor(Season)20112012 -0.13776    0.02673  -5.154 4.73e-07 ***
+&gt; factor(Season)20122013 -0.12093    0.02673  -4.524 8.86e-06 ***
+&gt; factor(Season)20132014 -0.11779    0.02673  -4.407 1.48e-05 ***
+&gt; factor(Season)20142015 -0.12875    0.02673  -4.817 2.36e-06 ***
+&gt; factor(Season)20152016 -0.12591    0.02673  -4.710 3.84e-06 ***
+&gt; factor(Season)20162017 -0.12555    0.02673  -4.697 4.08e-06 ***
+&gt; ---
+&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+&gt; 
+&gt; Residual standard error: 0.1035 on 290 degrees of freedom
+&gt; Multiple R-squared:  0.2464,  Adjusted R-squared:  0.223 
+&gt; F-statistic: 10.54 on 9 and 290 DF,  p-value: 4.082e-14</code></pre>
+<p>As we can see from the regression model and coefficients, power play goals are decreasing with each successive season. Here is a plot of this negative trend in blue.</p>
+<pre class="r"><code># Step 3b: Plot this linear trend over time
+ggplot(data5v4, aes(factor(Season), GF/GP, group = 1)) +
+    geom_line(aes(group = factor(Team)), alpha = 1/2) + 
+    geom_line(stat = &#39;summary&#39;, fun.y = &#39;mean&#39;, colour = &#39;red&#39;) +
+    xlab(&#39;Season&#39;) +
+    ylab(&#39;Total Season Power Play Goals/Games Played (5v4)&#39;) +
+    stat_smooth(method = &#39;lm&#39;, col = &#39;blue&#39;, se = F) +
+    theme(axis.text.x = element_text(angle = 15, hjust = 1))</code></pre>
+<p><img src="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams_files/figure-html/decade-nhl-power-play-decrease-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>I then wondered which teams, despite this decrease in power play goals over time, had the best or worst power play across the last decade? To remove this negative trend over time, I extracted the residuals from the model. The residuals are simply the distance from the blue line (the predicted power play goals over time) to each team’s grey line (total power play goals/games played for each year).</p>
+<pre class="r"><code># Step 4a: Remove this linear trend and focus on residuals
+# This will examine teams&#39; performance after controlling for this decrease in
+# powerplay goals in the last decade
+data5v4$rel_ppg &lt;- resid(mod)</code></pre>
+<p>Next, I averaged these residuals for each individual team over ten years and ran one-sample t-tests to see the teams that significantly deviated from the average.</p>
+<pre class="r"><code># Step 4b: Average the residuals for each team over the past decade. Then,
+# perform a one-sample t-test (i.e., from zero) to see teams that were above
+# or below the average power play goals/game despite the decrease in 
+# power play goals in the last decade  
+bestPP &lt;- data5v4 %&gt;% 
+  group_by(Team) %&gt;% 
+  summarise_each(funs(mean = mean,  
+                      sd = sd,
+                      sem = sd(.)/sqrt(n()),
+                      tpval = t.test(.)$p.value),
+                 rel_ppg) %&gt;%
+  mutate(sig = tpval &lt; .05)
+print(bestPP)</code></pre>
+<pre><code>&gt; # A tibble: 30 × 6
+&gt;       Team          mean         sd        sem       tpval   sig
+&gt;     &lt;fctr&gt;         &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;lgl&gt;
+&gt; 1      ANA  0.0295984571 0.08135082 0.02572539 0.279566941 FALSE
+&gt; 2      ARI -0.0556384254 0.07765992 0.02455822 0.049721680  TRUE
+&gt; 3  ATL.WPG -0.0456169710 0.07345335 0.02322799 0.081136809 FALSE
+&gt; 4      BOS -0.0249868897 0.10215940 0.03230564 0.459086769 FALSE
+&gt; 5      BUF -0.0230334119 0.09867466 0.03120367 0.479219695 FALSE
+&gt; 6      CAR -0.0102398256 0.08962689 0.02834251 0.726219579 FALSE
+&gt; 7      CBJ -0.0531692896 0.08913087 0.02818566 0.091863618 FALSE
+&gt; 8      CGY -0.0111667945 0.06042159 0.01910699 0.573283741 FALSE
+&gt; 9      CHI -0.0007603766 0.08355941 0.02642381 0.977671085 FALSE
+&gt; 10     COL -0.0782671517 0.06691173 0.02115935 0.004928647  TRUE
+&gt; # ... with 20 more rows</code></pre>
+<p>Finally, I plotted these results. Teams that have positive averages that are different from zero are teams that are above average in the power play, despite the decrease in power play goals scored in the last decade. The teams with negative residual averages are the opposite and are below average in the power play. Error bars represent the standard error of the mean.</p>
+<pre class="r"><code># Step 4c: Plot the average residuals, their standard error of the mean,
+# and color based on if significantly different from 0 (i.e., average PPG/Game)
+
+# -- To get y.axis bold conditional -- # 
+  bestPPSort &lt;- arrange(bestPP, mean)                       
+  axisFace &lt;- ifelse(bestPPSort$sig == T,&#39;bold&#39;, &#39;plain&#39;)
+# -- To get y.axis bold conditional -- # 
+ggplot(bestPP, aes(mean, reorder(Team, mean), colour = sig)) +
+  geom_errorbarh(aes(xmin = mean - sem, xmax = mean + sem)) +
+  geom_point(size = 2) +
+  scale_x_continuous(limits = (c(-.2, .2))) +
+  scale_color_brewer(palette = &#39;Set1&#39;, 
+                     direction = -1,
+                     guide = guide_legend(reverse = T,
+                                          title = &#39;Above/Below Average&#39;,
+                                          title.position = &#39;top&#39;)) +
+  xlab(&#39;Mean Power Play Goals/Games Played (Residuals)&#39;) +
+  ylab(&#39;NHL Team&#39;) +
+  theme(axis.text.y = element_text(face = axisFace),
+        legend.position = &#39;bottom&#39;,
+        legend.key = element_rect(colour = &quot;transparent&quot;, fill = &quot;white&quot;),
+        legend.key.width = unit(1, &#39;in&#39;),
+        legend.key.height = unit(.5, &#39;in&#39;),
+        legend.title.align = .5,
+        axis.title.x = element_text(vjust = -1))</code></pre>
+<p><img src="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams_files/figure-html/nhl-best-worst-power-play-teams-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As we can see from this plot, the top power play teams in the past decade have been the Washington Capitals, Philadelphia Flyers, Detroit Red Wings, San Jose Sharks, and Pittsburgh Penguins. Meanwhile, the worst power play teams have been the New York Islanders, Phoenix Coyotes, Nashville Predators, New York Rangers, New Jersey Devils, Colorado Avalanche, and Florida Panthers.</p>
+<p>Interestingly, only 5 different teams have won the Stanley Cup in this ten year span. Of the top power play teams from this analysis, only the Red Wings and the Penguins have won the Stanley Cup, while the Blackhawks, the Kings, the Bruins all had average regular-season power plays. It is unclear how regular-season power play performance relates to Stanley Cup wins; however, this analysis demonstrated 3 key findings for this last decade of hockey (2007 – 2017):</p>
+<ol style="list-style-type: decimal">
+<li>League-wide total power play goals per season have decreased</li>
+<li>Top power play teams are the Washington Capitals, Philadelphia Flyers, Detroit Red Wings, and the San Jose Sharks, and Pittsburgh Penguins</li>
+<li>Worst power play teams are New York Islanders, Phoenix Coyotes, Nashville Predators, New York Rangers, New Jersey Devils, Colorado Avalanche, and Florida Panthers</li>
+</ol>
+<div id="acknowledgments" class="section level3">
+<h3>Acknowledgments:</h3>
+<p>This analysis was inspired by Part III of <a href="https://github.com/hadley/ggplot2-book">ggplot2: Elegant Graphics for Data Analysis</a> by Hadley Wickham.</p>
+</div>
+<div id="references" class="section level3">
+<h3>References:</h3>
+<p>Wickham, H. 2009. ggplot2: Elegant Graphics for Data Analysis. Book. Springer-Verlag New York. <a href="http://ggplot2.org" class="uri">http://ggplot2.org</a>.</p>
+<p>Wickham, H., and R. Francois. 2016. dplyr: A Grammar of Data Manipulation. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+
+<div class="container-fluid">
+<div class="row content">
+<div class="col-sm-3 sidenav">
+</div>
+<div class="col-sm-9">
+<p>Copyright &copy; 2017 Matthew J. Kmiecik. All rights reserved.</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

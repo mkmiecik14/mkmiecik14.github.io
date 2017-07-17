@@ -343,7 +343,7 @@ div.tocify {
 <p class="caption"><em>Joystick configuration in E-prime.</em></p>
 </div>
 <p>E-Prime will now recognize the button presses on the controller as keystrokes. This allows experiments to be programmed as usual, as long as the controller buttons are mapped to appropriate keystrokes (thank you <a href="https://groups.google.com/forum/#!topic/e-prime/-Kdb0qG83-0">Ben</a> for the idea). You can even emulate the controller as a mouse (see <a href="https://www.pstnet.com/support/kb.asp?TopicID=1249">here</a>). To do this, edit the joystick properties (see step 4 above) to “Show Cursor: yes: and include the following inline code at the beginning of your experiment:</p>
-<pre class="basic"><code>Joystick.AttachToMouseCursor = True</code></pre>
+<pre class="vbs"><code>Joystick.AttachToMouseCursor = True</code></pre>
 </div>
 <div id="eeg-triggers" class="section level1">
 <h1>EEG Triggers</h1>
@@ -592,7 +592,7 @@ fixation.OffsetSignalEnabled = True
 fixation.OffsetSignalPort = &amp;H378
 fixation.OffsetSignalData = 0</code></pre>
 <p>To pass the triggers conditional on the correct stimulus comdition (11 or 22), the following inline code should be placed before the stimulus (in this example “stimTrigs”):</p>
-<pre><code>&#39; Triggers for stim onset
+<pre class="vbs"><code>&#39; Triggers for stim onset
 stim.OnsetSignalEnabled = True
 stim.OnsetSignalPort = &amp;H378
 stim.OnsetSignalData = c.GetAttrib(&quot;stimTrig&quot;)
@@ -620,7 +620,7 @@ stim.OffsetSignalData = 0</code></pre>
 </div>
 <p>The basic concept for this is that as soon as “stim” is presented on screen, we must program E-Prime to constantly look for a response. If one is detected, send triggers as soon as possible given the trial accuracy (i.e., 1 = correct, 2 = incorrect).</p>
 <p>To do this I slightly modified David McFarlane’s script and placed it as an inline code following stim called “respTrigs”:</p>
-<pre><code>Do While stim.InputMasks.IsPending()
+<pre class="vbs"><code>Do While stim.InputMasks.IsPending()
   Sleep 2 &#39; Will check every 2ms
 Loop
 
@@ -651,11 +651,11 @@ Sleep 10 &#39;Takes a break before resetting port
 WritePort &amp;H378, 0</code></pre>
 <p>Alternatively, if there are no events that require triggers following “stim”, “Sleep 10” could be removed and “WritePort &amp;H378, 0” could be placed as the first line of code in the “fixTrigs” inline code.</p>
 <p>The variables cor, icor, and nrp were set as <a href="https://www.pstnet.com/support/kb.asp?TopicID=3844">global variables</a> to be easily modified and stay consitent across the experiment:</p>
-<pre><code>Dim cor   As Integer
+<pre class="vbs"><code>Dim cor   As Integer
 Dim icor  As Integer
 Dim nrp   As Integer</code></pre>
 <p>And then defined at the beginning of the experiment in the inline code “defTrigs”:</p>
-<pre><code>cor   = 1
+<pre class="vbs"><code>cor   = 1
 icor  = 2
 nrp   = 3</code></pre>
 </div>
