@@ -61,7 +61,7 @@ rm(list = ls())                 # Clears workspace
 library(RCurl)                  # To retrive data from github repo
 eData <- read.table(text = getURL("https://mkmiecik14.github.io/data/data.txt"), 
                    sep = '\t',
-                   header=T)
+                   header = T)
 dim(eData)
 ```
 

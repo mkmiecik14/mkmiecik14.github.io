@@ -265,7 +265,7 @@ $(document).ready(function () {
 library(RCurl)                  # To retrive data from github repo
 eData &lt;- read.table(text = getURL(&quot;https://mkmiecik14.github.io/data/data.txt&quot;), 
                    sep = &#39;\t&#39;,
-                   header=T)
+                   header = T)
 dim(eData)</code></pre>
 <pre><code>&gt; [1] 480  47</code></pre>
 <p>As we can see, this dataframe has 480 rows and 47 columns. Each row is a trial from a participant and each column is a measure/information from your E-prime experiment. E-prime gives us way too much information, so I like to clean this up and only include the essentials (<em>Note: These variable names will vary based on your experiment</em>):</p>
