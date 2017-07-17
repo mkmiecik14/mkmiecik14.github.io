@@ -1,7 +1,7 @@
 ---
 title: "ggplot2 Histogram Logo Fail"
 author: "Matt Kmiecik"
-date: "Last updated: `r format(Sys.Date(), format = '%d %B %Y')`"
+date: "15 May 2017"
 ---
 
 ```{r setup, include=FALSE}
