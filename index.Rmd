@@ -9,11 +9,20 @@ title: ""
 
 <h3><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="academicblog.html"> Academic Blog</a></h3> 
 
-As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others. Some current topics include:
+As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others.
+
+<span class="label label-default">R</span>
+<span class="label label-primary">ggplot2</span>
+<span class="label label-success">E-Prime</span>
+<span class="label label-warning">EEG</span>
 
 <h3><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="theblueline.html"> The Blue Line</a></h3> 
 
 I love the sport of hockey. In my spare time, I like to apply some of the statistical techniques that I've learned in my classes and research projects to hockey data. This hockey analytics blog serves to help hone my data science skills, teach R, and (hopefully) provide new insights to this amazing sport.
+
+<span class="label label-default">R</span>
+<span class="label label-primary">ggplot2</span>
+<span class="label label-danger">Power Play</span>
 
 <br>
 
