@@ -1,5 +1,15 @@
 /* Insert sytle here */
 
+/*
+Flatly theme colors:
+#E74C3C = red;
+#F39C12 = yellow;
+#3498DB = light blue;
+#18BC9C = sea green;
+#2C3E50 = dark blue;
+*/
+
+/* navbar icon colors */
 .logo-icon1 {
   color: #F39C12;
 }
@@ -9,10 +19,24 @@
 }
 
 .logo-icon3 {
-  color: #E74C3C;
-}
-
-.logo-icon4 {
   color: #18BC9C;
 }
+
+/* Links and their hovers into light blue */
+/*
+.postLink, .postLink:hover{
+  color: #3498DB;
+}
+*/
+
+/* labels for topics */
+/*
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-primary">Academic</span>
+<span class="label label-default">R</span>
+<span class="label label-success">E-Prime</span>
+<span class="label label-warning">EEG</span>
+<span class="label label-danger">Power Play</span>
+
+*/
 

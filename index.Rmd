@@ -9,38 +9,56 @@ title: ""
 
 <h3><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="academicblog.html"> Academic Blog</a></h3> 
 
-As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others.
-
+<span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
-<span class="label label-primary">ggplot2</span>
 <span class="label label-success">E-Prime</span>
 <span class="label label-warning">EEG</span>
 
+As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others.
+
 <h3><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="theblueline.html"> The Blue Line</a></h3> 
 
-I love the sport of hockey. In my spare time, I like to apply some of the statistical techniques that I've learned in my classes and research projects to hockey data. This hockey analytics blog serves to help hone my data science skills, teach R, and (hopefully) provide new insights to this amazing sport.
-
+<span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
-<span class="label label-primary">ggplot2</span>
 <span class="label label-danger">Power Play</span>
+
+I love the sport of hockey. In my spare time, I like to apply some of the statistical techniques that I've learned in my classes and research projects to hockey data. This hockey analytics blog serves to help hone my data science skills, teach R, and (hopefully) provide new insights to this amazing sport.
 
 <br>
 
 <h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h2> 
 <hr>
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html"> ggplot2 Histogram Logo Fail</a></h3>
-<span class="glyphicon glyphicon-time"></span> May 15, 2017<br>
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="label label-primary">Academic</span>
+<span class="label label-default">R</span>
 
 A (probably) pointless post about forcing spaces in ggplot2 histograms.
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
-<span class="glyphicon glyphicon-time"></span> May 15, 2017<br>
+<br>
+
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="postLink"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="label label-primary">Academic</span>
+<span class="label label-default">R</span>
+<span class="label label-success">E-Prime</span>
 
 A post demonstrating an efficient data pipeline for E-prime users.
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
-<span class="glyphicon glyphicon-time"></span> May 15, 2017<br>
+<br>
 
-A hockey analytics post about 5 v. 4 NHL powerplays from 2007-2017.
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.htm l" class="postLink"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+<span class="label label-danger">Power Play</span>
+
+A hockey analytics post about 5 vs. 4 NHL powerplays from 2007-2017.
+
+<br>
+
 
