@@ -4,6 +4,8 @@ title: ""
 
 <br>
 
+<!-- MY BLOGS -->
+
 <h2><span class="fa fa-paper-plane-o" aria-hidden="true"></span> My Blogs</h2> 
 <hr>
 
@@ -26,8 +28,22 @@ I love the sport of hockey. In my spare time, I like to apply some of the statis
 
 <br>
 
+<!-- RECENT POSTS -->
+
 <h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h2> 
 <hr>
+
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="postLink"> Using Xbox Controllers and Sending EEG Triggers with E-Prime</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> June 12, 2017
+<span class="label label-primary">Academic</span>
+<span class="label label-default">R</span>
+<span class="label label-success">E-Prime</span>
+<span class="label label-warning">EEG</span>
+
+A post about interfacing E-Prime 2.0 with an Xbox controller and passing stimulus/response triggers.
+
+<br>
 
 <h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
 
@@ -60,5 +76,13 @@ A post demonstrating an efficient data pipeline for E-prime users.
 A hockey analytics post about 5 vs. 4 NHL powerplays from 2007-2017.
 
 <br>
+
+
+<!-- disqus comment counter LEAVE HERE AT BOTTOM OF INDEX -->
+<script id="dsq-count-scr" src="//mattkmiecik.disqus.com/count.js" async></script> 
+
+
+
+
 
 
