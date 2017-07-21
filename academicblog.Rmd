@@ -5,6 +5,18 @@ title: "Academic Blog"
 <h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Posts</h2> 
 <hr>
 
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="postLink"> Using Xbox Controllers and Sending EEG Triggers with E-Prime</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> June 12, 2017
+<span class="label label-primary">Academic</span>
+<span class="label label-default">R</span>
+<span class="label label-success">E-Prime</span>
+<span class="label label-warning">EEG</span>
+
+I just spent an entire week wrangling the E-Prime beast and I've lived to tell the tale. I was able to successfully integrate an Xbox controller to accept participant responses as well as communicate these to an EEG system as triggers. This wouldn't have been possible without the help of benevolent bloggers and discussions on E-Prime's Google group, so thank you all! I'll point out these information sources along the way...
+
+<br>
+
 <h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
 
 <span class="glyphicon glyphicon-time"></span> May 15, 2017
