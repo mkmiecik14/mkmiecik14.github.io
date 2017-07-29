@@ -9,11 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Matt Kmiecik" />
 
-<meta name="date" content="2017-05-15" />
 
-<title>ggplot2 Histogram Logo Fail</title>
+<title>About Me</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -212,83 +210,12 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">ggplot2 Histogram Logo Fail</h1>
-<h4 class="author"><em>Matt Kmiecik</em></h4>
-<h4 class="date"><em>15 May 2017</em></h4>
+<h1 class="title toc-ignore">About Me</h1>
 
 </div>
 
 
-<p>When I first started creating this website (in WordPress), I thought it would be cool have have my own logo. Why not, right? I figured I’d go super nerdy and have a cool histogram plot with a density curve through it. I had just finished reading Hadley Wickham’s ggplot2 <a href="https://github.com/hadley/ggplot2-book">book</a> and I was excited to put some of those newly learned skills to use.</p>
-<p>First off, I’m not a design guy (if you can’t tell already), but I had a vision of this plot and I just went with it. After making the basic design, I couldn’t figure out how to get spaces between the bars in a ggplot2 histogram. After searching everywhere, the best advice I got was, <a href="https://groups.google.com/forum/#!topic/ggplot2/yTEm-OfsX18">“Histograms don’t have spaces between them, so why would you want them?”</a></p>
-<p>Then it dawned on me that I could plot two histograms, and then set their position to dodge and make one of the histograms invisible. So first, let’s plot two histograms:</p>
-<pre class="r"><code>rm(list = ls())   # Clear workspace
-library(ggplot2)  # Load ggplot2
-
-set.seed(14)      # Set seed for reproducible example
-samplesA &lt;- 400   # 400 samples in the distribution
-
-# Create dataframe for plotting
-logoData &lt;- data.frame(dist = rep(c(&#39;A&#39;, &#39;B&#39;), each = samplesA), 
-                       x = rnorm(2*samplesA))
-# Logo plot
-ggplot(logoData, aes(x, fill = dist, colour = dist)) +
-  geom_histogram(aes(y = ..density..), 
-                 position = &#39;dodge&#39;, 
-                 bins = 13) +
-  geom_density(alpha = 1/5) +
-  scale_fill_manual(values = c(&#39;#1191e0&#39;, &#39;lightslategrey&#39;)) +
-  scale_color_manual(values = c(&#39;#222222&#39;, &#39;#222222&#39;)) +
-  xlim(-4 , 4) +
-  theme_classic() +
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.title = element_blank(),
-        legend.position = &#39;none&#39;,
-        panel.background = element_rect(fill = &#39;#eaeaea&#39;))</code></pre>
-<p><img src="post-ggplot2-Histogram-Logo-Fail_files/figure-html/two-histograms-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Now, let’s make one of the histograms invisible by setting its fill and color to NA, giving the illusion that there is only one histogram plotted:</p>
-<pre class="r"><code>ggplot(logoData, aes(x, fill = dist, colour = dist)) +
-  geom_histogram(aes(y = ..density..), 
-                 position = &#39;dodge&#39;, 
-                 bins = 13) +
-  geom_density(alpha = 1/5) +
-  scale_fill_manual(values = c(&#39;#1191e0&#39;, NA)) +  # Setting fill to NA
-  scale_color_manual(values = c(&#39;#222222&#39;, NA)) + # Setting color to NA
-  xlim(-4 , 4) +
-  theme_classic() +
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        axis.title = element_blank(),
-        legend.position = &#39;none&#39;,
-        panel.background = element_rect(fill = &#39;#eaeaea&#39;))</code></pre>
-<p><img src="post-ggplot2-Histogram-Logo-Fail_files/figure-html/one-histogram-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Now we are left with a single histogram density plot with spaces between the bars. However, when I tried to make this my website logo, I couldn’t figure out a way to get a high resolution image at 100 x 100 pixels. Instead, my brother made me a sweet bar graph with hockey sticks through it in Photoshop! Either way, through this journey I was able to come up with a solution to having spaces between histogram bars in ggplot2. Hopefully this is useful to someone!</p>
-<!-- disqus START -->
-<div id="disqus_thread">
-
-</div>
-<script>
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = 'https://mkmiecik14.github.io/post-ggplot2-Histogram-Logo-Fail.html';  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = 'post-ggplot2-Histogram-Logo-Fail'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://mattkmiecik.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>
-Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-</noscript>
-<!-- disqus END -->
+<p>Coming soon!</p>
 
   </div> <!-- articleBandContent -->
 </div> <!-- pageContent -->
