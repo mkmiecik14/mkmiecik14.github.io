@@ -367,7 +367,8 @@ ggplot(bestPP, aes(mean, reorder(Team, mean), colour = sig)) +
                                           title.position = &#39;top&#39;)) +
   labs(x = &#39;Mean Power Play Goals/Games Played (Residuals)&#39;,
        y = &#39;NHL Team&#39;,
-       title = &#39;NHL 5v4 Power Play Team Performance 2007-2017&#39;) +
+       title = &#39;NHL 5v4 Power Play Team Performance 2007-2017&#39;,
+       caption = &#39;Error bars are SEM&#39;) +
   theme_minimal() +
   theme(axis.text.y = element_text(face = axisFace),
         plot.title = element_text(hjust = 0.5),
