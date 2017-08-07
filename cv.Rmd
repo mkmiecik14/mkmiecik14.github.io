@@ -19,6 +19,10 @@ output:
 
 # Publications
 <hr />
+* Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2017). [A
+Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic
+Brain Injury.](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury) Psychological Assessment. Advance online publication. http://dx.doi.org/10.1037/pas0000510
+
 * Stockdale, L. A., Morrison, R. G., Kmiecik, M. J., Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) Social Cognitive and Affective Neuroscience, 10(10), 1373-1382. doi: 10.1093/scan/nsv025
 
 * Kmiecik, M. & Morrison, R.G. (2013). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N. Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive Science Society. Austin, TX: Cognitive Science Society.
@@ -42,6 +46,10 @@ output:
 <br />
 
 ## Poster Presentations
+
+* Kmiecik, M. J., Perez, R., Dandu, H., Krawczyk, D. C. (2017, August). [Reasoning with Complex Relational 	Structures.](https://www.researchgate.net/publication/318969662_Reasoning_With_Complex_Relational_Structures) Poster presented at the Fourth International Conference on Analogical Reasoning, Paris, France.
+
+* Martinez, D. M., Kmiecik, M. J., Kamat, P. S., Schauer, G. F., Krawczyk, D. C. (2017, August). Aspects of 	Cognition and Clinical Symptomology in Analogical Reasoning. Poster presented at the Fourth International Conference on Analogical Reasoning, Paris, France.
 
 * Kmiecik, M.J., Martinez, D., Young, L.R., Krawczyk, D.C. (2016, November). [Functional and Structural Neural Patterns in Mild-Moderate Chronic-Phase Traumatic Brain Injury.](https://www.researchgate.net/publication/309457305_Functional_and_Structural_Neural_Patterns_in_Mild-Moderate_Chronic-Phase_Traumatic_Brain_Injury) Archives of Physical Medicine and Rehabilitation, 97(10), e55. doi: 10.1016/j.apmr.2016.08.167
 
