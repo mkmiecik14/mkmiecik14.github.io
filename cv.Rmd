@@ -1,5 +1,5 @@
 ---
-title: "CV"
+title: <center>Matthew J. Kmiecik, B.S.<center>
 output: 
   html_document:
     toc: true
@@ -8,6 +8,8 @@ output:
       collapsed: true
       smooth_scroll: true
 ---
+<p class="text-center">matthew.kmiecik@utdallas.edu</p>
+
 <br />
 
 # Education
