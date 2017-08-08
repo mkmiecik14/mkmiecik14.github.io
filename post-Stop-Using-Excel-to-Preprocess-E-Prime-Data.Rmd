@@ -61,12 +61,12 @@ eData <- read.table('data.txt', # The name of your *.txt file from above
 
 ```
 
-For the purposes of this tutorial, these data are available on my blog-materials github repository and can be downloaded into R like this:
+For the purposes of this tutorial, these data are available on this website's github repository and can be downloaded into R like this:
 
 ```{r import2}
 rm(list = ls())                 # Clears workspace
 library(RCurl)                  # To retrive data from github repo
-eData <- read.table(text = getURL("https://raw.githubusercontent.com/mkmiecik14/blog-materials/master/data.txt"), 
+eData <- read.table(text = getURL("https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/data.txt"), 
                    sep = '\t',
                    header = T)
 dim(eData)

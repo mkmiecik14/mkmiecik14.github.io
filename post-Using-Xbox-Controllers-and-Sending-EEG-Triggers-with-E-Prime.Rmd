@@ -20,7 +20,7 @@ options(knitr.table.format = 'html') # For the html tables
 
 I just spent an entire week wrangling the E-Prime beast and I've lived to tell the tale. I was able to successfully integrate an Xbox controller to accept participant responses as well as communicate these to an EEG system as triggers. This wouldn't have been possible without the help of benevolent bloggers and discussions on E-Prime's Google group, so thank you all! I'll point out these information sources along the way.
 
-I've programmed a simple experiment that checks the passing of triggers to a local EEG system that is available for download on [my blog-materials github repo](https://github.com/mkmiecik14/blog-materials). Click [here](mkmiecik14.github.io/data/triggerTutorialExperiment.es2) to download the experiment file titled **triggerTutorialExperiment.es2**.
+I've programmed a simple experiment that checks the passing of triggers to a local EEG system that is available for download on [this website's github repo/data/](https://github.com/mkmiecik14/mkmiecik14.github.io/tree/master/data). Click [here](mkmiecik14.github.io/data/triggerTutorialExperiment.es2) to download the experiment file titled **triggerTutorialExperiment.es2**.
 
 My general software/hardware specifications:
 
