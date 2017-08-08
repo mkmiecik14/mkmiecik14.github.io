@@ -364,10 +364,10 @@ div.tocify {
 <pre class="r"><code>eData &lt;- read.table(&#39;data.txt&#39;, # The name of your *.txt file from above
                     sep = &#39;\t&#39;, # These data are tab separated
                     header = T) # Appends variables as column names </code></pre>
-<p>For the purposes of this tutorial, these data are available on this websites github repository and can be downloaded into R like this:</p>
+<p>For the purposes of this tutorial, these data are available on my blog-materials github repository and can be downloaded into R like this:</p>
 <pre class="r"><code>rm(list = ls())                 # Clears workspace
 library(RCurl)                  # To retrive data from github repo
-eData &lt;- read.table(text = getURL(&quot;https://mkmiecik14.github.io/data/data.txt&quot;), 
+eData &lt;- read.table(text = getURL(&quot;https://raw.githubusercontent.com/mkmiecik14/blog-materials/master/data.txt&quot;), 
                    sep = &#39;\t&#39;,
                    header = T)
 dim(eData)</code></pre>

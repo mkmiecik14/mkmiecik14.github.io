@@ -34,7 +34,7 @@ rm(list=ls()) # Clear workspace
 library(ggplot2); library(dplyr); library(plotly); library(RCurl)
 
 # Step 1: Load data
-data5v4 <- read.table(text = getURL("https://mkmiecik14.github.io/data/corsicaData_5v4.csv"),
+data5v4 <- read.table(text = getURL("https://raw.githubusercontent.com/mkmiecik14/blog-materials/master/corsicaData_5v4.csv"),
                       sep = ',',
                       header = T)
 
