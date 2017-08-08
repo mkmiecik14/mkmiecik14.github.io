@@ -79,7 +79,7 @@ Now we are left with a single histogram density plot with spaces between the bar
 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 /*
 var disqus_config = function () {
-this.page.url = 'https://mkmiecik14.github.io/post-ggplot2-Histogram-Logo-Fail.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.url = 'https://mattkmiecik.com/post-ggplot2-Histogram-Logo-Fail.html';  // Replace PAGE_URL with your page's canonical URL variable
 this.page.identifier = 'post-ggplot2-Histogram-Logo-Fail'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 };
 */
