@@ -6,6 +6,7 @@ output:
     theme: flatly
     highlight: textmate
     include:
+      in_header: google-analytics.html
       after_body: footer.html
       before_body: icons.html
     css: styles.css
