@@ -1,5 +1,8 @@
 ---
-title: "About Me"
+title: " "
 ---
 
-Coming soon!
+<div class="text-center">
+<img src="images/london-pub.jpg" class="img-circle" alt="London Pub" width="350" height="350">
+</div>
+
