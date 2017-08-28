@@ -63,4 +63,42 @@ body {
 <span class="label label-danger">Power Play</span>
 */
 
+/*
+.social-icons {
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.5em;
+  } 
+  ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		}
+	li {
+			.universal-inline-block;
+			vertical-align:  middle;
+    }
+*/
+
+.prof-pic{
+  text-align: center;
+  padding-top: 10px;
+}
+
+.social-icons ul {
+  width: 100%;
+  text-align: center;
+}
+
+.social-icons ul li {
+  display: inline-block;
+}
+
+.social-icons ul li a i {
+  font-size: 25px;
+  color: #2C3E50;
+  padding-top: 20px;
+  padding-right: 10px;
+}
+
 

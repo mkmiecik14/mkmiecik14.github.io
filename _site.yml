@@ -7,7 +7,7 @@ output:
     highlight: textmate
     include:
       in_header: google-analytics.html
-      after_body: footer.html
       before_body: icons.html
+      after_body: footer.html
     css: styles.css
 
