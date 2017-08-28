@@ -80,6 +80,11 @@ body {
     }
 */
 
+.prof-pic{
+  text-align: center;
+  padding-top: 10px;
+}
+
 .social-icons ul {
   width: 100%;
   text-align: center;
@@ -87,12 +92,13 @@ body {
 
 .social-icons ul li {
   display: inline-block;
-  font-size: 300;
 }
 
 .social-icons ul li a i {
-  font-size: 35px;
+  font-size: 25px;
   color: #2C3E50;
+  padding-top: 20px;
+  padding-right: 10px;
 }
 
 
