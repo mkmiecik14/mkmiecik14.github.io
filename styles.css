@@ -63,6 +63,7 @@ body {
 <span class="label label-danger">Power Play</span>
 */
 
+/* About Me */
 .prof-pic{
   text-align: center;
   padding-top: 10px;
@@ -84,4 +85,18 @@ body {
   padding-right: 10px;
 }
 
+.schoollogo{
+  float: none;
+  display: inline-block;
+  /*max-width: none;*/
+  vertical-align: middle;
+}
+
+/*.schoollogo {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+  max-width: none;
+  text-align: center;
+} -->
 

@@ -8,14 +8,65 @@ output:
       collapsed: true
       smooth_scroll: true
 ---
-<p class="text-center">matthew.kmiecik@utdallas.edu</p>
+
+```{r setup, echo=F}
+library(knitr); library(kableExtra)
+
+# suppresses warnings globally
+knitr::opts_chunk$set(warning = F, message = F, echo = F, cache = F)
+options(knitr.table.format = 'html') # For the html tables
+
+```
+
+<!-- social icons bar START-->
+<div class="social-icons">
+<ul>
+<li><a href="mailto:matthew.kmiecik@utdallas.edu"><i class="fa fa-envelope faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
+<li><a href="https://twitter.com/mattkmiecik14"><i class="fa fa-twitter faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
+<li><a href="https://www.linkedin.com/in/matt-kmiecik-776603b0/"><i class="fa fa-linkedin faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
+<li><a href="https://github.com/mkmiecik14"><i class="fa fa-github faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
+<li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar ai-3x faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
+<li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate ai-3x faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
+</ul>
+</div>
+<!-- social icons bar END-->
 
 <br />
 
 # Education
 <hr />
-* 2014 – current: Cognition and Neuroscience PhD Student at The University of Texas at Dallas
-* 2009 – 2013:    Psychology: Natural Science B.S., Biology and Neuroscience Minors at Loyola University Chicago
+
+<!-- UTD -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<img class="schoollogo center-block" width="100" height="100" src="images/utdlogo.jpg">
+</div>
+<div class="col-xs-12 col-sm-10">
+**PhD Student (2014 - present)**<br/>
+Cognition and Neuroscience <br/>
+School of Behavioral & Brain Sciences <br/>
+The University of Texas at Dallas <br/>
+</div>
+</div>
+</div>
+
+<br />
+
+<!-- LUC -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<img class="schoollogo center-block" width="100" height="100" src="images/luc-shield.png">
+</div>
+<div class="col-xs-12 col-sm-10">
+**B.S. Psychology: Nautral Science (2009 - 2013)** <br/>
+Degree Honors: Cum Laude <br/>
+Minors: Biology & Neuroscience <br/>
+Loyola University Chicago <br/>
+</div>
+</div>
+</div>
 
 <br />
 
@@ -82,4 +133,79 @@ Brain Injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 * Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, April). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Cognitive Neuroscience Society Annual Meeting, Chicago, IL.
 
 * Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, March). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Society for Neuroscience Chicago Chapter 2012 Annual Meeting, Chicago, IL.
+
+<br />
+
+# Grants & Fellowships
+<hr />
+
+```{r grants}
+grants <- data.frame(Year = c('2017', '2015', '2013', '2013', '2012', '2011'),
+                     Award = c('The Dianne Cash Pre-Doctoral Fellowship',
+                               'Friends of BrainHealth Distinguished New Scientist Award',
+                               'European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award',
+                               'Loyola University Chicago Mulcahy Research Scholarship',
+                               'Loyola University Chicago Provost Research Fellowship',
+                               'Loyola University Chicago Provost Research Fellowship'),
+                     Amount = c('$2,500', '$20,000', '€500', '$1,000', '$1,000', '$1,000'))
+
+kable(grants) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+
+```
+
+
+<br />
+
+# Academic Awards & Honors
+<hr />
+
+```{r awards}
+awards <- data.frame(Year = c('2014', '2013', '2013', '2013', '2010-2013'),
+                     Award = c('People’s Choice Poster Award',
+                               'First Place Libraries Undergraduate Research Paper Award',
+                               'Department of Psychology Research Award',
+                               'Department of Psychology Honors Award',
+                               'Dean’s List'),
+                     Institution = c('Cognitive Neuroscience Society',
+                                     'Loyola University Chicago',
+                                     'Loyola University Chicago',
+                                     'Loyola University Chicago',
+                                     'Loyola University Chicago'))
+
+kable(awards) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+
+```
+
+<br />
+
+# Teaching Experience
+<hr />
+
+## Teaching Assistant
+
+```{r teaching}
+teaching <- data.frame(Year     = c(2017  , 2017   ,    2016,    2016, 2015),
+                       Semester = c('Fall','Spring','Summer','Spring','Fall'),
+                       Class = c('Experimental Projects',
+                                 'Experimental Projects',
+                                 'Cognitive Psychology',
+                                 'Experimental Projects',
+                                 'Research & Evaluation Methods'),
+                       Professor = c('Dr. Linda Drew',
+                                     'Dr. Jessica Lockhart',
+                                     'Dr. Vanessa Miller',
+                                     'Dr. Gail Tillman',
+                                     'Dr. Gail Tillman'),
+                       Institution = c('The University of Texas at Dallas',
+                                       'The University of Texas at Dallas',
+                                       'The University of Texas at Dallas',
+                                       'The University of Texas at Dallas',
+                                       'The University of Texas at Dallas'))
+
+kable(teaching) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+
+```
 
