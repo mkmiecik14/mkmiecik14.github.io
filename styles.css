@@ -88,15 +88,17 @@ body {
 .schoollogo{
   float: none;
   display: inline-block;
-  /*max-width: none;*/
   vertical-align: middle;
 }
 
-/*.schoollogo {
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
-  max-width: none;
-  text-align: center;
-} -->
+.progress-label {
+    margin-right: 1em;
+    line-height: 15px;
+    font-size: 15px;
+    text-align: center;
+}
+
+ .progress-skill {
+   height: 15px;
+ }
 
