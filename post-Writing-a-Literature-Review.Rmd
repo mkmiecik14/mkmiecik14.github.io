@@ -135,6 +135,8 @@ I know this sounds crazy, but look on the bright side! You are committing all th
 
 Hopefully this was helpful and don't be shy to comment below on things that worked/did not work for you!
 
+<br />
+
 <!-- disqus START -->
 
 <div id="disqus_thread"></div>
