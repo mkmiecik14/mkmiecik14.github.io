@@ -5,6 +5,19 @@ title: "Academic Blog"
 <h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Posts</h2> 
 <hr>
 
+<!-- Lit Review -->
+
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Writing-a-Literature-Review.html" class="postLink"> Writing a Literature Review</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> September 25, 2017
+<span class="label label-primary">Academic</span>
+
+I recently completed my first comprehensive literature review as part of a graduate school milestone project. Before starting, I sought guidance from online blogs and university workshops held by our library. The tips I learned from these resources were extremely helpful, but not everything worked for me. This is simply a list of things that worked/did not work for me during the reading and writing process of my literature review...
+
+<br>
+
+<!-- Xbox Controllers and Eprime -->
+
 <h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="postLink"> Using Xbox Controllers and Sending EEG Triggers with E-Prime</a></h3>
 
 <span class="glyphicon glyphicon-time"></span> June 12, 2017
@@ -17,6 +30,8 @@ I just spent an entire week wrangling the E-Prime beast and I've lived to tell t
 
 <br>
 
+<!-- ggplot2 Histogram Logo Fail -->
+
 <h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
 
 <span class="glyphicon glyphicon-time"></span> May 15, 2017
@@ -26,6 +41,8 @@ I just spent an entire week wrangling the E-Prime beast and I've lived to tell t
 When I first started creating this website (in WordPress), I thought it would be cool have have my own logo. Why not, right? I figured I'd go super nerdy and have a cool histogram plot with a density curve through it. I had just finished reading Hadley Wickham's ggplot2 [book](https://github.com/hadley/ggplot2-book) and I was excited to put some of those newly learned skills to use...
 
 <br>
+
+<!-- Stop Using Excel to Preprocess E-Prime Data -->
 
 <h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="postLink"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
 
