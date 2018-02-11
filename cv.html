@@ -23,8 +23,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -47,10 +48,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -438,7 +441,6 @@ Matthew J. Kmiecik, B.S.
 <div id="grants-fellowships" class="section level1">
 <h1>Grants &amp; Fellowships</h1>
 <hr />
-<?xml version="1.0" encoding="UTF-8"?>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -527,7 +529,6 @@ $1,000
 <div id="academic-awards-honors" class="section level1">
 <h1>Academic Awards &amp; Honors</h1>
 <hr />
-<?xml version="1.0" encoding="UTF-8"?>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -607,7 +608,6 @@ Loyola University Chicago
 <hr />
 <div id="teaching-assistant" class="section level2">
 <h2>Teaching Assistant</h2>
-<?xml version="1.0" encoding="UTF-8"?>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -722,7 +722,6 @@ The University of Texas at Dallas
 <div id="internships" class="section level1">
 <h1>Internships</h1>
 <hr />
-<?xml version="1.0" encoding="UTF-8"?>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -768,7 +767,6 @@ The University of Texas at Dallas
 <div id="training-and-certifications" class="section level1">
 <h1>Training and Certifications</h1>
 <hr />
-<?xml version="1.0" encoding="UTF-8"?>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -916,7 +914,7 @@ The University of Texas at Dallas
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2017 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2018 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 

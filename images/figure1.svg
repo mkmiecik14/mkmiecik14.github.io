@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="78 91 700 400" width="700pt" height="400pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.6.1 
+    <dc:date>2018-02-07 19:01:30 +0000</dc:date>
+  </metadata>
+  <defs>
+    <font-face font-family="Gill Sans" font-size="16" panose-1="2 11 5 2 2 1 4 2 2 3" units-per-em="1000" underline-position="-75.19531" underline-thickness="49.80469" slope="0" x-height="449.70703" cap-height="687.0117" ascent="917.9688" descent="-230.46875" font-weight="500">
+      <font-face-src>
+        <font-face-name name="GillSans"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#a0a7ab">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Gill Sans" font-size="24" panose-1="2 11 5 2 2 1 4 2 2 3" units-per-em="1000" underline-position="-75.19531" underline-thickness="49.80469" slope="0" x-height="449.70703" cap-height="687.0117" ascent="917.9688" descent="-230.46875" font-weight="500">
+      <font-face-src>
+        <font-face-name name="GillSans"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker_2" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#a0a7ab">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <rect fill="white" width="700" height="400"/>
+    <g>
+      <title>Layer 1</title>
+      <path d="M 107 269 L 689 269 C 695.6274 269 701 274.37258 701 281 L 701 474 C 701 480.6274 695.6274 486 689 486 L 107 486 C 100.37258 486 95 480.6274 95 474 L 95 281 C 95 274.37258 100.37258 269 107 269 Z" fill="#a1ceb4" fill-opacity=".50390625"/>
+      <path d="M 105 94.33333 L 687 94.33333 C 693.6274 94.33333 699 99.70592 699 106.33333 L 699 240.85905 C 699 247.48646 693.6274 252.85905 687 252.85905 L 105 252.85905 C 98.37258 252.85905 93 247.48646 93 240.85905 L 93 106.33333 C 93 99.70592 98.37258 94.33333 105 94.33333 Z" fill="#a3c4cb" fill-opacity=".5"/>
+      <text transform="translate(351.5 100.33333)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="29" y="15">NHL</tspan>
+      </text>
+      <text transform="translate(177.5 129.83333)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="16.808594" y="15">W</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="32.04297" y="15">estern</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="6.9921875" y="34">Conf</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="38.992188" y="34">er</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="52.671875" y="34">ence</tspan>
+      </text>
+      <text transform="translate(525.5 129.83333)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="20.84375" y="15">Eastern</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="6.9921875" y="34">Conf</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="38.992188" y="34">er</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="52.671875" y="34">ence</tspan>
+      </text>
+      <line x1="346.5" y1="121.04023" x2="282.1603" y2="135.4612" marker-end="url(#FilledArrow_Marker)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <line x1="446.5" y1="121.04023" x2="510.8397" y2="135.4612" marker-end="url(#FilledArrow_Marker)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <line x1="190.69696" y1="176.33333" x2="173.29165" y2="191.38366" marker-end="url(#FilledArrow_Marker)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <line x1="253.58432" y1="176.33333" x2="270.5009" y2="191.29925" marker-end="url(#FilledArrow_Marker)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(264 206.35905)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="20.503906" y="15">Central</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="18.742188" y="34">Division</tspan>
+      </text>
+      <text transform="translate(439 206.35905)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="2.875" y="15">Metr</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="34.296875" y="15">opolitan</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="18.742188" y="34">Division</tspan>
+      </text>
+      <text transform="translate(89 206.35905)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="24.746094" y="15">Pacifi</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="58.246094" y="15">c</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="18.742188" y="34">Division</tspan>
+      </text>
+      <text transform="translate(614 206.35905)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="19.910156" y="15">Atlantic</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="18.742188" y="34">Division</tspan>
+      </text>
+      <line x1="539.4157" y1="176.33333" x2="522.4991" y2="191.29925" marker-end="url(#FilledArrow_Marker)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <line x1="602.303" y1="176.33333" x2="619.70835" y2="191.38366" marker-end="url(#FilledArrow_Marker)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(89 303)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="28.58203" y="15">CGY</tspan>
+      </text>
+      <text transform="translate(89 276)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="37.58203" y="15">S.J</tspan>
+      </text>
+      <text transform="translate(89 330)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="33.98828" y="15">L.A</tspan>
+      </text>
+      <text transform="translate(89 357)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="28.08203" y="15">ANA</tspan>
+      </text>
+      <text transform="translate(89 384)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="28.753906" y="15">EDM</tspan>
+      </text>
+      <text transform="translate(89 411)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="29.226562" y="15">V</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="37.609375" y="15">AN</tspan>
+      </text>
+      <text transform="translate(89 438)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="32.83203" y="15">ARI</tspan>
+      </text>
+      <text transform="translate(264 303)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="29.257812" y="15">NSH</tspan>
+      </text>
+      <text transform="translate(264 276)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="11.621094" y="15">A</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="20.691406" y="15">TL.WPG</tspan>
+      </text>
+      <text transform="translate(264 330)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="32.58203" y="15">STL</tspan>
+      </text>
+      <text transform="translate(264 357)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="30.183594" y="15">D</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="41.30078" y="15">AL</tspan>
+      </text>
+      <text transform="translate(264 384)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="28.828125" y="15">COL</tspan>
+      </text>
+      <text transform="translate(264 411)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="30.507812" y="15">MIN</tspan>
+      </text>
+      <text transform="translate(264 438)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="31.503906" y="15">CHI</tspan>
+      </text>
+      <text transform="translate(439 303)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="35" y="15">N.J</tspan>
+      </text>
+      <text transform="translate(439 276)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="27.16797" y="15">WSH</tspan>
+      </text>
+      <text transform="translate(439 330)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="33.089844" y="15">PHI</tspan>
+      </text>
+      <text transform="translate(439 357)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="32.83203" y="15">CBJ</tspan>
+      </text>
+      <text transform="translate(439 384)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="34.089844" y="15">PIT</tspan>
+      </text>
+      <text transform="translate(439 411)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="29.089844" y="15">NYR</tspan>
+      </text>
+      <text transform="translate(439 438)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="31.921875" y="15">NYI</tspan>
+      </text>
+      <text transform="translate(439 465)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="28.96875" y="15">C</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="40.695312" y="15">AR</tspan>
+      </text>
+      <text transform="translate(614 303)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="30.246094" y="15">BOS</tspan>
+      </text>
+      <text transform="translate(614 276)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="34.910156" y="15">T</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="42.57422" y="15">.B</tspan>
+      </text>
+      <text transform="translate(614 330)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="29.26953" y="15">T</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="37.89453" y="15">OR</tspan>
+      </text>
+      <text transform="translate(614 357)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="30.16797" y="15">DET</tspan>
+      </text>
+      <text transform="translate(614 384)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="30" y="15">MTL</tspan>
+      </text>
+      <text transform="translate(614 411)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="31.98828" y="15">FLA</tspan>
+      </text>
+      <text transform="translate(614 438)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="29.26953" y="15">O</tspan>
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="41.402344" y="15">TT</tspan>
+      </text>
+      <text transform="translate(614 465)" fill="black">
+        <tspan font-family="Gill Sans" font-size="16" font-weight="500" x="31.078125" y="15">BUF</tspan>
+      </text>
+      <text transform="translate(704 367)" fill="#a1ceb4">
+        <tspan font-family="Gill Sans" font-size="24" font-weight="500" fill="#a1ceb4" x=".32226562" y="22">Le</tspan>
+        <tspan font-family="Gill Sans" font-size="24" font-weight="500" fill="#a1ceb4" x="23.220703" y="22">v</tspan>
+        <tspan font-family="Gill Sans" font-size="24" font-weight="500" fill="#a1ceb4" x="33.251953" y="22">el 1</tspan>
+      </text>
+      <text transform="translate(704 168.33333)" fill="#a3c4cb">
+        <tspan font-family="Gill Sans" font-size="24" font-weight="500" fill="#a3c4cb" x=".32226562" y="22">Le</tspan>
+        <tspan font-family="Gill Sans" font-size="24" font-weight="500" fill="#a3c4cb" x="23.220703" y="22">v</tspan>
+        <tspan font-family="Gill Sans" font-size="24" font-weight="500" fill="#a3c4cb" x="33.251953" y="22">el 2</tspan>
+      </text>
+      <line x1="134" y1="252.85905" x2="134" y2="264.1" marker-end="url(#FilledArrow_Marker)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <line x1="309" y1="252.85905" x2="309" y2="264.1" marker-end="url(#FilledArrow_Marker_2)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <line x1="484" y1="252.85905" x2="484" y2="264.1" marker-end="url(#FilledArrow_Marker_2)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <line x1="659" y1="252.85905" x2="659" y2="264.1" marker-end="url(#FilledArrow_Marker_2)" stroke="#a0a7ab" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

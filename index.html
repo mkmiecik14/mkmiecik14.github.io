@@ -20,8 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -44,10 +45,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -251,6 +254,13 @@ $(document).ready(function () {
 <span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts
 </h2>
 <hr>
+<!-- Multi-level Model NHL -->
+<h3>
+<span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a>
+</h3>
+<p><span class="glyphicon glyphicon-time"></span> February 11, 2018 <span class="label label-primary">Academic</span> <span class="label label-info">Hockey Analytics</span> <span class="label label-default">R</span> <span class="label label-danger">Power Play</span></p>
+<p>A collaboration post about multilevel modeling in R using professional hockey data from the NHL.</p>
+<p><br></p>
 <!-- Lit Review -->
 <h3>
 <span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Writing-a-Literature-Review.html" class="postLink"> Writing a Literature Review</a>
@@ -279,7 +289,7 @@ $(document).ready(function () {
 <p><span class="glyphicon glyphicon-time"></span> May 15, 2017 <span class="label label-primary">Academic</span> <span class="label label-default">R</span> <span class="label label-success">E-Prime</span></p>
 <p>A post demonstrating an efficient data pipeline for E-prime users.</p>
 <p><br></p>
-<!-- Stop Using Excel to Preprocess E-Prime Data -->
+<!-- The Last Decade NHLs Best and Worst Power Play Teams -->
 <h3>
 <span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="postLink"> The Last Decade: NHL’s Best and Worst Power Play Teams</a>
 </h3>
@@ -295,7 +305,7 @@ $(document).ready(function () {
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2017 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2018 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 

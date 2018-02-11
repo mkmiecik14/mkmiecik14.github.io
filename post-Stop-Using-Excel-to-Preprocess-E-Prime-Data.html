@@ -25,8 +25,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -49,10 +50,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -343,6 +346,7 @@ div.tocify {
 <p>Just a few notes about the experiment: participants completed a task that required them to reason about items on the screen and press #1 or #2 on the keyboard. There were 3 conditions randomly distributed over 4 blocks with 24 trials per block (8 trials per condition). I was interested in the participants’ accuracy and reaction time for correct solutions across the conditions and blocks. Therefore, each participant has only 1 E-Prime file.</p>
 <div id="step-1---merging-e-dataaid-files" class="section level1">
 <h1>Step 1 - Merging E-DataAid Files</h1>
+<hr >
 <p>E-Prime spat out an E-DataAid file (*.edat2) for every participant upon completion of the experiment. Let’s first concatenate these files row-wise (on top of each other) so that we end up with one big file that has each participant’s data. This is done using E-Prime’s E-Merge software.</p>
 <div id="concatenating-with-e-merge" class="section level2">
 <h2>Concatenating with E-Merge</h2>
@@ -372,6 +376,7 @@ div.tocify {
 </div>
 <div id="step-2---importing-into-r" class="section level1">
 <h1>Step 2 - Importing into R</h1>
+<hr >
 <ol style="list-style-type: decimal">
 <li>Open R or RStudio and **ensure your working directory is set to where you saved your text file (*.txt) from above.**</li>
 <li>Import the file into R and save it as a variable:</li>
@@ -434,6 +439,7 @@ head(eDataSimple); tail(eDataSimple)</code></pre>
 </div>
 <div id="step-3---summarize-with-dplyr" class="section level1">
 <h1>Step 3 - Summarize with dplyr</h1>
+<hr >
 <p>Let’s calculate the mean accuracy for condition x block (3 x 4 repeated-measures factorial design). But first, let’s group based on our factors, which are 1) the subjects, 2) the conditions, and 3) the blocks. dplyr also lets you rename the columns easily:</p>
 <pre class="r"><code>library(dplyr) # Loads dplyr
 
@@ -445,9 +451,8 @@ acc &lt;- group_by(eDataSimple,              # Dataframe
 <pre class="r"><code>acc &lt;- summarise(acc, meanAcc = mean(stimulus.ACC))
 
 head(acc); tail(acc) </code></pre>
-<pre><code>&gt; Source: local data frame [6 x 4]
-&gt; Groups: ss, cond [2]
-&gt; 
+<pre><code>&gt; # A tibble: 6 x 4
+&gt; # Groups:   ss, cond [2]
 &gt;      ss   cond  block meanAcc
 &gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;   &lt;dbl&gt;
 &gt; 1   413      a      1   0.875
@@ -456,9 +461,8 @@ head(acc); tail(acc) </code></pre>
 &gt; 4   413      a      4   0.750
 &gt; 5   413      p      1   0.750
 &gt; 6   413      p      2   1.000</code></pre>
-<pre><code>&gt; Source: local data frame [6 x 4]
-&gt; Groups: ss, cond [2]
-&gt; 
+<pre><code>&gt; # A tibble: 6 x 4
+&gt; # Groups:   ss, cond [2]
 &gt;      ss   cond  block meanAcc
 &gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;   &lt;dbl&gt;
 &gt; 1   418      p      3   1.000
@@ -475,9 +479,8 @@ head(acc); tail(acc) </code></pre>
               summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))
 
 head(results); tail(results)</code></pre>
-<pre><code>&gt; Source: local data frame [6 x 5]
-&gt; Groups: ss, cond [2]
-&gt; 
+<pre><code>&gt; # A tibble: 6 x 5
+&gt; # Groups:   ss, cond [2]
 &gt;      ss   cond  block stimulus.ACC stimulus.RT
 &gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
 &gt; 1   413      a      1        0.875    5776.375
@@ -486,9 +489,8 @@ head(results); tail(results)</code></pre>
 &gt; 4   413      a      4        0.750    1940.000
 &gt; 5   413      p      1        0.750    5911.625
 &gt; 6   413      p      2        1.000    3227.625</code></pre>
-<pre><code>&gt; Source: local data frame [6 x 5]
-&gt; Groups: ss, cond [2]
-&gt; 
+<pre><code>&gt; # A tibble: 6 x 5
+&gt; # Groups:   ss, cond [2]
 &gt;      ss   cond  block stimulus.ACC stimulus.RT
 &gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
 &gt; 1   418      p      3        1.000    2223.000
@@ -507,9 +509,8 @@ head(results); tail(results)</code></pre>
           summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))
 
 head(corRT); tail(corRT)</code></pre>
-<pre><code>&gt; Source: local data frame [6 x 5]
-&gt; Groups: ss, cond [2]
-&gt; 
+<pre><code>&gt; # A tibble: 6 x 5
+&gt; # Groups:   ss, cond [2]
 &gt;      ss   cond  block stimulus.ACC stimulus.RT
 &gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
 &gt; 1   413      a      1            1    5999.000
@@ -518,9 +519,8 @@ head(corRT); tail(corRT)</code></pre>
 &gt; 4   413      a      4            1    2069.000
 &gt; 5   413      p      1            1    5791.833
 &gt; 6   413      p      2            1    3227.625</code></pre>
-<pre><code>&gt; Source: local data frame [6 x 5]
-&gt; Groups: ss, cond [2]
-&gt; 
+<pre><code>&gt; # A tibble: 6 x 5
+&gt; # Groups:   ss, cond [2]
 &gt;      ss   cond  block stimulus.ACC stimulus.RT
 &gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
 &gt; 1   418      p      3            1    2223.000
@@ -565,10 +565,12 @@ corRT &lt;-  eDataSimple %&gt;%
 </div>
 <div id="acknowledgments" class="section level1">
 <h1>Acknowledgments</h1>
+<hr >
 <p>This tutorial was inspired by Dr. Jahn’s amazing <a href="http://andysbrainblog.blogspot.com/">blog</a> that helped me and I’m sure hundreds of other graduate students stumble through the crazy world that is fMRI analysis. Andy’s Brain Blog is the best!</p>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
+<hr >
 <p>Wickham, H., and R. Francois. 2016. dplyr: A Grammar of Data Manipulation. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
 <!-- disqus START -->
 <div id="disqus_thread">
@@ -603,7 +605,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2017 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2018 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 

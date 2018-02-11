@@ -17,6 +17,7 @@ options(knitr.table.format = 'html') # For the html tables
 ```
 
 # Introduction
+<hr >
 
 I just spent an entire week wrangling the E-Prime beast and I've lived to tell the tale. I was able to successfully integrate an Xbox controller to accept participant responses as well as communicate these to an EEG system as triggers. This wouldn't have been possible without the help of benevolent bloggers and discussions on E-Prime's Google group, so thank you all! I'll point out these information sources along the way.
 
@@ -29,6 +30,7 @@ My general software/hardware specifications:
 3. EEG: ANT neuro [eego mylab](https://www.ant-neuro.com/products/eego-mylab) EEG amplifier
 
 # Xbox Controller with E-Prime
+<hr >
 
 1) Plug the Xbox controller into a USB drive on the same computer that will be running your E-prime experiment. If this is the first time plugging it in, allow Windows to install the necessary drivers. 
 
@@ -52,6 +54,7 @@ Joystick.AttachToMouseCursor = True
 ```
 
 # EEG Triggers
+<hr >
 
 It is crucial for those studying event-related potentials (ERPs) that the stimulus computer communicates time-locked onsets and responses from E-prime to the EEG recording. There are several ways this can occur, but the one I will be demonstrating is using a parallel port communication from the E-prime stimulus computer to the amplifier (*Note:* this will differ from system to system). Triggers are then embedded into the recorded EEG signal and read into the recording software as events. Let's use a simple experiment to demonstrate sending triggers for the appearance of stimulus events, as well as participant responses. The experiment is available for download here.
 
@@ -188,6 +191,7 @@ nrp   = 3
 ```
 
 # Timing Considerations
+<hr >
 
 As a disclaimer, I have not had the chance to test the timing of the triggers and responses from the Xbox controller. This was my first time programming the use of a game controller as well as triggers using the InputMasks.IsPending() method.
 

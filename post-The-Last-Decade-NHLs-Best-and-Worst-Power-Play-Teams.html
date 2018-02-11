@@ -23,8 +23,9 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -47,10 +48,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -251,6 +254,9 @@ $(document).ready(function () {
 </div>
 
 
+<blockquote>
+<p>Note: This blog post presents a model of powerplay goals in the NHL over 10 years. However, this model is inaccurate. I encourage readers to read this post and then proceed to my <a href="https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">follow-up blog post</a> where I explain the source of these potential errors and provide a more accurate and informative model.</p>
+</blockquote>
 <p>So you are watching your favorite NHL team and they finally draw a powerplay. Awesome! The ice opens up with the missing player and it shouldn’t be too hard to score…right? As a previous water polo player, I know what it is like to endure the wrath of a furious coach after a missed man advantage opportunity. In my experience, coaches semed convinced that the man-up should lead to a goal 100% of the time. But how important is this seemingly advantageous situation in the NHL?</p>
 <p>As a first pass, I analyzed the NHL regular-season over the past ten years (2007-2017) on the standard 5 vs. 4 power play. These data were retrieved via <a href="http://www.corsica.hockey/teams/">Corsica</a> shortly after the end of the 2017 regular season. The following will detail the analyses in R with steps along the way utilizing the wonderful R packages of ggplot2 (Wickham, 2009) and dplyr (Wickham &amp; Francois, 2016).</p>
 <p>First, I loaded the data and made sure to combine the entries of the Atlanta Thrashers and the Winnipeg Jets, as the Thrashers moved to Winnipeg after the 2011 season. Therefore, the Thrashers and the Jets are considered the same team in this analysis.</p>
@@ -339,25 +345,25 @@ data5v4$rel_ppg &lt;- resid(mod)</code></pre>
 # power play goals in the last decade  
 bestPP &lt;- data5v4 %&gt;% 
   group_by(Team) %&gt;% 
-  summarise_each(funs(mean = mean,  
-                      sd = sd,
-                      sem = sd(.)/sqrt(n()),
-                      tpval = t.test(.)$p.value),
-                 rel_ppg) %&gt;%
+  summarise_at(&#39;rel_ppg&#39;, 
+               funs(mean = mean,
+                    sd = sd,
+                    sem = sd(.)/sqrt(n()),
+                    tpval = t.test(.)$p.value)) %&gt;%
   mutate(sig = tpval &lt; .05)
 print(bestPP)</code></pre>
-<pre><code>&gt; # A tibble: 30 × 6
+<pre><code>&gt; # A tibble: 30 x 6
 &gt;       Team          mean         sd        sem       tpval   sig
 &gt;     &lt;fctr&gt;         &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;lgl&gt;
-&gt; 1      ANA  0.0295984571 0.08135082 0.02572539 0.279566941 FALSE
-&gt; 2      ARI -0.0556384254 0.07765992 0.02455822 0.049721680  TRUE
-&gt; 3  ATL.WPG -0.0456169710 0.07345335 0.02322799 0.081136809 FALSE
-&gt; 4      BOS -0.0249868897 0.10215940 0.03230564 0.459086769 FALSE
-&gt; 5      BUF -0.0230334119 0.09867466 0.03120367 0.479219695 FALSE
-&gt; 6      CAR -0.0102398256 0.08962689 0.02834251 0.726219579 FALSE
-&gt; 7      CBJ -0.0531692896 0.08913087 0.02818566 0.091863618 FALSE
-&gt; 8      CGY -0.0111667945 0.06042159 0.01910699 0.573283741 FALSE
-&gt; 9      CHI -0.0007603766 0.08355941 0.02642381 0.977671085 FALSE
+&gt;  1     ANA  0.0295984571 0.08135082 0.02572539 0.279566941 FALSE
+&gt;  2     ARI -0.0556384254 0.07765992 0.02455822 0.049721680  TRUE
+&gt;  3 ATL.WPG -0.0456169710 0.07345335 0.02322799 0.081136809 FALSE
+&gt;  4     BOS -0.0249868897 0.10215940 0.03230564 0.459086769 FALSE
+&gt;  5     BUF -0.0230334119 0.09867466 0.03120367 0.479219695 FALSE
+&gt;  6     CAR -0.0102398256 0.08962689 0.02834251 0.726219579 FALSE
+&gt;  7     CBJ -0.0531692896 0.08913087 0.02818566 0.091863618 FALSE
+&gt;  8     CGY -0.0111667945 0.06042159 0.01910699 0.573283741 FALSE
+&gt;  9     CHI -0.0007603766 0.08355941 0.02642381 0.977671085 FALSE
 &gt; 10     COL -0.0782671517 0.06691173 0.02115935 0.004928647  TRUE
 &gt; # ... with 20 more rows</code></pre>
 <p>Finally, I plotted these results. Teams that have positive averages that are different from zero are teams that are above average in the power play, despite the decrease in power play goals scored in the last decade. The teams with negative residual averages are the opposite and are below average in the power play. Error bars represent the standard error of the mean.</p>
@@ -479,7 +485,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2017 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2018 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 

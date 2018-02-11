@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Ekarin Pongpipat &amp; Matthew J. Kmiecik" />
+
+<meta name="date" content="2018-02-11" />
+
+<title>Multilevel Modeling in R with NHL Power Play Data</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-104506183-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Twittercards -->
+<meta name="twitter:card" content="summary" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        <i class="fa fa-area-chart logo-icon1" aria-hidden="true"></i> 
+        <i class="fa fa-bar-chart logo-icon2" aria-hidden="true"></i> 
+        <i class="fa fa-line-chart logo-icon3" aria-hidden="true"></i> Matthew J. Kmiecik</a> <!-- You can put words here for nav -->
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="index.html">
+            <i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        </li>
+        <li>
+          <a href="cv.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i> CV</a>
+        </li>
+        <li>
+          <a href="about.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> About</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i> My Blogs<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="academicblog.html">Academic</a></li>
+            <li><a href="theblueline.html">The Blue Line</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="academicons-1.8.0/css/academicons.css"/>
+<link rel="stylesheet" href="font-awesome-animation.min.css">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Multilevel Modeling in R with NHL Power Play Data</h1>
+<h4 class="author"><em>Ekarin Pongpipat &amp; Matthew J. Kmiecik</em></h4>
+<h4 class="date"><em>11 February 2018</em></h4>
+
+</div>
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<hr >
+<p>In a <a href="https://mattkmiecik.com/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html">previous post</a>, I was interested in determining if there were any fluctuations in the frequency of powerplay goals (5 on 4) in the NHL across one decade (2007-2017). The statistial technique of choice was linear regression.</p>
+<p>However, there were a few issues with this statistical modeling procedure:</p>
+<ol style="list-style-type: decimal">
+<li>This model did not account for the variability within each team. In other words, the model did not appreciate each team’s change in powerplay goals across time individually. When we do not account for this variability (within-team variance), the unsystematic error is seemingly reduced, and subsequently an increase in our test statistic, decrease in p-value, and ultimately an increase in Type I error rate</li>
+<li>Time was treated as a factor (i.e., categorical variable). However, time is actually a continuous construct and may reveal more informaton when treated as such</li>
+</ol>
+<blockquote>
+<p>I had a feeling something was off here. So, I turned to one of my fellow classmates, Ekarin Pongpipat, to teach me a technique that could remedy this situation. The following is what we produced after two Saturday afternoons! Thanks again Ekarin!</p>
+</blockquote>
+<p>To improve this model of NHL 5v4 powerplay goals, we utilized a multi-level linear regression model. The purpose of this post is three-fold:</p>
+<ol style="list-style-type: decimal">
+<li>Create a more accurate model of NHL powerplay goal fluctuations across the 2007-2017 decade</li>
+<li>Explore these data with plenty of plots</li>
+<li>Provide a tutorial of multi-level linear modeling in R</li>
+</ol>
+</div>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<hr >
+<p>Let’s first load some useful packages for analysis and plotting:</p>
+<pre class="r"><code>library(tidyverse); library(RCurl); library(broom); 
+library(gridExtra); library(knitr); library(kableExtra);
+library(RColorBrewer)</code></pre>
+<p>These data were retrieved via <a href="http://corsica.hockey/">Corsica</a> shortly after the end of the 2017 regular season and are also available on this <a href="https://github.com/mkmiecik14/mkmiecik14.github.io">website’s Github repository</a>. Feel free to pull these data from the repository like this:</p>
+<pre class="r"><code>link &lt;- &#39;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/corsicaData_5v4.csv&#39;
+data5v4 &lt;- read.table(text = getURL(link), sep = &#39;,&#39;, header = T)</code></pre>
+<p>The Atlanta Thrashers moved to Winnipeg (Jets) after the 2011 season. Therefore, we combined the entries of the Atlanta Thrashers and the Winnipeg Jets. <strong>The Thrashers and the Jets are considered the same team in this analysis.</strong></p>
+<pre class="r"><code># Combining ATL and WPG as ATL.WPG
+data5v4$Team &lt;- plyr::revalue(data5v4$Team, c(ATL = &#39;ATL.WPG&#39;, WPG = &#39;ATL.WPG&#39;))</code></pre>
+<p>For the regression models, it is more desirable to have the year be represented as a continuous variable. This way an increase of 1 year is the equivalent of 1 year of hockey played. This will translate to more interpretable regression coefficents. Year was recoded as the starting year of the season (e.g., 20162017 = 2016):</p>
+<pre class="r"><code>data5v4 &lt;- data5v4 %&gt;% 
+            separate(Season, c(&#39;StartYear&#39;, &#39;EndYear&#39;), sep = 4, remove = F) %&gt;%
+            mutate_at(c(&#39;StartYear&#39;, &#39;EndYear&#39;), funs(as.numeric))</code></pre>
+<p>Next, we coded each team into its division following the 2013-2014 realignment scheme.</p>
+<p><strong>Note: This has serious implications for our later analysis of conference and divisions. This realignment took place 6 years from the first season in this analysis. Therefore, identifying the teams using this realignment scheme is used for illustrative purposes.</strong></p>
+<pre class="r"><code># Initializing variables to store team names
+pacific &lt;- c(&#39;S.J&#39;, &#39;CGY&#39;, &#39;L.A&#39;, &#39;ANA&#39;, &#39;EDM&#39;, &#39;VAN&#39;, &#39;ARI&#39;)
+central &lt;- c(&#39;ATL.WPG&#39;, &#39;NSH&#39;, &#39;STL&#39;, &#39;DAL&#39;, &#39;COL&#39;, &#39;MIN&#39;, &#39;CHI&#39;)
+metropolitan &lt;- c(&#39;WSH&#39;, &#39;N.J&#39;, &#39;PHI&#39;, &#39;CBJ&#39;, &#39;PIT&#39;, &#39;NYR&#39;, &#39;NYI&#39;, &#39;CAR&#39;)
+atlantic &lt;- c(&#39;T.B&#39;, &#39;BOS&#39;, &#39;TOR&#39;, &#39;DET&#39;, &#39;MTL&#39;, &#39;FLA&#39;, &#39;OTT&#39;, &#39;BUF&#39;)
+
+# Creating a column to identify each team&#39;s division
+data5v4 &lt;- data5v4 %&gt;%
+  mutate(division = case_when(data5v4$Team %in% pacific ~ &#39;Pacific&#39;,
+                              data5v4$Team %in% central ~ &#39;Central&#39;,
+                              data5v4$Team %in% metropolitan ~ &#39;Metropolitan&#39;,
+                              data5v4$Team %in% atlantic ~ &#39;Atlantic&#39;))</code></pre>
+<p>Here is a table detailing the 2013 realignment:</p>
+<pre class="r"><code># Creates the data frame for html table
+divisions &lt;- data.frame(Pacific = c(pacific, &#39;&#39;),
+                        Central = c(central, &#39;&#39;),
+                        Metropolitan = metropolitan,
+                        Atlantic = atlantic)
+
+# Prints table
+kable(divisions) %&gt;%
+  kable_styling(bootstrap_options = c(&#39;striped&#39;, &#39;hover&#39;, &#39;responsive&#39;))</code></pre>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Pacific
+</th>
+<th style="text-align:left;">
+Central
+</th>
+<th style="text-align:left;">
+Metropolitan
+</th>
+<th style="text-align:left;">
+Atlantic
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+S.J
+</td>
+<td style="text-align:left;">
+ATL.WPG
+</td>
+<td style="text-align:left;">
+WSH
+</td>
+<td style="text-align:left;">
+T.B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CGY
+</td>
+<td style="text-align:left;">
+NSH
+</td>
+<td style="text-align:left;">
+N.J
+</td>
+<td style="text-align:left;">
+BOS
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+L.A
+</td>
+<td style="text-align:left;">
+STL
+</td>
+<td style="text-align:left;">
+PHI
+</td>
+<td style="text-align:left;">
+TOR
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ANA
+</td>
+<td style="text-align:left;">
+DAL
+</td>
+<td style="text-align:left;">
+CBJ
+</td>
+<td style="text-align:left;">
+DET
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EDM
+</td>
+<td style="text-align:left;">
+COL
+</td>
+<td style="text-align:left;">
+PIT
+</td>
+<td style="text-align:left;">
+MTL
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VAN
+</td>
+<td style="text-align:left;">
+MIN
+</td>
+<td style="text-align:left;">
+NYR
+</td>
+<td style="text-align:left;">
+FLA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARI
+</td>
+<td style="text-align:left;">
+CHI
+</td>
+<td style="text-align:left;">
+NYI
+</td>
+<td style="text-align:left;">
+OTT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+CAR
+</td>
+<td style="text-align:left;">
+BUF
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="data-exploration" class="section level2">
+<h2>Data Exploration</h2>
+<hr >
+<p>Before analysis, let’s first explore these data via various plots. One question we are interested in is, “Are the amount of standard 5 vs. 4 regular season power play goals changing over time across 10 years (2007-2017) in the NHL?”</p>
+<pre class="r"><code>ggplot(data5v4, aes(StartYear, GF, group = 1)) +
+  geom_line(aes(group = Team, color = division), alpha = 2/3) + 
+  geom_line(stat = &#39;summary&#39;, fun.y = &#39;mean&#39;, size = .9, color = &#39;red&#39;) +
+  scale_color_brewer(palette = &#39;Blues&#39;, direction = -1) +
+  labs(x = &#39;Season (Start Year)&#39;,
+       y = &#39;Total Season Power Play Goals (5v4)&#39;,
+       caption = &#39;Each team is a separate line; red line is the average&#39;) +
+  guides(color = guide_legend(title = &#39;Division&#39;)) +
+  scale_x_continuous(limits = c(2007, 2016), breaks = c(2007:2016)) +
+  theme_minimal()</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/vis1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The plot above demonstrates a dramatic decrease in power play goals, league-wide, during the 2012-2013 season. This is clearly a result of the shortened season, which would greatly reduce the amount of powerplay goal attempts, due to the 2012-2013 NHL lockout.</p>
+<p>Let’s control for this shortended season by dividing the powerplay goals (GF) by the amount of games played (GP) per season:</p>
+<pre class="r"><code>ggplot(data5v4, aes(StartYear, GF/GP, group = 1)) +
+  geom_line(aes(group = Team, color = division), alpha = 2/3) + 
+  geom_line(stat = &#39;summary&#39;, fun.y = &#39;mean&#39;, size = .9, color = &#39;red&#39;) +
+  scale_color_brewer(palette = &#39;Blues&#39;, direction = -1) +
+  labs(x = &#39;Season (Start Year)&#39;,
+       y = &#39;Total Season Power Play Goals/Games Played (5v4)&#39;,
+       caption = &#39;Each team is a separate line; red line is the average&#39;) +
+  guides(color = guide_legend(title = &#39;Division&#39;)) +
+  scale_x_continuous(limits = c(2007, 2016), breaks = c(2007:2016)) +
+  theme_minimal()</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/vis2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Now that we’ve controlled for the number of games played per season, we can see that there seems to be a decrease in the average powerplay goals (red line) scored per season for each subsequent year of play.</p>
+<p>Further ways to plot these data include a boxplot and an average trend line:</p>
+<pre class="r"><code>yaxlim &lt;- c(.25,1) # Locks y-axis
+
+# Box plot
+boxplot &lt;- ggplot(data5v4, aes(factor(StartYear), GF/GP, group = StartYear)) +
+  geom_boxplot() +
+  labs(x = &#39;Season (Start Year)&#39;,
+       y = &#39;Total Season Power Play Goals/Games Played (5v4)&#39;,
+       caption = &#39; &#39;) +
+  coord_cartesian(ylim = yaxlim) +
+  theme_minimal()
+
+# Summary for line plot
+data5v4_sum &lt;- data5v4 %&gt;% 
+  group_by(StartYear) %&gt;% 
+  summarise(mean = mean(GF/GP),
+            sd = mean(GF/GP),
+            n = n(),
+            sem = sd/sqrt(n))
+
+# Line plot
+lineplot &lt;- ggplot(data5v4_sum, aes(factor(StartYear), mean, group = 1)) +
+  geom_line(alpha = 1/3) +
+  geom_pointrange(aes(ymax = mean + sem, ymin = mean - sem)) +
+  coord_cartesian(ylim = yaxlim) +
+  labs(x = &#39;Season (Start Year)&#39;, caption = &#39;Error bars are SEM&#39;) +
+  theme_minimal() +
+  theme(axis.title.y = element_blank())
+  
+# Arranges plots side-by-side
+grid.arrange(boxplot, lineplot, ncol = 2)</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/vis3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="multi-level-linear-modeling" class="section level2">
+<h2>Multi-level Linear Modeling</h2>
+<hr >
+<p>Before we begin modeling these data, let’s visualize how these data are structured hierarchically (or in multiple levels).</p>
+<p><img src="images/figure1.svg" width="100%" style="display: block; margin: auto;" /></p>
+<p>According to this hierarchy, the NHL has two conferences that each have two divisions, each of which have 7 or 8 distinct teams.</p>
+<p>We’ll first model each team’s powerplay performance across 10 years separately in level 1. Then, we’ll model these performances between and within each conference and division in level 2.</p>
+<div id="level-1" class="section level3">
+<h3>Level 1</h3>
+<p>The level 1 modeling ignores the conference and division distinction. Each team will be modeled individual using a linear regression to predict powerplay goals per games played as a function of time (across 10 years). There are 30 teams in this dataset. Therefore, 30 distinct linear regressions will be performed; one for each team in the NHL. This allows us account for the variability of power plays within each team.</p>
+<p>The code for this is made extremely efficient thanks to dplyr pipe-ing (%&gt;%):</p>
+<pre class="r"><code>modTeam &lt;-  data5v4 %&gt;% 
+            group_by(Team) %&gt;%
+            do(level1 = lm((GF/GP) ~ StartYear, data = .))</code></pre>
+<p>Extracting omnibus level statistics, such as <em>R<sup>2</sup></em>, for each of the 30 linear regressions and placing them in a easy-to-use dataframe was done using the ‘broom’ package function ‘glance’:</p>
+<pre class="r"><code>level1Omni &lt;- modTeam %&gt;% glance(level1) %&gt;% mutate(sig = p.value &lt; .05)</code></pre>
+<p>We’ll use these omnibus estimates to examine all 30 regression models simultaneously via <em>R<sup>2</sup></em> estimates. These allow us to see how much variability in powerplay goals per games played was explained by time:</p>
+<pre class="r"><code># Color palette
+sigColorPal &lt;- brewer.pal(11,&#39;RdGy&#39;) # display.brewer.pal(11,&#39;RdGy&#39;)
+
+# R^2 Plot
+ggplot(level1Omni, aes(r.squared, reorder(Team, r.squared), color = sig)) +
+  geom_point(size = 2) +
+  scale_color_manual(values = sigColorPal[c(9,2)]) +
+  labs(x = &#39;R-squared&#39;, y = &#39;Team&#39;) +
+  guides(color = guide_legend(title = &#39;p &lt; .05&#39;)) +
+  theme_minimal()</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level1_fig1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can also similarly examine the regression coefficient of time for each NHL team. This coefficient tells us what was the predicted change in powerplay goals per games played across the ten years (2007-2017).</p>
+<p>Let’s first extract these coefficients using dplyr pipeing (%&gt;%) and the ‘broom’ package function ‘tidy’:</p>
+<pre class="r"><code># Extracting level 1 coefficients
+level1Coef &lt;- modTeam %&gt;% 
+              tidy(level1) %&gt;% 
+              filter(term == &#39;StartYear&#39;) %&gt;%   # Facilitates plotting
+              mutate(sig = p.value &lt; .05)       # For later plotting</code></pre>
+<p>Now let’s plot these coefficients ordered by size:</p>
+<pre class="r"><code>ggplot(level1Coef, aes(estimate, reorder(Team, -1*estimate), color = sig)) +
+  geom_point(size = 2) +
+  geom_errorbarh(aes(xmin = estimate - std.error, 
+                     xmax = estimate + std.error),
+                 alpha = 1/2) +
+  scale_color_manual(values = sigColorPal[c(9,2)]) +
+  labs(x = &#39;Estimate (Yearly Change in Power Play Goals/Game)&#39;, 
+       y = &#39;Team&#39;,
+       caption = &#39;SEM error bars&#39;) +
+  guides(color = guide_legend(title = &#39;p &lt; .05&#39;)) +
+  theme_minimal()</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level1_3fig-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As we can see from the plot above, each team had a different predicted rate of change in powerplay goals per games played from 2007-2017. The x-axis here represents the regression coefficient of time. For example, the Chicago Blackhawks had an estimate close to -.02. This means that for every increase in 1 year (every season) the model predicted a decrease of .02 powerplay goals per games played. However, this estimate is colored grey. This means that it was not found to be significantly different from zero.</p>
+<p>For a more comprehensive picture, let’s look at all the teams in the NHL plotted with both the observed (actual) data and model predicted trendlines. To do this, let’s first extract the model fits by using dplyr pipeing (%&gt;%) and the ‘broom’ package function ‘augment’:</p>
+<pre class="r"><code># Extracting level 1 model fits
+level1Fits &lt;- modTeam %&gt;% 
+  augment(level1) %&gt;%
+  ungroup() %&gt;%
+  mutate(sig = rep(level1Coef$sig, each = length(unique(StartYear))))</code></pre>
+<p>And then plot them using ggplot:</p>
+<pre class="r"><code>ggplot(level1Fits, aes(StartYear, color = sig)) +
+  geom_line(aes(y = .fitted), alpha = 2/3) +
+  scale_color_manual(values = sigColorPal[c(9,2)]) +
+  geom_line(aes(y = X.GF.GP.), color = &#39;black&#39;) +
+  labs(x = &#39;Season (Start Year)&#39;,
+       y = &#39;Power Play Goals/Games Played (5v4)&#39;) +
+  scale_x_continuous(breaks = c(2008, 2015)) +
+  facet_wrap(~Team, ncol = 5) +
+  guides(color = guide_legend(title = &#39;p &lt; .05&#39;)) +
+  theme_minimal() +
+  theme(legend.position = &#39;bottom&#39;)</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level1_4fig-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="level-2" class="section level3">
+<h3>Level 2</h3>
+<p>Here’s what we’ve learned from level 1:</p>
+<ol style="list-style-type: decimal">
+<li>The rate of change in powerplay goals per games played seems different from team to team</li>
+<li>There seems to be a general decrease in powerplay goals per games played across time</li>
+</ol>
+<p>We can take this a step further by asking the question: “Are powerplay goals per games played changing as a function of time across all NHL teams <strong>on average</strong>.”</p>
+<p>One way to test this question is to see if the regression coefficients of time from level 1 across all 30 NHL teams, on average, differ from zero.</p>
+<p>Our coefficients are already in a dataframe named ‘level1Coef’, so let’s use this dataframe to test whether these estimates are different from zero:</p>
+<pre class="r"><code>level2 &lt;- lm(estimate ~ 1, data = level1Coef)
+summary(level2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = estimate ~ 1, data = level1Coef)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.027532 -0.004719  0.003220  0.007924  0.017478 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.016550   0.002254  -7.342 4.35e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.01235 on 29 degrees of freedom</code></pre>
+<p>As we can see from this summary output of the level 2 model, there is a significant decrease in powerplay goals per games played over time on average across teams.</p>
+<p>This information was gleaned in the following ways:</p>
+<ol style="list-style-type: decimal">
+<li>The estimate is -0.0166</li>
+</ol>
+<p>By being negative, the estimate tells us that powerplay goals are decreasing over time. Specifically, they are decreasing at a rate of 0.0166 goals per games played per year</p>
+<ol start="2" style="list-style-type: decimal">
+<li>This is statistically different from 0</li>
+</ol>
+<p>The t-value is -7.34 with a p-value &lt; .001</p>
+<p>One way to visualize these results is to plot each team’s predicted model from level 1. Running a linear model on these predicted estimates is equivalent to their average over time. The following code illustrates this process in ggplot2. One plot calculates the linear regression model of these estimates, while the other simply averages them over each timepoint:</p>
+<pre class="r"><code>level2Fits &lt;- augment(level2) # Extracts model fits
+
+# LM plot
+lmPlot &lt;- ggplot(level1Fits, aes(StartYear, .fitted, group = Team)) +
+  geom_line(alpha = 1/3) +
+  geom_smooth(aes(group = 1), method = &#39;lm&#39;, color = &#39;purple&#39;, se = F) +
+  labs(x = &#39;Season Start Year&#39;,
+       y = &#39;Level 1 Estimates (Power Play Goals/Games Played)&#39;,
+       title = &#39;Linear Model Plot&#39;) +
+  theme_minimal()
+
+# Average plot
+avPlot &lt;- ggplot(level1Fits, aes(StartYear, .fitted, group = Team)) +
+  geom_line(alpha = 1/3) +
+  stat_summary(aes(group = 1), fun.y = &#39;mean&#39;, 
+               geom = &#39;line&#39;, color = &#39;red&#39;, size = 1) +
+  labs(x = &#39;Season Start Year&#39;, y = NULL, title = &#39;Average Plot&#39;) +
+  theme_minimal()
+
+# Plots them together
+grid.arrange(lmPlot, avPlot, ncol = 2)</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level2_plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As we can see above, both these processes produce the same result. Powerplay goals are decreasing, on average, given each team’s performace across one decade of play (2007-2017).</p>
+</div>
+<div id="level-2-extended" class="section level3">
+<h3>Level 2 Extended</h3>
+<p>So far we’ve modeled each team individually using linear regression and then compared the regression coefficients from each of these 30 models. However, we’ve ignored the hierarchical structure of these data. Teams are nested within divisions that are nested within conferences that are nested within leagues (in this case, only one = the NHL).</p>
+<p>In this section, we’ll explore the differences between conferences and divisions by adding these predictors to the level 2 analysis. <strong>Again, each team’s division and conference affiliation was determined using the 2013-2014 NHL realignment. This has serious consequences for interpreting the results and is shown for illustrative purposes.</strong></p>
+<p>The divisions and conferences are considered categorical variables. When using categorical variables, it is best to have <em>a priori</em> (planned) comparisons. Thus, we have the following planned predictions:</p>
+<ol style="list-style-type: decimal">
+<li>The Western conference will have higher powerplay goals/games played than the Eastern conference</li>
+<li>Within the West, the Central division will have higher powerplay goals/games played than the Pacific</li>
+<li>Within the East, the Metropolitan division will have higher powerplay goals/games played than the Atlantic</li>
+</ol>
+<p>In order to incorporate these planned comparisons, we have come up with the following coding scheme:</p>
+<pre class="r"><code># Creates the data frame for html table
+contrasts &lt;- data.frame(Contrast = c(&#39;Conference (West vs. East)&#39;, 
+                                     &#39;West (Pacific vs. Central)&#39;, 
+                                     &#39;East (Metropolitan vs. Atlantic)&#39;),
+                        Pacific = c(.5, -.5, 0),
+                        Central = c(.5, .5, 0),
+                        Metropolitan = c(-.5, 0, .5),
+                        Atlantic = c(-.5, 0, -.5))
+
+# Prints table
+kable(contrasts) %&gt;%
+  kable_styling(bootstrap_options = c(&#39;striped&#39;, &#39;hover&#39;, &#39;responsive&#39;))</code></pre>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Contrast
+</th>
+<th style="text-align:right;">
+Pacific
+</th>
+<th style="text-align:right;">
+Central
+</th>
+<th style="text-align:right;">
+Metropolitan
+</th>
+<th style="text-align:right;">
+Atlantic
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Conference (West vs. East)
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+-0.5
+</td>
+<td style="text-align:right;">
+-0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+West (Pacific vs. Central)
+</td>
+<td style="text-align:right;">
+-0.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+East (Metropolitan vs. Atlantic)
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+-0.5
+</td>
+</tr>
+</tbody>
+</table>
+<p>These contrasts were made so that the estimates would be more interpretable. For example, the regression coefficient estimate for the West contrast will now represent the actual mean difference of Pacific vs. Central for powerplay goals/games played.</p>
+<p>Using the level1Coef dataframe, let’s enter 3 contrast columns, one for each planned comparison, based upon the table above:</p>
+<pre class="r"><code># Division assignment
+pacific &lt;- c(&#39;S.J&#39;, &#39;CGY&#39;, &#39;L.A&#39;, &#39;ANA&#39;, &#39;EDM&#39;, &#39;VAN&#39;, &#39;ARI&#39;)
+central &lt;- c(&#39;ATL.WPG&#39;, &#39;NSH&#39;, &#39;STL&#39;, &#39;DAL&#39;, &#39;COL&#39;, &#39;MIN&#39;, &#39;CHI&#39;)
+metropolitan &lt;- c(&#39;WSH&#39;, &#39;N.J&#39;, &#39;PHI&#39;, &#39;CBJ&#39;, &#39;PIT&#39;, &#39;NYR&#39;, &#39;NYI&#39;, &#39;CAR&#39;)
+atlantic &lt;- c(&#39;T.B&#39;, &#39;BOS&#39;, &#39;TOR&#39;, &#39;DET&#39;, &#39;MTL&#39;, &#39;FLA&#39;, &#39;OTT&#39;, &#39;BUF&#39;)
+
+# Assigning contrasts based on vectors above
+level1Coef &lt;- level1Coef %&gt;% ungroup() %&gt;%
+  mutate(conf = case_when(level1Coef$Team %in% pacific ~ .5,
+                              level1Coef$Team %in% central ~ .5,
+                              level1Coef$Team %in% metropolitan ~ -.5,
+                              level1Coef$Team %in% atlantic ~ -.5),
+         west = case_when(level1Coef$Team %in% pacific ~ -.5,
+                              level1Coef$Team %in% central ~ .5,
+                              level1Coef$Team %in% metropolitan ~ 0,
+                              level1Coef$Team %in% atlantic ~ 0),
+         east = case_when(level1Coef$Team %in% pacific ~ 0,
+                              level1Coef$Team %in% central ~ 0,
+                              level1Coef$Team %in% metropolitan ~ .5,
+                              level1Coef$Team %in% atlantic ~ -.5))</code></pre>
+<p>We can now run a linear regression on the regression coefficients from level 1 again, but this time we’ll add the contrast coding scheme that we just created to the model in level 2:</p>
+<pre class="r"><code>level2Div &lt;- lm(estimate ~ conf + west + east, data = level1Coef)
+summary(level2Div)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = estimate ~ conf + west + east, data = level1Coef)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.024390 -0.008290  0.002767  0.010203  0.014928 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.016514   0.002293  -7.203 1.19e-07 ***
+## conf         0.001077   0.004586   0.235    0.816    
+## west         0.007432   0.006698   1.110    0.277    
+## east         0.005835   0.006265   0.931    0.360    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.01253 on 26 degrees of freedom
+## Multiple R-squared:  0.07651,    Adjusted R-squared:  -0.03005 
+## F-statistic: 0.718 on 3 and 26 DF,  p-value: 0.5502</code></pre>
+<p>Now let’s walk through this new summary output.</p>
+<p>First, our intercept estimate from level 2 and level 2 extended are very similar. Powerplay goals/games played are still significantly decreasing at a rate of .0166 per each year of NHL gameplay.</p>
+<p>Second, our three planned contrasts were named ‘conf’, ‘west’, and ‘east’. Taking a look at their estimates, they were all positive. This means that our predictions were in the right direction. However, none of these predictions were statistically significant. In other words, there is no significant difference in powerplay goals/games played between Western and Eastern conference teams, the Pacific and Central divisions, nor the Metropolitan and Atlantic divisions.</p>
+<p>Nevertheless, let’s take a look at each of these in turn. First, we’ll extract the fitted values from the level 2 extended model for each team:</p>
+<pre class="r"><code># Extracts estimates from each team from level 2 extended
+level2DivTeam &lt;- level2Div %&gt;% 
+  augment() %&gt;% 
+  mutate(team = level1Coef$Team) %&gt;% 
+  ungroup() %&gt;%
+  mutate(division = case_when(team %in% pacific ~ &#39;pacific&#39;,
+                              team %in% central ~ &#39;central&#39;,
+                              team %in% metropolitan ~ &#39;metropolitan&#39;,
+                              team %in% atlantic ~ &#39;atlantic&#39;),
+         division = factor(division))
+
+# Re-orders factor for plotting
+level2DivTeam$division &lt;- factor(level2DivTeam$division,
+                                 levels(level2DivTeam$division)[c(4,2,3,1)])</code></pre>
+<p>After extracting this information, let’s take a look within the Western conference and compare the Pacific and Central divisions:</p>
+<pre class="r"><code># Gathers summary info
+west_sum &lt;- level2DivTeam %&gt;%
+  group_by(west) %&gt;%
+  summarise(mean = mean(.fitted),
+            sd = sd(.fitted),
+            n = n(),
+            sem = sd/sqrt(n)) %&gt;%
+  filter(west != 0)
+
+# Plot
+ggplot(west_sum, aes(factor(west), mean, group = 1)) +
+  geom_point(size = 2) +
+  geom_line(alpha = 1/3) +
+  scale_x_discrete(&#39;Western Conference Divisions&#39;, 
+                   label = c(&#39;Pacific&#39;, &#39;Central&#39;)) +
+  labs(y = &#39;Yearly Change in Power Play Goals/Games Played&#39;) +
+  theme_minimal()</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level2eWest-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The plot above depicts that, on average, the Pacific division is decreasing its powerplay goals/games played at a faster rate than the Central division. Although this is not a significant difference, it is still interesting.</p>
+<p>Next, let’s take a look at within the Eastern conference between the Atlantic and Metropolitan divisions:</p>
+<pre class="r"><code># Gathers summary info
+east_sum &lt;- level2DivTeam %&gt;%
+  group_by(east) %&gt;%
+  summarise(mean = mean(.fitted),
+            sd = sd(.fitted),
+            n = n(),
+            sem = sd/sqrt(n)) %&gt;%
+  filter(east != 0)
+
+# Plot
+ggplot(east_sum, aes(factor(east), mean, group = 1)) +
+  geom_point(size = 2) +
+  geom_line(alpha = 1/3) +
+  scale_x_discrete(&#39;Eastern Conference Divisions&#39;, 
+                   label = c(&#39;Atlantic&#39;, &#39;Metropolitan&#39;)) +
+  labs(y = &#39;Yearly Change in Power Play Goals/Games Played&#39;) +
+  theme_minimal()</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level2eEast-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Similar to the Western conference, the teams in the Atlantic division, on average, have a greater decrease in their powerplay goals/games played compared to their conference counterparts–the Metropolitan division teams. This is not a significant difference, though.</p>
+<p>Finally, let’s compare the Western and Eastern conferences:</p>
+<pre class="r"><code># Gathering summary information
+conf_sum &lt;- level2DivTeam %&gt;%
+  group_by(conf) %&gt;%
+  summarise(mean = mean(.fitted),
+            sd = sd(.fitted),
+            n = n(),
+            sem = sd/sqrt(n))
+
+# Plot
+ggplot(conf_sum, aes(factor(conf), mean, group = 1)) +
+  geom_point(size = 2) +
+  geom_line(alpha = 1/3) +
+  scale_x_discrete(&#39;NHL Conference&#39;, 
+                   label = c(&#39;East&#39;, &#39;West&#39;)) +
+  labs(y = &#39;Yearly Change in Power Play Goals/Games Played&#39;) +
+  theme_minimal()</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level2eConf-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Interestingly, the Eastern conference is decreasing in their powerplay goals/games played at a faster rate than the Western conference teams. Again, not a significant difference though.</p>
+<p>It may be more helpful to examine these slopes side-by-side:</p>
+<pre class="r"><code># Taking a look at the west contrast (Pacific -.5 vs. Central +.5)
+yax.lock &lt;- c(-.025, -.01)
+westPlot &lt;- ggplot(west_sum, aes(factor(west), mean, group = 1)) +
+  geom_point(size = 2) +
+  geom_line(alpha = 1/3) +
+  scale_x_discrete(&#39;Western Conference Divisions&#39;, 
+                   label = c(&#39;Pacific&#39;, &#39;Central&#39;)) +
+  coord_cartesian(ylim = yax.lock) +
+  labs(y = &#39;Yearly Change in Power Play Goals/Games Played&#39;) +
+  theme_minimal()
+
+# Taking a look at the east contrast (Atlantic -.5 vs. Metropolitan +.5)
+eastPlot &lt;- ggplot(east_sum, aes(factor(east), mean, group = 1)) +
+  geom_point(size = 2) +
+  geom_line(alpha = 1/3) +
+  scale_x_discrete(&#39;Eastern Conference Divisions&#39;, 
+                   label = c(&#39;Atlantic&#39;, &#39;Metropolitan&#39;)) +
+  coord_cartesian(ylim = yax.lock) +
+  labs(y = NULL) +
+  theme_minimal()
+
+# Taking a look at the conference (East -.5 vs. West +.5)
+confPlot &lt;- ggplot(conf_sum, aes(factor(conf), mean, group = 1)) +
+  geom_point(size = 2) +
+  geom_line(alpha = 1/3) +
+  scale_x_discrete(&#39;NHL Conference&#39;, 
+                   label = c(&#39;East&#39;, &#39;West&#39;)) +
+  coord_cartesian(ylim = yax.lock) +
+  labs(y = NULL) +
+  theme_minimal()
+
+grid.arrange(westPlot, eastPlot, confPlot, ncol = 3)</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level2eSum-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Or perhaps on a single plot detailing all 4 divisions across the 2 conferences:</p>
+<pre class="r"><code>ggplot(level2DivTeam, aes(division, .fitted, group = factor(conf))) +
+  geom_pointrange(aes(ymax = .fitted + .se.fit, ymin = .fitted - .se.fit)) +
+  geom_line(alpha = 1/3) +
+  coord_cartesian(ylim = yax.lock) +
+  scale_x_discrete(labels = c(&#39;Pacific&#39;, &#39;Central&#39;, 
+                              &#39;Metropolitan&#39;, &#39;Atlantic&#39;)) +
+  labs(x = &#39;Division&#39;, 
+       y = &#39;Yearly Change in Power Play Goals/Games Played&#39;,
+       caption = &#39;SEM error bars&#39;) +
+  theme_minimal()</code></pre>
+<p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<hr >
+<p>Here are the following things we learned about 5 on 4 powerplays in the NHL from 2007-2017 in the regular season:</p>
+<ol style="list-style-type: decimal">
+<li><p>The number of goals scored (controlled for the amount of games played per season) significantly decreased across the decade by a rate of .0166</p></li>
+<li><p>These decreases did not depend on division nor conference</p></li>
+</ol>
+</div>
+<div id="acknowledgements" class="section level2">
+<h2>Acknowledgements</h2>
+<hr >
+<p>A huge thank you to Ekarin Pongpipat who graciously and generously taught me multi-level linear modeling &amp; helped write this blog post. His patience for my random tangents about hockey, bitcoin, and data visualization was unparalleled! Thank you!</p>
+<p>Ekarin is a first year PhD student at the University of Texas at Dallas in the Cognition and Neuroscience program. He obtained his statistics training using a model comparison approach (MCA) during his time at San Diego State University. He also has taught and continues to teach statistics conceptually, mathmatically, and using statistics software such as SPSS and R. He has recently written a function to write a statistical results template in a APA format and will be adding more to his <a href="https://github.com/epongpipat">github</a> repository soon. If you’re also interested in his research, check out his <a href="https://www.researchgate.net/profile/Ekarin_Pongpipat">ResearchGate</a> page.</p>
+<!-- disqus START -->
+<div id="disqus_thread">
+
+</div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = 'https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mattkmiecik.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>
+Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!-- disqus END -->
+</div>
+
+</div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+</div> <!-- forPagesWithTOC -->
+
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">&copy; 2018 Matthew J. Kmiecik. All rights reserved.</span>
+  </div>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

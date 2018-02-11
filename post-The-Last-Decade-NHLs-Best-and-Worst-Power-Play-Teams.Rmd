@@ -20,6 +20,8 @@ knitr::opts_chunk$set(fig.align = 'center',
                       comment = '>')
 ``` 
 
+> Note: This blog post presents a model of powerplay goals in the NHL over 10 years. However, this model is inaccurate. I encourage readers to read this post and then proceed to my [follow-up blog post](https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html) where I explain the source of these potential errors and provide a more accurate and informative model. 
+
 So you are watching your favorite NHL team and they finally draw a powerplay. Awesome! The ice opens up with the missing player and it shouldn't be too hard to score...right? As a previous water polo player, I know what it is like to endure the wrath of a furious coach after a missed man advantage opportunity. In my experience, coaches semed convinced that the man-up should lead to a goal 100% of the time. But how important is this seemingly advantageous situation in the NHL?  
 
 As a first pass, I analyzed the NHL regular-season over the past ten years (2007-2017) on the standard 5 vs. 4 power play.  These data were retrieved via [Corsica](http://www.corsica.hockey/teams/) shortly after the end of the 2017 regular season.  The following will detail the analyses in R with steps along the way utilizing the wonderful R packages of ggplot2 (Wickham, 2009) and dplyr (Wickham & Francois, 2016).  
@@ -107,11 +109,11 @@ Next, I averaged these residuals for each individual team over ten years and ran
 # power play goals in the last decade  
 bestPP <- data5v4 %>% 
   group_by(Team) %>% 
-  summarise_each(funs(mean = mean,  
-                      sd = sd,
-                      sem = sd(.)/sqrt(n()),
-                      tpval = t.test(.)$p.value),
-                 rel_ppg) %>%
+  summarise_at('rel_ppg', 
+               funs(mean = mean,
+                    sd = sd,
+                    sem = sd(.)/sqrt(n()),
+                    tpval = t.test(.)$p.value)) %>%
   mutate(sig = tpval < .05)
 print(bestPP)
 ```

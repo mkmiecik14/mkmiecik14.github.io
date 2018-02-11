@@ -33,6 +33,20 @@ I love the sport of hockey. In my spare time, I like to apply some of the statis
 <h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h2> 
 <hr>
 
+<!-- Multi-level Model NHL -->
+
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> February 11, 2018
+<span class="label label-primary">Academic</span>
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+<span class="label label-danger">Power Play</span>
+
+A collaboration post about multilevel modeling in R using professional hockey data from the NHL.
+
+<br>
+
 <!-- Lit Review -->
 
 <h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Writing-a-Literature-Review.html" class="postLink"> Writing a Literature Review</a></h3>
@@ -83,7 +97,7 @@ A post demonstrating an efficient data pipeline for E-prime users.
 
 <br>
 
-<!-- Stop Using Excel to Preprocess E-Prime Data -->
+<!-- The Last Decade NHLs Best and Worst Power Play Teams -->
 
 <h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="postLink"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
 
