@@ -1,0 +1,4662 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Nick Ray, David Hoagey, Linh Lazarus, Ekarin Pongpipat, &amp; Matt Kmiecik" />
+
+<meta name="date" content="2018-03-20" />
+
+<title>Simulating 2018 NCAA March Madness Tournament Performance in R</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-104506183-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Twittercards -->
+<meta name="twitter:card" content="summary" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        <i class="fa fa-area-chart logo-icon1" aria-hidden="true"></i> 
+        <i class="fa fa-bar-chart logo-icon2" aria-hidden="true"></i> 
+        <i class="fa fa-line-chart logo-icon3" aria-hidden="true"></i> Matthew J. Kmiecik</a> <!-- You can put words here for nav -->
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="index.html">
+            <i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        </li>
+        <li>
+          <a href="cv.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i> CV</a>
+        </li>
+        <li>
+          <a href="about.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> About</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i> My Blogs<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="academicblog.html">Academic</a></li>
+            <li><a href="theblueline.html">The Blue Line</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="academicons-1.8.0/css/academicons.css"/>
+<link rel="stylesheet" href="font-awesome-animation.min.css">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Simulating 2018 NCAA March Madness Tournament Performance in R</h1>
+<h4 class="author"><em>Nick Ray, David Hoagey, Linh Lazarus, Ekarin Pongpipat, &amp; Matt Kmiecik</em></h4>
+<h4 class="date"><em>20 March 2018</em></h4>
+
+</div>
+
+
+<p>It’s that time of the year again–<strong>MARCH MADNESS</strong>.</p>
+<p>A few of us graduate students decided it would be fun to simulate this year’s NCAA Men’s National Championship tournament using R. When we all met to discuss our method to simuluate tournament performance, we quickly realized that each of us had a different method in mind. These methods differed in not only how we determined probability of win via seed, but also the techniques and packages implemented within R. Below showcases 3 different methods we used, each with different results. The methods are arranged in order of increasing use of historical data.</p>
+<div id="matts-method" class="section level2">
+<h2>Matt’s Method</h2>
+<hr >
+<p>The packages needed for this method:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse); <span class="kw">library</span>(repmis); <span class="kw">library</span>(RCurl)</code></pre></div>
+<div id="simulation" class="section level3">
+<h3>Simulation</h3>
+<p>This method (that Nick actually invented) relies on the seed of each team in the tournament. The idea is to assign a range of numbers to each seed with the ranges of lower seeds (e.g., #1, #2, #3, …) containing greater numbers than the ranges of higher seeds (e.g., …, #14, #15, #16). Just like this:</p>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Seed
+</th>
+<th style="text-align:right;">
+Lower.Bound
+</th>
+<th style="text-align:right;">
+Upper.Bound
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+320
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+310
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+140
+</td>
+<td style="text-align:right;">
+300
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+130
+</td>
+<td style="text-align:right;">
+290
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+280
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+270
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+260
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+250
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:right;">
+240
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+230
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+220
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+210
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+200
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+190
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+180
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+170
+</td>
+</tr>
+</tbody>
+</table>
+<p>Then, randomly sample from each team’s range and assign the win to the higher number (for each match-up). This is a crude method that will roughly correspond to seed. In other words, each seed has a higher probability of winning over each subsequent seed; however, it is theoretically possible, although very unlikely, for a 16<sup>th</sup> seed to win the tournament. A simulation given purely historical data would not be able to account for this because a 16<sup>th</sup> seed has never made it past the first round prior to the 2018 tournament.</p>
+<p>Below is the code I used to run the simulation. I tried to avoid for loops as much as possible and learn the <code>map()</code> functions in the <a href="https://github.com/tidyverse/purrr">purrr</a> package. The code is not as efficient as I would have liked it to be, but it gets the job done and allows for a variety of plots.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sets the regions</span>
+regions &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;East&#39;</span>, <span class="st">&#39;West&#39;</span>, <span class="st">&#39;Midwest&#39;</span>)
+
+<span class="co"># Import the team names and their seeds from 2018</span>
+<span class="co"># These data are being pulled from this website&#39;s Github repo</span>
+link &lt;-<span class="st"> &#39;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/ncaa-2018-teams-updated.csv&#39;</span>
+ncaa.<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">getURL</span>(link)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">region =</span> Region, <span class="dt">team =</span> Team1, <span class="dt">seed =</span> Seed)
+
+<span class="co"># Initializations</span>
+iters &lt;-<span class="st"> </span><span class="dv">1000</span>
+results &lt;-<span class="st"> </span>probTableHolder &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&#39;list&#39;</span>, <span class="dt">length =</span> iters)
+
+<span class="co"># Sets seed for reprodicible results</span>
+<span class="kw">set.seed</span>(<span class="dv">18</span>)</code></pre></div>
+<p>The simulation was then ran 1000 times:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>iters) {
+
+  <span class="co"># Creates whole tournament probability set</span>
+  probTableHolder[[i]] &lt;-<span class="st"> </span>probTable &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">seed =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>),
+                   <span class="dt">lowNum =</span> <span class="kw">seq</span>(<span class="dv">160</span>, <span class="dv">10</span>, <span class="op">-</span><span class="dv">10</span>),
+                   <span class="dt">highNum =</span> <span class="kw">seq</span>(<span class="dv">320</span>, <span class="dv">170</span>, <span class="op">-</span><span class="dv">10</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">group_by</span>(seed) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">result =</span> <span class="kw">sample</span>(lowNum<span class="op">:</span>highNum, <span class="dv">1</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">ungroup</span>()) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">rep</span>(regions, <span class="dt">each =</span> <span class="dv">16</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(ncaa.<span class="dv">2018</span>, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;seed&#39;</span>, <span class="st">&#39;region&#39;</span>))
+  
+  <span class="co"># Round 1</span>
+  r1 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">t1.seed =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">t2.seed =</span> <span class="dv">16</span><span class="op">:</span><span class="dv">9</span>) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">t1.res =</span>  probTable<span class="op">$</span>result[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>],
+                    <span class="dt">t2.res =</span> probTable<span class="op">$</span>result[<span class="dv">16</span><span class="op">:</span><span class="dv">9</span>],
+                    <span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">rep</span>(regions, <span class="dt">each =</span> <span class="dv">8</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;seed&#39;</span>, <span class="st">&#39;region&#39;</span>))
+    
+  <span class="co"># Round 1 results</span>
+  r1.res &lt;-<span class="st"> </span>r1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(match.up, region, team, seed, result)
+  
+  <span class="co"># Round 2</span>
+  r2 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r2.match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
+                <span class="dt">r2.match.up.1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
+                <span class="dt">r2.match.up.2 =</span> <span class="kw">as.integer</span>(<span class="kw">seq</span>(<span class="dv">8</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>)),
+                <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r1.res, 
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r2.match.up.1&#39;</span> =<span class="st"> &#39;match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r1.res,
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r2.match.up.2&#39;</span> =<span class="st"> &#39;match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 2 results</span>
+  r2.res &lt;-<span class="st"> </span>r2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r2.match.up, region, team, seed, result)
+  
+  <span class="co"># Round 3</span>
+  r3 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r3.match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, 
+                <span class="dt">r3.match.up.1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, 
+                <span class="dt">r3.match.up.2 =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">3</span>,
+                <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r2.res, 
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r3.match.up.1&#39;</span> =<span class="st"> &#39;r2.match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r2.res,
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r3.match.up.2&#39;</span> =<span class="st"> &#39;r2.match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable,  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 3 results</span>
+  r3.res &lt;-<span class="st"> </span>r3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r3.match.up, region, team, seed, result)
+  
+  <span class="co"># Round 4</span>
+  r4 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r4.match.up =</span> <span class="dv">1</span>, 
+                   <span class="dt">r4.match.up.1 =</span> <span class="dv">1</span>, 
+                   <span class="dt">r4.match.up.2 =</span> <span class="dv">2</span>,
+                   <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(r3.res, 
+                        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r4.match.up.1&#39;</span> =<span class="st"> &#39;r3.match.up&#39;</span>, 
+                               <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(r3.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r4.match.up.2&#39;</span> =<span class="st"> &#39;r3.match.up&#39;</span>,
+                                       <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable,  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 4 results</span>
+  r4.res &lt;-<span class="st"> </span>r4 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r4.match.up, region, team, seed, result)
+  
+  <span class="co"># Semifinal</span>
+  semi.final &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">t1.region =</span> <span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;East&#39;</span>),
+                       <span class="dt">t2.region =</span> <span class="kw">c</span>(<span class="st">&#39;West&#39;</span>, <span class="st">&#39;Midwest&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(r4.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;t1.region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(r4.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;t2.region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">team =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.team, t2.team)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="st">&#39;team&#39;</span>)
+  
+  <span class="co"># Semifinal results</span>
+  semi.final.res &lt;-<span class="st"> </span>semi.final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(region, team, seed, result)
+  
+  <span class="co"># Final</span>
+  final &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">t1.region =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.region =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.team =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.team =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.seed =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.seed =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.res =</span> semi.final.res<span class="op">$</span>result[<span class="dv">1</span>],
+                  <span class="dt">t2.res =</span> semi.final.res<span class="op">$</span>result[<span class="dv">2</span>]) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">team =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.team, t2.team)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="st">&#39;team&#39;</span>)
+  
+  final.res &lt;-<span class="st"> </span>final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(region, team, seed, result)
+  
+  results[[i]] &lt;-<span class="st"> </span>this.result &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(r1.res, r2.res, r3.res, r4.res,
+                                           semi.final.res, final.res, 
+                                           <span class="dt">.id =</span> <span class="st">&#39;round&#39;</span>)
+  
+  <span class="co">#print(i) # Uncomment to see progress</span>
+}</code></pre></div>
+</div>
+<div id="data-viz" class="section level3">
+<h3>Data Viz</h3>
+<p>The results of this simulation were saved out and can be imported from this website’s <a href="https://github.com/mkmiecik14/mkmiecik14.github.io/tree/master/data">Github data repository</a> like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Loading probability tables from github</span>
+probTableLink &lt;-<span class="st"> &#39;https://github.com/mkmiecik14/mkmiecik14.github.io/blob/master/data/probTableHolder-updated.RData?raw=true&#39;</span>
+<span class="kw">source_data</span>(probTableLink)
+
+<span class="co"># Loading simulation results from github</span>
+resultsLink &lt;-<span class="st"> &#39;https://github.com/mkmiecik14/mkmiecik14.github.io/blob/master/data/results-updated.RData?raw=true&#39;</span>
+<span class="kw">source_data</span>(resultsLink)</code></pre></div>
+<p>First, let’s ensure that the probability table results worked across simulations and regions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts into a dataframe</span>
+probTable.long &lt;-<span class="st"> </span>probTableHolder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_df</span>(bind_rows, <span class="dt">.id =</span> <span class="st">&#39;iter&#39;</span>)
+
+<span class="co"># Calculates summary stats</span>
+probTable.sum &lt;-<span class="st"> </span>probTable.long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(seed, region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">m =</span> <span class="kw">mean</span>(result),
+            <span class="dt">sd =</span> <span class="kw">sd</span>(result),
+            <span class="dt">n =</span> <span class="kw">n</span>(),
+            <span class="dt">sem =</span> sd<span class="op">/</span><span class="kw">sqrt</span>(n))
+
+<span class="co"># Probability table plot</span>
+<span class="kw">ggplot</span>(probTable.long, <span class="kw">aes</span>(<span class="kw">factor</span>(seed), result, <span class="dt">color =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&#39;jitter&#39;</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_pointrange</span>(<span class="dt">data =</span> probTable.sum, 
+                  <span class="kw">aes</span>(<span class="kw">factor</span>(seed), m, <span class="dt">color =</span> region, 
+                      <span class="dt">ymin =</span> m <span class="op">-</span><span class="st"> </span>sd, <span class="dt">ymax =</span> m <span class="op">+</span><span class="st"> </span>sd),
+                  <span class="dt">color =</span> <span class="st">&#39;black&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> probTable.sum, 
+            <span class="kw">aes</span>(<span class="kw">factor</span>(seed), m, <span class="dt">group =</span> <span class="dv">1</span>, <span class="dt">color =</span> region), 
+            <span class="dt">color =</span> <span class="st">&#39;black&#39;</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Seed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Randomly Chosen Value&#39;</span>, <span class="dt">caption =</span> <span class="st">&#39;SD Error Bars&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>region)</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This above visualization depicts the potential ranges from which each seed can draw an arbitrary number. This drawing occurs at the beginning of each simulation iteration and determines each team’s tournament fate. Higher seeds have an advantage of a higher possible range, but this overlap gradually decreases with increases in seed.</p>
+<p>Now let’s examine the results of the simulations. As a check, better seeds should win with more frequency each round than worse seeds:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts to long dataframe</span>
+results.long &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_df</span>(bind_rows, <span class="dt">.id =</span> <span class="st">&#39;iter&#39;</span>)
+
+<span class="co"># Win histogram</span>
+<span class="kw">ggplot</span>(results.long, <span class="kw">aes</span>(<span class="kw">as.factor</span>(seed), <span class="dt">fill =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">stat =</span> <span class="st">&#39;count&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(round<span class="op">~</span>region) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">16</span>, <span class="dv">3</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Seed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Win Frequency&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Number of Wins Per Round&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The above plot confirms this; higher seeds win more often than lower seeds for each round.</p>
+<p>Now for fun, let’s see which teams won the tournament most often.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Round 6 summary information</span>
+results.long.sum1 &lt;-<span class="st"> </span>results.long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> &#39;6&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(team, region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">seed =</span> <span class="kw">unique</span>(seed))
+
+<span class="co"># Winner plot</span>
+<span class="kw">ggplot</span>(results.long.sum1, <span class="kw">aes</span>(<span class="kw">reorder</span>(team, <span class="op">-</span><span class="dv">1</span><span class="op">*</span>n), n, <span class="dt">fill =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Team&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;NCAA Tournament Wins&#39;</span>, 
+       <span class="dt">caption =</span> <span class="kw">paste</span>(<span class="st">&#39;Simulation iterations:&#39;</span>, iters)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> seed), <span class="dt">nudge_y =</span> <span class="dv">4</span>, <span class="dt">color =</span> <span class="st">&#39;grey&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There are some clear, but expected, patterns that emerge given a simulation based solely on seed. First, #1 seeds tend to win more often than lower seeds. Second, win frequency tracks well with seed, but in a diminishing step-wise way. The margin is closer between #3 vs #4 seeds, than #2 vs #3 seeds, than #1 vs #2. Perhaps this has to do with the NCAA men’s tournament not re-seeding teams on a round-by-round basis (see this <a href="https://www.youtube.com/watch?v=4a1TUszkMfI">video</a> by Jon Bois).</p>
+<p>However, this method did allow for some upsets. As we can see, three #6 seeds won the tournament (TCU, Houston, Miami)!</p>
+<p>So, does this analysis inform my bracket this year at all? Sort of, but I’d rather just have R do it for me.</p>
+<p>I’ll just have the computer pick a random iteration that occured and I’ll use that to fill out my bracket:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Random selection from the set of simulation iterations</span>
+<span class="co"># note: seed was set earlier in script</span>
+myPick &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span>iters, <span class="dv">1</span>)
+
+<span class="co"># Matt&#39;s bracket from a random simulation iteration</span>
+mattsBracket &lt;-<span class="st"> </span>results.long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(iter <span class="op">==</span><span class="st"> </span>myPick) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(round, region, team, seed) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">winner =</span> team)</code></pre></div>
+<p>So here’s what the computer drew for me (winners of each round):</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:400px; ">
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+round
+</th>
+<th style="text-align:left;">
+region
+</th>
+<th style="text-align:left;">
+winner
+</th>
+<th style="text-align:right;">
+seed
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Virginia
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Cincinnati
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Tennessee
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Arizona
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Kentucky
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Miami
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Nevada
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Kansas State
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Villanova
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Purdue
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Texas Tech
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Wichita State
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+West Virginia
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Florida
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Arkansas
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Alabama
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Xavier
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+North Carolina
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Michigan
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Gonzaga
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Ohio State
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Houston
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Texas A&amp;M
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Florida State
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Kansas
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Duke
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Michigan State
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Auburn
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Clemson
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+TCU
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Rhode Island
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+NC State
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Kansas State
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Cincinnati
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Tennessee
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Arizona
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Villanova
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Purdue
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Texas Tech
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+West Virginia
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Florida State
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+North Carolina
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Michigan
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Ohio State
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Kansas
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Duke
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Michigan State
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Clemson
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Arizona
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Tennessee
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Villanova
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Texas Tech
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Ohio State
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Michigan
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Kansas
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Michigan State
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Tennessee
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Texas Tech
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Michigan
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Michigan State
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Tennessee
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Michigan State
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Michigan State
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br ></p>
+<p>Wish me luck!</p>
+</div>
+</div>
+<div id="linh-davids-method" class="section level2">
+<h2>Linh &amp; David’s Method</h2>
+<hr >
+<p>Packages needed for this method:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse); <span class="kw">library</span>(repmis); <span class="kw">library</span>(RCurl)</code></pre></div>
+<p>Similar to Matt’s method, we also decided to go with a sliding range approach; however, we wanted to include historical win probabilities of first round play to determine the width of each team’s number range, as well as the overlap between seeds.</p>
+<div id="the-basics" class="section level3">
+<h3>The Basics</h3>
+<p>We have the most historical data on the matchups in the first round because they happen four times each year. Therefore, it makes the most sense to use these data to predict each matchup, especially for future rounds where certain matchups are rare. To do this, we created a range of values for each team in such a way that when one number is drawn from that range and compared against the number generated for its first round opponent, the odds of that team’s number being higher than the opponent’s match the historical probability of that team winning. In other words, every team has a range of values that can be chosen from, and this range overlaps with every other team by a very specific amount.</p>
+<div id="example-1---overlap-of-2" class="section level4">
+<h4>Example 1 - Overlap of 2</h4>
+<p><br ></p>
+<p><img src="images/Overlap_2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br ></p>
+<p>If team 1 (favorite) has a range of possible values from 5-10, and team 2 (underdog) has a range of 1-6, randomly choosing a number for each team will result in team 1 winning almost every time. The odds of team 2 winning are equal to the odds of team 1 drawing a 5 and team 2 drawing a 6. This equates to a mathematical “and” problem that can be calculated by multiplying the odds of each event happening. Since each team has 6 numbers to draw from, the odds are 1/6 for each, or 1/36 (2.78%) for both happening at the same time.</p>
+</div>
+<div id="example-2---overlap-of-4" class="section level4">
+<h4>Example 2 - Overlap of 4</h4>
+<p><br ></p>
+<p><img src="images/Overlap_4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br ></p>
+<p>If we use these same dimensions, but want to increase the odds of the underdog winning, we could increase the amount of numbers that overlap by one number. Now the favorite chooses from 4-10 and the underdog chooses from 1-7. Here, the odds of the underdog winning increase to 12.24% because they can win if they draw a 5, 6, or 7 because it is possible for the favorite to draw a 4, 5, or 6.</p>
+</div>
+</div>
+<div id="the-math" class="section level3">
+<h3>The Math</h3>
+<p>Legend for the following equations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n =<span class="st"> </span>number of overlapping values
+M =<span class="st"> </span>Maximum value possible
+R =<span class="st"> </span>Size of range</code></pre></div>
+<p>To make this method work for our purposes, we created an algorithm that defines a range of values for both teams in every first round matchup such that the odds of randomly selecting a value within these ranges matches the historical odds of that team winning. To do this, we determined the formula of the underdog winning (i.e., the number of outcomes in which the underdog would win, divided by the formula for the total number of possible outcomes).</p>
+<p><font style="font-size: 14pt"> <span class="math display">\[
+\begin{aligned}
+\text{Probability of UnderdogWin} = \mathbf{\frac{Underdog Wins}{Total Outcomes}}
+\end{aligned}
+\]</span> </font></p>
+<p><font style="font-size: 18pt"> <span class="math display">\[
+\begin{eqnarray}
+\mathbf{P} = \frac{(\frac{n^2 - n}{2})}{R^2} \Leftrightarrow \frac{(\frac{n^2 - n}{2})}{(\frac{M+n}{2})^2}
+\end{eqnarray}
+\]</span> </font></p>
+<p>When this equation is rearranged to solve for <em>n</em> (i.e., the range of numbers that needed to overlap for a given probability), you get a quadatratic equation that can be plugged into the quadratic formula.</p>
+<p><span class="math display">\[
+\begin{align*}
+&amp; \mathbf{(P-2)n^2 + (2PM + 2)n + P(M^2)} \text{,   where} \\
+\\
+&amp; \mathbf{a = P - 2} \\
+&amp; \mathbf{b = 2PM + 2} \\
+&amp; \mathbf{c = P(M^2)}
+\end{align*}
+\]</span></p>
+<p>Once <em>n</em> was determined, we needed to set the exact range for each team based on this overlap. To do this, we divided <em>m</em> by 2 and set half of <em>n</em> above and below this mid-point. Teams are assigned a value from this range in round 1, and then carry this value for each round to determine the winner of each matchup. Only in the event of a tie is a new number temporarily generated.</p>
+<p><font style="font-size: 16pt"> <span class="math display">\[
+\begin{align}
+\mathbf{UnderdogHigh} = \frac{M+n}{2} \\
+\\
+\mathbf{Favored Low} = \frac{M-n+2}{2}
+\end{align}
+\]</span> </font></p>
+<p>And that’s it. Plug this into Matt’s code for each round.</p>
+</div>
+<div id="the-code" class="section level3">
+<h3>The Code</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">calcRanges &lt;-<span class="st"> </span><span class="cf">function</span>(UnderdogWinProb, MaxVal) {
+    a &lt;-<span class="st"> </span>UnderdogWinProb <span class="op">-</span><span class="st"> </span><span class="dv">2</span>
+    b &lt;-<span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>UnderdogWinProb <span class="op">*</span><span class="st"> </span>MaxVal) <span class="op">+</span><span class="st"> </span><span class="dv">2</span>
+    c &lt;-<span class="st"> </span>UnderdogWinProb <span class="op">*</span><span class="st"> </span>(MaxVal<span class="op">^</span><span class="dv">2</span>)
+    
+    quad_minus &lt;-<span class="st"> </span>(<span class="op">-</span>b <span class="op">-</span><span class="st"> </span><span class="kw">sqrt</span>(b<span class="op">^</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span>a <span class="op">*</span><span class="st"> </span>c)) <span class="op">/</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>a)
+    quad_plus &lt;-<span class="st"> </span>(<span class="op">-</span>b <span class="op">+</span><span class="st"> </span><span class="kw">sqrt</span>(b<span class="op">^</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span>a <span class="op">*</span><span class="st"> </span>c)) <span class="op">/</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>a)
+    
+    <span class="cf">if</span> (<span class="kw">isTRUE</span>(<span class="kw">sign</span>(quad_plus) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)) {
+        n_overlap &lt;-<span class="st"> </span>quad_plus
+    } <span class="cf">else</span> {
+        n_overlap &lt;-<span class="st"> </span>quad_minus
+    }
+    
+    ## Round n_overlap to nearest even integer
+    n_overlap &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">round</span>(n_overlap<span class="op">/</span><span class="dv">2</span>)
+    
+    UnderdogHigh &lt;-<span class="st"> </span>(MaxVal <span class="op">+</span><span class="st"> </span>n_overlap) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>
+    FavoredLow &lt;-<span class="st"> </span>((MaxVal <span class="op">-</span><span class="st"> </span>n_overlap) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+
+    <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;UnderdogHigh Value: &quot;</span>, UnderdogHigh))
+    <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;&quot;</span>),<span class="dt">sep=</span><span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)
+    <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;FavoredLow Value: &quot;</span>, FavoredLow))
+}</code></pre></div>
+</div>
+<div id="the-simulations" class="section level3 tabset tabset-fade">
+<h3>The Simulations</h3>
+<p>We’ve included two simulations:</p>
+<ol style="list-style-type: decimal">
+<li>Implements historical match-up records of the first-round up to, but not including, the 2018 men’s NCAA tournament</li>
+<li>Implements all first-round match-up records that include this year’s (2018) tournament first round performance</li>
+</ol>
+<p>Click on the separate tabs below to see each one in turn:</p>
+<div id="data-prior-to-2018" class="section level4">
+<h4>Data Prior to 2018</h4>
+<p>Here are the low and the high numbers matched with each seed:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lowNum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4673</span>, <span class="dv">3947</span>, <span class="dv">3036</span>, <span class="dv">2714</span>, <span class="dv">1351</span>, <span class="dv">1216</span>, <span class="dv">1080</span>, <span class="dv">76</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)
+highNum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>,
+             <span class="dv">9925</span>, <span class="dv">8921</span>, <span class="dv">8785</span>, <span class="dv">8650</span>, <span class="dv">7287</span>, <span class="dv">6965</span>, <span class="dv">6054</span>, <span class="dv">5328</span>)</code></pre></div>
+<p>That correspond to seed like this:</p>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+seed
+</th>
+<th style="text-align:right;">
+lowNum
+</th>
+<th style="text-align:right;">
+highNum
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4673
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3947
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3036
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2714
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1351
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1216
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1080
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+9925
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8921
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8785
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8650
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7287
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6965
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6054
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5328
+</td>
+</tr>
+</tbody>
+</table>
+<div id="simulation-1" class="section level5">
+<h5>Simulation</h5>
+<p>This method’s simulation code is identical to Matt’s, except that we will exchange the arbitrary sliding range with these newly created ranges based on first round historical probabilities:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sets the regions</span>
+regions &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;East&#39;</span>, <span class="st">&#39;West&#39;</span>, <span class="st">&#39;Midwest&#39;</span>)
+
+<span class="co"># Import the team names and their seeds from 2018</span>
+<span class="co"># These data are being pulled from this website&#39;s Github repo</span>
+link &lt;-<span class="st"> &#39;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/ncaa-2018-teams-updated.csv&#39;</span>
+ncaa.<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">getURL</span>(link)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">region =</span> Region, <span class="dt">team =</span> Team1, <span class="dt">seed =</span> Seed)
+
+<span class="co"># Initializations</span>
+iters &lt;-<span class="st"> </span><span class="dv">1000</span>
+results &lt;-<span class="st"> </span>probTableHolder &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&#39;list&#39;</span>, <span class="dt">length =</span> iters)</code></pre></div>
+<p>This simulation was also ran 1000 times:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>iters) {
+
+  <span class="co"># Creates whole tournament probability set</span>
+  probTableHolder[[i]] &lt;-<span class="st"> </span>probTable &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">seed =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>),
+                   <span class="dt">lowNum =</span> lowNum,
+                   <span class="dt">highNum =</span> highNum) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">group_by</span>(seed) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">result =</span> <span class="kw">sample</span>(lowNum<span class="op">:</span>highNum, <span class="dv">1</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">ungroup</span>()) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">rep</span>(regions, <span class="dt">each =</span> <span class="dv">16</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(ncaa.<span class="dv">2018</span>, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;seed&#39;</span>, <span class="st">&#39;region&#39;</span>))
+  
+  <span class="co"># Round 1</span>
+  r1 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">t1.seed =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">t2.seed =</span> <span class="dv">16</span><span class="op">:</span><span class="dv">9</span>) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">t1.res =</span>  probTable<span class="op">$</span>result[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>],
+                    <span class="dt">t2.res =</span> probTable<span class="op">$</span>result[<span class="dv">16</span><span class="op">:</span><span class="dv">9</span>],
+                    <span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">rep</span>(regions, <span class="dt">each =</span> <span class="dv">8</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;seed&#39;</span>, <span class="st">&#39;region&#39;</span>))
+    
+  <span class="co"># Round 1 results</span>
+  r1.res &lt;-<span class="st"> </span>r1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(match.up, region, team, seed, result)
+  
+  <span class="co"># Round 2</span>
+  r2 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r2.match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
+                <span class="dt">r2.match.up.1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
+                <span class="dt">r2.match.up.2 =</span> <span class="kw">as.integer</span>(<span class="kw">seq</span>(<span class="dv">8</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>)),
+                <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r1.res, 
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r2.match.up.1&#39;</span> =<span class="st"> &#39;match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r1.res,
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r2.match.up.2&#39;</span> =<span class="st"> &#39;match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 2 results</span>
+  r2.res &lt;-<span class="st"> </span>r2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r2.match.up, region, team, seed, result)
+  
+  <span class="co"># Round 3</span>
+  r3 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r3.match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, 
+                <span class="dt">r3.match.up.1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, 
+                <span class="dt">r3.match.up.2 =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">3</span>,
+                <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r2.res, 
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r3.match.up.1&#39;</span> =<span class="st"> &#39;r2.match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r2.res,
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r3.match.up.2&#39;</span> =<span class="st"> &#39;r2.match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable,  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 3 results</span>
+  r3.res &lt;-<span class="st"> </span>r3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r3.match.up, region, team, seed, result)
+  
+  <span class="co"># Round 4</span>
+  r4 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r4.match.up =</span> <span class="dv">1</span>, 
+                   <span class="dt">r4.match.up.1 =</span> <span class="dv">1</span>, 
+                   <span class="dt">r4.match.up.2 =</span> <span class="dv">2</span>,
+                   <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(r3.res, 
+                        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r4.match.up.1&#39;</span> =<span class="st"> &#39;r3.match.up&#39;</span>, 
+                               <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(r3.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r4.match.up.2&#39;</span> =<span class="st"> &#39;r3.match.up&#39;</span>,
+                                       <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable,  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 4 results</span>
+  r4.res &lt;-<span class="st"> </span>r4 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r4.match.up, region, team, seed, result)
+  
+  <span class="co"># Semifinal</span>
+  semi.final &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">t1.region =</span> <span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;East&#39;</span>),
+                       <span class="dt">t2.region =</span> <span class="kw">c</span>(<span class="st">&#39;West&#39;</span>, <span class="st">&#39;Midwest&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(r4.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;t1.region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(r4.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;t2.region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">team =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.team, t2.team)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="st">&#39;team&#39;</span>)
+  
+  <span class="co"># Semifinal results</span>
+  semi.final.res &lt;-<span class="st"> </span>semi.final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(region, team, seed, result)
+  
+  <span class="co"># Final</span>
+  final &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">t1.region =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.region =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.team =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.team =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.seed =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.seed =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.res =</span> semi.final.res<span class="op">$</span>result[<span class="dv">1</span>],
+                  <span class="dt">t2.res =</span> semi.final.res<span class="op">$</span>result[<span class="dv">2</span>]) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">team =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.team, t2.team)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="st">&#39;team&#39;</span>)
+  
+  final.res &lt;-<span class="st"> </span>final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(region, team, seed, result)
+  
+  results[[i]] &lt;-<span class="st"> </span>this.result &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(r1.res, r2.res, r3.res, r4.res,
+                                           semi.final.res, final.res, 
+                                           <span class="dt">.id =</span> <span class="st">&#39;round&#39;</span>)
+  
+  <span class="co">#print(i) # Uncomment to see progress</span>
+}</code></pre></div>
+</div>
+<div id="data-viz-1" class="section level5">
+<h5>Data Viz</h5>
+<p>The results of this simulation were saved out and can be imported from this website’s <a href="https://github.com/mkmiecik14/mkmiecik14.github.io/tree/master/data">Github data repository</a> like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Loading probability tables from github</span>
+probTableLink2 &lt;-<span class="st"> &#39;https://github.com/mkmiecik14/mkmiecik14.github.io/blob/master/data/probTableHolder-linh-david-before-2018.RData?raw=true&#39;</span>
+<span class="kw">source_data</span>(probTableLink2)
+
+<span class="co"># Loading simulation results from github</span>
+resultsLink2 &lt;-<span class="st"> &#39;https://github.com/mkmiecik14/mkmiecik14.github.io/blob/master/data/results-linh-david-before-2018.RData?raw=true&#39;</span>
+<span class="kw">source_data</span>(resultsLink2)</code></pre></div>
+<p>First, let’s ensure that the probability table results worked across simulations and regions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts into a dataframe</span>
+probTable.long &lt;-<span class="st"> </span>probTableHolder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_df</span>(bind_rows, <span class="dt">.id =</span> <span class="st">&#39;iter&#39;</span>)
+
+<span class="co"># Calculates summary stats</span>
+probTable.sum &lt;-<span class="st"> </span>probTable.long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(seed, region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">m =</span> <span class="kw">mean</span>(result),
+            <span class="dt">sd =</span> <span class="kw">sd</span>(result),
+            <span class="dt">n =</span> <span class="kw">n</span>(),
+            <span class="dt">sem =</span> sd<span class="op">/</span><span class="kw">sqrt</span>(n))
+
+<span class="co"># Probability table plot</span>
+<span class="kw">ggplot</span>(probTable.long, <span class="kw">aes</span>(<span class="kw">factor</span>(seed), result, <span class="dt">color =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&#39;jitter&#39;</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_pointrange</span>(<span class="dt">data =</span> probTable.sum, 
+                  <span class="kw">aes</span>(<span class="kw">factor</span>(seed), m, <span class="dt">color =</span> region, 
+                      <span class="dt">ymin =</span> m <span class="op">-</span><span class="st"> </span>sd, <span class="dt">ymax =</span> m <span class="op">+</span><span class="st"> </span>sd),
+                  <span class="dt">color =</span> <span class="st">&#39;black&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> probTable.sum, 
+            <span class="kw">aes</span>(<span class="kw">factor</span>(seed), m, <span class="dt">group =</span> <span class="dv">1</span>, <span class="dt">color =</span> region), 
+            <span class="dt">color =</span> <span class="st">&#39;black&#39;</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Seed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Randomly Chosen Value&#39;</span>, <span class="dt">caption =</span> <span class="st">&#39;SD Error Bars&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>region)</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This above visualization depicts the potential ranges each seed can draw from using first round historical win probabilities. This drawing occurs at the beginning of each simulation iteration and determines each team’s tournament performance.</p>
+<p>Now let’s examine the results of the simulations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts to long dataframe</span>
+results.long &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_df</span>(bind_rows, <span class="dt">.id =</span> <span class="st">&#39;iter&#39;</span>)
+
+<span class="co"># Win histogram</span>
+<span class="kw">ggplot</span>(results.long, <span class="kw">aes</span>(<span class="kw">as.factor</span>(seed), <span class="dt">fill =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">stat =</span> <span class="st">&#39;count&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(round<span class="op">~</span>region) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">16</span>, <span class="dv">3</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Seed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Win Frequency&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Number of Wins Per Round&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Higher seeds tend to win more often than lower seeds for each round. In contrast to Matt’s simulation, there is more variability towards seed #7 and this variability becomes more pronounced with each subsequent round.</p>
+<p>Now for fun, let’s see which teams won the tournament most often.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Round 6 summary information</span>
+results.long.sum1 &lt;-<span class="st"> </span>results.long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> &#39;6&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(team, region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">seed =</span> <span class="kw">unique</span>(seed))
+
+<span class="co"># Winner plot</span>
+<span class="kw">ggplot</span>(results.long.sum1, <span class="kw">aes</span>(<span class="kw">reorder</span>(team, <span class="op">-</span><span class="dv">1</span><span class="op">*</span>n), n, <span class="dt">fill =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Team&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;NCAA Tournament Wins&#39;</span>, 
+       <span class="dt">caption =</span> <span class="kw">paste</span>(<span class="st">&#39;Simulation iterations:&#39;</span>, iters)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> seed), <span class="dt">nudge_y =</span> <span class="dv">4</span>, <span class="dt">color =</span> <span class="st">&#39;grey&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-24-1.png" width="150%" style="display: block; margin: auto;" /></p>
+<p>This simulation has Villanova (#1) with the most wins, while Purdue (#2) comes in second.</p>
+<p>Interestingly, compared to Matt’s simulation, this method allows for more variability for higher seeds to win the tournament:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(results.long.sum1, <span class="kw">aes</span>(<span class="kw">factor</span>(seed), n)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Seed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;NCAA Tournament Wins&#39;</span>,
+       <span class="dt">caption =</span> <span class="kw">paste</span>(<span class="st">&#39;Simulation iterations:&#39;</span>, iters)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>According to this method, #5 and #7 seeds won the tournament fewer times than #6 and #8 seeds. Nevertheless, this method results in several upsets winning the tournament, even as high as #9 seeds.</p>
+</div>
+</div>
+<div id="data-including-2018" class="section level4">
+<h4>Data Including 2018</h4>
+<p>This section was added after observing the first round of the 2018 Men’s NCAA Tournament because, for the first time in history, a #16 seed beat a #1 seed. Therefore, we no longer had to guess this probability because it occured once out of 136 games–a probability of 0.0076.</p>
+<p>The ranges for each team were adjusted to include data from the 2018 tournament:</p>
+<p>Here are the low and the high numbers matched with each seed:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lowNum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4678</span>, <span class="dv">3966</span>, <span class="dv">3077</span>, <span class="dv">2639</span>, <span class="dv">1444</span>, <span class="dv">1182</span>, <span class="dv">1116</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)
+highNum &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>,
+             <span class="dv">8885</span>, <span class="dv">8819</span>, <span class="dv">8557</span>, <span class="dv">7363</span>, <span class="dv">6924</span>, <span class="dv">6035</span>, <span class="dv">5323</span>)</code></pre></div>
+<p>That correspond to seed like this:</p>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+seed
+</th>
+<th style="text-align:right;">
+lowNum
+</th>
+<th style="text-align:right;">
+highNum
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4678
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3966
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3077
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2639
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1444
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1182
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1116
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+10000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8885
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8819
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8557
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7363
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6924
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6035
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5323
+</td>
+</tr>
+</tbody>
+</table>
+<div id="simulation-2" class="section level5">
+<h5>Simulation</h5>
+<p>This method’s simulation code is idential to Matt’s, except that we will exchange the arbitrary sliding range with these newly created ranges based on first round historical probabilities:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Sets the regions</span>
+regions &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;East&#39;</span>, <span class="st">&#39;West&#39;</span>, <span class="st">&#39;Midwest&#39;</span>)
+
+<span class="co"># Import the team names and their seeds from 2018</span>
+<span class="co"># These data are being pulled from this website&#39;s Github repo</span>
+link &lt;-<span class="st"> &#39;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/ncaa-2018-teams-updated.csv&#39;</span>
+ncaa.<span class="dv">2018</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">getURL</span>(link)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rename</span>(<span class="dt">region =</span> Region, <span class="dt">team =</span> Team1, <span class="dt">seed =</span> Seed)
+
+<span class="co"># Initializations</span>
+iters &lt;-<span class="st"> </span><span class="dv">1000</span>
+results &lt;-<span class="st"> </span>probTableHolder &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&#39;list&#39;</span>, <span class="dt">length =</span> iters)</code></pre></div>
+<p>This simulation was also ran 1000 times:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>iters) {
+
+  <span class="co"># Creates whole tournament probability set</span>
+  probTableHolder[[i]] &lt;-<span class="st"> </span>probTable &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">seed =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>),
+                   <span class="dt">lowNum =</span> lowNum,
+                   <span class="dt">highNum =</span> highNum) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">group_by</span>(seed) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">result =</span> <span class="kw">sample</span>(lowNum<span class="op">:</span>highNum, <span class="dv">1</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">ungroup</span>()) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">rep</span>(regions, <span class="dt">each =</span> <span class="dv">16</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(ncaa.<span class="dv">2018</span>, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;seed&#39;</span>, <span class="st">&#39;region&#39;</span>))
+  
+  <span class="co"># Round 1</span>
+  r1 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">t1.seed =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, <span class="dt">t2.seed =</span> <span class="dv">16</span><span class="op">:</span><span class="dv">9</span>) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">t1.res =</span>  probTable<span class="op">$</span>result[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>],
+                    <span class="dt">t2.res =</span> probTable<span class="op">$</span>result[<span class="dv">16</span><span class="op">:</span><span class="dv">9</span>],
+                    <span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">region =</span> <span class="kw">rep</span>(regions, <span class="dt">each =</span> <span class="dv">8</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;seed&#39;</span>, <span class="st">&#39;region&#39;</span>))
+    
+  <span class="co"># Round 1 results</span>
+  r1.res &lt;-<span class="st"> </span>r1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(match.up, region, team, seed, result)
+  
+  <span class="co"># Round 2</span>
+  r2 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r2.match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
+                <span class="dt">r2.match.up.1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,
+                <span class="dt">r2.match.up.2 =</span> <span class="kw">as.integer</span>(<span class="kw">seq</span>(<span class="dv">8</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>)),
+                <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r1.res, 
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r2.match.up.1&#39;</span> =<span class="st"> &#39;match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r1.res,
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r2.match.up.2&#39;</span> =<span class="st"> &#39;match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 2 results</span>
+  r2.res &lt;-<span class="st"> </span>r2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r2.match.up, region, team, seed, result)
+  
+  <span class="co"># Round 3</span>
+  r3 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r3.match.up =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, 
+                <span class="dt">r3.match.up.1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, 
+                <span class="dt">r3.match.up.2 =</span> <span class="dv">4</span><span class="op">:</span><span class="dv">3</span>,
+                <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r2.res, 
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r3.match.up.1&#39;</span> =<span class="st"> &#39;r2.match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">left_join</span>(r2.res,
+                    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r3.match.up.2&#39;</span> =<span class="st"> &#39;r2.match.up&#39;</span>, 
+                           <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable,  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 3 results</span>
+  r3.res &lt;-<span class="st"> </span>r3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r3.match.up, region, team, seed, result)
+  
+  <span class="co"># Round 4</span>
+  r4 &lt;-<span class="st"> </span>regions <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">tibble</span>(<span class="dt">r4.match.up =</span> <span class="dv">1</span>, 
+                   <span class="dt">r4.match.up.1 =</span> <span class="dv">1</span>, 
+                   <span class="dt">r4.match.up.2 =</span> <span class="dv">2</span>,
+                   <span class="dt">region =</span> .) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(r3.res, 
+                        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r4.match.up.1&#39;</span> =<span class="st"> &#39;r3.match.up&#39;</span>, 
+                               <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">inner_join</span>(r3.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;r4.match.up.2&#39;</span> =<span class="st"> &#39;r3.match.up&#39;</span>,
+                                       <span class="st">&#39;region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">             </span><span class="kw">mutate</span>(<span class="dt">seed =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.seed, t2.seed))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable,  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;region&#39;</span>, <span class="st">&#39;seed&#39;</span>))
+  
+  <span class="co"># Round 4 results</span>
+  r4.res &lt;-<span class="st"> </span>r4 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(r4.match.up, region, team, seed, result)
+  
+  <span class="co"># Semifinal</span>
+  semi.final &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">t1.region =</span> <span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;East&#39;</span>),
+                       <span class="dt">t2.region =</span> <span class="kw">c</span>(<span class="st">&#39;West&#39;</span>, <span class="st">&#39;Midwest&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(r4.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;t1.region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">t1.team =</span> team, <span class="dt">t1.seed =</span> seed, <span class="dt">t1.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(r4.res, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;t2.region&#39;</span> =<span class="st"> &#39;region&#39;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rename</span>(<span class="dt">t2.team =</span> team, <span class="dt">t2.seed =</span> seed, <span class="dt">t2.res =</span> result) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">team =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.team, t2.team)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="st">&#39;team&#39;</span>)
+  
+  <span class="co"># Semifinal results</span>
+  semi.final.res &lt;-<span class="st"> </span>semi.final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(region, team, seed, result)
+  
+  <span class="co"># Final</span>
+  final &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">t1.region =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.region =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.team =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.team =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.seed =</span> semi.final.res<span class="op">$</span>team[<span class="dv">1</span>],
+                  <span class="dt">t2.seed =</span> semi.final.res<span class="op">$</span>team[<span class="dv">2</span>],
+                  <span class="dt">t1.res =</span> semi.final.res<span class="op">$</span>result[<span class="dv">1</span>],
+                  <span class="dt">t2.res =</span> semi.final.res<span class="op">$</span>result[<span class="dv">2</span>]) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">team =</span> <span class="kw">if_else</span>(t1.res <span class="op">&gt;</span><span class="st"> </span>t2.res, t1.team, t2.team)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">inner_join</span>(probTable, <span class="dt">by =</span> <span class="st">&#39;team&#39;</span>)
+  
+  final.res &lt;-<span class="st"> </span>final <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(region, team, seed, result)
+  
+  results[[i]] &lt;-<span class="st"> </span>this.result &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(r1.res, r2.res, r3.res, r4.res,
+                                           semi.final.res, final.res, 
+                                           <span class="dt">.id =</span> <span class="st">&#39;round&#39;</span>)
+  
+  <span class="co">#print(i) # Uncomment to see progress</span>
+}</code></pre></div>
+</div>
+<div id="data-viz-2" class="section level5">
+<h5>Data Viz</h5>
+<p>The results of this simulation were saved out and can be imported from this website’s <a href="https://github.com/mkmiecik14/mkmiecik14.github.io/tree/master/data">Github data repository</a> like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Loading probability tables from github</span>
+probTableLink2 &lt;-<span class="st"> &#39;https://github.com/mkmiecik14/mkmiecik14.github.io/blob/master/data/probTableHolder-linh-david-including-2018.RData?raw=true&#39;</span>
+<span class="kw">source_data</span>(probTableLink2)
+
+<span class="co"># Loading simulation results from github</span>
+resultsLink2 &lt;-<span class="st"> &#39;https://github.com/mkmiecik14/mkmiecik14.github.io/blob/master/data/results-linh-david-including-2018.RData?raw=true&#39;</span>
+<span class="kw">source_data</span>(resultsLink2)</code></pre></div>
+<p>First, let’s ensure that the probability table results worked across simulations and regions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts into a dataframe</span>
+probTable.long &lt;-<span class="st"> </span>probTableHolder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_df</span>(bind_rows, <span class="dt">.id =</span> <span class="st">&#39;iter&#39;</span>)
+
+<span class="co"># Calculates summary stats</span>
+probTable.sum &lt;-<span class="st"> </span>probTable.long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(seed, region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">m =</span> <span class="kw">mean</span>(result),
+            <span class="dt">sd =</span> <span class="kw">sd</span>(result),
+            <span class="dt">n =</span> <span class="kw">n</span>(),
+            <span class="dt">sem =</span> sd<span class="op">/</span><span class="kw">sqrt</span>(n))
+
+<span class="co"># Probability table plot</span>
+<span class="kw">ggplot</span>(probTable.long, <span class="kw">aes</span>(<span class="kw">factor</span>(seed), result, <span class="dt">color =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position =</span> <span class="st">&#39;jitter&#39;</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dt">shape =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_pointrange</span>(<span class="dt">data =</span> probTable.sum, 
+                  <span class="kw">aes</span>(<span class="kw">factor</span>(seed), m, <span class="dt">color =</span> region, 
+                      <span class="dt">ymin =</span> m <span class="op">-</span><span class="st"> </span>sd, <span class="dt">ymax =</span> m <span class="op">+</span><span class="st"> </span>sd),
+                  <span class="dt">color =</span> <span class="st">&#39;black&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> probTable.sum, 
+            <span class="kw">aes</span>(<span class="kw">factor</span>(seed), m, <span class="dt">group =</span> <span class="dv">1</span>, <span class="dt">color =</span> region), 
+            <span class="dt">color =</span> <span class="st">&#39;black&#39;</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Seed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Randomly Chosen Value&#39;</span>, <span class="dt">caption =</span> <span class="st">&#39;SD Error Bars&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>region)</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This above visualization depicts the potential ranges each seed can draw from using first round historical win probabilities. This drawing occurs at the beginning of each simulation iteration and determines each team’s tournament performance.</p>
+<p>Now let’s examine the results of the simulations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts to long dataframe</span>
+results.long &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_df</span>(bind_rows, <span class="dt">.id =</span> <span class="st">&#39;iter&#39;</span>)
+
+<span class="co"># Win histogram</span>
+<span class="kw">ggplot</span>(results.long, <span class="kw">aes</span>(<span class="kw">as.factor</span>(seed), <span class="dt">fill =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">stat =</span> <span class="st">&#39;count&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(round<span class="op">~</span>region) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">16</span>, <span class="dv">3</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Seed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Win Frequency&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Number of Wins Per Round&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Higher seeds tend to win more often than lower seeds for each round.</p>
+<p>Now for fun, let’s see which teams won the tournament most often.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Round 6 summary information</span>
+results.long.sum1 &lt;-<span class="st"> </span>results.long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> &#39;6&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(team, region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">seed =</span> <span class="kw">unique</span>(seed))
+
+<span class="co"># Winner plot</span>
+<span class="kw">ggplot</span>(results.long.sum1, <span class="kw">aes</span>(<span class="kw">reorder</span>(team, <span class="op">-</span><span class="dv">1</span><span class="op">*</span>n), n, <span class="dt">fill =</span> region)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&#39;Set2&#39;</span>, <span class="dt">name =</span> <span class="st">&#39;Region&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Team&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;NCAA Tournament Wins&#39;</span>, 
+       <span class="dt">caption =</span> <span class="kw">paste</span>(<span class="st">&#39;Simulation iterations:&#39;</span>, iters)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> seed), <span class="dt">nudge_y =</span> <span class="dv">4</span>, <span class="dt">color =</span> <span class="st">&#39;grey&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-34-1.png" width="150%" style="display: block; margin: auto;" /></p>
+<p>This simulation that incorporated the results from the first round of the 2018 men’s NCAA tournament had Virginia (#1) winning with Xavier (#1) coming in second in overall tournament wins across all 1000 simulations.</p>
+<p>Interestingly, compared to Matt’s simulation, this method allows for more variability for higher seeds to win the tournament:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(results.long.sum1, <span class="kw">aes</span>(<span class="kw">factor</span>(seed), n)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Seed&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;NCAA Tournament Wins&#39;</span>,
+       <span class="dt">caption =</span> <span class="kw">paste</span>(<span class="st">&#39;Simulation iterations:&#39;</span>, iters)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>According to this method, overall wins track well with increasing seed. Lower seeds win more than higher seeds. However, upsets are definitely allowed to occur with #11 seeds winning the tournament! This is most likely a consequence of this year’s (2018) tournament containing a variety of upsets, namely a 16<sup>th</sup> seed over a 1<sup>st</sup> seed victory.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="nicks-method" class="section level2">
+<h2>Nick’s Method</h2>
+<hr >
+<p>R packages needed for this method:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse); <span class="kw">library</span>(RCurl); <span class="kw">library</span>(repmis)</code></pre></div>
+<p>For my bracket, I wanted to match the probability of any given seed (seed X) beating any other given seed (seed Y) to the actual proportion of times that seed X has beaten seed Y in real life. For example, 15<sup>th</sup> seed teams have beaten 2<sup>nd</sup> seed teams 8 times in 132 games, or 6.1% of the time. Luckily for me, someone has already gone through every single game played and calculated the <a href="http://mcubed.net/ncaab/seeds.shtml">proportions for every match-up</a>.</p>
+<p>So, with the help of my friend Giuseppe Miranda, I created a table containing all of these proportions where rows represent winners and columns represent losers. So, if you want the proportion of times that 1<sup>st</sup> seed teams have beaten 16<sup>th</sup> seed teams, look at [row 1, column 16] and you will see that 1<sup>st</sup> seed teams have beaten 16<sup>th</sup> seed teams 132 times in 132 games, or 100% of the time (132/132 = 1). Likewise, if you go to [row 8, column 9] you can see that 8<sup>th</sup> seed teams have beaten 9<sup>th</sup> seed teams 53.2% (or 0.532) of the time.</p>
+<p>These data are available on this website’s <a href="https://github.com/mkmiecik14/mkmiecik14.github.io/tree/master/data">Github data repository</a> and can be read into R like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Table of probabilites to reference for each seed vs. seed match-up</span>
+propLink &lt;-<span class="st"> &#39;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/SeedMatchupProportions.csv&#39;</span>
+
+ProportionsData &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">text =</span> <span class="kw">getURL</span>(propLink), <span class="dt">sep =</span> <span class="st">&#39;,&#39;</span>, 
+                              <span class="dt">row.names =</span> <span class="dv">1</span>, <span class="dt">header =</span> T)</code></pre></div>
+<p>The historical proportions data looks like this:</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:400px; ">
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Seed
+</th>
+<th style="text-align:right;">
+Seed1
+</th>
+<th style="text-align:right;">
+Seed2
+</th>
+<th style="text-align:right;">
+Seed3
+</th>
+<th style="text-align:right;">
+Seed4
+</th>
+<th style="text-align:right;">
+Seed5
+</th>
+<th style="text-align:right;">
+Seed6
+</th>
+<th style="text-align:right;">
+Seed7
+</th>
+<th style="text-align:right;">
+Seed8
+</th>
+<th style="text-align:right;">
+Seed9
+</th>
+<th style="text-align:right;">
+Seed10
+</th>
+<th style="text-align:right;">
+Seed11
+</th>
+<th style="text-align:right;">
+Seed12
+</th>
+<th style="text-align:right;">
+Seed13
+</th>
+<th style="text-align:right;">
+Seed14
+</th>
+<th style="text-align:right;">
+Seed15
+</th>
+<th style="text-align:right;">
+Seed16
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Seed1
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.534
+</td>
+<td style="text-align:right;">
+0.600
+</td>
+<td style="text-align:right;">
+0.699
+</td>
+<td style="text-align:right;">
+0.840
+</td>
+<td style="text-align:right;">
+0.688
+</td>
+<td style="text-align:right;">
+0.857
+</td>
+<td style="text-align:right;">
+0.800
+</td>
+<td style="text-align:right;">
+0.905
+</td>
+<td style="text-align:right;">
+0.857
+</td>
+<td style="text-align:right;">
+0.571
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed2
+</td>
+<td style="text-align:right;">
+0.466
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.629
+</td>
+<td style="text-align:right;">
+0.444
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+<td style="text-align:right;">
+0.722
+</td>
+<td style="text-align:right;">
+0.710
+</td>
+<td style="text-align:right;">
+0.444
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.607
+</td>
+<td style="text-align:right;">
+0.867
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.939
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed3
+</td>
+<td style="text-align:right;">
+0.400
+</td>
+<td style="text-align:right;">
+0.371
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.625
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.553
+</td>
+<td style="text-align:right;">
+0.588
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.692
+</td>
+<td style="text-align:right;">
+0.706
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.841
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed4
+</td>
+<td style="text-align:right;">
+0.301
+</td>
+<td style="text-align:right;">
+0.556
+</td>
+<td style="text-align:right;">
+0.375
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.565
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.364
+</td>
+<td style="text-align:right;">
+0.666
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.692
+</td>
+<td style="text-align:right;">
+0.809
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed5
+</td>
+<td style="text-align:right;">
+0.160
+</td>
+<td style="text-align:right;">
+0.800
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.435
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.250
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.671
+</td>
+<td style="text-align:right;">
+0.800
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed6
+</td>
+<td style="text-align:right;">
+0.313
+</td>
+<td style="text-align:right;">
+0.278
+</td>
+<td style="text-align:right;">
+0.447
+</td>
+<td style="text-align:right;">
+0.667
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.625
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.600
+</td>
+<td style="text-align:right;">
+0.638
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.875
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed7
+</td>
+<td style="text-align:right;">
+0.143
+</td>
+<td style="text-align:right;">
+0.290
+</td>
+<td style="text-align:right;">
+0.412
+</td>
+<td style="text-align:right;">
+0.667
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.375
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.609
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.660
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed8
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+<td style="text-align:right;">
+0.556
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.636
+</td>
+<td style="text-align:right;">
+0.750
+</td>
+<td style="text-align:right;">
+0.750
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.532
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed9
+</td>
+<td style="text-align:right;">
+0.095
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.666
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.468
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed10
+</td>
+<td style="text-align:right;">
+0.143
+</td>
+<td style="text-align:right;">
+0.393
+</td>
+<td style="text-align:right;">
+0.308
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.400
+</td>
+<td style="text-align:right;">
+0.391
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed11
+</td>
+<td style="text-align:right;">
+0.429
+</td>
+<td style="text-align:right;">
+0.133
+</td>
+<td style="text-align:right;">
+0.294
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.362
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.667
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed12
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.308
+</td>
+<td style="text-align:right;">
+0.329
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.727
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed13
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.191
+</td>
+<td style="text-align:right;">
+0.200
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.273
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed14
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.159
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.125
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed15
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.061
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Seed16
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br ></p>
+<p>Next, we will need a data frame for each round of the tournament, where each row represents each game played in the tournament. Each row will contain the name of the teams that are playing each other (‘Team1’ and ‘Team2’ columns) and the seed numbers of both of those teams (‘Team1Seed’ and ‘Team2Seed’). Later we will loop through these data frames to simulate each round of the tournament and predict the winner of each game.</p>
+<p>For the first round, it was easier to create the data in excel beforehand and is available via .csv download from this website’s <a href="https://github.com/mkmiecik14/mkmiecik14.github.io/tree/master/data">Github data repository</a> or you can retrieve from R like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We will load a data frame containing each match-up for the round of 64</span>
+r1Link &lt;-<span class="st"> &#39;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/NCAA2018Bracket.csv&#39;</span>
+
+Round1Data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">text =</span> <span class="kw">getURL</span>(r1Link), <span class="dt">sep =</span> <span class="st">&#39;,&#39;</span>, 
+                         <span class="dt">row.names =</span> <span class="dv">1</span>, <span class="dt">header =</span> T)
+
+<span class="co"># We also need to coerce the Team Name columns into character vectors</span>
+Round1Data<span class="op">$</span>Team1 &lt;-<span class="st"> </span><span class="kw">as.character</span>(Round1Data<span class="op">$</span>Team1)
+Round1Data<span class="op">$</span>Team2 &lt;-<span class="st"> </span><span class="kw">as.character</span>(Round1Data<span class="op">$</span>Team2)</code></pre></div>
+<p><code>Round1Data</code> looks like this:</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-y: scroll; height:400px; ">
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Region
+</th>
+<th style="text-align:left;">
+Team1
+</th>
+<th style="text-align:left;">
+Team2
+</th>
+<th style="text-align:right;">
+Team1Seed
+</th>
+<th style="text-align:right;">
+Team2Seed
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Virginia
+</td>
+<td style="text-align:left;">
+UMBC
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Creighton
+</td>
+<td style="text-align:left;">
+Kansas State
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Kentucky
+</td>
+<td style="text-align:left;">
+Davidson
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Arizona
+</td>
+<td style="text-align:left;">
+Buffalo
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Miami
+</td>
+<td style="text-align:left;">
+Loyola Chicago
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Tennessee
+</td>
+<td style="text-align:left;">
+Wright State
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Nevada
+</td>
+<td style="text-align:left;">
+Texas
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+South
+</td>
+<td style="text-align:left;">
+Cincinnati
+</td>
+<td style="text-align:left;">
+Georgia State
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Xavier
+</td>
+<td style="text-align:left;">
+Play in 4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Missouri
+</td>
+<td style="text-align:left;">
+Florida State
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+27
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Ohio State
+</td>
+<td style="text-align:left;">
+South Dakota State
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+28
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Gonzaga
+</td>
+<td style="text-align:left;">
+UNC Greensboro
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+29
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Houston
+</td>
+<td style="text-align:left;">
+San Diego State
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Michigan
+</td>
+<td style="text-align:left;">
+Montana
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+31
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+Texas A&amp;M
+</td>
+<td style="text-align:left;">
+Providence
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+32
+</td>
+<td style="text-align:left;">
+West
+</td>
+<td style="text-align:left;">
+North Carolina
+</td>
+<td style="text-align:left;">
+Lipscomb
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Villanova
+</td>
+<td style="text-align:left;">
+Play in 1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Virginia Tech
+</td>
+<td style="text-align:left;">
+Alabama
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+West Virginia
+</td>
+<td style="text-align:left;">
+Murray State
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Wichita State
+</td>
+<td style="text-align:left;">
+Marshall
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Florida
+</td>
+<td style="text-align:left;">
+Play in 2
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Texas Tech
+</td>
+<td style="text-align:left;">
+SF Austin
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Arkansas
+</td>
+<td style="text-align:left;">
+Butler
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+East
+</td>
+<td style="text-align:left;">
+Purdue
+</td>
+<td style="text-align:left;">
+CS Fullerton
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+17
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Kansas
+</td>
+<td style="text-align:left;">
+Penn
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+18
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Seton Hall
+</td>
+<td style="text-align:left;">
+NC State
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Clemson
+</td>
+<td style="text-align:left;">
+New Mexico State
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+20
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Auburn
+</td>
+<td style="text-align:left;">
+Charleston
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+21
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+TCU
+</td>
+<td style="text-align:left;">
+Play in 3
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+22
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Michigan State
+</td>
+<td style="text-align:left;">
+Bucknell
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+23
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Rhode Island
+</td>
+<td style="text-align:left;">
+Oklahoma
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+Midwest
+</td>
+<td style="text-align:left;">
+Duke
+</td>
+<td style="text-align:left;">
+Iona
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br ></p>
+<p>But we can make the rest of the data frames for the remaining rounds in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Round2Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">game =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, 
+                         <span class="dt">Region =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;West&#39;</span>, <span class="st">&#39;East&#39;</span>, <span class="st">&#39;Midwest&#39;</span>), 
+                                      <span class="dt">each =</span> <span class="dv">4</span>),
+                         <span class="dt">Team1 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">16</span>),
+                         <span class="dt">Team2 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">16</span>),
+                         <span class="dt">Team1Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">16</span>),
+                         <span class="dt">Team2Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">16</span>),
+                         <span class="dt">Winner =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">16</span>),
+                         <span class="dt">stringsAsFactors =</span> F)
+
+Round3Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">game =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, 
+                         <span class="dt">Region =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;West&#39;</span>, <span class="st">&#39;East&#39;</span>, <span class="st">&#39;Midwest&#39;</span>), 
+                                      <span class="dt">each =</span> <span class="dv">2</span>),
+                         <span class="dt">Team1 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">8</span>),
+                         <span class="dt">Team2 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">8</span>),
+                         <span class="dt">Team1Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">8</span>),
+                         <span class="dt">Team2Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">8</span>),
+                         <span class="dt">Winner =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">8</span>),
+                         <span class="dt">stringsAsFactors =</span> F)
+
+Round4Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">game =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, 
+                         <span class="dt">Region =</span> <span class="kw">c</span>(<span class="st">&#39;South&#39;</span>, <span class="st">&#39;West&#39;</span>, <span class="st">&#39;East&#39;</span>, <span class="st">&#39;Midwest&#39;</span>),
+                         <span class="dt">Team1 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">4</span>),
+                         <span class="dt">Team2 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">4</span>),
+                         <span class="dt">Team1Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">4</span>),
+                         <span class="dt">Team2Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">4</span>),
+                         <span class="dt">Winner =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">4</span>),
+                         <span class="dt">stringsAsFactors =</span> F)
+
+Round5Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">game =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,
+                         <span class="dt">Team1 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">2</span>),
+                         <span class="dt">Team2 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">2</span>),
+                         <span class="dt">Team1Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">2</span>),
+                         <span class="dt">Team2Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">2</span>),
+                         <span class="dt">Winner =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">2</span>),
+                         <span class="dt">stringsAsFactors =</span> F)
+
+Round6Data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">game =</span> <span class="dv">1</span>,
+                         <span class="dt">Team1 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">1</span>),
+                         <span class="dt">Team2 =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">1</span>),
+                         <span class="dt">Team1Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">1</span>),
+                         <span class="dt">Team2Seed =</span> <span class="kw">integer</span>(<span class="dt">length =</span> <span class="dv">1</span>),
+                         <span class="dt">Winner =</span> <span class="kw">character</span>(<span class="dt">length =</span> <span class="dv">1</span>),
+                         <span class="dt">stringsAsFactors =</span> F)</code></pre></div>
+<div id="simulation-3" class="section level3">
+<h3>Simulation</h3>
+<p>We are then going to loop through our dataset for round 1 and calculate a <code>score</code> for each game played by randomly selecting a decimal number between 0 and 1. After we assign our <code>score</code> we will then refer to the cell of our <code>ProportionsData</code>, where row = seed of team 1 and column = seed of team 2. This cell should give us the proportion (in decimal form) of times that a team with a seed number equal to the seed of team 1 beat a team with a seed number equal to the seed of team 2. If our score variable is less than or equal to the proportion in this cell then team 1 wins, if not then team 2 wins. In other words, the probability of team 1 beating team 2 should be equivalent to the proportion of times that team 1’s seed beat team 2’s seed in real life.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Round of 64##
+<span class="kw">print</span>(<span class="st">&quot;Round of 64&quot;</span>)
+<span class="cf">for</span> (match <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round1Data)){
+  <span class="co">#Select 1 random decimal between 0 and 1.</span>
+  score &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)
+  <span class="kw">print</span>(score)
+  <span class="co">#Compare our &#39;score&#39; variable to the real-life proportion data.</span>
+  <span class="co">#If score is less than the proportion of times the seed of team 1 </span>
+  <span class="co">#beat the seeed of team 2 then team 1 wins. Otherwise, team 2 wins.</span>
+  <span class="cf">if</span> (score <span class="op">&lt;=</span><span class="st"> </span>ProportionsData[Round1Data<span class="op">$</span>Team1Seed[match],
+                               Round1Data<span class="op">$</span>Team2Seed[match]]) {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round1Data<span class="op">$</span>Team1[match], <span class="st">&quot; beats &quot;</span>, 
+                Round1Data<span class="op">$</span>Team2[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round1Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round1Data<span class="op">$</span>Team1[match]
+  }<span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round1Data<span class="op">$</span>Team2[match], <span class="st">&quot; beats &quot;</span>, 
+                Round1Data<span class="op">$</span>Team1[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round1Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round1Data<span class="op">$</span>Team2[match]
+  }
+}</code></pre></div>
+<p>Next, we will use the results from round 1 (we now have a winner column in our Round1Data filled in with the winner of each game) to fill in our data frame for round 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fill in the data frame for the next round using the results of the </span>
+<span class="co"># previous round.</span>
+<span class="cf">for</span> (winner <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round2Data)) {
+  team1Winner &lt;-<span class="st"> </span><span class="kw">as.character</span>(Round1Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>])
+  
+  <span class="cf">if</span> (Round1Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>] <span class="op">%in%</span><span class="st"> </span>Round1Data<span class="op">$</span>Team1){
+    team1Seed &lt;-<span class="st"> </span>Round1Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }<span class="cf">else</span> {
+    team1Seed &lt;-<span class="st"> </span>Round1Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }
+  
+  team2Winner &lt;-<span class="st"> </span>Round1Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>]
+  
+  <span class="cf">if</span> (Round1Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>] <span class="op">%in%</span><span class="st"> </span>Round1Data<span class="op">$</span>Team1){
+    team2Seed &lt;-<span class="st"> </span>Round1Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }<span class="cf">else</span> {
+    team2Seed &lt;-<span class="st"> </span>Round1Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }
+  
+  <span class="co"># I discovered that the team 1 needs to be the lower seed </span>
+  <span class="co"># (i.e. higher seed number).</span>
+  <span class="cf">if</span>(team1Seed <span class="op">&gt;</span><span class="st"> </span>team2Seed){
+    Round2Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team1Winner
+    Round2Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team1Seed
+    Round2Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team2Winner
+    Round2Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team2Seed
+  } <span class="cf">else</span> {
+    Round2Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team2Winner
+    Round2Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team2Seed
+    Round2Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team1Winner
+    Round2Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team1Seed
+  }
+  
+}</code></pre></div>
+<p>And finally, we’re simply going to repeat those last two steps for every remaining round in the tournament.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Round of 32 ##
+<span class="kw">print</span>(<span class="st">&quot;Round of 32&quot;</span>)
+<span class="cf">for</span> (match <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round2Data)){
+  score &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)
+  <span class="kw">print</span>(score)
+  <span class="cf">if</span> (score <span class="op">&lt;=</span><span class="st"> </span>ProportionsData[Round2Data<span class="op">$</span>Team1Seed[match],
+                               Round2Data<span class="op">$</span>Team2Seed[match]]) {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round2Data<span class="op">$</span>Team1[match], <span class="st">&quot; beats &quot;</span>, 
+                Round2Data<span class="op">$</span>Team2[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round2Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round2Data<span class="op">$</span>Team1[match]
+  }<span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round2Data<span class="op">$</span>Team2[match], <span class="st">&quot; beats &quot;</span>, 
+                Round2Data<span class="op">$</span>Team1[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round2Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round2Data<span class="op">$</span>Team2[match]
+  }
+}
+
+<span class="co"># Fill in the data frame for the next round using the results of the </span>
+<span class="co"># previous round</span>
+<span class="cf">for</span> (winner <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round3Data)) {
+  team1Winner &lt;-<span class="st"> </span><span class="kw">as.character</span>(Round2Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>])
+  
+  <span class="cf">if</span> (Round2Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>] <span class="op">%in%</span><span class="st"> </span>Round2Data<span class="op">$</span>Team1){
+    team1Seed &lt;-<span class="st"> </span>Round2Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }<span class="cf">else</span> {
+    team1Seed &lt;-<span class="st"> </span>Round2Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }
+  
+  team2Winner &lt;-<span class="st"> </span>Round2Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>]
+  
+  <span class="cf">if</span> (Round2Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>] <span class="op">%in%</span><span class="st"> </span>Round2Data<span class="op">$</span>Team1){
+    team2Seed &lt;-<span class="st"> </span>Round2Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }<span class="cf">else</span> {
+    team2Seed &lt;-<span class="st"> </span>Round2Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }
+  
+  <span class="co"># I discovered that the team 1 needs to be the lower seed </span>
+  <span class="co"># (i.e. higher seed number)</span>
+  <span class="cf">if</span>(team1Seed <span class="op">&gt;</span><span class="st"> </span>team2Seed){
+    Round3Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team1Winner
+    Round3Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team1Seed
+    Round3Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team2Winner
+    Round3Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team2Seed
+  } <span class="cf">else</span> {
+    Round3Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team2Winner
+    Round3Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team2Seed
+    Round3Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team1Winner
+    Round3Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team1Seed
+  }
+  
+}
+
+
+## Round of 16 ##
+<span class="kw">print</span>(<span class="st">&quot;Sweet 16&quot;</span>)
+<span class="cf">for</span> (match <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round3Data)){
+  score &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)
+  <span class="kw">print</span>(score)
+  <span class="cf">if</span> (score <span class="op">&lt;=</span><span class="st"> </span>ProportionsData[Round3Data<span class="op">$</span>Team1Seed[match],
+                               Round3Data<span class="op">$</span>Team2Seed[match]]) {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round3Data<span class="op">$</span>Team1[match], <span class="st">&quot; beats &quot;</span>, 
+                Round3Data<span class="op">$</span>Team2[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round3Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round3Data<span class="op">$</span>Team1[match]
+  }<span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round3Data<span class="op">$</span>Team2[match], <span class="st">&quot; beats &quot;</span>, 
+                Round3Data<span class="op">$</span>Team1[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round3Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round3Data<span class="op">$</span>Team2[match]
+  }
+}
+
+<span class="co"># Fill in the data frame for the next round using the results of the </span>
+<span class="co"># previous round</span>
+<span class="cf">for</span> (winner <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round4Data)) {
+  team1Winner &lt;-<span class="st"> </span><span class="kw">as.character</span>(Round3Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>])
+  
+  <span class="cf">if</span> (Round3Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>] <span class="op">%in%</span><span class="st"> </span>Round3Data<span class="op">$</span>Team1){
+    team1Seed &lt;-<span class="st"> </span>Round3Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }<span class="cf">else</span> {
+    team1Seed &lt;-<span class="st"> </span>Round3Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }
+  
+  team2Winner &lt;-<span class="st"> </span>Round3Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>]
+  
+  <span class="cf">if</span> (Round3Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>] <span class="op">%in%</span><span class="st"> </span>Round3Data<span class="op">$</span>Team1){
+    team2Seed &lt;-<span class="st"> </span>Round3Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }<span class="cf">else</span> {
+    team2Seed &lt;-<span class="st"> </span>Round3Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }
+  
+  <span class="co"># I discovered that the team 1 needs to be the lower seed </span>
+  <span class="co"># (i.e. higher seed number)</span>
+  <span class="cf">if</span>(team1Seed <span class="op">&gt;</span><span class="st"> </span>team2Seed){
+    Round4Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team1Winner
+    Round4Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team1Seed
+    Round4Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team2Winner
+    Round4Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team2Seed
+  } <span class="cf">else</span> {
+    Round4Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team2Winner
+    Round4Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team2Seed
+    Round4Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team1Winner
+    Round4Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team1Seed
+  }
+  
+}
+
+
+## Round of 8 ##
+<span class="kw">print</span>(<span class="st">&quot;Elite 8&quot;</span>)
+<span class="cf">for</span> (match <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round4Data)){
+  score &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)
+  <span class="kw">print</span>(score)
+  <span class="cf">if</span> (score <span class="op">&lt;=</span><span class="st"> </span>ProportionsData[Round4Data<span class="op">$</span>Team1Seed[match],
+                               Round4Data<span class="op">$</span>Team2Seed[match]]) {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round4Data<span class="op">$</span>Team1[match], <span class="st">&quot; beats &quot;</span>, 
+                Round4Data<span class="op">$</span>Team2[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round4Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round4Data<span class="op">$</span>Team1[match]
+  }<span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round4Data<span class="op">$</span>Team2[match], <span class="st">&quot; beats &quot;</span>, 
+                Round4Data<span class="op">$</span>Team1[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round4Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round4Data<span class="op">$</span>Team2[match]
+  }
+}
+
+<span class="co"># Fill in the data frame for the next round using the results of the </span>
+<span class="co"># previous round</span>
+<span class="cf">for</span> (winner <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round5Data)) {
+  team1Winner &lt;-<span class="st"> </span><span class="kw">as.character</span>(Round4Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>])
+  
+  <span class="cf">if</span> (Round4Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>] <span class="op">%in%</span><span class="st"> </span>Round4Data<span class="op">$</span>Team1){
+    team1Seed &lt;-<span class="st"> </span>Round4Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }<span class="cf">else</span> {
+    team1Seed &lt;-<span class="st"> </span>Round4Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }
+  
+  team2Winner &lt;-<span class="st"> </span>Round4Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>]
+  
+  <span class="cf">if</span> (Round4Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>] <span class="op">%in%</span><span class="st"> </span>Round4Data<span class="op">$</span>Team1){
+    team2Seed &lt;-<span class="st"> </span>Round4Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }<span class="cf">else</span> {
+    team2Seed &lt;-<span class="st"> </span>Round4Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }
+  
+  <span class="co"># I discovered that the team 1 needs to be the lower seed </span>
+  <span class="co"># (i.e. higher seed number)</span>
+  <span class="cf">if</span>(team1Seed <span class="op">&gt;</span><span class="st"> </span>team2Seed){
+    Round5Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team1Winner
+    Round5Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team1Seed
+    Round5Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team2Winner
+    Round5Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team2Seed
+  } <span class="cf">else</span> {
+    Round5Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team2Winner
+    Round5Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team2Seed
+    Round5Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team1Winner
+    Round5Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team1Seed
+  }
+  
+}
+
+
+## Semi-Finals ##
+<span class="kw">print</span>(<span class="st">&quot;Final Four&quot;</span>)
+<span class="cf">for</span> (match <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round5Data)){
+  score &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)
+  <span class="kw">print</span>(score)
+  <span class="cf">if</span> (score <span class="op">&lt;=</span><span class="st"> </span>ProportionsData[Round5Data<span class="op">$</span>Team1Seed[match],
+                               Round5Data<span class="op">$</span>Team2Seed[match]]) {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round5Data<span class="op">$</span>Team1[match], <span class="st">&quot; beats &quot;</span>, 
+                Round5Data<span class="op">$</span>Team2[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round5Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round5Data<span class="op">$</span>Team1[match]
+  }<span class="cf">else</span> {
+    <span class="kw">print</span>(<span class="kw">paste</span>(Round5Data<span class="op">$</span>Team2[match], <span class="st">&quot; beats &quot;</span>, 
+                Round5Data<span class="op">$</span>Team1[match], <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+    Round5Data<span class="op">$</span>Winner[match] &lt;-<span class="st"> </span>Round5Data<span class="op">$</span>Team2[match]
+  }
+}
+
+<span class="co"># Fill in the data frame for the next round using the results of the </span>
+<span class="co"># previous round</span>
+<span class="cf">for</span> (winner <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Round6Data)) {
+  team1Winner &lt;-<span class="st"> </span><span class="kw">as.character</span>(Round5Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>])
+  
+  <span class="cf">if</span> (Round5Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>] <span class="op">%in%</span><span class="st"> </span>Round5Data<span class="op">$</span>Team1){
+    team1Seed &lt;-<span class="st"> </span>Round5Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }<span class="cf">else</span> {
+    team1Seed &lt;-<span class="st"> </span>Round5Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span><span class="op">-</span><span class="dv">1</span>]
+  }
+  
+  team2Winner &lt;-<span class="st"> </span>Round5Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>]
+  
+  <span class="cf">if</span> (Round5Data<span class="op">$</span>Winner[winner<span class="op">*</span><span class="dv">2</span>] <span class="op">%in%</span><span class="st"> </span>Round5Data<span class="op">$</span>Team1){
+    team2Seed &lt;-<span class="st"> </span>Round5Data<span class="op">$</span>Team1Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }<span class="cf">else</span> {
+    team2Seed &lt;-<span class="st"> </span>Round5Data<span class="op">$</span>Team2Seed[winner<span class="op">*</span><span class="dv">2</span>]
+  }
+  
+  <span class="co"># I discovered that the team 1 needs to be the lower seed </span>
+  <span class="co"># (i.e. higher seed number)</span>
+  <span class="cf">if</span>(team1Seed <span class="op">&gt;</span><span class="st"> </span>team2Seed){
+    Round6Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team1Winner
+    Round6Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team1Seed
+    Round6Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team2Winner
+    Round6Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team2Seed
+  } <span class="cf">else</span> {
+    Round6Data<span class="op">$</span>Team1[winner] &lt;-<span class="st"> </span>team2Winner
+    Round6Data<span class="op">$</span>Team1Seed[winner] &lt;-<span class="st"> </span>team2Seed
+    Round6Data<span class="op">$</span>Team2[winner] &lt;-<span class="st"> </span>team1Winner
+    Round6Data<span class="op">$</span>Team2Seed[winner] &lt;-<span class="st"> </span>team1Seed
+  }
+  
+}
+
+
+## Finals ##
+<span class="kw">print</span>(<span class="st">&quot;National Final&quot;</span>)
+score &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)
+<span class="kw">print</span>(score)
+<span class="cf">if</span> (score <span class="op">&lt;=</span><span class="st"> </span>ProportionsData[Round6Data<span class="op">$</span>Team1Seed[<span class="dv">1</span>],
+                             Round6Data<span class="op">$</span>Team2Seed[<span class="dv">1</span>]]) {
+  <span class="kw">print</span>(<span class="kw">paste</span>(Round6Data<span class="op">$</span>Team1[<span class="dv">1</span>],  <span class="st">&quot; beats &quot;</span>, 
+              Round6Data<span class="op">$</span>Team2[<span class="dv">1</span>], <span class="st">&quot; in the Final Round!&quot;</span>, <span class="dt">sep =</span> <span class="st">&#39;&#39;</span>))
+  Round6Data<span class="op">$</span>Winner[<span class="dv">1</span>] &lt;-<span class="st"> </span>Round6Data<span class="op">$</span>Team1[<span class="dv">1</span>]
+}<span class="cf">else</span> {
+  <span class="kw">print</span>(<span class="kw">paste</span>(Round6Data<span class="op">$</span>Team2[<span class="dv">1</span>],  <span class="st">&quot; beats &quot;</span>, 
+              Round6Data<span class="op">$</span>Team1[<span class="dv">1</span>], <span class="st">&quot; in the Final Round!&quot;</span>, <span class="dt">sep =</span> <span class="st">&#39;&#39;</span>))
+  Round6Data<span class="op">$</span>Winner[<span class="dv">1</span>] &lt;-<span class="st"> </span>Round6Data<span class="op">$</span>Team2[<span class="dv">1</span>]
+}</code></pre></div>
+<p>The above steps were repeated 1000 times to simulate performance.</p>
+</div>
+<div id="data-viz-3" class="section level3">
+<h3>Data Viz</h3>
+<p>The results from this simulation were saved into a variable named <code>resultsHolder</code> that can be retrieved from this website’s <a href="https://github.com/mkmiecik14/mkmiecik14.github.io/tree/master/data">Github data repository</a> like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nickResLink &lt;-<span class="st"> &#39;https://github.com/mkmiecik14/mkmiecik14.github.io/blob/master/data/resultsHolder.RData?raw=true&#39;</span>
+<span class="kw">source_data</span>(nickResLink)</code></pre></div>
+<p>Let’s see what teams won the tournament most often:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converting list to long data frame</span>
+resultsLong &lt;-<span class="st"> </span>resultsHolder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">map_df</span>(bind_rows, <span class="dt">.id =</span> <span class="st">&#39;iter&#39;</span>)
+
+<span class="co"># Summary information for results</span>
+resultsLongSum &lt;-<span class="st"> </span>resultsLong <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Winner) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">seed =</span> <span class="kw">unique</span>(WinnerSeed))
+
+<span class="co"># Tournament champion histogram</span>
+<span class="kw">ggplot</span>(resultsLongSum, <span class="kw">aes</span>(<span class="kw">reorder</span>(Winner, <span class="op">-</span><span class="dv">1</span><span class="op">*</span>n), n)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Tournament Champion&#39;</span>, 
+       <span class="dt">y =</span> <span class="st">&#39;Wins&#39;</span>,
+       <span class="dt">caption =</span> <span class="st">&#39;&quot;Play in #&quot; teams were not available at time of simulation&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+<p><img src="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R_files/figure-html/unnamed-chunk-46-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>And it looks like this simulation predicted Xavier to win most often!</p>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<hr >
+<p>Of course, much more goes into tournament performance than seed placement and historical win probabilities. At the time that we first wrote this, a #16 seed had never beaten a #1 seed in the first round. Models using purely historical data (such as Nick’s) were unable to account for #16 seed UMBC’s historical first round victory over #1 seed Virginia in this year’s NCAA Men’s tournament. Nevertheless, this was a super fun exercise in R and thinking about modeling tournament style performance. Hope you enjoyed this post and any feedback is always welcome!</p>
+</div>
+<div id="acknowledgments" class="section level2">
+<h2>Acknowledgments</h2>
+<hr >
+<p>A huge thanks to my friends Nick Ray, David Hoagey, Linh Lazarus, Giuseppe Miranda, and <a href="https://epongpipat.github.io/CV.html">Ekarin Pongpipat</a> for their enthusiasm and help with this blog post. They helped turn a small idea into an awesome collaboration where we got to share thoughts, work off each other’s ideas, and learn more about R!</p>
+<!-- disqus START -->
+<div id="disqus_thread">
+
+</div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = 'https://mattkmiecik.com/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mattkmiecik.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>
+Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!-- disqus END -->
+</div>
+
+</div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+</div> <!-- forPagesWithTOC -->
+
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">&copy; 2018 Matthew J. Kmiecik. All rights reserved.</span>
+  </div>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
