@@ -187,7 +187,7 @@ We'll first model each team's powerplay performance across 10 years separately i
 
 ### Level 1 
 
-The level 1 modeling ignores the conference and division distinction. Each team will be modeled individual using a linear regression to predict powerplay goals per games played as a function of time (across 10 years). There are 30 teams in this dataset. Therefore, 30 distinct linear regressions will be performed; one for each team in the NHL. This allows us account for the variability of power plays within each team.
+The level 1 modeling ignores the conference and division distinction. Each team will be modeled individually using a linear regression to predict powerplay goals per games played as a function of time (across 10 years). There are 30 teams in this dataset. Therefore, 30 distinct linear regressions will be performed; one for each team in the NHL. This allows us account for the variability of power plays within each team.
 
 The code for this is made extremely efficient thanks to dplyr pipe-ing (%>%):
 

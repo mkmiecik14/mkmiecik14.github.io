@@ -597,7 +597,7 @@ grid.arrange(boxplot, lineplot, ncol = 2)</code></pre>
 <p>We’ll first model each team’s powerplay performance across 10 years separately in level 1. Then, we’ll model these performances between and within each conference and division in level 2.</p>
 <div id="level-1" class="section level3">
 <h3>Level 1</h3>
-<p>The level 1 modeling ignores the conference and division distinction. Each team will be modeled individual using a linear regression to predict powerplay goals per games played as a function of time (across 10 years). There are 30 teams in this dataset. Therefore, 30 distinct linear regressions will be performed; one for each team in the NHL. This allows us account for the variability of power plays within each team.</p>
+<p>The level 1 modeling ignores the conference and division distinction. Each team will be modeled individually using a linear regression to predict powerplay goals per games played as a function of time (across 10 years). There are 30 teams in this dataset. Therefore, 30 distinct linear regressions will be performed; one for each team in the NHL. This allows us account for the variability of power plays within each team.</p>
 <p>The code for this is made extremely efficient thanks to dplyr pipe-ing (%&gt;%):</p>
 <pre class="r"><code>modTeam &lt;-  data5v4 %&gt;% 
             group_by(Team) %&gt;%
