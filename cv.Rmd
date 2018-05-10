@@ -188,19 +188,23 @@ kable(awards) %>%
 ## Teaching Assistant
 
 ```{r teaching}
-teaching <- data.frame(Year     = c(2017  , 2017   ,    2016,    2016, 2015),
-                       Semester = c('Fall','Spring','Summer','Spring','Fall'),
+teaching <- data.frame(Year     = c(2018, 2017, 2017, 2016, 2016, 2015),
+                       Semester = c('Spring', 'Fall','Spring',
+                                    'Summer','Spring','Fall'),
                        Class = c('Experimental Projects',
+                                 'Experimental Projects',
                                  'Experimental Projects',
                                  'Cognitive Psychology',
                                  'Experimental Projects',
                                  'Research & Evaluation Methods'),
                        Professor = c('Dr. Linda Drew',
+                                     'Dr. Linda Drew',
                                      'Dr. Jessica Lockhart',
                                      'Dr. Vanessa Miller',
                                      'Dr. Gail Tillman',
                                      'Dr. Gail Tillman'),
                        Institution = c('The University of Texas at Dallas',
+                                       'The University of Texas at Dallas',
                                        'The University of Texas at Dallas',
                                        'The University of Texas at Dallas',
                                        'The University of Texas at Dallas',
@@ -243,6 +247,25 @@ training <- data.frame(Year = c(2016, 2016),
                        check.names = F)
 
 kable(training) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+
+```
+
+<br />
+
+# Committee Involvement
+<hr />
+
+```{r committee}
+committee <- data.frame(Year = c('Spring 2018 - Present',
+                                 'Spring 2018 - Present'),
+                       Position = c('Graduate Student Ambassador',
+                                    'Center-wide RA/Internship Facilitator'),
+                       Institution = c('Center for BrainHealth at The University of Texas at Dallas', 
+                                       'Center for BrainHealth at The University of Texas at Dallas'),
+                       check.names = F)
+
+kable(committee) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
 
 ```
