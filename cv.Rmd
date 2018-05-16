@@ -72,9 +72,9 @@ Loyola University Chicago <br/>
 
 # Publications
 <hr />
-* Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2017). [A
-Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic
-Brain Injury.](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury) Psychological Assessment. Advance online publication. http://dx.doi.org/10.1037/pas0000510
+* Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). [A
+method for characterizing semantic and lexical properties of sentence completions in traumatic
+brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury) _Psychological Assessment_, _30_(5), 645-655. http://dx.doi.org/10.1037/pas0000510
 
 * Stockdale, L. A., Morrison, R. G., Kmiecik, M. J., Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) Social Cognitive and Affective Neuroscience, 10(10), 1373-1382. doi: 10.1093/scan/nsv025
 
