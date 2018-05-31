@@ -79,7 +79,7 @@ ui <- fluidPage(theme = shinytheme("flatly"),
     
     # Plots
     mainPanel(
-      splitLayout(
+      flowLayout(
         plotOutput("scatterPlot") %>% withSpinner(),
         plotOutput("bootPlot")  %>% withSpinner(),
         plotOutput("permPlot")  %>% withSpinner()
@@ -167,8 +167,6 @@ server <- function(input, output) {
   # Bootstrap Plot ----
    output$bootPlot <- renderPlot({
      ggplot(re_bootResults(), aes(estimate)) +
-       geom_vline(aes(xintercept = input$rUser), 
-                  color = flatlyPal[6], linetype = 3) +
        geom_histogram(binwidth = .05, fill = flatlyPal[1]) +
        geom_errorbarh(aes(xmin = re_ciObs()[[1]], xmax = re_ciObs()[[2]], 
                           x = input$rUser, y = nrow(re_bootResults())/10), 
