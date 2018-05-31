@@ -1,0 +1,10 @@
+name: boot-perm-app
+title:
+username:
+account: mattkmiecik
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 351427
+bundleId: 1403243
+url: https://mattkmiecik.shinyapps.io/boot-perm-app/
+when: 1527793417.7563

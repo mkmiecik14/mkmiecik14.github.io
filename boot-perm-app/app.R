@@ -1,4 +1,4 @@
-# Libraries required
+# Packages required ----
 library(shiny); library(tidyverse); library(broom); library(MASS); 
 library(RColorBrewer); library(psych); library(modelr); library(gridExtra)
 library(shinythemes); library(shinycssloaders)
@@ -17,7 +17,7 @@ plotFinish <- theme(plot.title = element_text(hjust = 0.5),
                     plot.caption = element_text(hjust = .5)
                     )
 
-# Turning of scientific notation for p-values
+# Turning off scientific notation for p-values
 options(scipen = 999)
 
 # UI ----
@@ -25,8 +25,17 @@ options(scipen = 999)
 # Define UI for application that draws a histogram
 ui <- fluidPage(theme = shinytheme("flatly"),
   
-  # Application title
-  titlePanel("Bootstrapping and Permutation Testing"),
+  # Title
+  h2("Bootstrapping and Permutation Testing"),
+  
+  # Author info
+  h4("Matthew J. Kmiecik & Ekarin Pongpipat"),
+  
+  # Blogpost info
+  p("See our ", 
+    a("blog post", href="https://mattkmiecik.com/"), 
+    "for more information about this shiny app."
+    ),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
@@ -79,14 +88,11 @@ ui <- fluidPage(theme = shinytheme("flatly"),
   )
 )
 
-
-
 # Server ----
 server <- function(input, output) {
 
   # Defined variables
   vars    <- 2 # Minimum of 2 variables are required for correlation
-  colorPal <- brewer.pal(11,'RdGy') # display.brewer.pal(11,'RdGy')
   mu <- rep(0, vars) # Means of all the vars are 0
   
   # Calculates sigma
@@ -162,7 +168,7 @@ server <- function(input, output) {
    output$bootPlot <- renderPlot({
      ggplot(re_bootResults(), aes(estimate)) +
        geom_vline(aes(xintercept = input$rUser), 
-                  color = colorPal[6], linetype = 3) +
+                  color = flatlyPal[6], linetype = 3) +
        geom_histogram(binwidth = .05, fill = flatlyPal[1]) +
        geom_errorbarh(aes(xmin = re_ciObs()[[1]], xmax = re_ciObs()[[2]], 
                           x = input$rUser, y = nrow(re_bootResults())/10), 

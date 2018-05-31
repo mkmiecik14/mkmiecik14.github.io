@@ -4,6 +4,7 @@ author: "Matthew J. Kmiecik & Ekarin Pongpipat"
 date: "30 May 2018"
 output:
   html_document:
+    highlight: zenburn
     toc: yes
     toc_depth: 3
     toc_float:
@@ -16,14 +17,32 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 options(knitr.table.format = 'html') # For the html tables
 ```
 
+<br >
+
 ## Purpose 
 <hr >
 
-This post serves as a brief overview of the difference between boostrapping and permutation testing with a shiny app to visualize their differences. The example we use is correlation; however, these techniques can be extended to a variety of statistics (e.g., t-test, ANOVA, PCA). _Note: this post assumes you have preliminary knowledge of univariate statistics._
+This post serves as a brief overview of the difference between boostrapping and permutation testing with a shiny app to visualize their differences. The example we use is correlation; however, these techniques can be extended to a variety of statistics (e.g., t-test, ANOVA, PCA).
+
+<br >
+
+## Shiny App
+<hr >
+
+Here's the shiny app used to illustrate these concepts. [Click here to see the app in full screen.](https://mattkmiecik.shinyapps.io/boot-perm-app/)
+
+```{r}
+knitr::include_app("https://mattkmiecik.shinyapps.io/boot-perm-app/", 
+                   height = "1000px")
+```
+
+_Note:_ If the app does not appear, it may have reached the 25 active hours per month allotted to [shinyapps.io](https://www.shinyapps.io/) free users (me!). In that case, see the code below to run it locally on your machine.
+
+<br >
 
 ### Bootstrapping
 
-When you think of boostrapping, think confidence intervals. Bootstrapping *samples observations with replacement* without breaking the relationship between measures (e.g., X and Y). The number of samples is equal to the number of observations (i.e., sample size). After sampling with replacement is finished the statistic of interest, such as a correlation, is computed and stored.
+When you think of boostrapping, think confidence intervals. Bootstrapping **samples observations with replacement** without breaking the relationship between measures (e.g., X and Y). The number of samples is equal to the number of observations (i.e., sample size). After sampling with replacement is finished the statistic of interest, such as a correlation, is computed and stored.
 
 > When you think of boostrapping, think confidence intervals.
 
@@ -31,13 +50,15 @@ This process explained above is then repeated hundreds or thousands of iteration
 
 As with any distribution, you can calculate what are the lower bounds and upper bounds of values for a given percentage. This percentage is determined by the researcher/statistician/hockey analyst enthusiast and is called a confidence interval (95% is a common confidence interval). These bounds are usually reported in square brackets in the format: confidence interval % [lowerbound, upper bound]. For example, "There was a positive correlation observed between X and Y, _r_ = .31, 95% CI [.21, .41]."
 
+<br >
+
 ### Permutation Testing
 
-When you think of permutation testing, think of p-values. Permutation testing *does not sample observations with replacement, but instead breaks the relationship between measures (e.g., X and Y).* This is done by shuffling/randomizing/sampling the observed data points for one variable, while keeping the other (or others) intact. In terms of correlation, this would mean that X would be shuffled within the sample, while Y remained the original values. After the responses for one variable are randomized the statistic of interest, such as a correlation, is computed and stored.
+When you think of permutation testing, think of p-values. Permutation testing **does not sample observations with replacement, but instead breaks the relationship between measures (e.g., X and Y).** This is done by shuffling/randomizing/sampling the observed data points for one variable, while keeping the other (or others) intact. In terms of correlation, this would mean that X would be shuffled within the sample, while Y remained the original values. After the responses for one variable are randomized the statistic of interest, such as a correlation, is computed and stored.
 
 > When you think of permutation testing, think of p-values.
 
-This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution *will not be centered about the original statistic value that you computed before any shuffling occured, but rather will be centered around the null.* In terms of correlation, a null distribution would center about _r_ = 0; meaning no linear relationship between variables.
+This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution **will not be centered about the original statistic value that you computed before any shuffling occured, but rather will be centered around the null.** In terms of correlation, a null distribution would center about _r_ = 0; meaning no linear relationship between variables.
 
 In other words, a null distribution is created by shuffling the values in X but not Y. This is because the relationship has been broken between X and Y. 
 
@@ -45,25 +66,29 @@ A p-value is calculated by counting the number of statistic values that overlap 
 
 For example, let's say I ran permutation testing on a correaltion _r_ = .5 and shuffled X, kept Y, computed their correlation, stored this value, and repeated this 100 times. Out of 100 times, there were 4 correlations that emerged that were greater than .5. Therefore, my p-value for this correlation would be 4/100 = `r 4/100`.
 
-## Shiny App
-<hr >
-
-Here's the shiny app used to illustrate these concepts. [Click here](https://mattkmiecik.shinyapps.io/boot-perm-app/) to see the app in full screen.
-
-If the app does not appear, it may have reached the 25 active hours per month allotted to shinyapps.io free users (me!). In that case, see the code below to run it locally on your machine!
-
-```{r, echo = F}
-knitr::include_app("https://mattkmiecik.shinyapps.io/boot-perm-app/", 
-                   height = "1000px")
-```
-
+<br >
 
 ## Shiny App Code
 <hr >
 
+Below is the code that runs the shiny app:
+
+```{r, code=readLines('boot-perm-app/app.R'), eval=FALSE}
+
+```
+
+<br >
+
 ## References
 <hr >
 
+Readers who would like more theoretical or technical explanations of boostrapping and permutation testing are encouraged to read:
+
++ Efron, B. (1979). Bootstrap methods: Another look at the jacknife. _The Annals of Statistics, 7_(1), 1-26. 
+
++ Ludbrook, J., & Dudley, H. (1998). Why Permutation Tests are Superior to t and F Tests in Biomedical Research. _The American Statistician, 52_(2), 127-132. doi:10.1080/00031305.1998.10480551
+
++ Wright, D. B., London, K., & Field, A. P. (2018). Using Bootstrap Estimation and the Plug-in Principle for Clinical Psychology Data. _Journal of Experimental Psychopathology, 2_(2). doi:10.5127/jep.013611
 
 <!-- disqus START -->
 

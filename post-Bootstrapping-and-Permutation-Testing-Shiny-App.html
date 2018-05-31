@@ -25,8 +25,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
@@ -43,22 +41,51 @@
 <!-- Twittercards -->
 <meta name="twitter:card" content="summary" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
 
 
 <style type="text/css">
@@ -335,43 +362,266 @@ div.tocify {
 </div>
 
 
-## Purpose
+<p><br ></p>
+<div id="purpose" class="section level2">
+<h2>Purpose</h2>
 <hr >
-<p>This post serves as a brief overview of the difference between boostrapping and permutation testing with a shiny app to visualize their differences. The example we use is correlation; however, these techniques can be extended to a variety of statistics (e.g., t-test, ANOVA, PCA). <em>Note: this post assumes you have preliminary knowledge of univariate statistics.</em></p>
+<p>This post serves as a brief overview of the difference between boostrapping and permutation testing with a shiny app to visualize their differences. The example we use is correlation; however, these techniques can be extended to a variety of statistics (e.g., t-test, ANOVA, PCA).</p>
+<p><br ></p>
+</div>
+<div id="shiny-app" class="section level2">
+<h2>Shiny App</h2>
+<hr >
+<p>Here’s the shiny app used to illustrate these concepts. <a href="https://mattkmiecik.shinyapps.io/boot-perm-app/">Click here to see the app in full screen.</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_app</span>(<span class="st">&quot;https://mattkmiecik.shinyapps.io/boot-perm-app/&quot;</span>, 
+                   <span class="dt">height =</span> <span class="st">&quot;1000px&quot;</span>)</code></pre></div>
+<iframe src="https://mattkmiecik.shinyapps.io/boot-perm-app/?showcase=0" width="672" height="1000px">
+</iframe>
+<p><em>Note:</em> If the app does not appear, it may have reached the 25 active hours per month allotted to <a href="https://www.shinyapps.io/">shinyapps.io</a> free users (me!). In that case, see the code below to run it locally on your machine.</p>
+<p><br ></p>
 <div id="bootstrapping" class="section level3">
 <h3>Bootstrapping</h3>
-<p>When you think of boostrapping, think confidence intervals. Bootstrapping <em>samples observations with replacement</em> without breaking the relationship between measures (e.g., X and Y). The number of samples is equal to the number of observations (i.e., sample size). After sampling with replacement is finished the statistic of interest, such as a correlation, is computed and stored.</p>
+<p>When you think of boostrapping, think confidence intervals. Bootstrapping <strong>samples observations with replacement</strong> without breaking the relationship between measures (e.g., X and Y). The number of samples is equal to the number of observations (i.e., sample size). After sampling with replacement is finished the statistic of interest, such as a correlation, is computed and stored.</p>
 <blockquote>
 <p>When you think of boostrapping, think confidence intervals.</p>
 </blockquote>
 <p>This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution will be centered about the original statistic value that you computed before any resampling occured. In other words, the mean of these stored values will equal your observed statistic.</p>
 <p>As with any distribution, you can calculate what are the lower bounds and upper bounds of values for a given percentage. This percentage is determined by the researcher/statistician/hockey analyst enthusiast and is called a confidence interval (95% is a common confidence interval). These bounds are usually reported in square brackets in the format: confidence interval % [lowerbound, upper bound]. For example, “There was a positive correlation observed between X and Y, <em>r</em> = .31, 95% CI [.21, .41].”</p>
+<p><br ></p>
 </div>
 <div id="permutation-testing" class="section level3">
 <h3>Permutation Testing</h3>
-<p>When you think of permutation testing, think of p-values. Permutation testing <em>does not sample observations with replacement, but instead breaks the relationship between measures (e.g., X and Y).</em> This is done by shuffling/randomizing/sampling the observed data points for one variable, while keeping the other (or others) intact. In terms of correlation, this would mean that X would be shuffled within the sample, while Y remained the original values. After the responses for one variable are randomized the statistic of interest, such as a correlation, is computed and stored.</p>
+<p>When you think of permutation testing, think of p-values. Permutation testing <strong>does not sample observations with replacement, but instead breaks the relationship between measures (e.g., X and Y).</strong> This is done by shuffling/randomizing/sampling the observed data points for one variable, while keeping the other (or others) intact. In terms of correlation, this would mean that X would be shuffled within the sample, while Y remained the original values. After the responses for one variable are randomized the statistic of interest, such as a correlation, is computed and stored.</p>
 <blockquote>
 <p>When you think of permutation testing, think of p-values.</p>
 </blockquote>
-<p>This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution <em>will not be centered about the original statistic value that you computed before any shuffling occured, but rather will be centered around the null.</em> In terms of correlation, a null distribution would center about <em>r</em> = 0; meaning no linear relationship between variables.</p>
+<p>This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution <strong>will not be centered about the original statistic value that you computed before any shuffling occured, but rather will be centered around the null.</strong> In terms of correlation, a null distribution would center about <em>r</em> = 0; meaning no linear relationship between variables.</p>
 <p>In other words, a null distribution is created by shuffling the values in X but not Y. This is because the relationship has been broken between X and Y.</p>
 <p>A p-value is calculated by counting the number of statistic values that overlap with your observed statistic. Put another way, how many times did the statistic value that emerged from a “null distribution” overlap with your original computed statistic (before any shuffling). You take the number of times that the null distribution eclipsed your original value and divide it by the bumber of permutation iterations (number of observations in your null distribution).</p>
 <p>For example, let’s say I ran permutation testing on a correaltion <em>r</em> = .5 and shuffled X, kept Y, computed their correlation, stored this value, and repeated this 100 times. Out of 100 times, there were 4 correlations that emerged that were greater than .5. Therefore, my p-value for this correlation would be 4/100 = 0.04.</p>
+<p><br ></p>
 </div>
-<div id="shiny-app" class="section level2">
-<h2>Shiny App</h2>
-<hr >
-<p>Here’s the shiny app used to illustrate these concepts:</p>
-<iframe src="https://mattkmiecik.shinyapps.io/boot-perm-app/?showcase=0" width="672" height="1000px">
-</iframe>
 </div>
 <div id="shiny-app-code" class="section level2">
 <h2>Shiny App Code</h2>
 <hr >
+<p>Below is the code that runs the shiny app:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Packages required ----</span>
+<span class="kw">library</span>(shiny); <span class="kw">library</span>(tidyverse); <span class="kw">library</span>(broom); <span class="kw">library</span>(MASS); 
+<span class="kw">library</span>(RColorBrewer); <span class="kw">library</span>(psych); <span class="kw">library</span>(modelr); <span class="kw">library</span>(gridExtra)
+<span class="kw">library</span>(shinythemes); <span class="kw">library</span>(shinycssloaders)
+
+<span class="co"># Global aesthetics ----</span>
+
+<span class="co"># Main color palette (Flatly bootstrap theme)</span>
+flatlyPal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;#2C3E50&#39;</span>, <span class="st">&#39;#18BC9C&#39;</span>, <span class="st">&#39;#94A5A6&#39;</span>, <span class="st">&#39;#3498DC&#39;</span>, <span class="st">&#39;#F39C13&#39;</span>, <span class="st">&#39;#E74C3C&#39;</span>) 
+
+<span class="co"># loading spinner options</span>
+<span class="kw">options</span>(<span class="dt">spinner.color =</span> flatlyPal[<span class="dv">1</span>], <span class="dt">spinner.type =</span> <span class="dv">8</span>)
+
+<span class="co"># Plot constant</span>
+plotFinish &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),
+                    <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>),
+                    <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> .<span class="dv">5</span>)
+                    )
+
+<span class="co"># Turning off scientific notation for p-values</span>
+<span class="kw">options</span>(<span class="dt">scipen =</span> <span class="dv">999</span>)
+
+<span class="co"># UI ----</span>
+
+<span class="co"># Define UI for application that draws a histogram</span>
+ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(<span class="dt">theme =</span> <span class="kw">shinytheme</span>(<span class="st">&quot;flatly&quot;</span>),
+  
+  <span class="co"># Title</span>
+  <span class="kw">h2</span>(<span class="st">&quot;Bootstrapping and Permutation Testing&quot;</span>),
+  
+  <span class="co"># Author info</span>
+  <span class="kw">h4</span>(<span class="st">&quot;Matthew J. Kmiecik &amp; Ekarin Pongpipat&quot;</span>),
+  
+  <span class="co"># Blogpost info</span>
+  <span class="kw">p</span>(<span class="st">&quot;See our &quot;</span>, 
+    <span class="kw">a</span>(<span class="st">&quot;blog post&quot;</span>, <span class="dt">href=</span><span class="st">&quot;https://mattkmiecik.com/&quot;</span>), 
+    <span class="st">&quot;for more information about this shiny app.&quot;</span>
+    ),
+  
+  <span class="co"># Sidebar with a slider input for number of bins </span>
+  <span class="kw">sidebarLayout</span>(
+    <span class="kw">sidebarPanel</span>(
+      <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;rUser&quot;</span>,
+                  <span class="dt">label =</span> <span class="st">&quot;Correlation (r): &quot;</span>,
+                  <span class="dt">min =</span> <span class="op">-</span><span class="dv">1</span>,
+                  <span class="dt">max =</span> <span class="dv">1</span>,
+                  <span class="dt">value =</span> .<span class="dv">3</span>,
+                  <span class="dt">step =</span> .<span class="dv">1</span>,
+                  <span class="dt">ticks =</span> <span class="ot">FALSE</span>),
+      <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;sampleN&quot;</span>,
+                  <span class="dt">label =</span> <span class="st">&quot;Sample size (N): &quot;</span>,
+                  <span class="dt">min =</span> <span class="dv">10</span>,
+                  <span class="dt">max =</span> <span class="dv">2000</span>,
+                  <span class="dt">value =</span> <span class="dv">100</span>,
+                  <span class="dt">step =</span> <span class="dv">10</span>,
+                  <span class="dt">ticks =</span> <span class="ot">FALSE</span>),
+      <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;bootIters&quot;</span>,
+                  <span class="dt">label =</span> <span class="st">&quot;Bootstrap Iterations: &quot;</span>,
+                  <span class="dt">min =</span> <span class="dv">100</span>,
+                  <span class="dt">max =</span> <span class="dv">2000</span>,
+                  <span class="dt">value =</span> <span class="dv">100</span>,
+                  <span class="dt">step =</span> <span class="dv">100</span>,
+                  <span class="dt">ticks =</span> <span class="ot">FALSE</span>),
+      <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;ciUser&quot;</span>,
+                  <span class="dt">label =</span> <span class="st">&quot;Bootstrap Confidence Interval: &quot;</span>,
+                  <span class="dt">min =</span> .<span class="dv">80</span>,
+                  <span class="dt">max =</span> .<span class="dv">99</span>,
+                  <span class="dt">value =</span> .<span class="dv">90</span>,
+                  <span class="dt">step =</span> .<span class="dv">01</span>,
+                  <span class="dt">ticks =</span> <span class="ot">FALSE</span>),
+      <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;permIters&quot;</span>,
+                  <span class="dt">label =</span> <span class="st">&quot;Permutation Iterations: &quot;</span>,
+                  <span class="dt">min =</span> <span class="dv">100</span>,
+                  <span class="dt">max =</span> <span class="dv">2000</span>,
+                  <span class="dt">value =</span> <span class="dv">100</span>,
+                  <span class="dt">step =</span> <span class="dv">100</span>,
+                  <span class="dt">ticks =</span> <span class="ot">FALSE</span>), 
+      <span class="dt">width =</span> <span class="st">&quot;2&quot;</span>),
+    
+    <span class="co"># Plots</span>
+    <span class="kw">mainPanel</span>(
+      <span class="kw">splitLayout</span>(
+        <span class="kw">plotOutput</span>(<span class="st">&quot;scatterPlot&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">withSpinner</span>(),
+        <span class="kw">plotOutput</span>(<span class="st">&quot;bootPlot&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">withSpinner</span>(),
+        <span class="kw">plotOutput</span>(<span class="st">&quot;permPlot&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">withSpinner</span>()
+      )
+    )
+  )
+)
+
+<span class="co"># Server ----</span>
+server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {
+
+  <span class="co"># Defined variables</span>
+  vars    &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># Minimum of 2 variables are required for correlation</span>
+  mu &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, vars) <span class="co"># Means of all the vars are 0</span>
+  
+  <span class="co"># Calculates sigma</span>
+  re_sigma &lt;-<span class="st"> </span><span class="kw">reactive</span>({<span class="kw">matrix</span>(input<span class="op">$</span>rUser, <span class="dt">nrow =</span> vars, <span class="dt">ncol =</span> vars)})
+  
+  <span class="co"># Establihses sigma = 1</span>
+  re_sigma2 &lt;-<span class="st"> </span><span class="kw">reactive</span>({<span class="kw">re_sigma</span>() <span class="op">-</span><span class="st"> </span><span class="kw">diag</span>(vars)<span class="op">*</span>(input<span class="op">$</span>rUser) <span class="op">+</span><span class="st"> </span><span class="kw">diag</span>(vars)}) 
+  
+  <span class="co"># Gathers correlations</span>
+  re_rawvars &lt;-<span class="st"> </span><span class="kw">reactive</span>({<span class="kw">as.tibble</span>(<span class="kw">mvrnorm</span>(<span class="dt">n =</span> input<span class="op">$</span>sampleN, 
+                                            <span class="dt">mu =</span> mu, 
+                                            <span class="dt">Sigma =</span> <span class="kw">re_sigma2</span>(), 
+                                            <span class="dt">empirical =</span> T
+                                            )
+                                    ) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">rename</span>(<span class="dt">x =</span> V1, <span class="dt">y =</span> V2)}
+      )
+  
+  <span class="co"># Bootstrapping procedure ----</span>
+  re_bootResults &lt;-<span class="st"> </span><span class="kw">reactive</span>({<span class="kw">re_rawvars</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span>broom<span class="op">::</span><span class="kw">bootstrap</span>(input<span class="op">$</span>bootIters) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">do</span>(<span class="kw">tidy</span>(<span class="kw">lm</span>(<span class="kw">scale</span>(y) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(x), .))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &#39;(Intercept)&#39;</span>)})
+   
+  <span class="co"># Confidence interval calculations ----</span>
+  re_ciUserL &lt;-<span class="st"> </span><span class="kw">reactive</span>({(<span class="dv">1</span><span class="op">-</span>input<span class="op">$</span>ciUser)<span class="op">/</span><span class="dv">2</span>})
+  re_ciUserU &lt;-<span class="st"> </span><span class="kw">reactive</span>({input<span class="op">$</span>ciUser <span class="op">+</span><span class="st"> </span><span class="kw">re_ciUserL</span>()})
+  re_ciObs &lt;-<span class="st"> </span><span class="kw">reactive</span>({<span class="kw">quantile</span>(<span class="kw">re_bootResults</span>()<span class="op">$</span>estimate, 
+                                 <span class="kw">c</span>(<span class="kw">re_ciUserL</span>(), <span class="kw">re_ciUserU</span>()))})
+
+  <span class="co"># Permutation testing procedure ----</span>
+  <span class="co"># From: https://www.rdocumentation.org/packages/modelr/versions/0.1.1/topics/permute</span>
+  re_perms &lt;-<span class="st"> </span><span class="kw">reactive</span>({<span class="kw">re_rawvars</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">permute</span>(input<span class="op">$</span>permIters, y)})
+  re_models &lt;-<span class="st"> </span><span class="kw">reactive</span>({<span class="kw">map</span>(<span class="kw">re_perms</span>()[[<span class="st">&quot;perm&quot;</span>]], 
+                             <span class="op">~</span><span class="st"> </span><span class="kw">lm</span>(<span class="kw">scale</span>(y) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(x), <span class="dt">data =</span> .))})
+  re_tidyd &lt;-<span class="st"> </span><span class="kw">reactive</span>({<span class="kw">map_df</span>(<span class="kw">re_models</span>(), broom<span class="op">::</span>tidy, <span class="dt">.id =</span> <span class="st">&#39;id&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">      </span><span class="kw">filter</span>(term <span class="op">!=</span><span class="st"> &#39;(Intercept)&#39;</span>)})
+  
+  <span class="co"># Calculates p value from permutation testing</span>
+  re_permPVal &lt;-<span class="st"> </span><span class="kw">reactive</span>({
+    <span class="cf">if</span> (input<span class="op">$</span>rUser <span class="op">&gt;=</span><span class="st"> </span><span class="dv">0</span>) {
+      (<span class="kw">sum</span>(<span class="kw">re_tidyd</span>()[[<span class="st">&quot;estimate&quot;</span>]] <span class="op">&gt;=</span><span class="st"> </span>input<span class="op">$</span>rUser) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span>input<span class="op">$</span>permIters
+    } <span class="cf">else</span> <span class="cf">if</span> ( input<span class="op">$</span>rUser <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> ) {
+      (<span class="kw">sum</span>(<span class="kw">re_tidyd</span>()[[<span class="st">&quot;estimate&quot;</span>]] <span class="op">&lt;=</span><span class="st"> </span>input<span class="op">$</span>rUser) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">/</span>input<span class="op">$</span>permIters
+    }
+  }
+  )
+    
+  <span class="co"># Scatterplot ----</span>
+  
+   output<span class="op">$</span>scatterPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+     
+     <span class="co"># Caption for Scatterplot</span>
+     corResP &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cor.test</span>(<span class="kw">re_rawvars</span>()<span class="op">$</span>x, <span class="kw">re_rawvars</span>()<span class="op">$</span>y)<span class="op">$</span>p.value, <span class="dv">3</span>)
+     corResPFinal &lt;-<span class="st"> </span><span class="kw">ifelse</span>(corResP <span class="op">&gt;</span><span class="st"> </span>.<span class="dv">001</span>, corResP, .<span class="dv">001</span>)
+     pSign &lt;-<span class="st"> </span><span class="kw">ifelse</span>(corResP <span class="op">&gt;</span><span class="st"> </span>.<span class="dv">001</span>, <span class="st">&#39;= &#39;</span>, <span class="st">&#39;&lt; &#39;</span>)
+     scatRes &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&#39;r (&#39;</span>, input<span class="op">$</span>sampleN<span class="op">-</span><span class="dv">2</span>, <span class="st">&#39;) = &#39;</span>, input<span class="op">$</span>rUser,
+                       <span class="st">&#39;, p &#39;</span>, pSign,corResPFinal)
+     
+     <span class="co"># Plot</span>
+     <span class="kw">ggplot</span>(<span class="kw">re_rawvars</span>(), <span class="kw">aes</span>(x, y)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> T, 
+                   <span class="dt">color =</span> flatlyPal[<span class="dv">6</span>], <span class="dt">fill =</span> flatlyPal[<span class="dv">3</span>]) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="dt">color =</span> flatlyPal[<span class="dv">1</span>], <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
+<span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;X&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Y&#39;</span>, 
+            <span class="dt">title =</span> <span class="st">&#39;Scatterplot&#39;</span>, <span class="dt">caption =</span> scatRes) <span class="op">+</span>
+<span class="st">       </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">       </span>plotFinish
+     
+        })
+
+  <span class="co"># Bootstrap Plot ----</span>
+   output<span class="op">$</span>bootPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+     <span class="kw">ggplot</span>(<span class="kw">re_bootResults</span>(), <span class="kw">aes</span>(estimate)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> input<span class="op">$</span>rUser), 
+                  <span class="dt">color =</span> flatlyPal[<span class="dv">6</span>], <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> .<span class="dv">05</span>, <span class="dt">fill =</span> flatlyPal[<span class="dv">1</span>]) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_errorbarh</span>(<span class="kw">aes</span>(<span class="dt">xmin =</span> <span class="kw">re_ciObs</span>()[[<span class="dv">1</span>]], <span class="dt">xmax =</span> <span class="kw">re_ciObs</span>()[[<span class="dv">2</span>]], 
+                          <span class="dt">x =</span> input<span class="op">$</span>rUser, <span class="dt">y =</span> <span class="kw">nrow</span>(<span class="kw">re_bootResults</span>())<span class="op">/</span><span class="dv">10</span>), 
+                      <span class="dt">height =</span> <span class="dv">0</span>, <span class="dt">color =</span> flatlyPal[<span class="dv">2</span>], <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> input<span class="op">$</span>rUser, <span class="dt">y =</span> <span class="kw">nrow</span>(<span class="kw">re_bootResults</span>())<span class="op">/</span><span class="dv">10</span>),
+                  <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">color =</span> flatlyPal[<span class="dv">2</span>]) <span class="op">+</span>
+<span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Correlation&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Frequency&#39;</span>, 
+            <span class="dt">title =</span> <span class="st">&#39;Bootstrapping&#39;</span>, 
+            <span class="dt">caption =</span> <span class="kw">paste0</span>(input<span class="op">$</span>ciUser<span class="op">*</span><span class="dv">100</span>, <span class="st">&#39;% CI [&#39;</span>, 
+                             <span class="kw">round</span>(<span class="kw">re_ciObs</span>()[[<span class="dv">1</span>]], <span class="dv">2</span>), <span class="st">&#39;, &#39;</span>,
+                             <span class="kw">round</span>(<span class="kw">re_ciObs</span>()[[<span class="dv">2</span>]], <span class="dv">2</span>), <span class="st">&#39;]&#39;</span>)
+            ) <span class="op">+</span>
+<span class="st">       </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">       </span>plotFinish
+   })
+   
+   <span class="co"># Permutation plot ----</span>
+   output<span class="op">$</span>permPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
+     <span class="kw">ggplot</span>(<span class="kw">re_tidyd</span>(), <span class="kw">aes</span>(estimate)) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> .<span class="dv">05</span>, <span class="dt">fill =</span> flatlyPal[<span class="dv">1</span>]) <span class="op">+</span>
+<span class="st">       </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> input<span class="op">$</span>rUser), 
+                  <span class="dt">color =</span> flatlyPal[<span class="dv">6</span>], <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">size =</span> .<span class="dv">75</span>) <span class="op">+</span>
+<span class="st">       </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Correlation&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Frequency&#39;</span>, 
+            <span class="dt">title =</span> <span class="st">&#39;Permutation Testing&#39;</span>,
+            <span class="dt">caption =</span> <span class="kw">paste0</span>(<span class="st">&#39;r = &#39;</span>, input<span class="op">$</span>rUser, <span class="st">&#39;, p = &#39;</span>, <span class="kw">round</span>(<span class="kw">re_permPVal</span>(), <span class="dv">5</span>))
+            ) <span class="op">+</span>
+<span class="st">       </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">       </span>plotFinish
+     
+   })
+}
+
+<span class="co"># Application ----</span>
+<span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server)</code></pre></div>
+<p><br ></p>
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
 <hr >
+<p>Readers who would like more theoretical or technical explanations of boostrapping and permutation testing are encouraged to read:</p>
+<ul>
+<li><p>Efron, B. (1979). Bootstrap methods: Another look at the jacknife. <em>The Annals of Statistics, 7</em>(1), 1-26.</p></li>
+<li><p>Ludbrook, J., &amp; Dudley, H. (1998). Why Permutation Tests are Superior to t and F Tests in Biomedical Research. <em>The American Statistician, 52</em>(2), 127-132. <a href="doi:10.1080/00031305.1998.10480551" class="uri">doi:10.1080/00031305.1998.10480551</a></p></li>
+<li><p>Wright, D. B., London, K., &amp; Field, A. P. (2018). Using Bootstrap Estimation and the Plug-in Principle for Clinical Psychology Data. <em>Journal of Experimental Psychopathology, 2</em>(2). <a href="doi:10.5127/jep.013611" class="uri">doi:10.5127/jep.013611</a></p></li>
+</ul>
 <!-- disqus START -->
 <div id="disqus_thread">
 
