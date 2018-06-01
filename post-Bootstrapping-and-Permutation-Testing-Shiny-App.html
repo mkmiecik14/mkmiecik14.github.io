@@ -407,9 +407,8 @@ div.tocify {
 <hr >
 <p>Below is the code that runs the shiny app:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Packages required ----</span>
-<span class="kw">library</span>(shiny); <span class="kw">library</span>(tidyverse); <span class="kw">library</span>(broom); <span class="kw">library</span>(MASS); 
-<span class="kw">library</span>(RColorBrewer); <span class="kw">library</span>(psych); <span class="kw">library</span>(modelr); <span class="kw">library</span>(gridExtra)
-<span class="kw">library</span>(shinythemes); <span class="kw">library</span>(shinycssloaders)
+<span class="kw">library</span>(shiny); <span class="kw">library</span>(tidyverse); <span class="kw">library</span>(broom); <span class="kw">library</span>(MASS)
+<span class="kw">library</span>(modelr); <span class="kw">library</span>(shinythemes); <span class="kw">library</span>(shinycssloaders)
 
 <span class="co"># Global aesthetics ----</span>
 
@@ -487,7 +486,7 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(<span class="
     
     <span class="co"># Plots</span>
     <span class="kw">mainPanel</span>(
-      <span class="kw">splitLayout</span>(
+      <span class="kw">flowLayout</span>(
         <span class="kw">plotOutput</span>(<span class="st">&quot;scatterPlot&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">withSpinner</span>(),
         <span class="kw">plotOutput</span>(<span class="st">&quot;bootPlot&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">withSpinner</span>(),
         <span class="kw">plotOutput</span>(<span class="st">&quot;permPlot&quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">withSpinner</span>()
@@ -575,8 +574,6 @@ server &lt;-<span class="st"> </span><span class="cf">function</span>(input, out
   <span class="co"># Bootstrap Plot ----</span>
    output<span class="op">$</span>bootPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({
      <span class="kw">ggplot</span>(<span class="kw">re_bootResults</span>(), <span class="kw">aes</span>(estimate)) <span class="op">+</span>
-<span class="st">       </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> input<span class="op">$</span>rUser), 
-                  <span class="dt">color =</span> flatlyPal[<span class="dv">6</span>], <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span>
 <span class="st">       </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> .<span class="dv">05</span>, <span class="dt">fill =</span> flatlyPal[<span class="dv">1</span>]) <span class="op">+</span>
 <span class="st">       </span><span class="kw">geom_errorbarh</span>(<span class="kw">aes</span>(<span class="dt">xmin =</span> <span class="kw">re_ciObs</span>()[[<span class="dv">1</span>]], <span class="dt">xmax =</span> <span class="kw">re_ciObs</span>()[[<span class="dv">2</span>]], 
                           <span class="dt">x =</span> input<span class="op">$</span>rUser, <span class="dt">y =</span> <span class="kw">nrow</span>(<span class="kw">re_bootResults</span>())<span class="op">/</span><span class="dv">10</span>), 

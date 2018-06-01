@@ -4,7 +4,9 @@ username:
 account: mattkmiecik
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 351427
-bundleId: 1403698
+appId: 352330
+bundleId: 1404443
 url: https://mattkmiecik.shinyapps.io/boot-perm-app/
-when: 1527805821.55838
+when: 1527831567.95586
+asMultiple: FALSE
+asStatic: FALSE

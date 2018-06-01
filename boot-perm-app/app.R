@@ -1,7 +1,6 @@
 # Packages required ----
-library(shiny); library(tidyverse); library(broom); library(MASS); 
-library(RColorBrewer); library(psych); library(modelr); library(gridExtra)
-library(shinythemes); library(shinycssloaders)
+library(shiny); library(tidyverse); library(broom); library(MASS)
+library(modelr); library(shinythemes); library(shinycssloaders)
 
 # Global aesthetics ----
 
