@@ -1,7 +1,7 @@
 ---
 title: "Bootstrapping and Permutation Testing: A Shiny App"
 author: "Matthew J. Kmiecik & Ekarin E. Pongpipat"
-date: "30 May 2018"
+date: "7 June 2018"
 output:
   html_document:
     highlight: zenburn
