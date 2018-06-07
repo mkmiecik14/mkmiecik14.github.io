@@ -64,7 +64,7 @@ In other words, a null distribution is created by shuffling the values in X but 
 
 A p-value is calculated by first counting the number of statistical values that are more extreme than your observed statistic. Put another way, how many times did the statistical value that emerged from a "null distribution" surpass your original computed statistic (before any shuffling). Then, you take the number of times that the null distribution is more extreme than your original value and divide it by the number of permutation iterations (number of observations in your null distribution). 
 
-For example, let's say I ran permutation test on a correlation of _r_ = .5 and shuffled X, kept Y, computed their correlation, stored this value, and repeated this 100 times. Out of 100 times, there were 4 correlations that emerged that were greater than .5. Therefore, my p-value for this correlation would be 4/100 = `r 4/100`.
+For example, let's say I ran a permutation test on a correlation of _r_ = .5 and shuffled X, kept Y, computed their correlation, stored this value, and repeated this 100 times. Out of 100 times, there were 4 correlations that emerged that were greater than .5. Therefore, my p-value for this correlation would be 4/100 = `r 4/100`.
 
 <br >
 
