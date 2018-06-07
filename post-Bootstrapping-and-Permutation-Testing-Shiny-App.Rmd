@@ -1,6 +1,6 @@
 ---
 title: "Bootstrapping and Permutation Testing: A Shiny App"
-author: "Matthew J. Kmiecik & Ekarin Pongpipat"
+author: "Matthew J. Kmiecik & Ekarin E. Pongpipat"
 date: "30 May 2018"
 output:
   html_document:
@@ -22,7 +22,7 @@ options(knitr.table.format = 'html') # For the html tables
 ## Purpose 
 <hr >
 
-This post serves as a brief overview of the difference between boostrapping and permutation testing with a shiny app to visualize their differences. The example we use is correlation; however, these techniques can be extended to a variety of statistics (e.g., t-test, ANOVA, PCA).
+This post serves as a brief overview of the difference between bootstrapping and permutation testing with a shiny app to visualize their differences. The example statistic we use here is a correlation; however, these techniques can be extended to a variety of statistics (e.g., t-test, ANOVA, PCA).
 
 <br >
 
@@ -42,11 +42,11 @@ _Note:_ If the app does not appear, it may have reached the 25 active hours per 
 
 ### Bootstrapping
 
-When you think of boostrapping, think confidence intervals. Bootstrapping **samples observations with replacement** without breaking the relationship between measures (e.g., X and Y). The number of samples is equal to the number of observations (i.e., sample size). After sampling with replacement is finished the statistic of interest, such as a correlation, is computed and stored.
+When you think of boostrapping, think confidence intervals. Bootstrapping **samples observations with replacement** without breaking the relationship between measures (e.g., X and Y). The number of samples is equal to the number of observations (i.e., sample size). After sampling with replacement is finished, the statistic of interest, such as a correlation, is computed and stored.
 
 > When you think of boostrapping, think confidence intervals.
 
-This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution will be centered about the original statistic value that you computed before any resampling occured. In other words, the mean of these stored values will equal your observed statistic.
+This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution will be centered about the original statistical value that you computed before any resampling occured. In other words, the mean of these stored values will equal your observed statistic.
 
 As with any distribution, you can calculate what are the lower bounds and upper bounds of values for a given percentage. This percentage is determined by the researcher/statistician/hockey analyst enthusiast and is called a confidence interval (95% is a common confidence interval). These bounds are usually reported in square brackets in the format: confidence interval % [lowerbound, upper bound]. For example, "There was a positive correlation observed between X and Y, _r_ = .31, 95% CI [.21, .41]."
 
@@ -62,9 +62,9 @@ This process explained above is then repeated hundreds or thousands of iteration
 
 In other words, a null distribution is created by shuffling the values in X but not Y. This is because the relationship has been broken between X and Y. 
 
-A p-value is calculated by counting the number of statistic values that overlap with your observed statistic. Put another way, how many times did the statistic value that emerged from a "null distribution" overlap with your original computed statistic (before any shuffling). You take the number of times that the null distribution eclipsed your original value and divide it by the bumber of permutation iterations (number of observations in your null distribution). 
+A p-value is calculated by first counting the number of statistical values that are more extreme than your observed statistic. Put another way, how many times did the statistical value that emerged from a "null distribution" surpass your original computed statistic (before any shuffling). Then, you take the number of times that the null distribution is more extreme than your original value and divide it by the number of permutation iterations (number of observations in your null distribution). 
 
-For example, let's say I ran permutation testing on a correaltion _r_ = .5 and shuffled X, kept Y, computed their correlation, stored this value, and repeated this 100 times. Out of 100 times, there were 4 correlations that emerged that were greater than .5. Therefore, my p-value for this correlation would be 4/100 = `r 4/100`.
+For example, let's say I ran permutation test on a correlation of _r_ = .5 and shuffled X, kept Y, computed their correlation, stored this value, and repeated this 100 times. Out of 100 times, there were 4 correlations that emerged that were greater than .5. Therefore, my p-value for this correlation would be 4/100 = `r 4/100`.
 
 <br >
 
