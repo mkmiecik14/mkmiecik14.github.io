@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Matthew J. Kmiecik &amp; Ekarin Pongpipat" />
+<meta name="author" content="Matthew J. Kmiecik &amp; Ekarin E. Pongpipat" />
 
 <meta name="date" content="2018-05-30" />
 
@@ -356,7 +356,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Bootstrapping and Permutation Testing: A Shiny App</h1>
-<h4 class="author"><em>Matthew J. Kmiecik &amp; Ekarin Pongpipat</em></h4>
+<h4 class="author"><em>Matthew J. Kmiecik &amp; Ekarin E. Pongpipat</em></h4>
 <h4 class="date"><em>30 May 2018</em></h4>
 
 </div>
@@ -366,7 +366,7 @@ div.tocify {
 <div id="purpose" class="section level2">
 <h2>Purpose</h2>
 <hr >
-<p>This post serves as a brief overview of the difference between boostrapping and permutation testing with a shiny app to visualize their differences. The example we use is correlation; however, these techniques can be extended to a variety of statistics (e.g., t-test, ANOVA, PCA).</p>
+<p>This post serves as a brief overview of the difference between bootstrapping and permutation testing with a shiny app to visualize their differences. The example statistic we use here is a correlation; however, these techniques can be extended to a variety of statistics (e.g., t-test, ANOVA, PCA).</p>
 <p><br ></p>
 </div>
 <div id="shiny-app" class="section level2">
@@ -374,18 +374,18 @@ div.tocify {
 <hr >
 <p>Here’s the shiny app used to illustrate these concepts. <a href="https://mattkmiecik.shinyapps.io/boot-perm-app/">Click here to see the app in full screen.</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_app</span>(<span class="st">&quot;https://mattkmiecik.shinyapps.io/boot-perm-app/&quot;</span>, 
-                   <span class="dt">height =</span> <span class="st">&quot;1000px&quot;</span>)</code></pre></div>
-<iframe src="https://mattkmiecik.shinyapps.io/boot-perm-app/?showcase=0" width="672" height="1000px">
+                   <span class="dt">height =</span> <span class="st">&quot;1400px&quot;</span>)</code></pre></div>
+<iframe src="https://mattkmiecik.shinyapps.io/boot-perm-app/?showcase=0" width="672" height="1400px">
 </iframe>
 <p><em>Note:</em> If the app does not appear, it may have reached the 25 active hours per month allotted to <a href="https://www.shinyapps.io/">shinyapps.io</a> free users (me!). In that case, see the code below to run it locally on your machine.</p>
 <p><br ></p>
 <div id="bootstrapping" class="section level3">
 <h3>Bootstrapping</h3>
-<p>When you think of boostrapping, think confidence intervals. Bootstrapping <strong>samples observations with replacement</strong> without breaking the relationship between measures (e.g., X and Y). The number of samples is equal to the number of observations (i.e., sample size). After sampling with replacement is finished the statistic of interest, such as a correlation, is computed and stored.</p>
+<p>When you think of boostrapping, think confidence intervals. Bootstrapping <strong>samples observations with replacement</strong> without breaking the relationship between measures (e.g., X and Y). The number of samples is equal to the number of observations (i.e., sample size). After sampling with replacement is finished, the statistic of interest, such as a correlation, is computed and stored.</p>
 <blockquote>
 <p>When you think of boostrapping, think confidence intervals.</p>
 </blockquote>
-<p>This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution will be centered about the original statistic value that you computed before any resampling occured. In other words, the mean of these stored values will equal your observed statistic.</p>
+<p>This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution will be centered about the original statistical value that you computed before any resampling occured. In other words, the mean of these stored values will equal your observed statistic.</p>
 <p>As with any distribution, you can calculate what are the lower bounds and upper bounds of values for a given percentage. This percentage is determined by the researcher/statistician/hockey analyst enthusiast and is called a confidence interval (95% is a common confidence interval). These bounds are usually reported in square brackets in the format: confidence interval % [lowerbound, upper bound]. For example, “There was a positive correlation observed between X and Y, <em>r</em> = .31, 95% CI [.21, .41].”</p>
 <p><br ></p>
 </div>
@@ -397,8 +397,8 @@ div.tocify {
 </blockquote>
 <p>This process explained above is then repeated hundreds or thousands of iterations resulting in a distribution of values for your statistic of interest. This distibution <strong>will not be centered about the original statistic value that you computed before any shuffling occured, but rather will be centered around the null.</strong> In terms of correlation, a null distribution would center about <em>r</em> = 0; meaning no linear relationship between variables.</p>
 <p>In other words, a null distribution is created by shuffling the values in X but not Y. This is because the relationship has been broken between X and Y.</p>
-<p>A p-value is calculated by counting the number of statistic values that overlap with your observed statistic. Put another way, how many times did the statistic value that emerged from a “null distribution” overlap with your original computed statistic (before any shuffling). You take the number of times that the null distribution eclipsed your original value and divide it by the bumber of permutation iterations (number of observations in your null distribution).</p>
-<p>For example, let’s say I ran permutation testing on a correaltion <em>r</em> = .5 and shuffled X, kept Y, computed their correlation, stored this value, and repeated this 100 times. Out of 100 times, there were 4 correlations that emerged that were greater than .5. Therefore, my p-value for this correlation would be 4/100 = 0.04.</p>
+<p>A p-value is calculated by first counting the number of statistical values that are more extreme than your observed statistic. Put another way, how many times did the statistical value that emerged from a “null distribution” surpass your original computed statistic (before any shuffling). Then, you take the number of times that the null distribution is more extreme than your original value and divide it by the number of permutation iterations (number of observations in your null distribution).</p>
+<p>For example, let’s say I ran a permutation test on a correlation of <em>r</em> = .5 and shuffled X, kept Y, computed their correlation, stored this value, and repeated this 100 times. Out of 100 times, there were 4 correlations that emerged that were greater than .5. Therefore, my p-value for this correlation would be 4/100 = 0.04.</p>
 <p><br ></p>
 </div>
 </div>
@@ -436,11 +436,11 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(<span class="
   <span class="kw">h2</span>(<span class="st">&quot;Bootstrapping and Permutation Testing&quot;</span>),
   
   <span class="co"># Author info</span>
-  <span class="kw">h4</span>(<span class="st">&quot;Matthew J. Kmiecik &amp; Ekarin Pongpipat&quot;</span>),
+  <span class="kw">h4</span>(<span class="st">&quot;Matthew J. Kmiecik &amp; Ekarin E. Pongpipat&quot;</span>),
   
   <span class="co"># Blogpost info</span>
   <span class="kw">p</span>(<span class="st">&quot;See our &quot;</span>, 
-    <span class="kw">a</span>(<span class="st">&quot;blog post&quot;</span>, <span class="dt">href=</span><span class="st">&quot;https://mattkmiecik.com/&quot;</span>), 
+    <span class="kw">a</span>(<span class="st">&quot;blog post&quot;</span>, <span class="dt">href=</span><span class="st">&quot;https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html&quot;</span>), 
     <span class="st">&quot;for more information about this shiny app.&quot;</span>
     ),
   

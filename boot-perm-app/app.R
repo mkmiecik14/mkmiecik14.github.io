@@ -28,11 +28,11 @@ ui <- fluidPage(theme = shinytheme("flatly"),
   h2("Bootstrapping and Permutation Testing"),
   
   # Author info
-  h4("Matthew J. Kmiecik & Ekarin Pongpipat"),
+  h4("Matthew J. Kmiecik & Ekarin E. Pongpipat"),
   
   # Blogpost info
   p("See our ", 
-    a("blog post", href="https://mattkmiecik.com/"), 
+    a("blog post", href="https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html"), 
     "for more information about this shiny app."
     ),
   
