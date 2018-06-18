@@ -36,7 +36,7 @@ knitr::include_app("https://mattkmiecik.shinyapps.io/boot-perm-app/",
                    height = "1400px")
 ```
 
-_Note:_ If the app does not appear, it may have reached the 25 active hours per month allotted to [shinyapps.io](https://www.shinyapps.io/) free users (me!). In that case, see the code below to run it locally on your machine.
+<p class="text-info">_Note:_ If the app does not appear, it may have reached the 25 active hours per month allotted to [shinyapps.io](https://www.shinyapps.io/) free users (me!). In that case, see the code below to run it locally on your machine.</p>
 
 <br >
 
