@@ -371,13 +371,13 @@ div.tocify {
 <div id="shiny-app" class="section level2">
 <h2>Shiny App</h2>
 <hr >
-<p>Here’s the shiny app used to illustrate these concepts. <a href="https://mattkmiecik.shinyapps.io/boot-perm-app/">Click here to see the app in full screen.</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_app</span>(<span class="st">&quot;https://mattkmiecik.shinyapps.io/boot-perm-app/&quot;</span>, 
+<p>Here’s the shiny app used to illustrate these concepts. <a href="http://18.188.158.248:3838/">Click here to see the app in full screen.</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_app</span>(<span class="st">&quot;http://18.188.158.248:3838/&quot;</span>, 
                    <span class="dt">height =</span> <span class="st">&quot;1400px&quot;</span>)</code></pre></div>
-<iframe src="https://mattkmiecik.shinyapps.io/boot-perm-app/?showcase=0" width="672" height="1400px">
+<iframe src="http://18.188.158.248:3838/?showcase=0" width="672" height="1400px">
 </iframe>
 <p class="text-info">
-<em>Note:</em> If the app does not appear, it may have reached the 25 active hours per month allotted to <a href="https://www.shinyapps.io/">shinyapps.io</a> free users (me!). In that case, see the code below to run it locally on your machine.
+<em>Note:</em> We are now hosting this app on Amazon’s EC2 cloud service. Please email me (<a href="mailto:matthew.kmiecik@utdallas.edu">matthew.kmiecik@utdallas.edu</a>) if the app is down. Thanks!
 </p>
 <p><br ></p>
 <div id="bootstrapping" class="section level3">
@@ -408,8 +408,16 @@ div.tocify {
 <hr >
 <p>Below is the code that runs the shiny app:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Packages required ----</span>
-<span class="kw">library</span>(shiny); <span class="kw">library</span>(tidyverse); <span class="kw">library</span>(broom); <span class="kw">library</span>(MASS)
-<span class="kw">library</span>(modelr); <span class="kw">library</span>(shinythemes); <span class="kw">library</span>(shinycssloaders)
+<span class="kw">library</span>(shiny) 
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(tibble)
+<span class="kw">library</span>(purrr)
+<span class="kw">library</span>(broom)
+<span class="kw">library</span>(MASS)
+<span class="kw">library</span>(modelr)
+<span class="kw">library</span>(shinythemes)
+<span class="kw">library</span>(shinycssloaders)
 
 <span class="co"># Global aesthetics ----</span>
 
@@ -420,7 +428,7 @@ flatlyPal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="s
 <span class="kw">options</span>(<span class="dt">spinner.color =</span> flatlyPal[<span class="dv">1</span>], <span class="dt">spinner.type =</span> <span class="dv">8</span>)
 
 <span class="co"># Plot constant</span>
-plotFinish &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>),
+plotFinish &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">15</span>),
                     <span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>),
                     <span class="dt">plot.caption =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> .<span class="dv">5</span>)
                     )
@@ -458,8 +466,8 @@ ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(<span class="
       <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;sampleN&quot;</span>,
                   <span class="dt">label =</span> <span class="st">&quot;Sample size (N): &quot;</span>,
                   <span class="dt">min =</span> <span class="dv">10</span>,
-                  <span class="dt">max =</span> <span class="dv">2000</span>,
-                  <span class="dt">value =</span> <span class="dv">100</span>,
+                  <span class="dt">max =</span> <span class="dv">200</span>,
+                  <span class="dt">value =</span> <span class="dv">50</span>,
                   <span class="dt">step =</span> <span class="dv">10</span>,
                   <span class="dt">ticks =</span> <span class="ot">FALSE</span>),
       <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;bootIters&quot;</span>,

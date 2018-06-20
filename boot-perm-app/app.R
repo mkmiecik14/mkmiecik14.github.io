@@ -1,6 +1,14 @@
 # Packages required ----
-library(shiny); library(tidyverse); library(broom); library(MASS)
-library(modelr); library(shinythemes); library(shinycssloaders)
+library(shiny) 
+library(dplyr)
+library(ggplot2)
+library(tibble)
+library(purrr)
+library(broom)
+library(MASS)
+library(modelr)
+library(shinythemes)
+library(shinycssloaders)
 
 # Global aesthetics ----
 
@@ -11,7 +19,7 @@ flatlyPal <- c('#2C3E50', '#18BC9C', '#94A5A6', '#3498DC', '#F39C13', '#E74C3C')
 options(spinner.color = flatlyPal[1], spinner.type = 8)
 
 # Plot constant
-plotFinish <- theme(plot.title = element_text(hjust = 0.5),
+plotFinish <- theme(plot.title = element_text(hjust = 0.5, size = 15),
                     text = element_text(size = 15),
                     plot.caption = element_text(hjust = .5)
                     )
@@ -49,8 +57,8 @@ ui <- fluidPage(theme = shinytheme("flatly"),
       sliderInput(inputId = "sampleN",
                   label = "Sample size (N): ",
                   min = 10,
-                  max = 2000,
-                  value = 100,
+                  max = 200,
+                  value = 50,
                   step = 10,
                   ticks = FALSE),
       sliderInput(inputId = "bootIters",
