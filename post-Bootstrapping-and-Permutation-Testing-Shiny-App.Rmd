@@ -29,10 +29,10 @@ This post serves as a brief overview of the difference between bootstrapping and
 ## Shiny App
 <hr >
 
-Here's the shiny app used to illustrate these concepts. [Click here to see the app in full screen.](http://18.188.158.248:3838/)
+Here's the shiny app used to illustrate these concepts. [Click here to see the app in full screen.](https://ec2-18-188-158-248.us-east-2.compute.amazonaws.com/)
 
 ```{r}
-knitr::include_app("http://18.188.158.248:3838/", 
+knitr::include_app("https://ec2-18-188-158-248.us-east-2.compute.amazonaws.com/", 
                    height = "1400px")
 ```
 
