@@ -1,0 +1,87 @@
+---
+title: "A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury"
+author: "Matthew J. Kmiecik"
+date: "21 July 2018"
+output:
+  html_document:
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+---
+
+```{r setup, include=F}
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
+options(knitr.table.format = 'html') # For the html tables
+```
+
+<br >
+
+## The paper: in short
+<hr >
+
+Last summer we published a paper in _Psychological Assessment_ that presented methods for better characterizing properties of participant responses on neuropsychological assessments. These methods were applied to a specific test of daily life functioning---also known as executive functioning---called the Hayling Sentence Completion Test. We demonstrated that these new methods provide additional insights into the cognitive performance of individuals with mild-moderate traumatic brain injury (TBI). Furthermore, these new measures were related to other cognitive abilities: verbal ability, processing speed, inhibitory control, working memory, and task switching. These methods can be extended to other 1) assessments that involve word generations and 2) clinical populations that exhibit cognitive impariments.
+
+To read our paper, see:
+
+Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). A method for characterizing semantic and lexical properties of sentence completions in traumatic brain injury. _Psychological Assessment, 30_(5), 645-655. http://dx.doi.org/10.1037/pas0000510
+
+Or its page on [ResearchGate](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury).
+
+If you are interested in learning more...
+
+<br >
+
+## The paper: in long
+<hr >
+
+Traumatic brain injuries (TBIs) occur when the head receives a harmful blow that results in a disruption in normal brain functioning. Individuals can recover following these injuries; however, some individuals' symptoms persist long after the injury (> 3 months post-injury) and become chronic TBI.
+
+Individuals with chronic TBI often report difficulties in completing everyday activities, such as going to the grocery store or holding a job. In terms of what is required cognitively, these tasks are quite complex and require planning, blocking distractions, knowledge, and sustained attention. Neuropscyhologists call these complex cognitive abilities __executive functions__ and a large focus of TBI research is understanding how these cognitive functions are impacted and how these deficits affect behavior, such as difficulties in holding a job.
+
+Despite these self-reported impairments, it is difficult to capture these symptoms in a lab setting. In other words, an individual with TBI may report having difficulties in everyday life, but he or she may perform well on standardized neuropsychological assessments. Are the tests not sensitive enough? Are we measuring the right thing? Is TBI more difficult to assess?
+
+The difficulties in understanding the effects of TBI is likely a mixture of the above concerns. The paper that this blog post covers addresses a specific concern: the sensitivity of existing tests. We took an existing neuropsychological assessment of executive functioning, called the Hayling Sentence Completion Test (Burgess & Shallice, 1996, 1997), and applied methods from the fields of cognitive science and linguistics to gain further insights about how TBI impacts performance.
+
+When taking the Hayling Test, individuals are read sentences with the last word missing. In the first section, participants are instructed to complete the sentence with a logical word. In the second section, participants are instructed to complete the sentence with an illogical word. For example:
+
+Section 1: Sensible completions
+
+* He mailed a letter without a _stamp_.
+
+Section 2: Unconnected completions
+
+* The captain wanted to stay with the sinking _banana_.
+
+Performance on this test is guaged by the time to complete each section (faster is better) and the number of errors committed on section two (completing a sentence with a logical word). The frontal lobe is responsible for inhibiting distractions and following task instructions. The thinking behind this test is that those with damage to the frontal lobe will commit more errors on section two. 
+
+One potential source of improvement we saw was to introduce more objective methods in scoring errors, as unclear responses are often given.
+
+We measured 2 different properties of the words:
+
+1) How similar the sentence stem (_He mailed a letter without a_) and the generated word (_stamp_) were to each other using a technique called [Latent Semantic Analysis](http://lsa.colorado.edu/) (LSA; Landauer, Foltz, & Laham, 1998)
+
+2) How frequently the generated words are used in everyday speech (word frequency) using the SUBTLEXus database (Brysbaert & New, 2009)
+
+What we discovered was that these measurements provide additional metrics that can be used to guage performance on the Hayling test. More specifically, other measures of cognitive performance were related to performance on these additional measurements. These additional measures were verbal ability, processing speed, inhibitory control, working memory, and task switching.
+
+Next steps in this line of research include further validating these measurements. We are currently conducting a study to compare those with chronic mild-moderate TBI to those without a history of TBI to further understand the effects of TBI on the performance on this test and our new measurements. Our hope is that these methods can be extended to other linguistically based neuropsychological assessments and other clinical populations that experience cognitive impairments.
+
+<br >
+
+## References
+<hr >
+
+* Brysbaert, M., & New, B. (2009). Moving beyond Kucˇera and Francis: A critical evaluation of current word frequency norms and the introduction of a new and improved word frequency measure for American English. _Behavior Research Methods, Instruments and Computer, 41_, 977–990. http://dx.doi.org/10.3758/BRM.41.4.977
+
+* Burgess, P. W., & Shallice, T. (1996). Response suppression, initiation and strategy use following frontal lobe lesions. _Neuropsychologia, 34_(4), 263-272. 10.1016/0028-3932(95)00104-2
+
+* Burgess, P. W., & Shallice, T. (1997). _The Hayling and Brixton tests_. London, England: Pearson.
+
+* Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). A method for characterizing semantic and lexical properties of sentence completions in traumatic brain injury. _Psychological Assessment, 30_(5), 645-655. http://dx.doi.org/10.1037/pas0000510
+
+* Landauer, T. K., Foltz, P. W., & Laham, D. (1998). An introduction to
+latent semantic analysis. Discourse Processes, 25, 259–284. http://dx
+.doi.org/10.1080/01638539809545028
