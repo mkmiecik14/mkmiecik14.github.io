@@ -5,6 +5,18 @@ title: "Academic Blog"
 <h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Posts</h2> 
 <hr>
 
+<!-- A Method for Characterizing Semantic and Lexical... post -->
+
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="postLink"> A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> July 22, 2018
+<span class="label label-primary">Academic</span>
+<span class="label label-danger">Paper Review</span>
+
+Last summer we published a paper in _Psychological Assessment_ that presented methods to better characterize verbal responses on neuropsychological assessments. These methods were applied to a specific cognitive test called the Hayling Sentence Completion Test. We demonstrated that these new methods provide additional insights into the cognitive performance of individuals with mild to moderate traumatic brain injury (TBI)...
+
+<br>
+
 <!-- Boot Perm Shiny App -->
 
 <h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="postLink"> Bootstrapping and Permutation Testing: A Shiny App</a></h3>
@@ -38,7 +50,6 @@ A few of us graduate students decided it would be fun to simulate this year's NC
 <span class="label label-primary">Academic</span>
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
-<span class="label label-danger">Power Play</span>
 
 This post serves as both a tutorial on how to perform multilevel modeling in R and an analysis that provides insight to how powerplay goals in the NHL have changed across 10 years. Readers will learn how to explore data using plots, use R to fit linear models, and how to extract inferences from the results.
 
