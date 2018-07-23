@@ -15,6 +15,8 @@ title: ""
 <span class="label label-default">R</span>
 <span class="label label-success">E-Prime</span>
 <span class="label label-warning">EEG</span>
+<span class="label label-danger">Paper Review</span>
+<span class="badge badge-pill badge-secondary">Shiny App</span>
 
 As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others.
 
@@ -22,7 +24,6 @@ As a cognitive neuroscientist, my projects are a blend of cognitive psychology, 
 
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
-<span class="label label-danger">Power Play</span>
 
 I love the sport of hockey. In my spare time, I like to apply some of the statistical techniques that I've learned in my classes and research projects to hockey data. This hockey analytics blog serves to help hone my data science skills, teach R, and (hopefully) provide new insights to this amazing sport.
 
@@ -32,6 +33,18 @@ I love the sport of hockey. In my spare time, I like to apply some of the statis
 
 <h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h2> 
 <hr>
+
+<!-- A Method for Characterizing Semantic and Lexical... post -->
+
+<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="postLink"> A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a></h3>
+
+<span class="glyphicon glyphicon-time"></span> July 22, 2018
+<span class="label label-primary">Academic</span>
+<span class="label label-danger">Paper Review</span>
+
+A blog post about a paper we published last summer. Topics: traumatic brain injury, cognition, and neuropsychology.
+
+<br>
 
 <!-- Boot Perm Shiny App -->
 
@@ -66,7 +79,6 @@ When a bunch of grad students get together to simulate college basketball tourna
 <span class="label label-primary">Academic</span>
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
-<span class="label label-danger">Power Play</span>
 
 A collaboration post about multilevel modeling in R using professional hockey data from the NHL.
 
@@ -129,7 +141,6 @@ A post demonstrating an efficient data pipeline for E-prime users.
 <span class="glyphicon glyphicon-time"></span> May 15, 2017
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
-<span class="label label-danger">Power Play</span>
 
 A hockey analytics post about 5 vs. 4 NHL powerplays from 2007-2017.
 
