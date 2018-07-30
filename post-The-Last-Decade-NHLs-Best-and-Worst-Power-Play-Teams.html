@@ -213,9 +213,6 @@ $(document).ready(function () {
         <li>
           <a href="cv.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i> CV</a>
         </li>
-        <li>
-          <a href="about.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> About</a>
-        </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-paper-plane-o" aria-hidden="true"></i> My Blogs<span class="caret"></span>
@@ -231,9 +228,17 @@ $(document).ready(function () {
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="academicons-1.8.0/css/academicons.css"/>
 <link rel="stylesheet" href="font-awesome-animation.min.css">
+
+<!-- Font Awesome CDNs
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+-->
 
 <div class="fluid-row" id="header">
 
@@ -353,18 +358,18 @@ bestPP &lt;- data5v4 %&gt;%
   mutate(sig = tpval &lt; .05)
 print(bestPP)</code></pre>
 <pre><code>&gt; # A tibble: 30 x 6
-&gt;       Team          mean         sd        sem       tpval   sig
-&gt;     &lt;fctr&gt;         &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;lgl&gt;
-&gt;  1     ANA  0.0295984571 0.08135082 0.02572539 0.279566941 FALSE
-&gt;  2     ARI -0.0556384254 0.07765992 0.02455822 0.049721680  TRUE
-&gt;  3 ATL.WPG -0.0456169710 0.07345335 0.02322799 0.081136809 FALSE
-&gt;  4     BOS -0.0249868897 0.10215940 0.03230564 0.459086769 FALSE
-&gt;  5     BUF -0.0230334119 0.09867466 0.03120367 0.479219695 FALSE
-&gt;  6     CAR -0.0102398256 0.08962689 0.02834251 0.726219579 FALSE
-&gt;  7     CBJ -0.0531692896 0.08913087 0.02818566 0.091863618 FALSE
-&gt;  8     CGY -0.0111667945 0.06042159 0.01910699 0.573283741 FALSE
-&gt;  9     CHI -0.0007603766 0.08355941 0.02642381 0.977671085 FALSE
-&gt; 10     COL -0.0782671517 0.06691173 0.02115935 0.004928647  TRUE
+&gt;    Team         mean     sd    sem   tpval sig  
+&gt;    &lt;fct&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt;
+&gt;  1 ANA      0.0296   0.0814 0.0257 0.280   FALSE
+&gt;  2 ARI     -0.0556   0.0777 0.0246 0.0497  TRUE 
+&gt;  3 ATL.WPG -0.0456   0.0735 0.0232 0.0811  FALSE
+&gt;  4 BOS     -0.0250   0.102  0.0323 0.459   FALSE
+&gt;  5 BUF     -0.0230   0.0987 0.0312 0.479   FALSE
+&gt;  6 CAR     -0.0102   0.0896 0.0283 0.726   FALSE
+&gt;  7 CBJ     -0.0532   0.0891 0.0282 0.0919  FALSE
+&gt;  8 CGY     -0.0112   0.0604 0.0191 0.573   FALSE
+&gt;  9 CHI     -0.000760 0.0836 0.0264 0.978   FALSE
+&gt; 10 COL     -0.0783   0.0669 0.0212 0.00493 TRUE 
 &gt; # ... with 20 more rows</code></pre>
 <p>Finally, I plotted these results. Teams that have positive averages that are different from zero are teams that are above average in the power play, despite the decrease in power play goals scored in the last decade. The teams with negative residual averages are the opposite and are below average in the power play. Error bars represent the standard error of the mean.</p>
 <pre class="r"><code># Step 4c: Plot the average residuals, their standard error of the mean,
