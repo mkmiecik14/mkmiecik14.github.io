@@ -302,9 +302,6 @@ div.tocify {
         <li>
           <a href="cv.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i> CV</a>
         </li>
-        <li>
-          <a href="about.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i> About</a>
-        </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <i class="fa fa-paper-plane-o" aria-hidden="true"></i> My Blogs<span class="caret"></span>
@@ -320,9 +317,17 @@ div.tocify {
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="academicons-1.8.0/css/academicons.css"/>
 <link rel="stylesheet" href="font-awesome-animation.min.css">
+
+<!-- Font Awesome CDNs
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+-->
 
 <div class="fluid-row" id="header">
 
@@ -453,24 +458,24 @@ acc &lt;- group_by(eDataSimple,              # Dataframe
 head(acc); tail(acc) </code></pre>
 <pre><code>&gt; # A tibble: 6 x 4
 &gt; # Groups:   ss, cond [2]
-&gt;      ss   cond  block meanAcc
-&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;   &lt;dbl&gt;
-&gt; 1   413      a      1   0.875
-&gt; 2   413      a      2   1.000
-&gt; 3   413      a      3   1.000
-&gt; 4   413      a      4   0.750
-&gt; 5   413      p      1   0.750
-&gt; 6   413      p      2   1.000</code></pre>
+&gt;      ss cond  block meanAcc
+&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+&gt; 1   413 a     1       0.875
+&gt; 2   413 a     2       1    
+&gt; 3   413 a     3       1    
+&gt; 4   413 a     4       0.75 
+&gt; 5   413 p     1       0.75 
+&gt; 6   413 p     2       1</code></pre>
 <pre><code>&gt; # A tibble: 6 x 4
 &gt; # Groups:   ss, cond [2]
-&gt;      ss   cond  block meanAcc
-&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;   &lt;dbl&gt;
-&gt; 1   418      p      3   1.000
-&gt; 2   418      p      4   1.000
-&gt; 3   418      s      1   0.875
-&gt; 4   418      s      2   0.625
-&gt; 5   418      s      3   0.625
-&gt; 6   418      s      4   0.875</code></pre>
+&gt;      ss cond  block meanAcc
+&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+&gt; 1   418 p     3       1    
+&gt; 2   418 p     4       1    
+&gt; 3   418 s     1       0.875
+&gt; 4   418 s     2       0.625
+&gt; 5   418 s     3       0.625
+&gt; 6   418 s     4       0.875</code></pre>
 <p>dplyr can also be used to create pipelines that streamline the code with the %&gt;% operator. Here is an example of a pipeline that calculates both accuracy and RT:</p>
 <pre class="r"><code>results &lt;-  eDataSimple %&gt;% 
               group_by(ss = Subject,
@@ -481,24 +486,24 @@ head(acc); tail(acc) </code></pre>
 head(results); tail(results)</code></pre>
 <pre><code>&gt; # A tibble: 6 x 5
 &gt; # Groups:   ss, cond [2]
-&gt;      ss   cond  block stimulus.ACC stimulus.RT
-&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-&gt; 1   413      a      1        0.875    5776.375
-&gt; 2   413      a      2        1.000    2393.125
-&gt; 3   413      a      3        1.000    2516.875
-&gt; 4   413      a      4        0.750    1940.000
-&gt; 5   413      p      1        0.750    5911.625
-&gt; 6   413      p      2        1.000    3227.625</code></pre>
+&gt;      ss cond  block stimulus.ACC stimulus.RT
+&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+&gt; 1   413 a     1            0.875       5776.
+&gt; 2   413 a     2            1           2393.
+&gt; 3   413 a     3            1           2517.
+&gt; 4   413 a     4            0.75        1940 
+&gt; 5   413 p     1            0.75        5912.
+&gt; 6   413 p     2            1           3228.</code></pre>
 <pre><code>&gt; # A tibble: 6 x 5
 &gt; # Groups:   ss, cond [2]
-&gt;      ss   cond  block stimulus.ACC stimulus.RT
-&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-&gt; 1   418      p      3        1.000    2223.000
-&gt; 2   418      p      4        1.000    2332.750
-&gt; 3   418      s      1        0.875    6749.000
-&gt; 4   418      s      2        0.625    5387.250
-&gt; 5   418      s      3        0.625    7239.000
-&gt; 6   418      s      4        0.875    5255.125</code></pre>
+&gt;      ss cond  block stimulus.ACC stimulus.RT
+&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+&gt; 1   418 p     3            1           2223 
+&gt; 2   418 p     4            1           2333.
+&gt; 3   418 s     1            0.875       6749 
+&gt; 4   418 s     2            0.625       5387.
+&gt; 5   418 s     3            0.625       7239 
+&gt; 6   418 s     4            0.875       5255.</code></pre>
 <p>The dataframe ‘results’ is ready for stats in R.</p>
 <p>Now what about that pesky reviewer #2? Let’s say reviewer #2 asks for a new analysis that, instead of looking at reaction time, asks for the results with reaction time for only correct solutions? If you preprocessed your data in Excel, you would probably have to re-compute all these values in each sheet and then re-do the analyses. But this is simple in R and is only one additional line of code:</p>
 <pre class="r"><code>corRT &lt;-  eDataSimple %&gt;%
@@ -511,24 +516,24 @@ head(results); tail(results)</code></pre>
 head(corRT); tail(corRT)</code></pre>
 <pre><code>&gt; # A tibble: 6 x 5
 &gt; # Groups:   ss, cond [2]
-&gt;      ss   cond  block stimulus.ACC stimulus.RT
-&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-&gt; 1   413      a      1            1    5999.000
-&gt; 2   413      a      2            1    2393.125
-&gt; 3   413      a      3            1    2516.875
-&gt; 4   413      a      4            1    2069.000
-&gt; 5   413      p      1            1    5791.833
-&gt; 6   413      p      2            1    3227.625</code></pre>
+&gt;      ss cond  block stimulus.ACC stimulus.RT
+&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+&gt; 1   413 a     1                1       5999 
+&gt; 2   413 a     2                1       2393.
+&gt; 3   413 a     3                1       2517.
+&gt; 4   413 a     4                1       2069 
+&gt; 5   413 p     1                1       5792.
+&gt; 6   413 p     2                1       3228.</code></pre>
 <pre><code>&gt; # A tibble: 6 x 5
 &gt; # Groups:   ss, cond [2]
-&gt;      ss   cond  block stimulus.ACC stimulus.RT
-&gt;   &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-&gt; 1   418      p      3            1    2223.000
-&gt; 2   418      p      4            1    2332.750
-&gt; 3   418      s      1            1    6574.000
-&gt; 4   418      s      2            1    5326.000
-&gt; 5   418      s      3            1    6407.000
-&gt; 6   418      s      4            1    4871.143</code></pre>
+&gt;      ss cond  block stimulus.ACC stimulus.RT
+&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+&gt; 1   418 p     3                1       2223 
+&gt; 2   418 p     4                1       2333.
+&gt; 3   418 s     1                1       6574 
+&gt; 4   418 s     2                1       5326 
+&gt; 5   418 s     3                1       6407 
+&gt; 6   418 s     4                1       4871.</code></pre>
 <p>To summarize, the entire R script to process these data is quite concise and can accommodate <em>many</em> more participants with ease:</p>
 <pre class="r"><code>rm(list = ls()) # Clears workspace
 
