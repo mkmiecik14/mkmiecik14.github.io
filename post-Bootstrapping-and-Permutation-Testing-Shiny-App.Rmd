@@ -36,8 +36,6 @@ knitr::include_app("https://mattkmiecik.shinyapps.io/boot-perm-app/",
                    height = "1400px")
 ```
 
-<p class="text-info">_Note:_ We are also hosting this app on Amazon’s EC2 cloud service. [Click here to view the app if the one above is down](https://ec2-18-188-158-248.us-east-2.compute.amazonaws.com/). You may get messages about an unsecure connection here.</p>
-
 <br >
 
 ### Bootstrapping
