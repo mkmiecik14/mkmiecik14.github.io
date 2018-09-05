@@ -54,7 +54,7 @@ dashboardPage(
           menuSubItem("GitHub", icon = icon("github"), href = "https://github.com/epongpipat")
         )
       ),
-      menuItem("MIT License 2018", icon = icon("copyright"), href = "https://mattkmiecik.com/")
+      menuItem("MIT License 2018", icon = icon("copyright"), href = "https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/app-update/boot-perm-dash/LICENSE")
     )
   ),
 

@@ -2,14 +2,27 @@
 title: "Academic Blog"
 ---
 
-<h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Posts</h2> 
+<h2><span class="far fa-file-alt" aria-hidden="true"></span> Posts</h2> 
 <hr>
+
+<!-- Boot Perm Shiny Dashboard -->
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/" class="postLink"> Bootstrapping and Permutation Testing: A Shiny Dashboard</a></h3>
+
+<span class="far fa-clock"></span> September 2, 2018
+<span class="label label-primary">Academic</span>
+<span class="label label-default">R</span>
+<span class="badge badge-pill badge-light">Shiny Dashboard</span>
+
+We upgraded our [shiny app](https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html) to a shiny dashboard.
+
+<br>
 
 <!-- A Method for Characterizing Semantic and Lexical... post -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="postLink"> A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="postLink"> A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> July 22, 2018
+<span class="far fa-clock"></span> July 22, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-danger">Paper Review</span>
 
@@ -19,9 +32,9 @@ Last summer we published a paper in _Psychological Assessment_ that presented me
 
 <!-- Boot Perm Shiny App -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="postLink"> Bootstrapping and Permutation Testing: A Shiny App</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="postLink"> Bootstrapping and Permutation Testing: A Shiny App</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> June 7, 2018
+<span class="far fa-clock"></span> June 7, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 <span class="badge badge-pill badge-light">Shiny App</span>
@@ -32,9 +45,9 @@ This post serves as a brief overview of the difference between bootstrapping and
 
 <!-- 2018 March Madness -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="postLink"> Simulating 2018 NCAA March Madness Tournament Performance in R</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="postLink"> Simulating 2018 NCAA March Madness Tournament Performance in R</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> March 20, 2018
+<span class="far fa-clock"></span> March 20, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 
@@ -44,9 +57,9 @@ A few of us graduate students decided it would be fun to simulate this year's NC
 
 <!-- Multi-level Model NHL -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> February 11, 2018
+<span class="far fa-clock"></span> February 11, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
@@ -57,9 +70,9 @@ This post serves as both a tutorial on how to perform multilevel modeling in R a
 
 <!-- Lit Review -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Writing-a-Literature-Review.html" class="postLink"> Writing a Literature Review</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Writing-a-Literature-Review.html" class="postLink"> Writing a Literature Review</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> September 25, 2017
+<span class="far fa-clock"></span> September 25, 2017
 <span class="label label-primary">Academic</span>
 
 I recently completed my first comprehensive literature review as part of a graduate school milestone project. Before starting, I sought guidance from online blogs and university workshops held by our library. The tips I learned from these resources were extremely helpful, but not everything worked for me. This is simply a list of things that worked/did not work for me during the reading and writing process of my literature review...
@@ -68,9 +81,9 @@ I recently completed my first comprehensive literature review as part of a gradu
 
 <!-- Xbox Controllers and Eprime -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="postLink"> Using Xbox Controllers and Sending EEG Triggers with E-Prime</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="postLink"> Using Xbox Controllers and Sending EEG Triggers with E-Prime</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> June 12, 2017
+<span class="far fa-clock"></span> June 12, 2017
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 <span class="label label-success">E-Prime</span>
@@ -82,9 +95,9 @@ I just spent an entire week wrangling the E-Prime beast and I've lived to tell t
 
 <!-- ggplot2 Histogram Logo Fail -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="far fa-clock"></span> May 15, 2017
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 
@@ -94,9 +107,9 @@ When I first started creating this website (in WordPress), I thought it would be
 
 <!-- Stop Using Excel to Preprocess E-Prime Data -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="postLink"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="postLink"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="far fa-clock"></span> May 15, 2017
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 <span class="label label-success">E-Prime</span>
