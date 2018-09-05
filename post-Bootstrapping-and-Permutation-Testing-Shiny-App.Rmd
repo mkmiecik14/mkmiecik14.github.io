@@ -19,6 +19,8 @@ options(knitr.table.format = 'html') # For the html tables
 
 <br >
 
+> We have since upgraded this shiny app to a shiny dashboard. [Click here](https://mattkmiecik.shinyapps.io/boot-perm-dash/) to see it!
+
 ## Purpose 
 <hr >
 

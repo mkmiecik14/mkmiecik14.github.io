@@ -6,14 +6,14 @@ My infatuation (some say obsession) with hockey began during my undergrad in the
 
 Doors closing… Welcome to the Blue Line.
 
-<h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Posts</h2> 
+<h2><span class="far fa-file-alt" aria-hidden="true"></span> Posts</h2> 
 <hr>
 
 <!-- Multi-level Model NHL -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> February 11, 2018
+<span class="far fa-clock"></span> February 11, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
@@ -24,9 +24,9 @@ This post serves as both a tutorial on how to perform multilevel modeling in R a
 
 <!-- The Last Decade NHLs Best and Worst Power Play Teams -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="postLink"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="postLink"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="far fa-clock"></span> May 15, 2017
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
 
