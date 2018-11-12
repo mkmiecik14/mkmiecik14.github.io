@@ -217,6 +217,42 @@ kable(teaching) %>%
 
 ```
 
+## Guest Lectures
+
+```{r guest}
+guest <- data.frame(Year     = c(2018, 
+                                 2018, 
+                                 2018
+                                 ),
+                    Semester = c('Fall', 
+                                 'Fall',
+                                 'Fall'
+                                 ),
+                    Topic = c("Language", 
+                              "Short-term & Working Memory", 
+                              "Analogical Reasoning"
+                              ),
+                    Class = c("Cognitive Neuroscience",
+                              "Cognitive Neuroscience",
+                              "Reasoning"
+                              ),
+                       Professor = c("Dr. Bart Rypma",
+                                     "Dr. Bart Rypma",
+                                     "Dr. Daniel C. Krawczyk"
+                                     ),
+                       Institution = c('The University of Texas at Dallas',
+                                       'The University of Texas at Dallas',
+                                       'The University of Texas at Dallas'
+                                       )
+                    )
+
+kable(guest) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+
+```
+
+
+
 <br />
 
 # Internships
