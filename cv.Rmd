@@ -73,7 +73,7 @@ Loyola University Chicago <br/>
 # Publications
 <hr />
 
-* Kmiecik, M. J., Brisson, R. J., & Morrison, R. G. The time course of semantic and relational processing during verbal analogical reasoning (in press). _Brain and Cognition_. https://doi.org/10.1016/j.bandc.2018.11.012
+* Kmiecik, M. J., Brisson, R. J., & Morrison, R. G. (in press). The time course of semantic and relational processing during verbal analogical reasoning. _Brain and Cognition_. https://doi.org/10.1016/j.bandc.2018.11.012
 
 * Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). [A
 method for characterizing semantic and lexical properties of sentence completions in traumatic
@@ -94,7 +94,9 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Talks
 
-* Kmiecik, M. J., Krawczyk, D. C. (2017, October). Reasoning With Complex Relational Structures. Talk given at the UT Dallas School of Behavioral and Brain Sciences Cognition and Neuroscience program annual Fall retreat. Dallas, TX.
+* Kmiecik, M. J., Nagele, M., Sharma, R., Vaughn, A. Thakur, P., & Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk presented at the Brain Performance Institute's Inaugural TBI Research Showcase. Dallas, TX.
+
+* Kmiecik, M. J. & Krawczyk, D. C. (2017, October). Reasoning With Complex Relational Structures. Talk given at the UT Dallas School of Behavioral and Brain Sciences Cognition and Neuroscience program annual Fall retreat. Dallas, TX.
 
 * Kmiecik, M. & Morrison, R.G. (2013, August). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) Paper presented at the 35th Annual Conference of the Cognitive Science Society, Berlin, Germany.
 
