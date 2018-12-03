@@ -7,21 +7,21 @@ title: ""
 </div>
 
 <!-- social icons bar START-->
-<div class="social-icons">
+<div class="social-icons" style="font-size: 2.4rem;">
 <ul>
-<li><a href="mailto:matthew.kmiecik@utdallas.edu"><i class="fa fa-envelope faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://twitter.com/mattkmiecik14"><i class="fa fa-twitter faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://www.linkedin.com/in/matt-kmiecik-776603b0/"><i class="fa fa-linkedin faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://github.com/mkmiecik14"><i class="fa fa-github faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar ai-3x faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate ai-3x faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
+<li><a href="mailto:matthew.kmiecik@utdallas.edu"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://www.linkedin.com/in/matt-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 </ul>
 </div>
 <!-- social icons bar END-->
 
 <br>
 
-<h2><i class="fa fa-user-circle-o" aria-hidden="true"></i> About Me</h2>
+<h2><i class="fas fa-user-circle" aria-hidden="true"></i> About Me</h2>
 <hr>
 I am a fifth year PhD student studying cognitive neuroscience at The University of Texas at Dallas under [Dr. Daniel C. Krawczyk](https://www.utdallas.edu/bbs/faculty/detail.php5?i=321). I am interested in how language interacts with human thinking, reasoning, and problem solving. My work utilizes neuroimaging techniques, such as fMRI and EEG/ERP, to understand the cognitive mechanisms of reasoning and how these relate to neural functioning and behavior. I am also interested in how traumatic brain injuries affect cognitive constructs, such as attention and semantic memory, to inform and develop cognitive rehabilitation programs. I enjoy visualizing and analyzing data, learning programming, blogging, and watching hockey. [Click here for my CV.](https://mattkmiecik.com/cv.html)
 
@@ -29,10 +29,10 @@ I am a fifth year PhD student studying cognitive neuroscience at The University 
 
 <!-- MY BLOGS -->
 
-<h2><span class="fa fa-paper-plane-o" aria-hidden="true"></span> My Blogs</h2> 
+<h2><span class="far fa-paper-plane" aria-hidden="true"></span> My Blogs</h2> 
 <hr>
 
-<h3><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="academicblog.html"> Academic Blog</a></h3> 
+<h3><span class="far fa-newspaper" aria-hidden="true"></span><a href="academicblog.html"> Academic Blog</a></h3> 
 
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
@@ -43,7 +43,7 @@ I am a fifth year PhD student studying cognitive neuroscience at The University 
 
 As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others.
 
-<h3><span class="fa fa-newspaper-o" aria-hidden="true"></span><a href="theblueline.html"> The Blue Line</a></h3> 
+<h3><span class="far fa-newspaper" aria-hidden="true"></span><a href="theblueline.html"> The Blue Line</a></h3> 
 
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
@@ -54,14 +54,27 @@ I love the sport of hockey. In my spare time, I like to apply some of the statis
 
 <!-- RECENT POSTS -->
 
-<h2><span class="fa fa-file-text-o" aria-hidden="true"></span> Recent Posts</h2> 
+<h2><span class="far fa-file-alt" aria-hidden="true"></span> Recent Posts</h2> 
 <hr>
+
+<!-- Boot Perm Shiny Dashboard -->
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/" class="postLink"> Bootstrapping and Permutation Testing: A Shiny Dashboard</a></h3>
+
+<span class="far fa-clock"></span> September 2, 2018
+<span class="label label-primary">Academic</span>
+<span class="label label-default">R</span>
+<span class="badge badge-pill badge-light">Shiny Dashboard</span>
+
+A Shiny dashboard visualizing the differences between bootstrapping and permutation testing.
+
+<br>
 
 <!-- A Method for Characterizing Semantic and Lexical... post -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="postLink"> A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="postLink"> A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> July 22, 2018
+<span class="far fa-clock"></span> July 22, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-danger">Paper Review</span>
 
@@ -71,9 +84,9 @@ A blog post about a paper we published last summer. Topics: traumatic brain inju
 
 <!-- Boot Perm Shiny App -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="postLink"> Bootstrapping and Permutation Testing: A Shiny App</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="postLink"> Bootstrapping and Permutation Testing: A Shiny App</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> June 7, 2018
+<span class="far fa-clock"></span> June 7, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 <span class="badge badge-pill badge-light">Shiny App</span>
@@ -84,9 +97,9 @@ A Shiny application visualizing the differences between bootstrapping and permut
 
 <!-- 2018 March Madness -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="postLink"> Simulating 2018 NCAA March Madness Tournament Performance in R</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="postLink"> Simulating 2018 NCAA March Madness Tournament Performance in R</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> March 20, 2018
+<span class="far fa-clock"></span> March 20, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 
@@ -96,9 +109,9 @@ When a bunch of grad students get together to simulate college basketball tourna
 
 <!-- Multi-level Model NHL -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> February 11, 2018
+<span class="far fa-clock"></span> February 11, 2018
 <span class="label label-primary">Academic</span>
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
@@ -109,9 +122,9 @@ A collaboration post about multilevel modeling in R using professional hockey da
 
 <!-- Lit Review -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Writing-a-Literature-Review.html" class="postLink"> Writing a Literature Review</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Writing-a-Literature-Review.html" class="postLink"> Writing a Literature Review</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> September 25, 2017
+<span class="far fa-clock"></span> September 25, 2017
 <span class="label label-primary">Academic</span>
 
 A post about writing my first literature review. Things that worked/did not work for me.
@@ -120,9 +133,9 @@ A post about writing my first literature review. Things that worked/did not work
 
 <!-- Xbox Controllers and Eprime -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="postLink"> Using Xbox Controllers and Sending EEG Triggers with E-Prime</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="postLink"> Using Xbox Controllers and Sending EEG Triggers with E-Prime</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> June 12, 2017
+<span class="far fa-clock"></span> June 12, 2017
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 <span class="label label-success">E-Prime</span>
@@ -134,9 +147,9 @@ A post about interfacing E-Prime 2.0 with an Xbox controller and passing stimulu
 
 <!-- ggplot2 histogram logo fail -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="far fa-clock"></span> May 15, 2017
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 
@@ -146,9 +159,9 @@ A (probably) pointless post about forcing spaces in ggplot2 histograms.
 
 <!-- Stop Using Excel to Preprocess E-Prime Data -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="postLink"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="postLink"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="far fa-clock"></span> May 15, 2017
 <span class="label label-primary">Academic</span>
 <span class="label label-default">R</span>
 <span class="label label-success">E-Prime</span>
@@ -159,9 +172,9 @@ A post demonstrating an efficient data pipeline for E-prime users.
 
 <!-- The Last Decade NHLs Best and Worst Power Play Teams -->
 
-<h3><span class="fa fa-sticky-note-o" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="postLink"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="postLink"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
 
-<span class="glyphicon glyphicon-time"></span> May 15, 2017
+<span class="far fa-clock"></span> May 15, 2017
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
 
@@ -169,12 +182,5 @@ A hockey analytics post about 5 vs. 4 NHL powerplays from 2007-2017.
 
 <br>
 
-
 <!-- disqus comment counter LEAVE HERE AT BOTTOM OF INDEX -->
 <script id="dsq-count-scr" src="//mattkmiecik.disqus.com/count.js" async></script> 
-
-
-
-
-
-

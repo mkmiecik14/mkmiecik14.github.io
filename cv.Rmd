@@ -19,14 +19,14 @@ options(knitr.table.format = 'html') # For the html tables
 ```
 
 <!-- social icons bar START-->
-<div class="social-icons">
+<div class="social-icons" style="font-size: 2.4rem;">
 <ul>
-<li><a href="mailto:matthew.kmiecik@utdallas.edu"><i class="fa fa-envelope faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://twitter.com/mattkmiecik14"><i class="fa fa-twitter faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://www.linkedin.com/in/matt-kmiecik-776603b0/"><i class="fa fa-linkedin faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://github.com/mkmiecik14"><i class="fa fa-github faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar ai-3x faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
-<li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate ai-3x faa-horizontal animated-hover" aria-hidden="true"></i></a></li>
+<li><a href="mailto:matthew.kmiecik@utdallas.edu"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://www.linkedin.com/in/matt-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 </ul>
 </div>
 <!-- social icons bar END-->
@@ -93,6 +93,8 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 <br />
 
 ## Talks
+
+* Kmiecik, M. J., Krawczyk, D. C. (2017, October). Reasoning With Complex Relational Structures. Talk given at the UT Dallas School of Behavioral and Brain Sciences Cognition and Neuroscience program annual Fall retreat. Dallas, TX.
 
 * Kmiecik, M. & Morrison, R.G. (2013, August). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) Paper presented at the 35th Annual Conference of the Cognitive Science Society, Berlin, Germany.
 
@@ -220,6 +222,42 @@ kable(teaching) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
 
 ```
+
+## Guest Lectures
+
+```{r guest}
+guest <- data.frame(Year     = c(2018, 
+                                 2018, 
+                                 2018
+                                 ),
+                    Semester = c('Fall', 
+                                 'Fall',
+                                 'Fall'
+                                 ),
+                    Topic = c("Language", 
+                              "Short-term & Working Memory", 
+                              "Analogical Reasoning"
+                              ),
+                    Class = c("Cognitive Neuroscience",
+                              "Cognitive Neuroscience",
+                              "Reasoning"
+                              ),
+                       Professor = c("Dr. Bart Rypma",
+                                     "Dr. Bart Rypma",
+                                     "Dr. Daniel C. Krawczyk"
+                                     ),
+                       Institution = c('The University of Texas at Dallas',
+                                       'The University of Texas at Dallas',
+                                       'The University of Texas at Dallas'
+                                       )
+                    )
+
+kable(guest) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+
+```
+
+
 
 <br />
 

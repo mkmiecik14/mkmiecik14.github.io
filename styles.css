@@ -72,6 +72,8 @@ body {
 .social-icons ul {
   width: 100%;
   text-align: center;
+  padding-right: 25px;
+  padding-top: 10px;
 }
 
 .social-icons ul li {
@@ -80,10 +82,7 @@ body {
 
 .social-icons ul li a i {
   font-size: 25px;
-  color: #2C3E50;
-  padding-top: 20px;
-  padding-right: 10px;
-}
+} 
 
 .schoollogo{
   float: none;
