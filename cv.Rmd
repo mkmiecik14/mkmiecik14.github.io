@@ -72,18 +72,24 @@ Loyola University Chicago <br/>
 
 # Publications
 <hr />
+
+* Kmiecik, M. J., Brisson, R. J., & Morrison, R. G. The time course of semantic and relational processing during verbal analogical reasoning (in press). _Brain and Cognition_. https://doi.org/10.1016/j.bandc.2018.11.012
+
 * Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). [A
 method for characterizing semantic and lexical properties of sentence completions in traumatic
 brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury) _Psychological Assessment_, _30_(5), 645-655. http://dx.doi.org/10.1037/pas0000510
 
-* Stockdale, L. A., Morrison, R. G., Kmiecik, M. J., Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) Social Cognitive and Affective Neuroscience, 10(10), 1373-1382. doi: 10.1093/scan/nsv025
-
-* Kmiecik, M. & Morrison, R.G. (2013). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N. Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive Science Society. Austin, TX: Cognitive Science Society.
+* Stockdale, L. A., Morrison, R. G., Kmiecik, M. J., Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) _Social Cognitive and Affective Neuroscience_, _10_(10), 1373-1382. doi: 10.1093/scan/nsv025
 
 <br />
 
 # Conference Participation
 <hr />
+
+## Papers
+
+* Kmiecik, M. & Morrison, R.G. (2013). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N. Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive Science Society. Austin, TX: Cognitive Science Society.
+
 <br />
 
 ## Talks
