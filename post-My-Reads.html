@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Matthew J. Kmiecik" />
+
+<meta name="date" content="2018-12-31" />
+
+<title>My Reads</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-104506183-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Twittercards -->
+<meta name="twitter:card" content="summary" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        <i class="fas fa-chart-area logo-icon1" aria-hidden="true"></i> 
+        <i class="far fa-chart-bar logo-icon2" aria-hidden="true"></i> 
+        <i class="fas fa-chart-line logo-icon3" aria-hidden="true"></i> Matthew J. Kmiecik</a> <!-- You can put words here for nav -->
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="index.html">
+            <i class="fas fa-home" aria-hidden="true"></i> Home</a>
+        </li>
+        <li>
+          <a href="cv.html"><i class="fas fa-graduation-cap" aria-hidden="true"></i> CV</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="far fa-paper-plane" aria-hidden="true"></i> My Blogs<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="academicblog.html">Academic</a></li>
+            <li><a href="theblueline.html">The Blue Line</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="academicons-1.8.0/css/academicons.css"/>
+<link rel="stylesheet" href="font-awesome-animation.min.css"/>
+
+<!-- Font Awesome CDNs
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+
+-->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">My Reads</h1>
+<h4 class="author"><em>Matthew J. Kmiecik</em></h4>
+<h4 class="date"><em>31 December 2018</em></h4>
+
+</div>
+
+
+<p><br ></p>
+<p>I absolutely love reading and collecting books. Whenever I’m in a phase where I am constantly reading, I feel more creative and confident in my academic work. However, in the busy mix of an academic semester, it’s easy to put reading off to the side in lieu of data analysis, writing, and conferences. Below is a live tracker of my reading progress (I’m trying for 20 pages per day) to help motivate me to read every day.</p>
+<p>Below that I’ll list the finished books that have inspired me or have made an impact on my work.</p>
+<div id="reading-progress" class="section level2">
+<h2>Reading Progress</h2>
+<hr >
+<p>I’ll try to update this weekly:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Packages</span>
+<span class="kw">library</span>(tidyverse); <span class="kw">library</span>(readxl); <span class="kw">library</span>(plotly)
+
+<span class="co"># Importing reading data</span>
+reading_data &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;data/my-reads.xlsx&quot;</span>, 
+                           <span class="dt">sheet =</span> <span class="st">&quot;reading-data&quot;</span>
+                           ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(date))
+book_list &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="dt">path =</span> <span class="st">&quot;data/my-reads.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;book-list&quot;</span>)
+
+<span class="co"># Joinging book list to reading data</span>
+rdata &lt;-<span class="st"> </span><span class="kw">left_join</span>(reading_data, book_list, <span class="dt">by =</span> <span class="st">&quot;book&quot;</span>)
+
+<span class="co"># Plotting daily reading progress by pages</span>
+pages_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(rdata, <span class="kw">aes</span>(date, pages, <span class="dt">color =</span> title)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">group =</span> author)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_date</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%d-%b&quot;</span>,
+               <span class="dt">limits =</span> <span class="kw">c</span>(<span class="kw">as.Date</span>(<span class="kw">Sys.Date</span>() <span class="op">-</span><span class="st"> </span><span class="dv">5</span>), <span class="kw">as.Date</span>(<span class="kw">Sys.Date</span>() <span class="op">+</span><span class="st"> </span><span class="dv">5</span>)),
+               <span class="dt">date_breaks =</span> <span class="st">&quot;1 day&quot;</span>,
+               <span class="dt">date_minor_breaks =</span> <span class="st">&quot;1 day&quot;</span>
+               ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">40</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)
+
+<span class="kw">ggplotly</span>(pages_plot)</code></pre></div>
+<div id="htmlwidget-72878dd56a75246e730a" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-72878dd56a75246e730a">{"x":{"data":[{"x":[17896,17897],"y":[20,20],"text":["author: Joaquin M. Fuster<br />date: 2018-12-31<br />pages: 20<br />title: The Neuroscience of Freedom and Creativity: Our Predictive Brain","author: Joaquin M. Fuster<br />date: 2019-01-01<br />pages: 20<br />title: The Neuroscience of Freedom and Creativity: Our Predictive Brain"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"The Neuroscience of Freedom and Creativity: Our Predictive Brain","legendgroup":"The Neuroscience of Freedom and Creativity: Our Predictive Brain","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17898,17899,17900,17901,17902,17903,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"text":["author: NA<br />date: 2019-01-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-01-31<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-02-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-03-31<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-04-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-05-31<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-06-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-07-31<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-08-31<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-09-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-10-31<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-11-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-01<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-02<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-03<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-04<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-05<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-06<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-07<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-08<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-09<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-10<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-11<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-12<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-13<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-14<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-15<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-16<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-17<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-18<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-19<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-20<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-21<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-22<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-23<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-24<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-25<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-26<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-27<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-28<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-29<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-30<br />pages: NA<br />title: NA","author: NA<br />date: 2019-12-31<br />pages: NA<br />title: NA"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(127,127,127,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)"}},"hoveron":"points","name":"NA","legendgroup":"NA","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17896,17897],"y":[20,20],"text":["date: 2018-12-31<br />pages: 20<br />title: The Neuroscience of Freedom and Creativity: Our Predictive Brain","date: 2019-01-01<br />pages: 20<br />title: The Neuroscience of Freedom and Creativity: Our Predictive Brain"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"The Neuroscience of Freedom and Creativity: Our Predictive Brain","legendgroup":"The Neuroscience of Freedom and Creativity: Our Predictive Brain","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17898,17899,17900,17901,17902,17903,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"y":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"text":["date: 2019-01-02<br />pages: NA<br />title: NA","date: 2019-01-03<br />pages: NA<br />title: NA","date: 2019-01-04<br />pages: NA<br />title: NA","date: 2019-01-05<br />pages: NA<br />title: NA","date: 2019-01-06<br />pages: NA<br />title: NA","date: 2019-01-07<br />pages: NA<br />title: NA","date: 2019-01-08<br />pages: NA<br />title: NA","date: 2019-01-09<br />pages: NA<br />title: NA","date: 2019-01-10<br />pages: NA<br />title: NA","date: 2019-01-11<br />pages: NA<br />title: NA","date: 2019-01-12<br />pages: NA<br />title: NA","date: 2019-01-13<br />pages: NA<br />title: NA","date: 2019-01-14<br />pages: NA<br />title: NA","date: 2019-01-15<br />pages: NA<br />title: NA","date: 2019-01-16<br />pages: NA<br />title: NA","date: 2019-01-17<br />pages: NA<br />title: NA","date: 2019-01-18<br />pages: NA<br />title: NA","date: 2019-01-19<br />pages: NA<br />title: NA","date: 2019-01-20<br />pages: NA<br />title: NA","date: 2019-01-21<br />pages: NA<br />title: NA","date: 2019-01-22<br />pages: NA<br />title: NA","date: 2019-01-23<br />pages: NA<br />title: NA","date: 2019-01-24<br />pages: NA<br />title: NA","date: 2019-01-25<br />pages: NA<br />title: NA","date: 2019-01-26<br />pages: NA<br />title: NA","date: 2019-01-27<br />pages: NA<br />title: NA","date: 2019-01-28<br />pages: NA<br />title: NA","date: 2019-01-29<br />pages: NA<br />title: NA","date: 2019-01-30<br />pages: NA<br />title: NA","date: 2019-01-31<br />pages: NA<br />title: NA","date: 2019-02-01<br />pages: NA<br />title: NA","date: 2019-02-02<br />pages: NA<br />title: NA","date: 2019-02-03<br />pages: NA<br />title: NA","date: 2019-02-04<br />pages: NA<br />title: NA","date: 2019-02-05<br />pages: NA<br />title: NA","date: 2019-02-06<br />pages: NA<br />title: NA","date: 2019-02-07<br />pages: NA<br />title: NA","date: 2019-02-08<br />pages: NA<br />title: NA","date: 2019-02-09<br />pages: NA<br />title: NA","date: 2019-02-10<br />pages: NA<br />title: NA","date: 2019-02-11<br />pages: NA<br />title: NA","date: 2019-02-12<br />pages: NA<br />title: NA","date: 2019-02-13<br />pages: NA<br />title: NA","date: 2019-02-14<br />pages: NA<br />title: NA","date: 2019-02-15<br />pages: NA<br />title: NA","date: 2019-02-16<br />pages: NA<br />title: NA","date: 2019-02-17<br />pages: NA<br />title: NA","date: 2019-02-18<br />pages: NA<br />title: NA","date: 2019-02-19<br />pages: NA<br />title: NA","date: 2019-02-20<br />pages: NA<br />title: NA","date: 2019-02-21<br />pages: NA<br />title: NA","date: 2019-02-22<br />pages: NA<br />title: NA","date: 2019-02-23<br />pages: NA<br />title: NA","date: 2019-02-24<br />pages: NA<br />title: NA","date: 2019-02-25<br />pages: NA<br />title: NA","date: 2019-02-26<br />pages: NA<br />title: NA","date: 2019-02-27<br />pages: NA<br />title: NA","date: 2019-02-28<br />pages: NA<br />title: NA","date: 2019-03-01<br />pages: NA<br />title: NA","date: 2019-03-02<br />pages: NA<br />title: NA","date: 2019-03-03<br />pages: NA<br />title: NA","date: 2019-03-04<br />pages: NA<br />title: NA","date: 2019-03-05<br />pages: NA<br />title: NA","date: 2019-03-06<br />pages: NA<br />title: NA","date: 2019-03-07<br />pages: NA<br />title: NA","date: 2019-03-08<br />pages: NA<br />title: NA","date: 2019-03-09<br />pages: NA<br />title: NA","date: 2019-03-10<br />pages: NA<br />title: NA","date: 2019-03-11<br />pages: NA<br />title: NA","date: 2019-03-12<br />pages: NA<br />title: NA","date: 2019-03-13<br />pages: NA<br />title: NA","date: 2019-03-14<br />pages: NA<br />title: NA","date: 2019-03-15<br />pages: NA<br />title: NA","date: 2019-03-16<br />pages: NA<br />title: NA","date: 2019-03-17<br />pages: NA<br />title: NA","date: 2019-03-18<br />pages: NA<br />title: NA","date: 2019-03-19<br />pages: NA<br />title: NA","date: 2019-03-20<br />pages: NA<br />title: NA","date: 2019-03-21<br />pages: NA<br />title: NA","date: 2019-03-22<br />pages: NA<br />title: NA","date: 2019-03-23<br />pages: NA<br />title: NA","date: 2019-03-24<br />pages: NA<br />title: NA","date: 2019-03-25<br />pages: NA<br />title: NA","date: 2019-03-26<br />pages: NA<br />title: NA","date: 2019-03-27<br />pages: NA<br />title: NA","date: 2019-03-28<br />pages: NA<br />title: NA","date: 2019-03-29<br />pages: NA<br />title: NA","date: 2019-03-30<br />pages: NA<br />title: NA","date: 2019-03-31<br />pages: NA<br />title: NA","date: 2019-04-01<br />pages: NA<br />title: NA","date: 2019-04-02<br />pages: NA<br />title: NA","date: 2019-04-03<br />pages: NA<br />title: NA","date: 2019-04-04<br />pages: NA<br />title: NA","date: 2019-04-05<br />pages: NA<br />title: NA","date: 2019-04-06<br />pages: NA<br />title: NA","date: 2019-04-07<br />pages: NA<br />title: NA","date: 2019-04-08<br />pages: NA<br />title: NA","date: 2019-04-09<br />pages: NA<br />title: NA","date: 2019-04-10<br />pages: NA<br />title: NA","date: 2019-04-11<br />pages: NA<br />title: NA","date: 2019-04-12<br />pages: NA<br />title: NA","date: 2019-04-13<br />pages: NA<br />title: NA","date: 2019-04-14<br />pages: NA<br />title: NA","date: 2019-04-15<br />pages: NA<br />title: NA","date: 2019-04-16<br />pages: NA<br />title: NA","date: 2019-04-17<br />pages: NA<br />title: NA","date: 2019-04-18<br />pages: NA<br />title: NA","date: 2019-04-19<br />pages: NA<br />title: NA","date: 2019-04-20<br />pages: NA<br />title: NA","date: 2019-04-21<br />pages: NA<br />title: NA","date: 2019-04-22<br />pages: NA<br />title: NA","date: 2019-04-23<br />pages: NA<br />title: NA","date: 2019-04-24<br />pages: NA<br />title: NA","date: 2019-04-25<br />pages: NA<br />title: NA","date: 2019-04-26<br />pages: NA<br />title: NA","date: 2019-04-27<br />pages: NA<br />title: NA","date: 2019-04-28<br />pages: NA<br />title: NA","date: 2019-04-29<br />pages: NA<br />title: NA","date: 2019-04-30<br />pages: NA<br />title: NA","date: 2019-05-01<br />pages: NA<br />title: NA","date: 2019-05-02<br />pages: NA<br />title: NA","date: 2019-05-03<br />pages: NA<br />title: NA","date: 2019-05-04<br />pages: NA<br />title: NA","date: 2019-05-05<br />pages: NA<br />title: NA","date: 2019-05-06<br />pages: NA<br />title: NA","date: 2019-05-07<br />pages: NA<br />title: NA","date: 2019-05-08<br />pages: NA<br />title: NA","date: 2019-05-09<br />pages: NA<br />title: NA","date: 2019-05-10<br />pages: NA<br />title: NA","date: 2019-05-11<br />pages: NA<br />title: NA","date: 2019-05-12<br />pages: NA<br />title: NA","date: 2019-05-13<br />pages: NA<br />title: NA","date: 2019-05-14<br />pages: NA<br />title: NA","date: 2019-05-15<br />pages: NA<br />title: NA","date: 2019-05-16<br />pages: NA<br />title: NA","date: 2019-05-17<br />pages: NA<br />title: NA","date: 2019-05-18<br />pages: NA<br />title: NA","date: 2019-05-19<br />pages: NA<br />title: NA","date: 2019-05-20<br />pages: NA<br />title: NA","date: 2019-05-21<br />pages: NA<br />title: NA","date: 2019-05-22<br />pages: NA<br />title: NA","date: 2019-05-23<br />pages: NA<br />title: NA","date: 2019-05-24<br />pages: NA<br />title: NA","date: 2019-05-25<br />pages: NA<br />title: NA","date: 2019-05-26<br />pages: NA<br />title: NA","date: 2019-05-27<br />pages: NA<br />title: NA","date: 2019-05-28<br />pages: NA<br />title: NA","date: 2019-05-29<br />pages: NA<br />title: NA","date: 2019-05-30<br />pages: NA<br />title: NA","date: 2019-05-31<br />pages: NA<br />title: NA","date: 2019-06-01<br />pages: NA<br />title: NA","date: 2019-06-02<br />pages: NA<br />title: NA","date: 2019-06-03<br />pages: NA<br />title: NA","date: 2019-06-04<br />pages: NA<br />title: NA","date: 2019-06-05<br />pages: NA<br />title: NA","date: 2019-06-06<br />pages: NA<br />title: NA","date: 2019-06-07<br />pages: NA<br />title: NA","date: 2019-06-08<br />pages: NA<br />title: NA","date: 2019-06-09<br />pages: NA<br />title: NA","date: 2019-06-10<br />pages: NA<br />title: NA","date: 2019-06-11<br />pages: NA<br />title: NA","date: 2019-06-12<br />pages: NA<br />title: NA","date: 2019-06-13<br />pages: NA<br />title: NA","date: 2019-06-14<br />pages: NA<br />title: NA","date: 2019-06-15<br />pages: NA<br />title: NA","date: 2019-06-16<br />pages: NA<br />title: NA","date: 2019-06-17<br />pages: NA<br />title: NA","date: 2019-06-18<br />pages: NA<br />title: NA","date: 2019-06-19<br />pages: NA<br />title: NA","date: 2019-06-20<br />pages: NA<br />title: NA","date: 2019-06-21<br />pages: NA<br />title: NA","date: 2019-06-22<br />pages: NA<br />title: NA","date: 2019-06-23<br />pages: NA<br />title: NA","date: 2019-06-24<br />pages: NA<br />title: NA","date: 2019-06-25<br />pages: NA<br />title: NA","date: 2019-06-26<br />pages: NA<br />title: NA","date: 2019-06-27<br />pages: NA<br />title: NA","date: 2019-06-28<br />pages: NA<br />title: NA","date: 2019-06-29<br />pages: NA<br />title: NA","date: 2019-06-30<br />pages: NA<br />title: NA","date: 2019-07-01<br />pages: NA<br />title: NA","date: 2019-07-02<br />pages: NA<br />title: NA","date: 2019-07-03<br />pages: NA<br />title: NA","date: 2019-07-04<br />pages: NA<br />title: NA","date: 2019-07-05<br />pages: NA<br />title: NA","date: 2019-07-06<br />pages: NA<br />title: NA","date: 2019-07-07<br />pages: NA<br />title: NA","date: 2019-07-08<br />pages: NA<br />title: NA","date: 2019-07-09<br />pages: NA<br />title: NA","date: 2019-07-10<br />pages: NA<br />title: NA","date: 2019-07-11<br />pages: NA<br />title: NA","date: 2019-07-12<br />pages: NA<br />title: NA","date: 2019-07-13<br />pages: NA<br />title: NA","date: 2019-07-14<br />pages: NA<br />title: NA","date: 2019-07-15<br />pages: NA<br />title: NA","date: 2019-07-16<br />pages: NA<br />title: NA","date: 2019-07-17<br />pages: NA<br />title: NA","date: 2019-07-18<br />pages: NA<br />title: NA","date: 2019-07-19<br />pages: NA<br />title: NA","date: 2019-07-20<br />pages: NA<br />title: NA","date: 2019-07-21<br />pages: NA<br />title: NA","date: 2019-07-22<br />pages: NA<br />title: NA","date: 2019-07-23<br />pages: NA<br />title: NA","date: 2019-07-24<br />pages: NA<br />title: NA","date: 2019-07-25<br />pages: NA<br />title: NA","date: 2019-07-26<br />pages: NA<br />title: NA","date: 2019-07-27<br />pages: NA<br />title: NA","date: 2019-07-28<br />pages: NA<br />title: NA","date: 2019-07-29<br />pages: NA<br />title: NA","date: 2019-07-30<br />pages: NA<br />title: NA","date: 2019-07-31<br />pages: NA<br />title: NA","date: 2019-08-01<br />pages: NA<br />title: NA","date: 2019-08-02<br />pages: NA<br />title: NA","date: 2019-08-03<br />pages: NA<br />title: NA","date: 2019-08-04<br />pages: NA<br />title: NA","date: 2019-08-05<br />pages: NA<br />title: NA","date: 2019-08-06<br />pages: NA<br />title: NA","date: 2019-08-07<br />pages: NA<br />title: NA","date: 2019-08-08<br />pages: NA<br />title: NA","date: 2019-08-09<br />pages: NA<br />title: NA","date: 2019-08-10<br />pages: NA<br />title: NA","date: 2019-08-11<br />pages: NA<br />title: NA","date: 2019-08-12<br />pages: NA<br />title: NA","date: 2019-08-13<br />pages: NA<br />title: NA","date: 2019-08-14<br />pages: NA<br />title: NA","date: 2019-08-15<br />pages: NA<br />title: NA","date: 2019-08-16<br />pages: NA<br />title: NA","date: 2019-08-17<br />pages: NA<br />title: NA","date: 2019-08-18<br />pages: NA<br />title: NA","date: 2019-08-19<br />pages: NA<br />title: NA","date: 2019-08-20<br />pages: NA<br />title: NA","date: 2019-08-21<br />pages: NA<br />title: NA","date: 2019-08-22<br />pages: NA<br />title: NA","date: 2019-08-23<br />pages: NA<br />title: NA","date: 2019-08-24<br />pages: NA<br />title: NA","date: 2019-08-25<br />pages: NA<br />title: NA","date: 2019-08-26<br />pages: NA<br />title: NA","date: 2019-08-27<br />pages: NA<br />title: NA","date: 2019-08-28<br />pages: NA<br />title: NA","date: 2019-08-29<br />pages: NA<br />title: NA","date: 2019-08-30<br />pages: NA<br />title: NA","date: 2019-08-31<br />pages: NA<br />title: NA","date: 2019-09-01<br />pages: NA<br />title: NA","date: 2019-09-02<br />pages: NA<br />title: NA","date: 2019-09-03<br />pages: NA<br />title: NA","date: 2019-09-04<br />pages: NA<br />title: NA","date: 2019-09-05<br />pages: NA<br />title: NA","date: 2019-09-06<br />pages: NA<br />title: NA","date: 2019-09-07<br />pages: NA<br />title: NA","date: 2019-09-08<br />pages: NA<br />title: NA","date: 2019-09-09<br />pages: NA<br />title: NA","date: 2019-09-10<br />pages: NA<br />title: NA","date: 2019-09-11<br />pages: NA<br />title: NA","date: 2019-09-12<br />pages: NA<br />title: NA","date: 2019-09-13<br />pages: NA<br />title: NA","date: 2019-09-14<br />pages: NA<br />title: NA","date: 2019-09-15<br />pages: NA<br />title: NA","date: 2019-09-16<br />pages: NA<br />title: NA","date: 2019-09-17<br />pages: NA<br />title: NA","date: 2019-09-18<br />pages: NA<br />title: NA","date: 2019-09-19<br />pages: NA<br />title: NA","date: 2019-09-20<br />pages: NA<br />title: NA","date: 2019-09-21<br />pages: NA<br />title: NA","date: 2019-09-22<br />pages: NA<br />title: NA","date: 2019-09-23<br />pages: NA<br />title: NA","date: 2019-09-24<br />pages: NA<br />title: NA","date: 2019-09-25<br />pages: NA<br />title: NA","date: 2019-09-26<br />pages: NA<br />title: NA","date: 2019-09-27<br />pages: NA<br />title: NA","date: 2019-09-28<br />pages: NA<br />title: NA","date: 2019-09-29<br />pages: NA<br />title: NA","date: 2019-09-30<br />pages: NA<br />title: NA","date: 2019-10-01<br />pages: NA<br />title: NA","date: 2019-10-02<br />pages: NA<br />title: NA","date: 2019-10-03<br />pages: NA<br />title: NA","date: 2019-10-04<br />pages: NA<br />title: NA","date: 2019-10-05<br />pages: NA<br />title: NA","date: 2019-10-06<br />pages: NA<br />title: NA","date: 2019-10-07<br />pages: NA<br />title: NA","date: 2019-10-08<br />pages: NA<br />title: NA","date: 2019-10-09<br />pages: NA<br />title: NA","date: 2019-10-10<br />pages: NA<br />title: NA","date: 2019-10-11<br />pages: NA<br />title: NA","date: 2019-10-12<br />pages: NA<br />title: NA","date: 2019-10-13<br />pages: NA<br />title: NA","date: 2019-10-14<br />pages: NA<br />title: NA","date: 2019-10-15<br />pages: NA<br />title: NA","date: 2019-10-16<br />pages: NA<br />title: NA","date: 2019-10-17<br />pages: NA<br />title: NA","date: 2019-10-18<br />pages: NA<br />title: NA","date: 2019-10-19<br />pages: NA<br />title: NA","date: 2019-10-20<br />pages: NA<br />title: NA","date: 2019-10-21<br />pages: NA<br />title: NA","date: 2019-10-22<br />pages: NA<br />title: NA","date: 2019-10-23<br />pages: NA<br />title: NA","date: 2019-10-24<br />pages: NA<br />title: NA","date: 2019-10-25<br />pages: NA<br />title: NA","date: 2019-10-26<br />pages: NA<br />title: NA","date: 2019-10-27<br />pages: NA<br />title: NA","date: 2019-10-28<br />pages: NA<br />title: NA","date: 2019-10-29<br />pages: NA<br />title: NA","date: 2019-10-30<br />pages: NA<br />title: NA","date: 2019-10-31<br />pages: NA<br />title: NA","date: 2019-11-01<br />pages: NA<br />title: NA","date: 2019-11-02<br />pages: NA<br />title: NA","date: 2019-11-03<br />pages: NA<br />title: NA","date: 2019-11-04<br />pages: NA<br />title: NA","date: 2019-11-05<br />pages: NA<br />title: NA","date: 2019-11-06<br />pages: NA<br />title: NA","date: 2019-11-07<br />pages: NA<br />title: NA","date: 2019-11-08<br />pages: NA<br />title: NA","date: 2019-11-09<br />pages: NA<br />title: NA","date: 2019-11-10<br />pages: NA<br />title: NA","date: 2019-11-11<br />pages: NA<br />title: NA","date: 2019-11-12<br />pages: NA<br />title: NA","date: 2019-11-13<br />pages: NA<br />title: NA","date: 2019-11-14<br />pages: NA<br />title: NA","date: 2019-11-15<br />pages: NA<br />title: NA","date: 2019-11-16<br />pages: NA<br />title: NA","date: 2019-11-17<br />pages: NA<br />title: NA","date: 2019-11-18<br />pages: NA<br />title: NA","date: 2019-11-19<br />pages: NA<br />title: NA","date: 2019-11-20<br />pages: NA<br />title: NA","date: 2019-11-21<br />pages: NA<br />title: NA","date: 2019-11-22<br />pages: NA<br />title: NA","date: 2019-11-23<br />pages: NA<br />title: NA","date: 2019-11-24<br />pages: NA<br />title: NA","date: 2019-11-25<br />pages: NA<br />title: NA","date: 2019-11-26<br />pages: NA<br />title: NA","date: 2019-11-27<br />pages: NA<br />title: NA","date: 2019-11-28<br />pages: NA<br />title: NA","date: 2019-11-29<br />pages: NA<br />title: NA","date: 2019-11-30<br />pages: NA<br />title: NA","date: 2019-12-01<br />pages: NA<br />title: NA","date: 2019-12-02<br />pages: NA<br />title: NA","date: 2019-12-03<br />pages: NA<br />title: NA","date: 2019-12-04<br />pages: NA<br />title: NA","date: 2019-12-05<br />pages: NA<br />title: NA","date: 2019-12-06<br />pages: NA<br />title: NA","date: 2019-12-07<br />pages: NA<br />title: NA","date: 2019-12-08<br />pages: NA<br />title: NA","date: 2019-12-09<br />pages: NA<br />title: NA","date: 2019-12-10<br />pages: NA<br />title: NA","date: 2019-12-11<br />pages: NA<br />title: NA","date: 2019-12-12<br />pages: NA<br />title: NA","date: 2019-12-13<br />pages: NA<br />title: NA","date: 2019-12-14<br />pages: NA<br />title: NA","date: 2019-12-15<br />pages: NA<br />title: NA","date: 2019-12-16<br />pages: NA<br />title: NA","date: 2019-12-17<br />pages: NA<br />title: NA","date: 2019-12-18<br />pages: NA<br />title: NA","date: 2019-12-19<br />pages: NA<br />title: NA","date: 2019-12-20<br />pages: NA<br />title: NA","date: 2019-12-21<br />pages: NA<br />title: NA","date: 2019-12-22<br />pages: NA<br />title: NA","date: 2019-12-23<br />pages: NA<br />title: NA","date: 2019-12-24<br />pages: NA<br />title: NA","date: 2019-12-25<br />pages: NA<br />title: NA","date: 2019-12-26<br />pages: NA<br />title: NA","date: 2019-12-27<br />pages: NA<br />title: NA","date: 2019-12-28<br />pages: NA<br />title: NA","date: 2019-12-29<br />pages: NA<br />title: NA","date: 2019-12-30<br />pages: NA<br />title: NA","date: 2019-12-31<br />pages: NA<br />title: NA"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(127,127,127,1)","dash":"solid"},"hoveron":"points","name":"NA","legendgroup":"NA","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[17892.5,17903.5],"tickmode":"array","ticktext":["28-Dec","29-Dec","30-Dec","31-Dec","01-Jan","02-Jan","03-Jan","04-Jan","05-Jan","06-Jan","07-Jan"],"tickvals":[17893,17894,17895,17896,17897,17898,17899,17900,17901,17902,17903],"categoryorder":"array","categoryarray":["28-Dec","29-Dec","30-Dec","31-Dec","01-Jan","02-Jan","03-Jan","04-Jan","05-Jan","06-Jan","07-Jan"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"date","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2,42],"tickmode":"array","ticktext":["0","10","20","30","40"],"tickvals":[0,10,20,30,40],"categoryorder":"array","categoryarray":["0","10","20","30","40"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"pages","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"60c51f0ef618":{"x":{},"y":{},"colour":{},"type":"scatter"},"60c5f3eb196":{"x":{},"y":{},"colour":{}}},"cur_data":"60c51f0ef618","visdat":{"60c51f0ef618":["function (y) ","x"],"60c5f3eb196":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</div>
+<div id="my-favorite-reads" class="section level2">
+<h2>My Favorite Reads</h2>
+<hr >
+<p>Here’s a list of books that have heavily influenced my work one way or another. I welcome any suggestions to add to my reading list! Just leave a comment below.</p>
+<p><img src="images/cortex-and-mind-fuster.jpg"/> <img src="images/memory-cerebral-cortex-fuster.jpg"/></p>
+<ul>
+<li><strong>Cortex and Mind: Unifying Cognition</strong> | <strong>Memory in the Cerebral Cortex: An Empirical Approach to Neural Networks in the Human and Nonhuman Primate</strong> <em>Joaquin Fuster</em></li>
+</ul>
+<p>The ideas, theories, and explanations that Dr. Fuster explicates in these books are a perfect blend of memory, cognitive pyschology, neuroscience, and neuropsychology. As a cognitive neuroscientist interested in frontal lobe function, these books provided me a solid foundation for my work, especially my dissertation project.</p>
+<p><br ></p>
+<p><img src="images/model-comp-judd.jpg" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>Data Analysis: A Model Comparison Approach to Regression, ANOVA, and Beyond (Third Ed.)</strong> <em>Charles M. Judd, Gary H. McClelland, &amp; Carey S. Ryan</em></li>
+</ul>
+<p>Although I felt I received a good education when it came to regression, I wish I had come across this book sooner! The way Judd, McClelland, &amp; Ryan explain regression and its extensions make complete sense to me. These techniques revitalized the way I perform and think about analyses. I highly recommend!</p>
+<p><br ></p>
+<p><img src="images/viz-dis-quant-info-tufte.jpg"/> <img src="images/vis-exp-tufte.jpg"/> <img src="images/envisioning-info-tufte.jpg"/></p>
+<ul>
+<li><strong>The Visual Display of Quantatative Information</strong> | <strong>Visual Explanations</strong> | <strong>Envisioning Information</strong> <em>Edward R. Tufte</em></li>
+</ul>
+<p>Across these three books, I fell in love with the process of data visualization and all the different ways one can clearly and effectively tell a story through data. I immediately began to re-think the way I visualize my data and implement Tufte’s principles in my own work.</p>
+<p><br ></p>
+<p><img src="images/ggplot2-wickham.jpg" style="display: block; margin: auto;" /></p>
+<ul>
+<li><a href="https://github.com/hadley/ggplot2-book"><strong>Ggplot2: Elegant Graphics for Data Analysis</strong></a> <em>Hadley Wickham</em></li>
+</ul>
+<p>I highly recommend reading this, from front to back, before creating another plot in R. ggplot2 is an indespensible tool in any data scientist’s repetoire for understanding and visualizing his or her data. Part III was especially informative for my own work and gave me plenty of ideas to explore.</p>
+<p><br ></p>
+<p><img src="images/disc-stats-field.jpg" style="display: block; margin: auto;" /></p>
+<ul>
+<li><strong>Discovering Statistics Using R</strong> <em>Andy Field</em></li>
+</ul>
+<p>This was my introduction into R that really got me from a slow, painful crawl to a full on sprint into data processing and analysis. Although I would still recommend this book, new developments and packages in the R community have changed the landscape entirely. I additionally encourage beginners to read the free <a href="https://r4ds.had.co.nz/"><strong>R for Data Science</strong></a> by <em>Garrett Grolemund</em> and <em>Hadley Wichkam</em>.</p>
+</div>
+
+</div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+</div> <!-- forPagesWithTOC -->
+
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">&copy; 2018 Matthew J. Kmiecik. All rights reserved.</span>
+  </div>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
