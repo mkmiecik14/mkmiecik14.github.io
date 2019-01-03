@@ -26,14 +26,22 @@ I absolutely love reading and collecting books. Whenever I'm in a phase where I 
 
 ```{r, message = FALSE, fig.align='center'}
 # Packages
-library(tidyverse); library(readxl); library(plotly)
+library(tidyverse); library(readxl); library(plotly); library(httr)
 
 # Importing reading data
-reading_data <- read_excel(path = "data/my-reads.xlsx", 
-                           sheet = "reading-data"
-                           ) %>%
+# From: https://community.rstudio.com/t/read-xlsx-from-github/9386/3
+# See the above link for how I got the code to read in 
+# an Excel file into R from Github
+github_link <- "https://github.com/mkmiecik14/mkmiecik14.github.io/blob/master/data/my-reads.xlsx?raw=true"
+temp_file <- tempfile(fileext = ".xlsx")
+req <- GET(github_link, write_disk(path = temp_file))
+
+# Reading data (updated to github on my end)
+reading_data <- readxl::read_excel(temp_file, sheet = "reading-data") %>%
   mutate(date = as.Date(date))
-book_list <- read_excel(path = "data/my-reads.xlsx", sheet = "book-list")
+
+# Book list (updated to github on my end)
+book_list <- read_excel(temp_file, sheet = "book-list")
 
 # Joinging book list to reading data
 rdata <- left_join(reading_data, book_list, by = "book")
