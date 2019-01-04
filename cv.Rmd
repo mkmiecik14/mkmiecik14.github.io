@@ -73,7 +73,7 @@ Loyola University Chicago <br/>
 # Publications
 <hr />
 
-* Kmiecik, M. J., Brisson, R. J., & Morrison, R. G. (in press). The time course of semantic and relational processing during verbal analogical reasoning. _Brain and Cognition_. https://doi.org/10.1016/j.bandc.2018.11.012
+* Kmiecik, M. J., Brisson, R. J., & Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. _Brain and Cognition_, _129_, 25-34. https://doi.org/10.1016/j.bandc.2018.11.012
 
 * Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). [A
 method for characterizing semantic and lexical properties of sentence completions in traumatic
