@@ -1,7 +1,7 @@
 ---
 title: "My Reads"
 author: "Matthew J. Kmiecik"
-date: "3 January 2019"
+date: "First posted: 3 January 2019"
 output:
   html_document:
     highlight: zenburn
@@ -13,13 +13,15 @@ output:
 ---
 
 ```{r setup, include=F}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 options(knitr.table.format = 'html') # For the html tables
 ```
 
 <br >
 
 I absolutely love reading and collecting books. Whenever I'm in a phase where I am constantly reading, I feel more creative and confident in my academic work. However, in the busy mix of an academic semester, it's easy to put reading off to the side in lieu of data analysis, writing, and conferences. Below is a live tracker of my reading progress (I'm trying for around 20 pages per day) to help motivate me to read every day. I'll do my best to update this weekly.
+
+<br >
 
 ## Reading Progress
 <hr >
@@ -46,22 +48,65 @@ book_list <- read_excel(temp_file, sheet = "book-list")
 # Joinging book list to reading data
 rdata <- left_join(reading_data, book_list, by = "book")
 
-# Plotting daily reading progress by pages
-pages_plot <- ggplot(rdata, aes(date, pages, color = title)) +
+# Plotting daily reading progress by pages ----
+pages_plot <- ggplot(rdata, aes(date, pages, color = title, group = title)) +
   geom_point(aes(group = author)) +
   geom_line() +
   scale_x_date(date_labels = "%d-%b",
-               limits = c(as.Date(Sys.Date() - 5), as.Date(Sys.Date() + 5)),
-               date_breaks = "1 day",
+               limits = c(min(rdata$date), as.Date(Sys.Date() + 5)),
+               date_breaks = "1 week",
                date_minor_breaks = "1 day"
                ) +
   coord_cartesian(ylim = c(0, 40)) +
   labs(x = paste0("date (last updated: ", format(Sys.Date(), "%d-%b-%Y"), ")")) +
+  scale_color_brewer(palette = "Paired") +
   theme_minimal() +
   theme(legend.position = "none")
 
 # Converts to plotly and plots it
 ggplotly(pages_plot)
+```
+
+```{r}
+# Cleans NAs
+rdata_completed <- rdata %>% filter(complete.cases(pages))
+
+# Pages histogram
+ggplot(rdata_completed, aes(pages)) +
+  geom_histogram(binwidth = 10) +
+  labs(y = "frequency") +
+  theme_minimal()
+```
+
+```{r}
+# Weekly trend ----
+weekly_rdata <- rdata_completed %>%
+  group_by(year, month, week) %>%
+  summarise(psum = sum(pages), 
+            days = n(),
+            m = mean(pages),
+            sd = sd(pages)
+            ) %>%
+  ungroup()
+
+# 2019 only
+pj <- position_jitter(width = .05, height = .05)
+ggplot(weekly_rdata %>% filter(year == 2019), aes(as.factor(week), m)) +
+  geom_point(data = rdata_completed %>% filter(year == 2019), 
+             aes(y = pages),
+             shape = 1, 
+             alpha = 2/3,
+             position = pj
+             ) +
+  geom_path(aes(group = 1), color = "lightgrey", linetype = 2) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = m-sd, ymax = m+sd), width = .05) +
+  coord_cartesian(ylim = c(0, 50)) +
+  labs(x = "Week number in 2019", 
+       y = "Number of pages read/day",
+       caption = "SD error bars"
+       ) +
+  theme_minimal()
 ```
 
 ## My Favorite Reads
@@ -70,6 +115,16 @@ ggplotly(pages_plot)
 Here's a list of books that have heavily influenced my work one way or another. I'm sure there are plenty more that I haven't thought of, but I'll add them along the way.
 
 What are your favorite books and why? I'd love to know if you have any recommendations of books I should read and add to my list! Just leave a comment below.
+
+<br >
+
+```{r, echo=FALSE, message=FALSE}
+knitr::include_graphics("images/freedom-fuster.jpg")
+```
+
++ __The Neuroscience of Freedom and Creativity: Our Predictive Brain __ _Joaquin Fuster_
+
+In his latest book, Dr. Fuster argues that humans have free will and our freedom to choose is enabled by our cerebral cortex, the prefrontal cortex in particular. A concept that particularly stood out to me, among many, was his argument that consciousness is an epiphenomenon of cerebral cortex processing. "Consciousness is an obligatory byproduct of intense network activation, not its cause" (p. 31). A profound read that touches on the interaction between the brain and environment, which inludes the emotional perception-action cycle from the limbic system, and its implications in the real world, such as culture, government, and financial systems.
 
 <br >
 
