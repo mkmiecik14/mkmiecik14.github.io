@@ -73,7 +73,7 @@ rdata_completed <- rdata %>% filter(complete.cases(pages))
 
 # Pages histogram
 ggplot(rdata_completed, aes(pages)) +
-  geom_histogram(binwidth = 10) +
+  geom_histogram(binwidth = 5) +
   labs(y = "frequency") +
   theme_minimal()
 ```
@@ -81,7 +81,7 @@ ggplot(rdata_completed, aes(pages)) +
 ```{r}
 # Weekly trend ----
 weekly_rdata <- rdata_completed %>%
-  group_by(year, month, week) %>%
+  group_by(year, week) %>%
   summarise(psum = sum(pages), 
             days = n(),
             m = mean(pages),
@@ -90,24 +90,70 @@ weekly_rdata <- rdata_completed %>%
   ungroup()
 
 # 2019 only
-pj <- position_jitter(width = .05, height = .05)
+pj <- position_jitter(width = .1, height = .05)
 ggplot(weekly_rdata %>% filter(year == 2019), aes(as.factor(week), m)) +
   geom_point(data = rdata_completed %>% filter(year == 2019), 
              aes(y = pages),
              shape = 1, 
-             alpha = 2/3,
-             position = pj
+             #alpha = 2/3,
+             position = pj,
+             color = "#f4a582"
              ) +
   geom_path(aes(group = 1), color = "lightgrey", linetype = 2) +
   geom_point(size = 2) +
   geom_errorbar(aes(ymin = m-sd, ymax = m+sd), width = .05) +
   coord_cartesian(ylim = c(0, 50)) +
   labs(x = "Week number in 2019", 
-       y = "Number of pages read/day",
+       y = "Average Number of pages read/week",
        caption = "SD error bars"
        ) +
   theme_minimal()
 ```
+
+```{r}
+# Days of the week trend ----
+
+# "Raw" data
+weekday_rdata <- rdata_completed %>% 
+  mutate(weekday = weekdays(as.Date(date))) %>%
+  mutate(weekday = fct_relevel(weekday, 
+                               c("Monday", "Tuesday", "Wednesday", 
+                                 "Thursday", "Friday", "Saturday", "Sunday"
+                                 )
+                               )
+         )
+
+# Summary data
+weekday_rdata_sum <- weekday_rdata %>% 
+  group_by(year, weekday) %>%
+  summarise(psum = sum(pages),
+            n = n(),
+            m = mean(pages),
+            sd = sd(pages)
+            ) %>%
+  ungroup() 
+
+# 2019 only
+pj <- position_jitter(width = .1, height = .05)
+ggplot(weekday_rdata_sum %>% filter(year == 2019), aes(weekday, m)) +
+  geom_point(data = weekday_rdata %>% filter(year == 2019),
+             aes(y = pages),
+             shape = 1,
+             #alpha = 2/3,
+             position = pj,
+             color = "#92c5de"
+             ) +
+  geom_path(aes(group = 1), color = "lightgrey", linetype = 2) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = m-sd, ymax = m+sd), width = .05) +
+  coord_cartesian(ylim = c(0, 50)) +
+  labs(x = "Weekday in 2019", 
+       y = "Average Number of pages read/day",
+       caption = "SD error bars"
+       ) +
+  theme_minimal()
+```
+
 
 ## My Favorite Reads
 <hr >
@@ -119,10 +165,18 @@ What are your favorite books and why? I'd love to know if you have any recommend
 <br >
 
 ```{r, echo=FALSE, message=FALSE}
+knitr::include_graphics("images/erp-luck.jpg")
+```
+
++ __An Introduction to the Event-Related Potential Technique (Second Edition)__ _Steven J. Luck_
+
+This is an excellent introduction into the event-related pontential (ERP) technique for anyone who is interested in using ERPs in their research. I highly recommend reading this, especially if you are new to the technique, or even if you have already done ERP work in the past. I've learned a great deal from Dr. Luck's recommendations and philosophy on using ERPs to study cognition, especially about details on high/lowpass filters, time-frequency analysis, and artifact correction/rejection. His tips on collecting EEG signals have made my recordings cleaner and I look forward to implementing his techniques in my future work.
+
+```{r, echo=FALSE, message=FALSE}
 knitr::include_graphics("images/freedom-fuster.jpg")
 ```
 
-+ __The Neuroscience of Freedom and Creativity: Our Predictive Brain __ _Joaquin Fuster_
++ __The Neuroscience of Freedom and Creativity: Our Predictive Brain__ _Joaquin Fuster_
 
 In his latest book, Dr. Fuster argues that humans have free will and our freedom to choose is enabled by our cerebral cortex, the prefrontal cortex in particular. A concept that particularly stood out to me, among many, was his argument that consciousness is an epiphenomenon of cerebral cortex processing. "Consciousness is an obligatory byproduct of intense network activation, not its cause" (p. 31). A profound read that touches on the interaction between the brain and environment, which inludes the emotional perception-action cycle from the limbic system, and its implications in the real world, such as culture, government, and financial systems.
 
