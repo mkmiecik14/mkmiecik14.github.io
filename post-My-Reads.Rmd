@@ -170,7 +170,9 @@ knitr::include_graphics("images/erp-luck.jpg")
 
 + __An Introduction to the Event-Related Potential Technique (Second Edition)__ _Steven J. Luck_
 
-This is an excellent introduction into the event-related pontential (ERP) technique for anyone who is interested in using ERPs in their research. I highly recommend reading this, especially if you are new to the technique, or even if you have already done ERP work in the past. I've learned a great deal from Dr. Luck's recommendations and philosophy on using ERPs to study cognition, especially about details on high/lowpass filters, time-frequency analysis, and artifact correction/rejection. His tips on collecting EEG signals have made my recordings cleaner and I look forward to implementing his techniques in my future work.
+This is an excellent introduction into the event-related pontential (ERP) technique for anyone who is interested in using ERPs in their research. I highly recommend reading this, especially if you are new to the technique, or even if you have already done ERP work in the past. I've learned a great deal from Dr. Luck's recommendations and philosophy on using ERPs to study cognition, especially about details on high/lowpass filters, time-frequency analysis, and artifact correction/rejection. His tips on collecting EEG signals have made my own EEG recordings cleaner and I look forward to implementing his techniques in my future work.
+
+<br >
 
 ```{r, echo=FALSE, message=FALSE}
 knitr::include_graphics("images/freedom-fuster.jpg")
