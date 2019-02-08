@@ -1,0 +1,172 @@
+---
+title: "NHL PCA"
+author: "Matthew J. Kmiecik & Ekarin E. Pongpipat"
+date: "date here"
+output:
+  html_document:
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+---
+
+```{r setup, include=F}
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
+options(knitr.table.format = 'html') # For the html tables
+```
+
+```{r}
+# Packages
+library(tidyverse); library(RCurl); library(TInPosition); library(ggrepel)
+```
+
+
+```{r}
+nhl_data <- read_csv("data/nhl-team-data-corsica.csv") %>%
+  select(Team:CA, GF, GA, PENT, PEND, ShootPerc = `Sh%`, SavePerc = `Sv%`) %>%
+  filter(Team == "CHI") %>%
+  mutate(Team = NULL, Season = gsub("-", "_", Season))
+
+nhl_data_mat <- as.matrix(nhl_data[,2:ncol(nhl_data)])
+rownames(nhl_data_mat) <- nhl_data$Season
+
+nhl_data_mat_scaled <- apply(nhl_data_mat, 2, scale)
+
+nhl_data_svd <- svd(nhl_data_mat_scaled)
+
+rows <- nhl_data_svd$u %*% diag(nhl_data_svd$d)
+columns <- nhl_data_svd$v %*% diag(nhl_data_svd$d)
+
+
+fis <- as.tibble(rows) %>% 
+  mutate(Season = nhl_data$Season,
+         SCW = factor(ifelse(Season %in% c("2009_2010", "2012_2013", "2014_2015"), "Won", "Lost"))
+         )
+
+fjs <- as.tibble(columns) %>% 
+  mutate(meas = colnames(nhl_data)[-1])
+
+inertia <- sum(nhl_data_svd$d)
+
+scree <- tibble(eigs = nhl_data_svd$d, 
+                perc_explained = (eigs/inertia)*100,
+                comps = 1:length(eigs)
+                )
+
+ggplot(scree, aes(factor(comps), eigs)) +
+  geom_point() +
+  geom_path(aes(group = 1)) +
+  scale_y_continuous(sec.axis = sec_axis(~./inertia * 100, 
+                                         name = "Percentage of Explained Variance"
+                                         )
+                     ) +
+  theme_minimal()
+
+
+ggplot(fis, aes(V2, V3, color = SCW)) +
+  geom_vline(xintercept = 0, alpha = 2/3) +
+  geom_hline(yintercept = 0, alpha = 2/3) +
+  geom_point() +
+  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
+  scale_color_brewer(palette = "Dark2") +
+  geom_text_repel(aes(label = Season), segment.alpha = 0) +
+  theme_classic() +
+  theme(axis.title=element_blank(),
+        #axis.text=element_blank(),
+        axis.ticks=element_blank(),
+        axis.line = element_blank()
+        )
+
+ggplot(fjs, aes(V2, V3)) +
+  geom_vline(xintercept = 0, alpha = 2/3) +
+  geom_hline(yintercept = 0, alpha = 2/3) +
+  geom_point() +
+  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
+  scale_color_brewer(palette = "Dark2") +
+  geom_text_repel(aes(label = meas), segment.alpha = 0) +
+  theme_classic() +
+  theme(axis.title=element_blank(),
+        #axis.text=element_blank(),
+        axis.ticks=element_blank(),
+        axis.line = element_blank()
+        )
+
+ggplot(nhl_data, aes(PEND, PENT)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+cor.test(nhl_data$PENT, nhl_data$PEND)
+summary(lm(PENT~PEND, data = nhl_data))
+```
+
+```{r}
+gp <- nhl_data$GP
+
+nhl_data_mat_2 <- as.matrix(nhl_data[3:ncol(nhl_data)])
+
+nhl_data_scaled1 <- apply(nhl_data_mat_2[,1:7], 2, function(x){x/gp})
+
+nhl_ready <- cbind(nhl_data_scaled1, nhl_data_mat_2[,8:9])
+
+nhl_scaled <- apply(nhl_ready, 2, scale)
+
+nhl_svd <- svd(nhl_scaled)
+
+rows <- nhl_svd$u %*% diag(nhl_svd$d)
+columns <- nhl_svd$v %*% diag(nhl_svd$d)
+
+fis <- as.tibble(rows) %>% 
+  mutate(Season = nhl_data$Season,
+         SCW = factor(ifelse(Season %in% c("2009_2010", "2012_2013", "2014_2015"), "Won", "Lost"))
+         )
+
+fjs <- as.tibble(columns) %>% 
+  mutate(meas = colnames(nhl_data)[3:ncol(nhl_data)])
+
+inertia <- sum(nhl_svd$d)
+
+scree <- tibble(eigs = nhl_svd$d, 
+                perc_explained = (eigs/inertia)*100,
+                comps = 1:length(eigs)
+                )
+
+ggplot(scree, aes(factor(comps), eigs)) +
+  geom_point() +
+  geom_path(aes(group = 1)) +
+  scale_y_continuous(sec.axis = sec_axis(~./inertia * 100, 
+                                         name = "Percentage of Explained Variance"
+                                         )
+                     ) +
+  theme_minimal()
+
+ggplot(fis, aes(V1, V2, color = SCW)) +
+  geom_vline(xintercept = 0, alpha = 2/3) +
+  geom_hline(yintercept = 0, alpha = 2/3) +
+  geom_point() +
+  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
+  scale_color_brewer(palette = "Dark2") +
+  geom_text_repel(aes(label = Season), segment.alpha = 0) +
+  theme_classic() +
+  theme(axis.title=element_blank(),
+        #axis.text=element_blank(),
+        axis.ticks=element_blank(),
+        axis.line = element_blank()
+        )
+
+ggplot(fjs, aes(V1, V2)) +
+  geom_vline(xintercept = 0, alpha = 2/3) +
+  geom_hline(yintercept = 0, alpha = 2/3) +
+  geom_point() +
+  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
+  scale_color_brewer(palette = "Dark2") +
+  geom_text_repel(aes(label = meas), segment.alpha = 0) +
+  theme_classic() +
+  theme(axis.title=element_blank(),
+        #axis.text=element_blank(),
+        axis.ticks=element_blank(),
+        axis.line = element_blank()
+        )
+```
+
