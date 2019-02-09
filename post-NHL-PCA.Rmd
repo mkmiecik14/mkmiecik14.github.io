@@ -17,17 +17,59 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 options(knitr.table.format = 'html') # For the html tables
 ```
 
+## Setup
+<hr >
+
+Here are the packages that we'll use for these analyses and to style the output/plots.
+
 ```{r}
-# Packages
-library(tidyverse); library(RCurl); library(TInPosition); library(ggrepel)
+# Packages ----
+library(tidyverse)    # For data manipulation, plotting, etc. 
+library(RCurl)        # To import data on github
+library(TInPosition)  # PCA tools
+library(ggrepel)      # Plotting tool for ggplot2
+library(kableExtra)   # HTML table tools
+
+# Custom functions ----
+# nice_table() simplifies the printing of HTML tables using kable
+nice_table <- function(x){
+  
+  kable(x) %>%
+    kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+  
+}
+```
+
+Let's first prepare the data for analysis. These data were downloaded from [Corsica's](http://corsica.hockey/) team stats tool. We've prepared these data for you and are available for import into R like this:
+
+```{r import}
+# do the R curl thing here
 ```
 
 
+To make things as simple as possible, without losing information, we'll use Chicago Blackhawk's data from the 2007-2008 season up through the 2017-2018 season (11 years of data) and only a subset of the available metrics. These include:
+
++ Games Played (GP)
++ Time on Ice (TOI)
++ Corsi For (CF) = [insert equation here]
++ Corsi Against (CA) = [insert equation here]
++ Goals For (GF)
++ Goals Against (GA)
++ Pentaly minutes served (PENT)
++ Penalty minutes drawn (PEND)
++ Shooting Percentage (ShootPerc) = [insert equation here]
++ Save Percentage (SavePerc) = [insert equation here]
+
 ```{r}
-nhl_data <- read_csv("data/nhl-team-data-corsica.csv") %>%
+# Preparing Hawks data ----
+hawks_data <- read_csv("data/nhl-team-data-corsica.csv") %>%
   select(Team:CA, GF, GA, PENT, PEND, ShootPerc = `Sh%`, SavePerc = `Sv%`) %>%
   filter(Team == "CHI") %>%
-  mutate(Team = NULL, Season = gsub("-", "_", Season))
+  separate(Season, into = c("Start_Year", "Season")) %>%
+  mutate(Team = NULL, 
+         Start_Year = NULL,
+         Season = as.numeric(Season)
+         )
 
 nhl_data_mat <- as.matrix(nhl_data[,2:ncol(nhl_data)])
 rownames(nhl_data_mat) <- nhl_data$Season
