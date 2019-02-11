@@ -29,6 +29,7 @@ library(RCurl)        # To import data on github
 library(TInPosition)  # PCA tools
 library(ggrepel)      # Plotting tool for ggplot2
 library(kableExtra)   # HTML table tools
+library(RColorBrewer) # Nice plotting colors
 
 # Custom functions ----
 # nice_table() simplifies the printing of HTML tables using kable
@@ -38,31 +39,37 @@ nice_table <- function(x){
     kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
   
 }
+
+# Color palettes ----
+rdgy <- brewer.pal(n = 11, name = "RdGy") # display.brewer.pal(11, "RdGy")
 ```
 
 Let's first prepare the data for analysis. These data were downloaded from [Corsica's](http://corsica.hockey/) team stats tool. We've prepared these data for you and are available for import into R like this:
 
 ```{r import}
-# do the R curl thing here
-```
+# Link to raw data on Github
+link <- "https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/nhl-team-data-corsica.csv"
 
+# reads in data from Github
+nhl_data <- read_csv(file = getURL(link))
+```
 
 To make things as simple as possible, without losing information, we'll use Chicago Blackhawk's data from the 2007-2008 season up through the 2017-2018 season (11 years of data) and only a subset of the available metrics. These include:
 
 + Games Played (GP)
 + Time on Ice (TOI)
-+ Corsi For (CF) = [insert equation here]
-+ Corsi Against (CA) = [insert equation here]
++ Corsi For (CF) = Shot attempts for at even strength: Shots + Blocks + Misses
++ Corsi Against (CA) = Shot attempts against at even strength: Shots + Blocks + Misses
 + Goals For (GF)
 + Goals Against (GA)
 + Pentaly minutes served (PENT)
 + Penalty minutes drawn (PEND)
-+ Shooting Percentage (ShootPerc) = [insert equation here]
-+ Save Percentage (SavePerc) = [insert equation here]
++ Shooting Percentage (ShootPerc)
++ Save Percentage (SavePerc)
 
 ```{r}
 # Preparing Hawks data ----
-hawks_data <- read_csv("data/nhl-team-data-corsica.csv") %>%
+hawks_data <-  nhl_data %>%
   select(Team:CA, GF, GA, PENT, PEND, ShootPerc = `Sh%`, SavePerc = `Sv%`) %>%
   filter(Team == "CHI") %>%
   separate(Season, into = c("Start_Year", "Season")) %>%
@@ -71,6 +78,63 @@ hawks_data <- read_csv("data/nhl-team-data-corsica.csv") %>%
          Season = as.numeric(Season)
          )
 
+# Prints data
+nice_table(hawks_data)
+```
+
+Let's also prepare a table of notable events of every year in this data set for the Chicago Blackhawks, including their Stanley Cup wins (3) and their playoff success:
+
+```{r}
+# Initializing Chicago Blackhawks notable events table ----
+# SCW = Stanley Cup Wins
+# PF = Playoff Finish:
+#   0 = Did not make playoffs
+#   1 = Lost in first round
+#   2 = Lost in second round
+#   3 = Lost in conference finals
+#   4 = Lost in Stanley Cup final
+#   5 = Won Stanley Cup
+hawks_events <- tibble(Season = hawks_data$Season,
+                       SCW = factor(c(0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0)),
+                       PF  = factor(c(0, 3, 5, 1, 1, 5, 3, 5, 1, 1, 0))
+                       )
+```
+
+
+
+Prior to exploring these data and how they've changed over time, we have to:
+
+1. Adjust all scores by the number of games played due to a shorted 2012-2013 season
+2. Compute z-scores of all measures to facilitate comparisons
+
+```{r}
+# Preprocesses, adjusts, and z-scores hawks data ----
+hawks_data_long <- hawks_data %>% 
+  gather(Meas, Val, -Season, -GP) %>%
+  group_by(Meas) %>%
+  mutate(Val_Adj = Val/GP,               # adjusts based on games played
+         Val_Zscore = scale(Val_Adj)     # computes z-scores
+         ) %>%
+  ungroup() %>%
+  mutate(sig = factor(ifelse(abs(Val_Zscore) > 1.96, "p < .05", "p > .05"))) %>% # z score > 1.96
+  inner_join(., hawks_events, by = "Season") # adds notable hawks events
+
+# Plots all measures together ----
+ggplot(hawks_data_long, aes(factor(Season), Val_Zscore)) +
+  geom_path(aes(group = 1), color = rdgy[8]) +
+  geom_point(aes(color = sig, shape = SCW), size = 1.75) +
+  scale_color_manual(values = c(rdgy[3], rdgy[10]), name = "Z-Score") +
+  scale_shape_discrete(name = "Stanley Cup Wins") +
+  theme_minimal() + 
+  labs(x = "Season", 
+       y = "Measurement (Z-Score)",
+       title = "Chicago Blackhawk's Performance 2007-2018"
+       ) +
+  facet_wrap(~Meas, nrow = 3)
+
+```
+
+```{r, eval=FALSE}
 nhl_data_mat <- as.matrix(nhl_data[,2:ncol(nhl_data)])
 rownames(nhl_data_mat) <- nhl_data$Season
 
@@ -143,7 +207,7 @@ cor.test(nhl_data$PENT, nhl_data$PEND)
 summary(lm(PENT~PEND, data = nhl_data))
 ```
 
-```{r}
+```{r, eval=FALSE}
 gp <- nhl_data$GP
 
 nhl_data_mat_2 <- as.matrix(nhl_data[3:ncol(nhl_data)])
