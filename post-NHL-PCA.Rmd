@@ -104,7 +104,7 @@ hawks_events <- tibble(Season = hawks_data$Season,
 
 Prior to exploring these data and how they've changed over time, we have to:
 
-1. Adjust all scores by the number of games played due to a shorted 2012-2013 season
+1. Adjust all scores by the number of games played due to a shorted 2012-2013 season. We do this by dividing each metric by the number of games played.
 2. Compute z-scores of all measures to facilitate comparisons
 
 ```{r}
@@ -130,9 +130,66 @@ ggplot(hawks_data_long, aes(factor(Season), Val_Zscore)) +
        y = "Measurement (Z-Score)",
        title = "Chicago Blackhawk's Performance 2007-2018"
        ) +
-  facet_wrap(~Meas, nrow = 3)
+  facet_wrap(~Meas, nrow = 3) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 ```
+
+```{r}
+# adjust metric
+hawks_data_adj <- hawks_data %>%
+  rowwise() %>%
+  mutate(GP_adj = TOI/GP,
+         CF_adj = CF/GP,
+         GF_adj = GF/GP,
+         GA_adj = GA/GP,
+         PENT_adj = PENT/GP,
+         PEND_adj = PEND/GP,
+         ShootPerc_adj = ShootPerc/GP,
+         SavePerc_adj = SavePerc/GP) %>%
+  ungroup() %>%
+  select(Season, contains("_adj")) %>%
+  inner_join(., hawks_events, by = "Season") %>%
+  apply(., 2, as.numeric) %>%
+  apply(., 2, scale)
+
+# correlation matrix
+hawks_cor_mat <- cor(hawks_data_adj)
+
+# convert to long format
+hawks_cor_long <- hawks_cor_mat %>%
+  reshape2::melt() %>%
+  arrange(Var1, Var2)
+
+# heatmap
+ggplot(hawks_cor_long, aes(x = Var1, y = Var2, fill = value)) +
+  geom_raster() + 
+  labs(x = element_blank(),
+       y = element_blank(),
+       fill = "Correlation") + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_distiller(palette = "RdBu", limits = c(-1,1))
+```
+
+
+```{r}
+hawks_data_mat <- as.matrix(hawks_data[2:ncol(hawks_data)])
+rownames(hawks_data_mat) <- hawks_data$Season
+hawks_data_svd <- svd(hawks_data_mat)
+
+svd_d <- hawks_data_svd$d
+round(svd_d, 3) %>% as.matrix() %>% t() %>% nice_table()
+
+svd_u <- hawks_data_svd$u
+round(svd_u, 3) %>% nice_table
+
+svd_v <- hawks_data_svd$v
+round(svd_v, 3) %>% nice_table
+```
+
+
+
 
 ```{r, eval=FALSE}
 nhl_data_mat <- as.matrix(nhl_data[,2:ncol(nhl_data)])
