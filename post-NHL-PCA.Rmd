@@ -100,8 +100,6 @@ hawks_events <- tibble(Season = hawks_data$Season,
                        )
 ```
 
-
-
 Prior to exploring these data and how they've changed over time, we have to:
 
 1. Adjust all scores by the number of games played due to a shorted 2012-2013 season. We do this by dividing each metric by the number of games played.
@@ -125,6 +123,7 @@ ggplot(hawks_data_long, aes(factor(Season), Val_Zscore)) +
   geom_point(aes(color = sig, shape = SCW), size = 1.75) +
   scale_color_manual(values = c(rdgy[3], rdgy[10]), name = "Z-Score") +
   scale_shape_discrete(name = "Stanley Cup Wins") +
+  coord_cartesian(ylim = c(-3,3)) +
   theme_minimal() + 
   labs(x = "Season", 
        y = "Measurement (Z-Score)",
@@ -132,8 +131,9 @@ ggplot(hawks_data_long, aes(factor(Season), Val_Zscore)) +
        ) +
   facet_wrap(~Meas, nrow = 3) + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
 ```
+
+## Ekarin's version
 
 ```{r}
 # adjust metric
@@ -172,22 +172,84 @@ ggplot(hawks_cor_long, aes(x = Var1, y = Var2, fill = value)) +
   scale_fill_distiller(palette = "RdBu", limits = c(-1,1))
 ```
 
+## Matt's version
 
 ```{r}
-hawks_data_mat <- as.matrix(hawks_data[2:ncol(hawks_data)])
-rownames(hawks_data_mat) <- hawks_data$Season
+# Converts back to wide format
+hawks_data_wide <- hawks_data_long %>% 
+  select(Season, Meas, Val_Zscore) %>% 
+  spread(Meas, Val_Zscore)
+
+# Computes correlations
+hawks_cors <- cor(hawks_data_wide)
+
+# Correlations to long format for plotting
+hawks_cors_long <- hawks_cors %>%
+  reshape2::melt() %>%
+  arrange(Var1, Var2)
+
+# heatmap
+ggplot(hawks_cors_long, aes(x = Var1, y = Var2, fill = value)) +
+  geom_raster() + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title = element_blank()
+        ) +
+  scale_fill_distiller(palette = "BrBG", 
+                       limits = c(-1, 1), 
+                       name = "Correlation"
+                       )
+```
+
+## PCA
+
+```{r}
+# Converts to matrix
+hawks_data_mat <- hawks_data_wide %>% select(-Season) %>% as.matrix()
+rownames(hawks_data_mat) <- hawks_data_wide$Season # Adds rownames
+
+# Singular value decomposition (SVD)
 hawks_data_svd <- svd(hawks_data_mat)
+```
 
-svd_d <- hawks_data_svd$d
-round(svd_d, 3) %>% as.matrix() %>% t() %>% nice_table()
+### Eigen Values
 
+```{r}
+inertia <- sum(hawks_data_svd$d) # Calculates inertia
+
+# Calculates values for the scree plot
+scree <- tibble(eigs = hawks_data_svd$d, 
+                perc_explained = (eigs/inertia)*100,
+                comps = 1:length(eigs)
+                )
+
+nice_table(round(scree, 2)) # prints HTML table
+
+# Scree plot
+ggplot(scree, aes(factor(comps), eigs)) +
+  geom_point() +
+  geom_path(aes(group = 1)) +
+  scale_y_continuous(sec.axis = sec_axis(~./inertia * 100, 
+                                         name = "Percentage of Explained Variance"
+                                         )
+                     ) +
+  labs(x = "Components", y = "Eigenvalues") +
+  theme_minimal()
+```
+
+### Row-wise Factor Scores 
+
+```{r}
 svd_u <- hawks_data_svd$u
 round(svd_u, 3) %>% nice_table
+```
 
+### Column-wise Factor Scores
+
+```{r}
 svd_v <- hawks_data_svd$v
 round(svd_v, 3) %>% nice_table
 ```
-
 
 
 
@@ -211,21 +273,7 @@ fis <- as.tibble(rows) %>%
 fjs <- as.tibble(columns) %>% 
   mutate(meas = colnames(nhl_data)[-1])
 
-inertia <- sum(nhl_data_svd$d)
 
-scree <- tibble(eigs = nhl_data_svd$d, 
-                perc_explained = (eigs/inertia)*100,
-                comps = 1:length(eigs)
-                )
-
-ggplot(scree, aes(factor(comps), eigs)) +
-  geom_point() +
-  geom_path(aes(group = 1)) +
-  scale_y_continuous(sec.axis = sec_axis(~./inertia * 100, 
-                                         name = "Percentage of Explained Variance"
-                                         )
-                     ) +
-  theme_minimal()
 
 
 ggplot(fis, aes(V2, V3, color = SCW)) +
