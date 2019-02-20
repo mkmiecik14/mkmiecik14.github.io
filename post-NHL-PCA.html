@@ -42,7 +42,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
+<style type="text/css">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -79,29 +79,7 @@ code > span.do { color: #7f9f7f; } /* Documentation */
 code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
 code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
 code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
-
 </style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +143,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -182,6 +157,7 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
+
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -201,43 +177,6 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -259,77 +198,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -500,28 +380,10 @@ div.tocify {
 <hr >
 <p>Here are the packages that we’ll use for these analyses and to style the output/plots.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Packages ----</span>
-<span class="kw">library</span>(tidyverse)    <span class="co"># For data manipulation, plotting, etc. </span></code></pre></div>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.1.0     ✔ purrr   0.3.0
-## ✔ tibble  2.0.1     ✔ dplyr   0.7.8
-## ✔ tidyr   0.8.2     ✔ stringr 1.4.0
-## ✔ readr   1.3.1     ✔ forcats 0.3.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RCurl)        <span class="co"># To import data on github</span></code></pre></div>
-<pre><code>## Loading required package: bitops</code></pre>
-<pre><code>## 
-## Attaching package: &#39;RCurl&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
-## 
-##     complete</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(TInPosition)  <span class="co"># PCA tools</span></code></pre></div>
-<pre><code>## Loading required package: prettyGraphs</code></pre>
-<pre><code>## Loading required package: TExPosition</code></pre>
-<pre><code>## Loading required package: ExPosition</code></pre>
-<pre><code>## Loading required package: InPosition</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggrepel)      <span class="co"># Plotting tool for ggplot2</span>
+<span class="kw">library</span>(tidyverse)    <span class="co"># For data manipulation, plotting, etc. </span>
+<span class="kw">library</span>(RCurl)        <span class="co"># To import data on github</span>
+<span class="kw">library</span>(TInPosition)  <span class="co"># PCA tools</span>
+<span class="kw">library</span>(ggrepel)      <span class="co"># Plotting tool for ggplot2</span>
 <span class="kw">library</span>(kableExtra)   <span class="co"># HTML table tools</span>
 <span class="kw">library</span>(RColorBrewer) <span class="co"># Nice plotting colors</span>
 
@@ -1029,6 +891,7 @@ hawks_data_long &lt;-<span class="st"> </span>hawks_data <span class="op">%&gt;%
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sig, <span class="dt">shape =</span> SCW), <span class="dt">size =</span> <span class="fl">1.75</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">3</span>], rdgy[<span class="dv">10</span>]), <span class="dt">name =</span> <span class="st">&quot;Z-Score&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_shape_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Stanley Cup Wins&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Season&quot;</span>, 
        <span class="dt">y =</span> <span class="st">&quot;Measurement (Z-Score)&quot;</span>,
@@ -1037,6 +900,10 @@ hawks_data_long &lt;-<span class="st"> </span>hawks_data <span class="op">%&gt;%
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Meas, <span class="dt">nrow =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>[small blurb here describing the z score plots]</p>
+</div>
+<div id="ekarins-version" class="section level2">
+<h2>Ekarin’s version</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># adjust metric</span>
 hawks_data_adj &lt;-<span class="st"> </span>hawks_data <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span>
@@ -1072,728 +939,1183 @@ hawks_cor_long &lt;-<span class="st"> </span>hawks_cor_mat <span class="op">%&gt
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;RdBu&quot;</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hawks_data_mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(hawks_data[<span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(hawks_data)])
-<span class="kw">rownames</span>(hawks_data_mat) &lt;-<span class="st"> </span>hawks_data<span class="op">$</span>Season
-hawks_data_svd &lt;-<span class="st"> </span><span class="kw">svd</span>(hawks_data_mat)
+</div>
+<div id="matts-version" class="section level2">
+<h2>Matt’s version</h2>
+<p>Now let’s examine how these measurements relate to each other by computing their correlations and visualizing them with a heatmap.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts back to wide format</span>
+hawks_data_wide &lt;-<span class="st"> </span>hawks_data_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(Season, Meas, Val_Zscore) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(Meas, Val_Zscore)
 
-svd_d &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>d
-<span class="kw">round</span>(svd_d, <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nice_table</span>()</code></pre></div>
+<span class="co"># Computes correlations</span>
+hawks_cors &lt;-<span class="st"> </span><span class="kw">cor</span>(hawks_data_wide)
+
+<span class="co"># Correlations to long format for plotting</span>
+hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%</span>
+<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(Var1, Var2)
+
+<span class="co"># Correlation heatmap</span>
+<span class="kw">ggplot</span>(hawks_cors_long, <span class="kw">aes</span>(<span class="dt">x =</span> Var1, <span class="dt">y =</span> Var2, <span class="dt">fill =</span> value)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_raster</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),
+        <span class="dt">axis.title =</span> <span class="kw">element_blank</span>()
+        ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;BrBG&quot;</span>, 
+                       <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), 
+                       <span class="dt">name =</span> <span class="st">&quot;Correlation&quot;</span>
+                       )</code></pre></div>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>[ a little blurb here about the patterns that emerge from the heatmap ]</p>
+</div>
+<div id="pca" class="section level2">
+<h2>PCA</h2>
+<p>We’ve explored these measures individually by plotting their change over time (2007-2018) as well as examining their correlations; however, it’s difficult to extract meaningful relationships between these variables, especially when there are a lot of variables to consider. Also, all realtionships between the variables are not considered simultaneously, but rather one at a time (e.g., bivariate correlations). Is there some way to analyze these variables’ relationships simultaneously, while also reducing their complexity?</p>
+<p>One method of doing this is principal components analysis (PCA). PCA is often called a data reduction technique because it reduces the data structure into manageable “components” that explain proportions of variability in the data. In order to understand what each component means, we examine how information (e.g., years or measurements) is spread across the components.</p>
+<p>Additionally, the PCA that we will demonstrate below places a constraint on the components such that they are orthogonal to each other, meaning that each component is perfectly uncorrelated with every other component (<em>r</em> = 0).</p>
+<p>We go over the basics of PCA below, but we recommend the interested reader the following papers on this statistical technique:</p>
+<ul>
+<li><p>Abdi, H., &amp; Williams, L.J. (2010). <a href="https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf">Principal component analysis</a>. <em>Wiley Interdisciplinary Reviews: Computational Statistics</em>, 2, 433-459.</p></li>
+<li><p>Abdi, H. (2007). <a href="https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf">Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)</a>. In N.J. Salkind (Ed.): <em>Encyclopedia of Measurement and Statistics</em>. Thousand Oaks (CA): Sage. pp. 907-912.</p></li>
+</ul>
+<p>We first need to preprocess our data such that each column (e.g., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We’ve already done this above when exploring these data.</p>
+<p>A unique feature of this dataset is the reduced 2012 - 2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.</p>
+<p>The first step is to convert these data into a matrix format with the season years on the rows as row names:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts to matrix</span>
+hawks_data_mat &lt;-<span class="st"> </span>hawks_data_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Season) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()
+<span class="kw">rownames</span>(hawks_data_mat) &lt;-<span class="st"> </span>hawks_data_wide<span class="op">$</span>Season <span class="co"># Adds rownames</span>
+
+<span class="kw">nice_table</span>(hawks_data_mat) <span class="co"># Prints HTML table</span></code></pre></div>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+CA
+</th>
+<th style="text-align:right;">
+CF
+</th>
+<th style="text-align:right;">
+GA
+</th>
+<th style="text-align:right;">
+GF
+</th>
+<th style="text-align:right;">
+PEND
+</th>
+<th style="text-align:right;">
+PENT
+</th>
+<th style="text-align:right;">
+SavePerc
+</th>
+<th style="text-align:right;">
+ShootPerc
+</th>
+<th style="text-align:right;">
+TOI
+</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td style="text-align:right;">
-20192.24
+<td style="text-align:left;">
+2008
 </td>
 <td style="text-align:right;">
-748.162
+-1.3890061
 </td>
 <td style="text-align:right;">
-623.018
+-2.4688368
 </td>
 <td style="text-align:right;">
-157.602
+-0.4854171
 </td>
 <td style="text-align:right;">
-46.409
+-0.9263934
 </td>
 <td style="text-align:right;">
-38.018
+1.8463464
 </td>
 <td style="text-align:right;">
-24.96
+2.1908251
 </td>
 <td style="text-align:right;">
-18.733
+-0.2057746
 </td>
 <td style="text-align:right;">
-1.395
+0.3069261
 </td>
 <td style="text-align:right;">
-0.148
+-2.3384033
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2009
+</td>
+<td style="text-align:right;">
+-1.4909528
+</td>
+<td style="text-align:right;">
+-0.9280729
+</td>
+<td style="text-align:right;">
+-1.0362482
+</td>
+<td style="text-align:right;">
+-0.9635667
+</td>
+<td style="text-align:right;">
+1.7270345
+</td>
+<td style="text-align:right;">
+1.4018816
+</td>
+<td style="text-align:right;">
+-0.2953539
+</td>
+<td style="text-align:right;">
+-0.4588701
+</td>
+<td style="text-align:right;">
+-1.4947316
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:right;">
+-0.8442424
+</td>
+<td style="text-align:right;">
+0.3075156
+</td>
+<td style="text-align:right;">
+0.3333859
+</td>
+<td style="text-align:right;">
+1.1052072
+</td>
+<td style="text-align:right;">
+0.3829492
+</td>
+<td style="text-align:right;">
+0.2988564
+</td>
+<td style="text-align:right;">
+-0.3895168
+</td>
+<td style="text-align:right;">
+-0.1004303
+</td>
+<td style="text-align:right;">
+-0.0620987
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2011
+</td>
+<td style="text-align:right;">
+0.2002461
+</td>
+<td style="text-align:right;">
+0.1090275
+</td>
+<td style="text-align:right;">
+0.1547380
+</td>
+<td style="text-align:right;">
+0.3940662
+</td>
+<td style="text-align:right;">
+-0.0455997
+</td>
+<td style="text-align:right;">
+-0.3928713
+</td>
+<td style="text-align:right;">
+-0.3147844
+</td>
+<td style="text-align:right;">
+-0.2016368
+</td>
+<td style="text-align:right;">
+0.3929729
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2012
+</td>
+<td style="text-align:right;">
+0.1386547
+</td>
+<td style="text-align:right;">
+0.0941409
+</td>
+<td style="text-align:right;">
+1.3457241
+</td>
+<td style="text-align:right;">
+0.3294170
+</td>
+<td style="text-align:right;">
+0.1491952
+</td>
+<td style="text-align:right;">
+0.1866843
+</td>
+<td style="text-align:right;">
+-0.3665989
+</td>
+<td style="text-align:right;">
+-0.1636844
+</td>
+<td style="text-align:right;">
+0.3253106
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2013
+</td>
+<td style="text-align:right;">
+-0.4876321
+</td>
+<td style="text-align:right;">
+-0.1673052
+</td>
+<td style="text-align:right;">
+-1.5027177
+</td>
+<td style="text-align:right;">
+1.1940998
+</td>
+<td style="text-align:right;">
+-0.1503020
+</td>
+<td style="text-align:right;">
+-0.0384388
+</td>
+<td style="text-align:right;">
+3.0104356
+</td>
+<td style="text-align:right;">
+2.8614429
+</td>
+<td style="text-align:right;">
+0.2383715
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2014
+</td>
+<td style="text-align:right;">
+-0.2745214
+</td>
+<td style="text-align:right;">
+0.5705123
+</td>
+<td style="text-align:right;">
+0.4524845
+</td>
+<td style="text-align:right;">
+1.3638039
+</td>
+<td style="text-align:right;">
+-0.9416566
+</td>
+<td style="text-align:right;">
+-0.2993946
+</td>
+<td style="text-align:right;">
+-0.3466702
+</td>
+<td style="text-align:right;">
+-0.0413931
+</td>
+<td style="text-align:right;">
+0.5364805
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2015
+</td>
+<td style="text-align:right;">
+0.5800601
+</td>
+<td style="text-align:right;">
+0.8508768
+</td>
+<td style="text-align:right;">
+-0.7980509
+</td>
+<td style="text-align:right;">
+-0.7049700
+</td>
+<td style="text-align:right;">
+-0.6105051
+</td>
+<td style="text-align:right;">
+-0.6546061
+</td>
+<td style="text-align:right;">
+-0.2395537
+</td>
+<td style="text-align:right;">
+-0.7034527
+</td>
+<td style="text-align:right;">
+0.5410605
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2016
+</td>
+<td style="text-align:right;">
+0.8957164
+</td>
+<td style="text-align:right;">
+0.0494811
+</td>
+<td style="text-align:right;">
+-0.0239099
+</td>
+<td style="text-align:right;">
+-1.6747077
+</td>
+<td style="text-align:right;">
+-0.8832181
+</td>
+<td style="text-align:right;">
+-0.8228642
+</td>
+<td style="text-align:right;">
+-0.2759235
+</td>
+<td style="text-align:right;">
+-0.7287543
+</td>
+<td style="text-align:right;">
+0.5732428
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2017
+</td>
+<td style="text-align:right;">
+1.1703117
+</td>
+<td style="text-align:right;">
+0.2454881
+</td>
+<td style="text-align:right;">
+-0.3216565
+</td>
+<td style="text-align:right;">
+0.2001186
+</td>
+<td style="text-align:right;">
+-1.1169721
+</td>
+<td style="text-align:right;">
+-1.0098176
+</td>
+<td style="text-align:right;">
+-0.2510127
+</td>
+<td style="text-align:right;">
+-0.1552505
+</td>
+<td style="text-align:right;">
+0.9891094
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2018
+</td>
+<td style="text-align:right;">
+1.5013658
+</td>
+<td style="text-align:right;">
+1.3371727
+</td>
+<td style="text-align:right;">
+1.8816679
+</td>
+<td style="text-align:right;">
+-0.3170749
+</td>
+<td style="text-align:right;">
+-0.3572717
+</td>
+<td style="text-align:right;">
+-0.8602549
+</td>
+<td style="text-align:right;">
+-0.3252469
+</td>
+<td style="text-align:right;">
+-0.6148969
+</td>
+<td style="text-align:right;">
+0.2986854
 </td>
 </tr>
 </tbody>
 </table>
+<p>Next we’ll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose our original matrix (X) into 3 separate matrices (U, , V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:</p>
+<p><font style="font-size: 14pt"> <span class="math display">\[
+\mathbf{X = U \Delta V^T}
+\]</span></p>
+<p>Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and is a diagonal matrix of “weights” called singular values that are the square root of the eigen values.</p>
+<p>Computing the SVD of our data matrix in R requires one line of code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hawks_data_svd &lt;-<span class="st"> </span><span class="kw">svd</span>(hawks_data_mat) <span class="co"># Singular value decomposition (SVD)</span></code></pre></div>
+<div id="eigen-values" class="section level3">
+<h3>Eigen Values</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculates inertia</span>
+
+<span class="co"># Calculates values for the scree plot</span>
+scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">eigs =</span> hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>, 
+                <span class="dt">perc_explained =</span> (eigs<span class="op">/</span>inertia)<span class="op">*</span><span class="dv">100</span>,
+                <span class="dt">comps =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(eigs)
+                )
+
+<span class="kw">nice_table</span>(<span class="kw">round</span>(scree, <span class="dv">2</span>)) <span class="co"># prints HTML table</span></code></pre></div>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+eigs
+</th>
+<th style="text-align:right;">
+perc_explained
+</th>
+<th style="text-align:right;">
+comps
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+47.40
+</td>
+<td style="text-align:right;">
+52.66
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25.16
+</td>
+<td style="text-align:right;">
+27.95
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10.02
+</td>
+<td style="text-align:right;">
+11.14
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.43
+</td>
+<td style="text-align:right;">
+4.92
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.02
+</td>
+<td style="text-align:right;">
+2.24
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.37
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Scree plot</span>
+<span class="kw">ggplot</span>(scree, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis =</span> <span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span>inertia <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, 
+                                         <span class="dt">name =</span> <span class="st">&quot;Percentage of Explained Variance&quot;</span>
+                                         )
+                     ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="row-wise-factor-scores" class="section level3">
+<h3>Row-wise Factor Scores</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">svd_u &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>u
 <span class="kw">round</span>(svd_u, <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>nice_table</code></pre></div>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
 <td style="text-align:right;">
--0.250
+-0.670
 </td>
 <td style="text-align:right;">
--0.448
+0.198
 </td>
 <td style="text-align:right;">
-0.627
+-0.032
 </td>
 <td style="text-align:right;">
-0.302
+0.252
 </td>
 <td style="text-align:right;">
--0.187
+-0.413
 </td>
 <td style="text-align:right;">
--0.149
+-0.118
 </td>
-<td style="text-align:right;">
-0.277
-</td>
-<td style="text-align:right;">
--0.147
-</td>
-<td style="text-align:right;">
--0.126
-</td>
-<td style="text-align:right;">
-0.205
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.277
-</td>
-<td style="text-align:right;">
--0.455
-</td>
-<td style="text-align:right;">
--0.119
-</td>
-<td style="text-align:right;">
-0.345
-</td>
-<td style="text-align:right;">
-0.401
-</td>
-<td style="text-align:right;">
-0.286
-</td>
-<td style="text-align:right;">
--0.084
-</td>
-<td style="text-align:right;">
-0.007
-</td>
-<td style="text-align:right;">
--0.016
-</td>
-<td style="text-align:right;">
--0.461
-</td>
-</tr>
-<tr>
 <td style="text-align:right;">
 -0.305
 </td>
 <td style="text-align:right;">
--0.292
+-0.066
 </td>
 <td style="text-align:right;">
--0.440
+-0.195
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.473
 </td>
 <td style="text-align:right;">
--0.016
+0.208
 </td>
 <td style="text-align:right;">
--0.157
+-0.128
 </td>
 <td style="text-align:right;">
-0.053
+-0.238
 </td>
 <td style="text-align:right;">
--0.231
+0.466
 </td>
+<td style="text-align:right;">
+-0.013
+</td>
+<td style="text-align:right;">
+0.139
+</td>
+<td style="text-align:right;">
+0.066
+</td>
+<td style="text-align:right;">
+0.456
+</td>
+</tr>
+<tr>
 <td style="text-align:right;">
 -0.046
-</td>
-<td style="text-align:right;">
--0.108
-</td>
-<td style="text-align:right;">
-0.691
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.315
-</td>
-<td style="text-align:right;">
--0.009
-</td>
-<td style="text-align:right;">
-0.044
-</td>
-<td style="text-align:right;">
--0.131
-</td>
-<td style="text-align:right;">
--0.018
-</td>
-<td style="text-align:right;">
-0.068
-</td>
-<td style="text-align:right;">
--0.664
-</td>
-<td style="text-align:right;">
--0.133
-</td>
-<td style="text-align:right;">
--0.209
-</td>
-<td style="text-align:right;">
--0.194
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.314
-</td>
-<td style="text-align:right;">
--0.036
-</td>
-<td style="text-align:right;">
-0.032
-</td>
-<td style="text-align:right;">
-0.040
-</td>
-<td style="text-align:right;">
--0.399
 </td>
 <td style="text-align:right;">
 -0.010
 </td>
 <td style="text-align:right;">
--0.116
+0.445
 </td>
 <td style="text-align:right;">
-0.353
+-0.290
 </td>
 <td style="text-align:right;">
-0.766
+0.187
+</td>
+<td style="text-align:right;">
+0.030
+</td>
+<td style="text-align:right;">
+0.096
+</td>
+<td style="text-align:right;">
+0.201
+</td>
+<td style="text-align:right;">
+-0.696
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.089
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+<td style="text-align:right;">
+0.092
 </td>
 <td style="text-align:right;">
 -0.114
 </td>
-</tr>
-<tr>
 <td style="text-align:right;">
--0.178
+-0.099
 </td>
 <td style="text-align:right;">
--0.145
+-0.313
 </td>
 <td style="text-align:right;">
--0.036
+0.404
 </td>
 <td style="text-align:right;">
--0.232
+0.484
 </td>
 <td style="text-align:right;">
-0.449
-</td>
-<td style="text-align:right;">
--0.797
-</td>
-<td style="text-align:right;">
--0.036
-</td>
-<td style="text-align:right;">
-0.228
-</td>
-<td style="text-align:right;">
-0.046
-</td>
-<td style="text-align:right;">
-0.000
+0.191
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
--0.317
+0.070
 </td>
 <td style="text-align:right;">
--0.132
+0.115
 </td>
 <td style="text-align:right;">
--0.349
+0.345
 </td>
 <td style="text-align:right;">
--0.368
+0.271
 </td>
 <td style="text-align:right;">
--0.409
+-0.118
 </td>
 <td style="text-align:right;">
--0.062
+0.241
 </td>
 <td style="text-align:right;">
-0.471
+0.532
 </td>
 <td style="text-align:right;">
--0.041
+-0.575
 </td>
 <td style="text-align:right;">
--0.283
-</td>
-<td style="text-align:right;">
--0.382
+0.114
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
--0.328
+-0.135
 </td>
 <td style="text-align:right;">
-0.179
+-0.890
 </td>
 <td style="text-align:right;">
--0.194
+-0.141
 </td>
 <td style="text-align:right;">
-0.011
+0.241
 </td>
 <td style="text-align:right;">
-0.457
+0.130
 </td>
 <td style="text-align:right;">
-0.224
+0.058
 </td>
 <td style="text-align:right;">
-0.407
+0.020
 </td>
 <td style="text-align:right;">
--0.257
+0.010
 </td>
 <td style="text-align:right;">
-0.328
-</td>
-<td style="text-align:right;">
-0.208
+0.008
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
--0.322
+0.168
 </td>
 <td style="text-align:right;">
-0.215
+-0.096
 </td>
 <td style="text-align:right;">
-0.318
+0.384
 </td>
 <td style="text-align:right;">
--0.258
+-0.350
 </td>
 <td style="text-align:right;">
-0.167
+-0.222
 </td>
 <td style="text-align:right;">
-0.351
+0.369
 </td>
 <td style="text-align:right;">
-0.086
+-0.515
 </td>
 <td style="text-align:right;">
-0.639
+0.026
 </td>
 <td style="text-align:right;">
--0.288
-</td>
-<td style="text-align:right;">
-0.149
+0.384
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
--0.329
+0.181
 </td>
 <td style="text-align:right;">
-0.269
+0.075
 </td>
 <td style="text-align:right;">
-0.339
+-0.377
 </td>
 <td style="text-align:right;">
--0.347
+-0.324
 </td>
 <td style="text-align:right;">
-0.005
+0.333
 </td>
 <td style="text-align:right;">
--0.024
+-0.093
 </td>
 <td style="text-align:right;">
--0.109
+-0.182
 </td>
 <td style="text-align:right;">
--0.553
+-0.495
+</td>
+<td style="text-align:right;">
+-0.215
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.194
+</td>
+<td style="text-align:right;">
+0.207
+</td>
+<td style="text-align:right;">
+-0.531
+</td>
+<td style="text-align:right;">
+0.114
+</td>
+<td style="text-align:right;">
+-0.172
+</td>
+<td style="text-align:right;">
+0.594
 </td>
 <td style="text-align:right;">
 0.121
 </td>
 <td style="text-align:right;">
--0.044
+0.322
+</td>
+<td style="text-align:right;">
+-0.149
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
--0.342
+0.279
 </td>
 <td style="text-align:right;">
-0.562
+-0.052
 </td>
 <td style="text-align:right;">
--0.137
+-0.207
 </td>
 <td style="text-align:right;">
-0.627
+-0.178
 </td>
 <td style="text-align:right;">
--0.123
+-0.460
 </td>
 <td style="text-align:right;">
--0.274
+-0.525
 </td>
 <td style="text-align:right;">
-0.006
+0.033
 </td>
 <td style="text-align:right;">
-0.037
+-0.120
 </td>
 <td style="text-align:right;">
--0.232
+0.046
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.343
 </td>
 <td style="text-align:right;">
--0.053
+0.227
+</td>
+<td style="text-align:right;">
+0.151
+</td>
+<td style="text-align:right;">
+0.616
+</td>
+<td style="text-align:right;">
+0.368
+</td>
+<td style="text-align:right;">
+-0.230
+</td>
+<td style="text-align:right;">
+-0.344
+</td>
+<td style="text-align:right;">
+0.147
+</td>
+<td style="text-align:right;">
+0.056
 </td>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="column-wise-factor-scores" class="section level3">
+<h3>Column-wise Factor Scores</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">svd_v &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>v
 <span class="kw">round</span>(svd_v, <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>nice_table</code></pre></div>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
 <td style="text-align:right;">
--0.013
+0.413
 </td>
 <td style="text-align:right;">
--0.024
+0.082
 </td>
 <td style="text-align:right;">
-0.011
+-0.259
+</td>
+<td style="text-align:right;">
+0.415
+</td>
+<td style="text-align:right;">
+-0.187
+</td>
+<td style="text-align:right;">
+-0.662
+</td>
+<td style="text-align:right;">
+-0.088
+</td>
+<td style="text-align:right;">
+-0.307
+</td>
+<td style="text-align:right;">
+0.089
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.422
+</td>
+<td style="text-align:right;">
+-0.043
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+<td style="text-align:right;">
+-0.098
+</td>
+<td style="text-align:right;">
+0.794
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+-0.250
+</td>
+<td style="text-align:right;">
+-0.215
+</td>
+<td style="text-align:right;">
+-0.229
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.231
+</td>
+<td style="text-align:right;">
+0.302
+</td>
+<td style="text-align:right;">
+0.577
+</td>
+<td style="text-align:right;">
+0.631
+</td>
+<td style="text-align:right;">
+-0.079
+</td>
+<td style="text-align:right;">
+0.321
+</td>
+<td style="text-align:right;">
+0.058
+</td>
+<td style="text-align:right;">
+0.106
 </td>
 <td style="text-align:right;">
 0.032
 </td>
-<td style="text-align:right;">
-0.011
-</td>
-<td style="text-align:right;">
-0.001
-</td>
-<td style="text-align:right;">
-0.052
-</td>
-<td style="text-align:right;">
--0.016
-</td>
-<td style="text-align:right;">
--0.996
-</td>
-<td style="text-align:right;">
-0.049
-</td>
 </tr>
 <tr>
 <td style="text-align:right;">
--0.618
+0.094
 </td>
 <td style="text-align:right;">
--0.656
+-0.404
 </td>
 <td style="text-align:right;">
-0.260
+0.700
 </td>
 <td style="text-align:right;">
--0.332
+-0.315
 </td>
 <td style="text-align:right;">
-0.004
+-0.168
 </td>
 <td style="text-align:right;">
-0.075
+-0.384
 </td>
 <td style="text-align:right;">
--0.045
-</td>
-<td style="text-align:right;">
-0.048
-</td>
-<td style="text-align:right;">
-0.013
-</td>
-<td style="text-align:right;">
-0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.586
-</td>
-<td style="text-align:right;">
-0.170
-</td>
-<td style="text-align:right;">
--0.779
-</td>
-<td style="text-align:right;">
-0.138
+-0.082
 </td>
 <td style="text-align:right;">
 0.024
 </td>
 <td style="text-align:right;">
--0.002
-</td>
-<td style="text-align:right;">
-0.039
-</td>
-<td style="text-align:right;">
--0.007
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
-0.002
+0.238
 </td>
 </tr>
 <tr>
-<td style="text-align:right;">
--0.519
-</td>
-<td style="text-align:right;">
-0.635
-</td>
-<td style="text-align:right;">
-0.554
-</td>
-<td style="text-align:right;">
-0.132
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-<td style="text-align:right;">
--0.030
-</td>
-<td style="text-align:right;">
-0.018
-</td>
-<td style="text-align:right;">
--0.042
-</td>
-<td style="text-align:right;">
-0.003
-</td>
-<td style="text-align:right;">
--0.001
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.025
-</td>
-<td style="text-align:right;">
--0.056
-</td>
-<td style="text-align:right;">
--0.020
-</td>
-<td style="text-align:right;">
--0.052
-</td>
 <td style="text-align:right;">
 -0.424
 </td>
 <td style="text-align:right;">
--0.553
+0.142
 </td>
 <td style="text-align:right;">
--0.247
+0.150
 </td>
 <td style="text-align:right;">
--0.666
+0.170
 </td>
 <td style="text-align:right;">
--0.010
+0.438
 </td>
 <td style="text-align:right;">
--0.051
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.023
+-0.460
 </td>
 <td style="text-align:right;">
--0.010
+0.575
 </td>
 <td style="text-align:right;">
-0.003
+0.115
 </td>
 <td style="text-align:right;">
-0.146
-</td>
-<td style="text-align:right;">
--0.741
-</td>
-<td style="text-align:right;">
--0.101
-</td>
-<td style="text-align:right;">
--0.191
-</td>
-<td style="text-align:right;">
-0.617
-</td>
-<td style="text-align:right;">
--0.023
-</td>
-<td style="text-align:right;">
--0.006
+-0.053
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
--0.041
-</td>
-<td style="text-align:right;">
--0.269
-</td>
-<td style="text-align:right;">
-0.102
-</td>
-<td style="text-align:right;">
-0.548
-</td>
-<td style="text-align:right;">
--0.167
-</td>
-<td style="text-align:right;">
--0.094
-</td>
-<td style="text-align:right;">
-0.749
-</td>
-<td style="text-align:right;">
--0.117
-</td>
-<td style="text-align:right;">
-0.064
-</td>
-<td style="text-align:right;">
--0.005
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.044
-</td>
-<td style="text-align:right;">
--0.246
+-0.445
 </td>
 <td style="text-align:right;">
 0.087
 </td>
 <td style="text-align:right;">
-0.727
+0.179
 </td>
 <td style="text-align:right;">
-0.253
+0.043
 </td>
 <td style="text-align:right;">
-0.068
+-0.032
 </td>
 <td style="text-align:right;">
--0.576
+0.120
 </td>
 <td style="text-align:right;">
--0.041
+-0.112
 </td>
 <td style="text-align:right;">
-0.005
+-0.853
 </td>
 <td style="text-align:right;">
-0.003
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.001
-</td>
-<td style="text-align:right;">
--0.005
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
--0.005
-</td>
-<td style="text-align:right;">
-0.014
-</td>
-<td style="text-align:right;">
--0.110
-</td>
-<td style="text-align:right;">
--0.006
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-<td style="text-align:right;">
-0.048
-</td>
-<td style="text-align:right;">
-0.993
+0.073
 </td>
 </tr>
 <tr>
 <td style="text-align:right;">
--0.015
+-0.073
+</td>
+<td style="text-align:right;">
+-0.584
+</td>
+<td style="text-align:right;">
+-0.191
+</td>
+<td style="text-align:right;">
+0.382
+</td>
+<td style="text-align:right;">
+0.269
+</td>
+<td style="text-align:right;">
+0.188
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+<td style="text-align:right;">
+0.603
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.135
+</td>
+<td style="text-align:right;">
+-0.585
+</td>
+<td style="text-align:right;">
+0.032
+</td>
+<td style="text-align:right;">
+0.328
+</td>
+<td style="text-align:right;">
+-0.142
+</td>
+<td style="text-align:right;">
+-0.007
+</td>
+<td style="text-align:right;">
+-0.019
+</td>
+<td style="text-align:right;">
+-0.021
+</td>
+<td style="text-align:right;">
+-0.714
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.433
+</td>
+<td style="text-align:right;">
+-0.163
 </td>
 <td style="text-align:right;">
 -0.035
 </td>
 <td style="text-align:right;">
-0.014
+-0.192
 </td>
 <td style="text-align:right;">
--0.020
+-0.121
 </td>
 <td style="text-align:right;">
-0.423
+0.224
 </td>
 <td style="text-align:right;">
--0.807
+0.759
 </td>
 <td style="text-align:right;">
-0.053
+-0.326
 </td>
 <td style="text-align:right;">
-0.394
-</td>
-<td style="text-align:right;">
--0.004
-</td>
-<td style="text-align:right;">
--0.099
+-0.028
 </td>
 </tr>
 </tbody>
@@ -1817,21 +2139,7 @@ fis &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(rows) <span 
 fjs &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(columns) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">meas =</span> <span class="kw">colnames</span>(nhl_data)[<span class="op">-</span><span class="dv">1</span>])
 
-inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(nhl_data_svd<span class="op">$</span>d)
 
-scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">eigs =</span> nhl_data_svd<span class="op">$</span>d, 
-                <span class="dt">perc_explained =</span> (eigs<span class="op">/</span>inertia)<span class="op">*</span><span class="dv">100</span>,
-                <span class="dt">comps =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(eigs)
-                )
-
-<span class="kw">ggplot</span>(scree, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis =</span> <span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span>inertia <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, 
-                                         <span class="dt">name =</span> <span class="st">&quot;Percentage of Explained Variance&quot;</span>
-                                         )
-                     ) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_minimal</span>()
 
 
 <span class="kw">ggplot</span>(fis, <span class="kw">aes</span>(V2, V3, <span class="dt">color =</span> SCW)) <span class="op">+</span>
@@ -1934,6 +2242,7 @@ scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="
         <span class="dt">axis.ticks=</span><span class="kw">element_blank</span>(),
         <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()
         )</code></pre></div>
+</div>
 </div>
 
 </div> <!-- articleBandContent -->

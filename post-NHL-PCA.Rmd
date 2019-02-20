@@ -22,7 +22,7 @@ options(knitr.table.format = 'html') # For the html tables
 
 Here are the packages that we'll use for these analyses and to style the output/plots.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 # Packages ----
 library(tidyverse)    # For data manipulation, plotting, etc. 
 library(RCurl)        # To import data on github
@@ -133,6 +133,8 @@ ggplot(hawks_data_long, aes(factor(Season), Val_Zscore)) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
+[small blurb here describing the z score plots]
+
 ## Ekarin's version
 
 ```{r}
@@ -174,6 +176,8 @@ ggplot(hawks_cor_long, aes(x = Var1, y = Var2, fill = value)) +
 
 ## Matt's version
 
+Now let's examine how these measurements relate to each other by computing their correlations and visualizing them with a heatmap.
+
 ```{r}
 # Converts back to wide format
 hawks_data_wide <- hawks_data_long %>% 
@@ -188,7 +192,7 @@ hawks_cors_long <- hawks_cors %>%
   reshape2::melt() %>%
   arrange(Var1, Var2)
 
-# heatmap
+# Correlation heatmap
 ggplot(hawks_cors_long, aes(x = Var1, y = Var2, fill = value)) +
   geom_raster() + 
   theme_minimal() +
@@ -201,24 +205,58 @@ ggplot(hawks_cors_long, aes(x = Var1, y = Var2, fill = value)) +
                        )
 ```
 
+[ a little blurb here about the patterns that emerge from the heatmap ]
+
 ## PCA
+
+We've explored these measures individually by plotting their change over time (2007-2018) as well as examining their correlations; however, it's difficult to extract meaningful relationships between these variables, especially when there are a lot of variables to consider. Also, all realtionships between the variables are not considered simultaneously, but rather one at a time (e.g., bivariate correlations). Is there some way to analyze these variables' relationships simultaneously, while also reducing their complexity?
+
+One method of doing this is principal components analysis (PCA). PCA is often called a data reduction technique because it reduces the data structure into manageable "components" that explain proportions of variability in the data. In order to understand what each component means, we examine how information (e.g., years or measurements) is spread across the components.
+
+Additionally, the PCA that we will demonstrate below places a constraint on the components such that they are orthogonal to each other, meaning that each component is perfectly uncorrelated with every other component (_r_ = 0).
+
+We go over the basics of PCA below, but we recommend the interested reader the following papers on this statistical technique:
+
++ Abdi, H., & Williams, L.J. (2010). [Principal component analysis](https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf). _Wiley Interdisciplinary Reviews: Computational Statistics_, 2, 433-459.
+
++ Abdi, H. (2007). [Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)](https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf). In N.J. Salkind (Ed.): _Encyclopedia of Measurement and Statistics_. Thousand Oaks (CA): Sage. pp. 907-912.
+
+We first need to preprocess our data such that each column (e.g., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We've already done this above when exploring these data.
+
+A unique feature of this dataset is the reduced 2012 - 2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.
+
+The first step is to convert these data into a matrix format with the season years on the rows as row names:
 
 ```{r}
 # Converts to matrix
 hawks_data_mat <- hawks_data_wide %>% select(-Season) %>% as.matrix()
 rownames(hawks_data_mat) <- hawks_data_wide$Season # Adds rownames
 
-# Singular value decomposition (SVD)
-hawks_data_svd <- svd(hawks_data_mat)
+nice_table(hawks_data_mat) # Prints HTML table
+```
+
+Next we'll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose our original matrix (X) into 3 separate matrices (U, \Delta, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:
+
+<font style="font-size: 14pt">
+$$
+\mathbf{X = U \Delta V^T}
+$$
+
+Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and \Delta is a diagonal matrix of "weights" called singular values that are the square root of the eigen values.
+
+Computing the SVD of our data matrix in R requires one line of code:
+
+```{r}
+hawks_data_svd <- svd(hawks_data_mat) # Singular value decomposition (SVD)
 ```
 
 ### Eigen Values
 
 ```{r}
-inertia <- sum(hawks_data_svd$d) # Calculates inertia
+inertia <- sum(hawks_data_svd$d^2) # Calculates inertia
 
 # Calculates values for the scree plot
-scree <- tibble(eigs = hawks_data_svd$d, 
+scree <- tibble(eigs = hawks_data_svd$d^2, 
                 perc_explained = (eigs/inertia)*100,
                 comps = 1:length(eigs)
                 )
