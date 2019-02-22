@@ -42,6 +42,13 @@ nice_table <- function(x){
 
 # Color palettes ----
 rdgy <- brewer.pal(n = 11, name = "RdGy") # display.brewer.pal(11, "RdGy")
+
+# ggplot2 finishings
+pca_furnish <- theme_classic() +
+  theme(axis.title=element_blank(),
+        axis.ticks=element_blank(),
+        axis.line = element_blank()
+        )
 ```
 
 Let's first prepare the data for analysis. These data were downloaded from [Corsica's](http://corsica.hockey/) team stats tool. We've prepared these data for you and are available for import into R like this:
@@ -215,7 +222,7 @@ One method of doing this is principal components analysis (PCA). PCA is often ca
 
 Additionally, the PCA that we will demonstrate below places a constraint on the components such that they are orthogonal to each other, meaning that each component is perfectly uncorrelated with every other component (_r_ = 0).
 
-We go over the basics of PCA below, but we recommend the interested reader the following papers on this statistical technique:
+We go over the very basics of PCA below. There is much more to this technique than we present, so we recommend the interested reader the following papers on this statistical technique:
 
 + Abdi, H., & Williams, L.J. (2010). [Principal component analysis](https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf). _Wiley Interdisciplinary Reviews: Computational Statistics_, 2, 433-459.
 
@@ -223,9 +230,9 @@ We go over the basics of PCA below, but we recommend the interested reader the f
 
 We first need to preprocess our data such that each column (e.g., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We've already done this above when exploring these data.
 
-A unique feature of this dataset is the reduced 2012 - 2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.
+A unique feature of this dataset is the shortened 2012 - 2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.
 
-The first step is to convert these data into a matrix format with the season years on the rows as row names:
+Therefore, the first step here is to convert these data into a matrix format with the season years on the rows as row names:
 
 ```{r}
 # Converts to matrix
@@ -242,26 +249,36 @@ $$
 \mathbf{X = U \Delta V^T}
 $$
 
-Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and \Delta is a diagonal matrix of "weights" called singular values that are the square root of the eigen values.
+Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and \Delta is a diagonal matrix of "weights" called singular values that are the square root of the eigenvalues.
 
 Computing the SVD of our data matrix in R requires one line of code:
 
 ```{r}
-hawks_data_svd <- svd(hawks_data_mat) # Singular value decomposition (SVD)
+hawks_data_svd <- svd(hawks_data_mat) # singular value decomposition (SVD)
 ```
 
 ### Eigen Values
 
+Our original data matrix was 11 rows (years) x 9 columns (measures); therefore, the SVD of that matrix will produce 9 singular values/components -- with the smaller side dictating the number of components produced.
+
+Which components are important? Which ones explain the most variance? Are some of the components just noise?
+
+A good first pass at these questions is examine the scree plot -- plotting the components as a function of variability explained.
+
+To do this, let's first square the singular values and sum them together. This is called __inertia__.
+
 ```{r}
 inertia <- sum(hawks_data_svd$d^2) # Calculates inertia
+```
 
+Next, we'll use the inertia to calculate the percentage of variability explained for each component and plot the scree:
+
+```{r}
 # Calculates values for the scree plot
 scree <- tibble(eigs = hawks_data_svd$d^2, 
                 perc_explained = (eigs/inertia)*100,
                 comps = 1:length(eigs)
                 )
-
-nice_table(round(scree, 2)) # prints HTML table
 
 # Scree plot
 ggplot(scree, aes(factor(comps), eigs)) +
@@ -275,12 +292,117 @@ ggplot(scree, aes(factor(comps), eigs)) +
   theme_minimal()
 ```
 
-### Row-wise Factor Scores 
+As we can see from the scree plot, the first 3 components comprise `r round(sum(scree$perc_explained[1:3]), 2)`% of the total variance, suggesting that these first three components are important to understanding the structure of the data set. The remaining components explain only `r round(sum(scree$perc_explained[4:9]), 2)`% of the variability and may perhaps be noise.
+
+Is there any way to statistically show that these components are important? One method is permutation testing. If you unfamiliar with permutation testing, we recommend checking out our Shiny dashboard [here](https://mattkmiecik.shinyapps.io/boot-perm-dash/).
+
+Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigen values from which to compare our originally observed eigenvalues.
 
 ```{r}
-svd_u <- hawks_data_svd$u
-round(svd_u, 3) %>% nice_table
+perm_iters <- 2000  # number of permutation iterations
+set.seed(2019)      # sets seed for reproducible results
+
+# Initializes matrix to hold permutation results
+perm_res <- matrix(data = 0, nrow = perm_iters, ncol = length(hawks_data_svd$d))
+
+for(i in 1:perm_iters){
+  
+  this_matrix <- apply(hawks_data_mat, 2, sample) # scrambles down columns
+  perm_res[i,] <- svd(this_matrix)$d^2 # saves eigenvalues to perm_res
+  
+}
 ```
+
+Now let's visualize these results against the observed values. We'll determine that a component is significant if its original observed eigenvalue is greater than 95% of the values derived from the null distribution (i.e., permutation testing).
+
+```{r}
+perm_res_long <- as_tibble(perm_res) %>% 
+  gather(comps, eigen) %>%
+  mutate(comps = as.numeric(gsub("V", "", comps)))
+
+ggplot(perm_res_long, aes(eigen)) +
+  geom_histogram(binwidth = 1) +
+  geom_vline(data = scree, 
+             aes(xintercept = eigs), 
+             color = rdgy[3], 
+             linetype = 2
+             ) +
+  coord_cartesian(ylim = c(0, 800)) +
+  labs(x = "Eigenvalue", 
+       y = "Frequency", 
+       caption = "Originally observed eigenvalues denoted by red dashed line"
+       ) +
+  facet_wrap(~comps)
+```
+
+It looks like the only components that have a shot at being greater than 95% of the null distribution are components 1 and 2. Let's see if this is the case:
+
+```{r}
+scree_sig <- perm_res_long %>% 
+  group_by(comps) %>% 
+  summarise(ul = quantile(eigen, .975)) %>% # computes upper limit of 95%
+  inner_join(., scree, by = "comps") %>%
+  mutate(sig = ifelse(eigs>ul, "p < .05", "p > .05"))
+
+ggplot(scree_sig, aes(factor(comps), eigs)) +
+  geom_path(aes(group = 1), color = rdgy[7], linetype = 2) +
+  geom_point(aes(color = sig), size = 2) +
+  scale_y_continuous(sec.axis = sec_axis(~./inertia * 100, 
+                                         name = "Percentage of Explained Variance"
+                                         )
+                     ) +
+  scale_color_manual(values = c(rdgy[3], rdgy[9]), name = NULL) +
+  labs(x = "Components", y = "Eigenvalues") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+What we suspected was correct: given a null distribution/hypothesis, only components 1 and 2 were greater than 95% permuted eigenvalues. In other words, there is less than a 5% chance that the pattern of the results seen on components 1 and 2 are this extreme given that the null hypothesis is true (i.e., no relationship). Therefore, we'll pay special attention to components 1 and 2.
+
+Now that we know what components may be more important than others, let's take a look at what we can learn from examining factor scores for the rows (years) and the columns (measures).
+
+### Row-wise Factor Scores
+
+We can explore how the years are seen through the components by first scaling the U matrix by the singular values:
+
+```{r}
+years <- hawks_data_svd$u %*% diag(hawks_data_svd$d)
+```
+
+Now let's visualize the factor scores for components 1 and 2:
+
+```{r}
+# Builds dataframe of row-wise factor scores with notable events
+years_fs <- as_tibble(years) %>%
+  mutate(Season = hawks_data_wide$Season) %>%
+  left_join(., hawks_events, by = "Season") # imports notable events
+
+ggplot(years_fs, aes(V1, V2, color = SCW)) +
+  geom_vline(xintercept = 0, alpha = 1/3) +
+  geom_hline(yintercept = 0, alpha = 1/3) +
+  geom_point() +
+  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
+  scale_color_manual(values = c(rdgy[9], rdgy[2]), name = "Stanley Cup Wins") +
+  geom_text_repel(aes(label = Season), segment.alpha = 0) +
+  pca_furnish +
+  theme(legend.position = "bottom")
+```
+
+[blurb here]
+
+```{r}
+ggplot(years_fs, aes(V1, V2, color = PF)) +
+  geom_vline(xintercept = 0, alpha = 2/3) +
+  geom_hline(yintercept = 0, alpha = 2/3) +
+  geom_point() +
+  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
+  scale_color_brewer(palette = "Dark2", direction = -1) +
+  geom_text_repel(aes(label = Season), segment.alpha = 0) +
+  pca_furnish
+```
+
+
+
 
 ### Column-wise Factor Scores
 
@@ -314,19 +436,7 @@ fjs <- as.tibble(columns) %>%
 
 
 
-ggplot(fis, aes(V2, V3, color = SCW)) +
-  geom_vline(xintercept = 0, alpha = 2/3) +
-  geom_hline(yintercept = 0, alpha = 2/3) +
-  geom_point() +
-  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
-  scale_color_brewer(palette = "Dark2") +
-  geom_text_repel(aes(label = Season), segment.alpha = 0) +
-  theme_classic() +
-  theme(axis.title=element_blank(),
-        #axis.text=element_blank(),
-        axis.ticks=element_blank(),
-        axis.line = element_blank()
-        )
+
 
 ggplot(fjs, aes(V2, V3)) +
   geom_vline(xintercept = 0, alpha = 2/3) +
