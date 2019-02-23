@@ -42,7 +42,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -79,7 +79,29 @@ code > span.do { color: #7f9f7f; } /* Documentation */
 code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
 code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
 code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -143,6 +165,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -157,7 +182,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -177,6 +201,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -198,18 +259,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -397,7 +517,14 @@ nice_table &lt;-<span class="st"> </span><span class="cf">function</span>(x){
 }
 
 <span class="co"># Color palettes ----</span>
-rdgy &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">11</span>, <span class="dt">name =</span> <span class="st">&quot;RdGy&quot;</span>) <span class="co"># display.brewer.pal(11, &quot;RdGy&quot;)</span></code></pre></div>
+rdgy &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">11</span>, <span class="dt">name =</span> <span class="st">&quot;RdGy&quot;</span>) <span class="co"># display.brewer.pal(11, &quot;RdGy&quot;)</span>
+
+<span class="co"># ggplot2 finishings</span>
+pca_furnish &lt;-<span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title=</span><span class="kw">element_blank</span>(),
+        <span class="dt">axis.ticks=</span><span class="kw">element_blank</span>(),
+        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()
+        )</code></pre></div>
 <p>Let’s first prepare the data for analysis. These data were downloaded from <a href="http://corsica.hockey/">Corsica’s</a> team stats tool. We’ve prepared these data for you and are available for import into R like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Link to raw data on Github</span>
 link &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/nhl-team-data-corsica.csv&quot;</span>
@@ -975,14 +1102,14 @@ hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%
 <p>We’ve explored these measures individually by plotting their change over time (2007-2018) as well as examining their correlations; however, it’s difficult to extract meaningful relationships between these variables, especially when there are a lot of variables to consider. Also, all realtionships between the variables are not considered simultaneously, but rather one at a time (e.g., bivariate correlations). Is there some way to analyze these variables’ relationships simultaneously, while also reducing their complexity?</p>
 <p>One method of doing this is principal components analysis (PCA). PCA is often called a data reduction technique because it reduces the data structure into manageable “components” that explain proportions of variability in the data. In order to understand what each component means, we examine how information (e.g., years or measurements) is spread across the components.</p>
 <p>Additionally, the PCA that we will demonstrate below places a constraint on the components such that they are orthogonal to each other, meaning that each component is perfectly uncorrelated with every other component (<em>r</em> = 0).</p>
-<p>We go over the basics of PCA below, but we recommend the interested reader the following papers on this statistical technique:</p>
+<p>We go over the very basics of PCA below. There is much more to this technique than we present, so we recommend the interested reader the following papers on this statistical technique:</p>
 <ul>
 <li><p>Abdi, H., &amp; Williams, L.J. (2010). <a href="https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf">Principal component analysis</a>. <em>Wiley Interdisciplinary Reviews: Computational Statistics</em>, 2, 433-459.</p></li>
 <li><p>Abdi, H. (2007). <a href="https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf">Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)</a>. In N.J. Salkind (Ed.): <em>Encyclopedia of Measurement and Statistics</em>. Thousand Oaks (CA): Sage. pp. 907-912.</p></li>
 </ul>
 <p>We first need to preprocess our data such that each column (e.g., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We’ve already done this above when exploring these data.</p>
-<p>A unique feature of this dataset is the reduced 2012 - 2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.</p>
-<p>The first step is to convert these data into a matrix format with the season years on the rows as row names:</p>
+<p>A unique feature of this dataset is the shortened 2012 - 2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.</p>
+<p>Therefore, the first step here is to convert these data into a matrix format with the season years on the rows as row names:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts to matrix</span>
 hawks_data_mat &lt;-<span class="st"> </span>hawks_data_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Season) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()
 <span class="kw">rownames</span>(hawks_data_mat) &lt;-<span class="st"> </span>hawks_data_wide<span class="op">$</span>Season <span class="co"># Adds rownames</span>
@@ -1381,137 +1508,24 @@ TOI
 <p><font style="font-size: 14pt"> <span class="math display">\[
 \mathbf{X = U \Delta V^T}
 \]</span></p>
-<p>Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and is a diagonal matrix of “weights” called singular values that are the square root of the eigen values.</p>
+<p>Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and is a diagonal matrix of “weights” called singular values that are the square root of the eigenvalues.</p>
 <p>Computing the SVD of our data matrix in R requires one line of code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hawks_data_svd &lt;-<span class="st"> </span><span class="kw">svd</span>(hawks_data_mat) <span class="co"># Singular value decomposition (SVD)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hawks_data_svd &lt;-<span class="st"> </span><span class="kw">svd</span>(hawks_data_mat) <span class="co"># singular value decomposition (SVD)</span></code></pre></div>
 <div id="eigen-values" class="section level3">
 <h3>Eigen Values</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculates inertia</span>
-
-<span class="co"># Calculates values for the scree plot</span>
+<p>Our original data matrix was 11 rows (years) x 9 columns (measures); therefore, the SVD of that matrix will produce 9 singular values/components – with the smaller side dictating the number of components produced.</p>
+<p>Which components are important? Which ones explain the most variance? Are some of the components just noise?</p>
+<p>A good first pass at these questions is examine the scree plot – plotting the components as a function of variability explained.</p>
+<p>To do this, let’s first square the singular values and sum them together. This is called <strong>inertia</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculates inertia</span></code></pre></div>
+<p>Next, we’ll use the inertia to calculate the percentage of variability explained for each component and plot the scree:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculates values for the scree plot</span>
 scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">eigs =</span> hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>, 
                 <span class="dt">perc_explained =</span> (eigs<span class="op">/</span>inertia)<span class="op">*</span><span class="dv">100</span>,
                 <span class="dt">comps =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(eigs)
                 )
 
-<span class="kw">nice_table</span>(<span class="kw">round</span>(scree, <span class="dv">2</span>)) <span class="co"># prints HTML table</span></code></pre></div>
-<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:right;">
-eigs
-</th>
-<th style="text-align:right;">
-perc_explained
-</th>
-<th style="text-align:right;">
-comps
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-47.40
-</td>
-<td style="text-align:right;">
-52.66
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-25.16
-</td>
-<td style="text-align:right;">
-27.95
-</td>
-<td style="text-align:right;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-10.02
-</td>
-<td style="text-align:right;">
-11.14
-</td>
-<td style="text-align:right;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-4.43
-</td>
-<td style="text-align:right;">
-4.92
-</td>
-<td style="text-align:right;">
-4
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2.02
-</td>
-<td style="text-align:right;">
-2.24
-</td>
-<td style="text-align:right;">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.53
-</td>
-<td style="text-align:right;">
-0.59
-</td>
-<td style="text-align:right;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.37
-</td>
-<td style="text-align:right;">
-0.41
-</td>
-<td style="text-align:right;">
-7
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.08
-</td>
-<td style="text-align:right;">
-0.09
-</td>
-<td style="text-align:right;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-9
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Scree plot</span>
+<span class="co"># Scree plot</span>
 <span class="kw">ggplot</span>(scree, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span>
@@ -1521,343 +1535,108 @@ comps
                      ) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As we can see from the scree plot, the first 3 components comprise 91.75% of the total variance, suggesting that these first three components are important to understanding the structure of the data set. The remaining components explain only 8.25% of the variability and may perhaps be noise.</p>
+<p>Is there any way to statistically show that these components are important? One method is permutation testing. If you unfamiliar with permutation testing, we recommend checking out our Shiny dashboard <a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/">here</a>.</p>
+<p>Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigen values from which to compare our originally observed eigenvalues.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">perm_iters &lt;-<span class="st"> </span><span class="dv">2000</span>  <span class="co"># number of permutation iterations</span>
+<span class="kw">set.seed</span>(<span class="dv">2019</span>)      <span class="co"># sets seed for reproducible results</span>
+
+<span class="co"># Initializes matrix to hold permutation results</span>
+perm_res &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">nrow =</span> perm_iters, <span class="dt">ncol =</span> <span class="kw">length</span>(hawks_data_svd<span class="op">$</span>d))
+
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>perm_iters){
+  
+  this_matrix &lt;-<span class="st"> </span><span class="kw">apply</span>(hawks_data_mat, <span class="dv">2</span>, sample) <span class="co"># scrambles down columns</span>
+  perm_res[i,] &lt;-<span class="st"> </span><span class="kw">svd</span>(this_matrix)<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span> <span class="co"># saves eigenvalues to perm_res</span>
+  
+}</code></pre></div>
+<p>Now let’s visualize these results against the observed values. We’ll determine that a component is significant if its original observed eigenvalue is greater than 95% of the values derived from the null distribution (i.e., permutation testing).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">perm_res_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(perm_res) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(comps, eigen) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">comps =</span> <span class="kw">as.numeric</span>(<span class="kw">gsub</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;&quot;</span>, comps)))</code></pre></div>
+<pre><code>## Warning: `as_tibble.matrix()` requires a matrix with column names or a `.name_repair` argument. Using compatibility `.name_repair`.
+## This warning is displayed once per session.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(perm_res_long, <span class="kw">aes</span>(eigen)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> scree, 
+             <span class="kw">aes</span>(<span class="dt">xintercept =</span> eigs), 
+             <span class="dt">color =</span> rdgy[<span class="dv">3</span>], 
+             <span class="dt">linetype =</span> <span class="dv">2</span>
+             ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">800</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Eigenvalue&quot;</span>, 
+       <span class="dt">y =</span> <span class="st">&quot;Frequency&quot;</span>, 
+       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Originally observed eigenvalues denoted by red dashed line.&quot;</span>
+       ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>comps) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>It looks like the only components that have a shot at being greater than 95% of the null distribution are components 1 and 2. Let’s see if this is the case:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scree_sig &lt;-<span class="st"> </span>perm_res_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(comps) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">ul =</span> <span class="kw">quantile</span>(eigen, .<span class="dv">975</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># computes upper limit of 95%</span>
+<span class="st">  </span><span class="kw">inner_join</span>(., scree, <span class="dt">by =</span> <span class="st">&quot;comps&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sig =</span> <span class="kw">ifelse</span>(eigs<span class="op">&gt;</span>ul, <span class="st">&quot;p &lt; .05&quot;</span>, <span class="st">&quot;p &gt; .05&quot;</span>))
+
+<span class="kw">ggplot</span>(scree_sig, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">color =</span> rdgy[<span class="dv">7</span>], <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sig), <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis =</span> <span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span>inertia <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, 
+                                         <span class="dt">name =</span> <span class="st">&quot;Percentage of Explained Variance&quot;</span>
+                                         )
+                     ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">3</span>], rdgy[<span class="dv">9</span>]), <span class="dt">name =</span> <span class="ot">NULL</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>What we suspected was correct: given a null distribution/hypothesis, only components 1 and 2 were greater than 95% permuted eigenvalues. In other words, there is less than a 5% chance that the pattern of the results seen on components 1 and 2 are this extreme given that the null hypothesis is true (i.e., no relationship). Therefore, we’ll pay special attention to components 1 and 2.</p>
+<p>Now that we know what components may be more important than others, let’s take a look at what we can learn from examining factor scores for the rows (years) and the columns (measures).</p>
 </div>
 <div id="row-wise-factor-scores" class="section level3">
 <h3>Row-wise Factor Scores</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">svd_u &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>u
-<span class="kw">round</span>(svd_u, <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>nice_table</code></pre></div>
-<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:right;">
--0.670
-</td>
-<td style="text-align:right;">
-0.198
-</td>
-<td style="text-align:right;">
--0.032
-</td>
-<td style="text-align:right;">
-0.252
-</td>
-<td style="text-align:right;">
--0.413
-</td>
-<td style="text-align:right;">
--0.118
-</td>
-<td style="text-align:right;">
--0.305
-</td>
-<td style="text-align:right;">
--0.066
-</td>
-<td style="text-align:right;">
--0.195
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.473
-</td>
-<td style="text-align:right;">
-0.208
-</td>
-<td style="text-align:right;">
--0.128
-</td>
-<td style="text-align:right;">
--0.238
-</td>
-<td style="text-align:right;">
-0.466
-</td>
-<td style="text-align:right;">
--0.013
-</td>
-<td style="text-align:right;">
-0.139
-</td>
-<td style="text-align:right;">
-0.066
-</td>
-<td style="text-align:right;">
-0.456
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.046
-</td>
-<td style="text-align:right;">
--0.010
-</td>
-<td style="text-align:right;">
-0.445
-</td>
-<td style="text-align:right;">
--0.290
-</td>
-<td style="text-align:right;">
-0.187
-</td>
-<td style="text-align:right;">
-0.030
-</td>
-<td style="text-align:right;">
-0.096
-</td>
-<td style="text-align:right;">
-0.201
-</td>
-<td style="text-align:right;">
--0.696
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.089
-</td>
-<td style="text-align:right;">
-0.019
-</td>
-<td style="text-align:right;">
-0.092
-</td>
-<td style="text-align:right;">
--0.114
-</td>
-<td style="text-align:right;">
--0.099
-</td>
-<td style="text-align:right;">
--0.313
-</td>
-<td style="text-align:right;">
-0.404
-</td>
-<td style="text-align:right;">
-0.484
-</td>
-<td style="text-align:right;">
-0.191
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.070
-</td>
-<td style="text-align:right;">
-0.115
-</td>
-<td style="text-align:right;">
-0.345
-</td>
-<td style="text-align:right;">
-0.271
-</td>
-<td style="text-align:right;">
--0.118
-</td>
-<td style="text-align:right;">
-0.241
-</td>
-<td style="text-align:right;">
-0.532
-</td>
-<td style="text-align:right;">
--0.575
-</td>
-<td style="text-align:right;">
-0.114
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
--0.135
-</td>
-<td style="text-align:right;">
--0.890
-</td>
-<td style="text-align:right;">
--0.141
-</td>
-<td style="text-align:right;">
-0.241
-</td>
-<td style="text-align:right;">
-0.130
-</td>
-<td style="text-align:right;">
-0.058
-</td>
-<td style="text-align:right;">
-0.020
-</td>
-<td style="text-align:right;">
-0.010
-</td>
-<td style="text-align:right;">
-0.008
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.168
-</td>
-<td style="text-align:right;">
--0.096
-</td>
-<td style="text-align:right;">
-0.384
-</td>
-<td style="text-align:right;">
--0.350
-</td>
-<td style="text-align:right;">
--0.222
-</td>
-<td style="text-align:right;">
-0.369
-</td>
-<td style="text-align:right;">
--0.515
-</td>
-<td style="text-align:right;">
-0.026
-</td>
-<td style="text-align:right;">
-0.384
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.181
-</td>
-<td style="text-align:right;">
-0.075
-</td>
-<td style="text-align:right;">
--0.377
-</td>
-<td style="text-align:right;">
--0.324
-</td>
-<td style="text-align:right;">
-0.333
-</td>
-<td style="text-align:right;">
--0.093
-</td>
-<td style="text-align:right;">
--0.182
-</td>
-<td style="text-align:right;">
--0.495
-</td>
-<td style="text-align:right;">
--0.215
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.194
-</td>
-<td style="text-align:right;">
-0.207
-</td>
-<td style="text-align:right;">
--0.531
-</td>
-<td style="text-align:right;">
-0.114
-</td>
-<td style="text-align:right;">
--0.172
-</td>
-<td style="text-align:right;">
-0.594
-</td>
-<td style="text-align:right;">
-0.121
-</td>
-<td style="text-align:right;">
-0.322
-</td>
-<td style="text-align:right;">
--0.149
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.279
-</td>
-<td style="text-align:right;">
--0.052
-</td>
-<td style="text-align:right;">
--0.207
-</td>
-<td style="text-align:right;">
--0.178
-</td>
-<td style="text-align:right;">
--0.460
-</td>
-<td style="text-align:right;">
--0.525
-</td>
-<td style="text-align:right;">
-0.033
-</td>
-<td style="text-align:right;">
--0.120
-</td>
-<td style="text-align:right;">
-0.046
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-0.343
-</td>
-<td style="text-align:right;">
-0.227
-</td>
-<td style="text-align:right;">
-0.151
-</td>
-<td style="text-align:right;">
-0.616
-</td>
-<td style="text-align:right;">
-0.368
-</td>
-<td style="text-align:right;">
--0.230
-</td>
-<td style="text-align:right;">
--0.344
-</td>
-<td style="text-align:right;">
-0.147
-</td>
-<td style="text-align:right;">
-0.056
-</td>
-</tr>
-</tbody>
-</table>
+<p>We can explore how the years are seen through the components by first scaling the U matrix by the singular values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">years &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d)
+<span class="kw">rownames</span>(years) &lt;-<span class="st"> </span><span class="kw">rownames</span>(hawks_data_mat)</code></pre></div>
+<p>Now let’s visualize the factor scores for components 1 and 2:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Builds dataframe of row-wise factor scores with notable events</span>
+years_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(years) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> hawks_data_wide<span class="op">$</span>Season) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">left_join</span>(., hawks_events, <span class="dt">by =</span> <span class="st">&quot;Season&quot;</span>) <span class="co"># imports notable events</span>
+
+<span class="kw">ggplot</span>(years_fs, <span class="kw">aes</span>(V1, V2, <span class="dt">color =</span> SCW)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">9</span>], rdgy[<span class="dv">2</span>]), <span class="dt">name =</span> <span class="st">&quot;Stanley Cup Wins&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Season), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span>
+<span class="st">  </span>pca_furnish <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>[blurb here]</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(years_fs, <span class="kw">aes</span>(V1, V2, <span class="dt">color =</span> PF)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="dt">direction =</span> <span class="op">-</span><span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Season), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span>
+<span class="st">  </span>pca_furnish</code></pre></div>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="column-wise-factor-scores" class="section level3">
 <h3>Column-wise Factor Scores</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">svd_v &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>v
+<span class="kw">rownames</span>(svd_v) &lt;-<span class="st"> </span><span class="kw">colnames</span>(hawks_data_mat)
 <span class="kw">round</span>(svd_v, <span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>nice_table</code></pre></div>
 <table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
+<td style="text-align:left;">
+CA
+</td>
 <td style="text-align:right;">
 0.413
 </td>
@@ -1887,6 +1666,9 @@ comps
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+CF
+</td>
 <td style="text-align:right;">
 0.422
 </td>
@@ -1916,6 +1698,9 @@ comps
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+GA
+</td>
 <td style="text-align:right;">
 0.231
 </td>
@@ -1945,6 +1730,9 @@ comps
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+GF
+</td>
 <td style="text-align:right;">
 0.094
 </td>
@@ -1974,6 +1762,9 @@ comps
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+PEND
+</td>
 <td style="text-align:right;">
 -0.424
 </td>
@@ -2003,6 +1794,9 @@ comps
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+PENT
+</td>
 <td style="text-align:right;">
 -0.445
 </td>
@@ -2032,6 +1826,9 @@ comps
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+SavePerc
+</td>
 <td style="text-align:right;">
 -0.073
 </td>
@@ -2061,6 +1858,9 @@ comps
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+ShootPerc
+</td>
 <td style="text-align:right;">
 -0.135
 </td>
@@ -2090,6 +1890,9 @@ comps
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+TOI
+</td>
 <td style="text-align:right;">
 0.433
 </td>
@@ -2120,6 +1923,63 @@ comps
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div id="contributions" class="section level2">
+<h2>Contributions</h2>
+<p>We can actually take a look at how much each season (row) or variable (column) contributes to the new factor. To calculate the contribution of each factor, we square each factor score and divide it by the sum of squared factor. The sum of the squared factor is also the eigenvalue.</p>
+<p><span class="math display">\[contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">contribution &lt;-<span class="st"> </span><span class="cf">function</span>(vector, <span class="dt">sign =</span> <span class="ot">TRUE</span>) {
+  vector_sq &lt;-<span class="st"> </span>vector<span class="op">^</span><span class="dv">2</span>
+  vector_sq_sum &lt;-<span class="st"> </span><span class="kw">sum</span>(vector_sq)
+  
+  <span class="cf">if</span> (sign <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) {
+    vector &lt;-<span class="st"> </span>vector_sq<span class="op">/</span>vector_sq_sum<span class="op">*</span><span class="kw">sign</span>(vector)
+  } <span class="cf">else</span> {
+    vector &lt;-<span class="st"> </span>vector_sq<span class="op">/</span>vector_sq_sum
+  }
+  
+}</code></pre></div>
+<div id="row-wise-contributions" class="section level3">
+<h3>Row-wise Contributions</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">contributions_years &lt;-<span class="st"> </span><span class="kw">apply</span>(years, <span class="dv">2</span>, contribution)
+<span class="kw">colnames</span>(contributions_years) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;fi&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(contributions_years))
+contributions_years &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> <span class="kw">rownames</span>(years)) <span class="op">%&gt;%</span>
+<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>)</code></pre></div>
+<pre><code>## Warning: `as.tibble()` is deprecated, use `as_tibble()` (but mind the new semantics).
+## This warning is displayed once per session.</code></pre>
+<pre><code>## Using Season as id variables</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">contributions_years <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fi1&quot;</span>, <span class="st">&quot;fi2&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(., <span class="kw">aes</span>(<span class="dt">x =</span> Season, <span class="dt">y =</span> Contributions)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>variable) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">angle =</span> <span class="dv">45</span>))</code></pre></div>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="column-wise-contributions" class="section level3">
+<h3>Column-wise Contributions</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">contributions_v &lt;-<span class="st"> </span><span class="kw">apply</span>(svd_v, <span class="dv">2</span>, contribution)
+<span class="kw">colnames</span>(contributions_v) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;fj&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(contributions_v))
+
+contributions_v &lt;-<span class="st"> </span>contributions_v <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Metric =</span> <span class="kw">rownames</span>(svd_v)) <span class="op">%&gt;%</span>
+<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>)</code></pre></div>
+<pre><code>## Using Metric as id variables</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(contributions_v)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;factor&quot;</span>
+
+contributions_v <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fj1&quot;</span>, <span class="st">&quot;fj2&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(., <span class="kw">aes</span>(<span class="dt">x =</span> Metric, <span class="dt">y =</span> Contributions)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>factor) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">angle =</span> <span class="dv">45</span>))</code></pre></div>
+<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nhl_data_mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(nhl_data[,<span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(nhl_data)])
 <span class="kw">rownames</span>(nhl_data_mat) &lt;-<span class="st"> </span>nhl_data<span class="op">$</span>Season
 
@@ -2142,19 +2002,7 @@ fjs &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(columns) <sp
 
 
 
-<span class="kw">ggplot</span>(fis, <span class="kw">aes</span>(V2, V3, <span class="dt">color =</span> SCW)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Season), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title=</span><span class="kw">element_blank</span>(),
-        <span class="co">#axis.text=element_blank(),</span>
-        <span class="dt">axis.ticks=</span><span class="kw">element_blank</span>(),
-        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()
-        )
+
 
 <span class="kw">ggplot</span>(fjs, <span class="kw">aes</span>(V2, V3)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>

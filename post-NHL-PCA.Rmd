@@ -330,9 +330,10 @@ ggplot(perm_res_long, aes(eigen)) +
   coord_cartesian(ylim = c(0, 800)) +
   labs(x = "Eigenvalue", 
        y = "Frequency", 
-       caption = "Originally observed eigenvalues denoted by red dashed line"
+       caption = "\nNote: Originally observed eigenvalues denoted by red dashed line."
        ) +
-  facet_wrap(~comps)
+  facet_wrap(~comps) +
+  theme_minimal()
 ```
 
 It looks like the only components that have a shot at being greater than 95% of the null distribution are components 1 and 2. Let's see if this is the case:
@@ -367,6 +368,7 @@ We can explore how the years are seen through the components by first scaling th
 
 ```{r}
 years <- hawks_data_svd$u %*% diag(hawks_data_svd$d)
+rownames(years) <- rownames(hawks_data_mat)
 ```
 
 Now let's visualize the factor scores for components 1 and 2:
@@ -402,15 +404,72 @@ ggplot(years_fs, aes(V1, V2, color = PF)) +
 ```
 
 
-
-
 ### Column-wise Factor Scores
 
 ```{r}
 svd_v <- hawks_data_svd$v
+rownames(svd_v) <- colnames(hawks_data_mat)
 round(svd_v, 3) %>% nice_table
 ```
 
+## Contributions
+
+We can actually take a look at how much each season (row) or variable (column) contributes to the new factor. To calculate the contribution of each factor, we square each factor score and divide it by the sum of squared factor. The sum of the squared factor is also the eigenvalue.
+
+$$contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}$$
+
+```{r}
+contribution <- function(vector, sign = TRUE) {
+  vector_sq <- vector^2
+  vector_sq_sum <- sum(vector_sq)
+  
+  if (sign == TRUE) {
+    vector <- vector_sq/vector_sq_sum*sign(vector)
+  } else {
+    vector <- vector_sq/vector_sq_sum
+  }
+  
+}
+```
+
+### Row-wise Contributions
+```{r}
+contributions_years <- apply(years, 2, contribution)
+colnames(contributions_years) <- paste0("fi",1:ncol(contributions_years))
+contributions_years <- contributions_years %>%
+  as.tibble() %>%
+  mutate(Season = rownames(years)) %>%
+  reshape2::melt(value.name = "Contributions")
+
+contributions_years %>%
+  filter(variable %in% c("fi1", "fi2")) %>%
+  ggplot(., aes(x = Season, y = Contributions)) +
+    geom_bar(stat = "identity") +
+    facet_wrap(~ variable) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(hjust = 1, angle = 45))
+```
+
+### Column-wise Contributions
+```{r}
+contributions_v <- apply(svd_v, 2, contribution)
+colnames(contributions_v) <- paste0("fj",1:ncol(contributions_v))
+
+contributions_v <- contributions_v %>%
+  as.tibble() %>%
+  mutate(Metric = rownames(svd_v)) %>%
+  reshape2::melt(value.name = "Contributions")
+
+colnames(contributions_v)[2] <- "factor"
+
+contributions_v %>%
+  filter(factor %in% c("fj1", "fj2")) %>%
+  ggplot(., aes(x = Metric, y = Contributions)) +
+    geom_bar(stat = "identity") +
+    facet_wrap(~ factor) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(hjust = 1, angle = 45))
+```
 
 
 ```{r, eval=FALSE}
