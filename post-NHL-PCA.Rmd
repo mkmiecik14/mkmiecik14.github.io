@@ -20,7 +20,7 @@ options(knitr.table.format = 'html') # For the html tables
 ## Setup
 <hr >
 
-Here are the packages that we'll use for these analyses and to style the output/plots.
+Here are the packages that we'll use for these analyses and functions to style the output/plots.
 
 ```{r, warning=FALSE, message=FALSE}
 # Packages ----
@@ -36,7 +36,7 @@ library(RColorBrewer) # Nice plotting colors
 nice_table <- function(x){
   
   kable(x) %>%
-    kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+    kable_styling(bootstrap_options = c('striped', 'hover', 'responsive', 'condensed'))
   
 }
 
@@ -142,7 +142,9 @@ ggplot(hawks_data_long, aes(factor(Season), Val_Zscore)) +
 
 [small blurb here describing the z score plots]
 
-## Ekarin's version
+## Correlation Matrix
+
+### Ekarin's version
 
 ```{r}
 # adjust metric
@@ -181,9 +183,9 @@ ggplot(hawks_cor_long, aes(x = Var1, y = Var2, fill = value)) +
   scale_fill_distiller(palette = "RdBu", limits = c(-1,1))
 ```
 
-## Matt's version
+### Matt's version
 
-Now let's examine how these measurements relate to each other by computing their correlations and visualizing them with a heatmap.
+Now let's examine how these measurements relate to each other by computing their correlations and visualizing them with a heatmap. 
 
 ```{r}
 # Converts back to wide format
@@ -216,7 +218,7 @@ ggplot(hawks_cors_long, aes(x = Var1, y = Var2, fill = value)) +
 
 ## PCA
 
-We've explored these measures individually by plotting their change over time (2007-2018) as well as examining their correlations; however, it's difficult to extract meaningful relationships between these variables, especially when there are a lot of variables to consider. Also, all realtionships between the variables are not considered simultaneously, but rather one at a time (e.g., bivariate correlations). Is there some way to analyze these variables' relationships simultaneously, while also reducing their complexity?
+We've explored these measures individually by plotting their change over time (2007-2018) as well as examining their correlations; however, it's difficult to extract meaningful relationships between these variables, especially when there are a lot of variables to consider. Also, all relationships between the variables are not considered simultaneously, but rather one at a time (e.g., bivariate correlations). Is there some way to analyze these variables' relationships simultaneously, while also reducing their complexity?
 
 One method of doing this is principal components analysis (PCA). PCA is often called a data reduction technique because it reduces the data structure into manageable "components" that explain proportions of variability in the data. In order to understand what each component means, we examine how information (e.g., years or measurements) is spread across the components.
 
@@ -242,14 +244,14 @@ rownames(hawks_data_mat) <- hawks_data_wide$Season # Adds rownames
 nice_table(hawks_data_mat) # Prints HTML table
 ```
 
-Next we'll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose our original matrix (X) into 3 separate matrices (U, \Delta, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:
+Next we'll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose our original matrix (X) into 3 separate matrices (U, $\Delta$, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:
 
 <font style="font-size: 14pt">
 $$
 \mathbf{X = U \Delta V^T}
 $$
 
-Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and \Delta is a diagonal matrix of "weights" called singular values that are the square root of the eigenvalues.
+Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and \Delta is a diagonal matrix of "weights" called singular values that are the square root of the eigenvalues ($\lambda$).
 
 Computing the SVD of our data matrix in R requires one line of code:
 
@@ -265,7 +267,7 @@ Which components are important? Which ones explain the most variance? Are some o
 
 A good first pass at these questions is examine the scree plot -- plotting the components as a function of variability explained.
 
-To do this, let's first square the singular values and sum them together. This is called __inertia__.
+To do this, let's first square the singular values (eigenvalues, $\lambda$) and sum them together. This is called __inertia__.
 
 ```{r}
 inertia <- sum(hawks_data_svd$d^2) # Calculates inertia
@@ -407,14 +409,25 @@ ggplot(years_fs, aes(V1, V2, color = PF)) +
 ### Column-wise Factor Scores
 
 ```{r}
-svd_v <- hawks_data_svd$v
-rownames(svd_v) <- colnames(hawks_data_mat)
-round(svd_v, 3) %>% nice_table
+
+metric <- hawks_data_svd$v
+rownames(metric) <- colnames(hawks_data_mat)
+
+metric_fs <- as_tibble(hawks_data_svd$v) %>%
+  mutate(Metric = colnames(hawks_data_mat))
+  
+ggplot(metric_fs, aes(V1, V2)) +
+  geom_vline(xintercept = 0, alpha = 2/3) +
+  geom_hline(yintercept = 0, alpha = 2/3) +
+  geom_point() +
+  coord_cartesian(xlim = c(-1,1), ylim = c(-1,1)) +
+  geom_text_repel(aes(label = Metric), segment.alpha = 0) +
+  pca_furnish
 ```
 
-## Contributions
+### Contributions
 
-We can actually take a look at how much each season (row) or variable (column) contributes to the new factor. To calculate the contribution of each factor, we square each factor score and divide it by the sum of squared factor. The sum of the squared factor is also the eigenvalue.
+We can now take a look at how much each season (row) or metric (column) contributes to the new component or factor. To calculate the contribution of each factor, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.
 
 $$contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}$$
 
@@ -432,7 +445,7 @@ contribution <- function(vector, sign = TRUE) {
 }
 ```
 
-### Row-wise Contributions
+#### Row-wise Contributions
 ```{r}
 contributions_years <- apply(years, 2, contribution)
 colnames(contributions_years) <- paste0("fi",1:ncol(contributions_years))
@@ -441,36 +454,58 @@ contributions_years <- contributions_years %>%
   mutate(Season = rownames(years)) %>%
   reshape2::melt(value.name = "Contributions")
 
+contributions_years_means <- contributions_years %>%
+  group_by(variable) %>%
+  summarise(mean = mean(Contributions))
+
 contributions_years %>%
   filter(variable %in% c("fi1", "fi2")) %>%
   ggplot(., aes(x = Season, y = Contributions)) +
     geom_bar(stat = "identity") +
+    geom_hline(data = contributions_years_means %>% filter(variable %in% c("fi1", "fi2")), aes(yintercept = mean), linetype = "dashed", alpha = 0.5) +
+     geom_hline(data = contributions_years_means %>% filter(variable %in% c("fi1", "fi2")), aes(yintercept = -mean), linetype = "dashed", alpha = 0.5) +
     facet_wrap(~ variable) +
     theme_minimal() +
-    theme(axis.text.x = element_text(hjust = 1, angle = 45))
+    theme(axis.text.x = element_text(hjust = 1, angle = 45)) +
+  labs(caption = "\nNote: Dashed lines represent the mean contribution.")
 ```
 
-### Column-wise Contributions
-```{r}
-contributions_v <- apply(svd_v, 2, contribution)
-colnames(contributions_v) <- paste0("fj",1:ncol(contributions_v))
+Season 2008 and 2009 contribute more than the mean season on the negative side of component 1 and season 2016-2018 contribute more than the mean season on the positive side of component 1.
 
-contributions_v <- contributions_v %>%
-  as.tibble() %>%
-  mutate(Metric = rownames(svd_v)) %>%
+Season 2013 contributes more than the mean season on the negative side of component 2. 
+
+#### Column-wise Contributions
+```{r}
+contributions_metric <- apply(metric, 2, contribution)
+colnames(contributions_metric) <- paste0("fj",1:ncol(metric))
+
+contributions_metric <- as_tibble(contributions_metric) %>%
+  mutate(Metric = rownames(contributions_metric)) %>%
   reshape2::melt(value.name = "Contributions")
 
-colnames(contributions_v)[2] <- "factor"
+colnames(contributions_metric)[2] <- "factor"
 
-contributions_v %>%
+contributions_metric_means <- contributions_metric %>%
+  group_by(factor) %>%
+  summarise(mean = mean(Contributions))
+
+contributions_metric %>%
   filter(factor %in% c("fj1", "fj2")) %>%
   ggplot(., aes(x = Metric, y = Contributions)) +
     geom_bar(stat = "identity") +
+    geom_hline(data = contributions_metric_means %>% filter(factor %in% c("fj1", "fj2")), aes(yintercept = mean), linetype = "dashed", alpha = 0.5) +
+    geom_hline(data = contributions_metric_means %>% filter(factor %in% c("fj1", "fj2")), aes(yintercept = -mean), linetype = "dashed", alpha = 0.5) +
     facet_wrap(~ factor) +
     theme_minimal() +
-    theme(axis.text.x = element_text(hjust = 1, angle = 45))
+    theme(axis.text.x = element_text(hjust = 1, angle = 45)) +
+  labs(caption = "\nNote: Dashed lines represent the mean contribution.")
 ```
 
+PEND and PENT contribute more than the mean metric to the negative side of component 1. CA, CF, GA, and TOI contribute more than the mean metric to the positive side of component 1. 
+
+GF, SavePerc, and ShootPerc contribute more than the mean metric to the negative side of component 2. GA contributes more than the mean metric to the positive side of component 2.
+
+GA appears to contribute to both the positive side of component 1 and 2.
 
 ```{r, eval=FALSE}
 nhl_data_mat <- as.matrix(nhl_data[,2:ncol(nhl_data)])
