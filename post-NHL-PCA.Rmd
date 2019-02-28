@@ -1,5 +1,5 @@
 ---
-title: "NHL PCA"
+title: "Exploring Chicago Blackhawk's Data using Principal Components Analysis"
 author: "Matthew J. Kmiecik & Ekarin E. Pongpipat"
 date: "date here"
 output:
@@ -17,6 +17,22 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 options(knitr.table.format = 'html') # For the html tables
 ```
 
+In this post we explore 11 seasons (2007 - 2018) of summary data from the Chicago Blackhawks of the National Hockey League (NHL). Our question was, "Are there any summary measures, such as goals scored or save percentage, that predict playoff performance or championship wins?"
+
+We explore these data using a variety of techniques, such as:
+
++ Z-scores across time
++ Correlations
++ Principal components analysis (PCA)
+
+The results suggest that:
+
++ [finding #1]
++ [finding #2]
++ [finding #3]
+
+<br >
+
 ## Setup
 <hr >
 
@@ -30,6 +46,7 @@ library(TInPosition)  # PCA tools
 library(ggrepel)      # Plotting tool for ggplot2
 library(kableExtra)   # HTML table tools
 library(RColorBrewer) # Nice plotting colors
+library(gridExtra)    # Plotting tools
 
 # Custom functions ----
 # nice_table() simplifies the printing of HTML tables using kable
@@ -45,11 +62,16 @@ rdgy <- brewer.pal(n = 11, name = "RdGy") # display.brewer.pal(11, "RdGy")
 
 # ggplot2 finishings
 pca_furnish <- theme_classic() +
-  theme(axis.title=element_blank(),
-        axis.ticks=element_blank(),
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
         axis.line = element_blank()
         )
 ```
+
+<br >
+
+## Data Import
+<hr >
 
 Let's first prepare the data for analysis. These data were downloaded from [Corsica's](http://corsica.hockey/) team stats tool. We've prepared these data for you and are available for import into R like this:
 
@@ -61,7 +83,12 @@ link <- "https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/maste
 nhl_data <- read_csv(file = getURL(link))
 ```
 
-To make things as simple as possible, without losing information, we'll use Chicago Blackhawk's data from the 2007-2008 season up through the 2017-2018 season (11 years of data) and only a subset of the available metrics. These include:
+<br >
+
+## Data Preparation
+<hr >
+
+To make things simple, without losing information, we'll use Chicago Blackhawk's data from the 2007-2008 season up through the 2017-2018 season (11 years of data) and only a subset of the available metrics. These include:
 
 + Games Played (GP)
 + Time on Ice (TOI)
@@ -107,9 +134,14 @@ hawks_events <- tibble(Season = hawks_data$Season,
                        )
 ```
 
+<br >
+
+## Z-Scores
+<hr >
+
 Prior to exploring these data and how they've changed over time, we have to:
 
-1. Adjust all scores by the number of games played due to a shorted 2012-2013 season. We do this by dividing each metric by the number of games played.
+1. Adjust all scores by the number of games played due to a shorted 2012-2013 season. We do this by dividing each metric by the number of games played
 2. Compute z-scores of all measures to facilitate comparisons
 
 ```{r}
@@ -123,69 +155,40 @@ hawks_data_long <- hawks_data %>%
   ungroup() %>%
   mutate(sig = factor(ifelse(abs(Val_Zscore) > 1.96, "p < .05", "p > .05"))) %>% # z score > 1.96
   inner_join(., hawks_events, by = "Season") # adds notable hawks events
+```
 
+Plotting the z-scores of each measure across time allows us to compare across measures using a standardized unit:
+
+```{r}
 # Plots all measures together ----
 ggplot(hawks_data_long, aes(factor(Season), Val_Zscore)) +
   geom_path(aes(group = 1), color = rdgy[8]) +
   geom_point(aes(color = sig, shape = SCW), size = 1.75) +
   scale_color_manual(values = c(rdgy[3], rdgy[10]), name = "Z-Score") +
   scale_shape_discrete(name = "Stanley Cup Wins") +
+  scale_y_continuous(breaks = c(-2, 0, 2), minor_breaks = NULL) +
   coord_cartesian(ylim = c(-3,3)) +
   theme_minimal() + 
-  labs(x = "Season", 
-       y = "Measurement (Z-Score)",
+  labs(x = "\n Season", 
+       y = "\n Measurement (Z-Score)",
        title = "Chicago Blackhawk's Performance 2007-2018"
        ) +
   facet_wrap(~Meas, nrow = 3) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom"
+        )
 ```
 
-[small blurb here describing the z score plots]
+When inspecting these plots in relation to the Chicago Blackhawk's 3 Stanly Cup wins (triangles), we see very little that stands out. It seems like the 2012-2013 season was a unique one, such that it was a Stanley Cup winning team and their regular season Save Percentage and Shooting Percentage were much greater than their other years. Perhaps these two metrics are important for winning the Presidents' Trophy (awarded to the NHL team finishing with the highest total points), which the Blackhawk's received at the end of their 2012-2013 season.
 
-## Correlation Matrix
+Additionally, the Blackhawk's 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 sesaon was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see (NYT article)[https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html]). It is likely the change in ownership, hiring of Coach Q, and the aqcuisition of Jonathon Towes and Patrick Kane led to the drastic improvement of team stats in the years following.
 
-### Ekarin's version
+<br >
 
-```{r}
-# adjust metric
-hawks_data_adj <- hawks_data %>%
-  rowwise() %>%
-  mutate(GP_adj = TOI/GP,
-         CF_adj = CF/GP,
-         GF_adj = GF/GP,
-         GA_adj = GA/GP,
-         PENT_adj = PENT/GP,
-         PEND_adj = PEND/GP,
-         ShootPerc_adj = ShootPerc/GP,
-         SavePerc_adj = SavePerc/GP) %>%
-  ungroup() %>%
-  select(Season, contains("_adj")) %>%
-  inner_join(., hawks_events, by = "Season") %>%
-  apply(., 2, as.numeric) %>%
-  apply(., 2, scale)
+## Correlations
+<hr >
 
-# correlation matrix
-hawks_cor_mat <- cor(hawks_data_adj)
-
-# convert to long format
-hawks_cor_long <- hawks_cor_mat %>%
-  reshape2::melt() %>%
-  arrange(Var1, Var2)
-
-# heatmap
-ggplot(hawks_cor_long, aes(x = Var1, y = Var2, fill = value)) +
-  geom_raster() + 
-  labs(x = element_blank(),
-       y = element_blank(),
-       fill = "Correlation") + 
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_distiller(palette = "RdBu", limits = c(-1,1))
-```
-
-### Matt's version
-
-Now let's examine how these measurements relate to each other by computing their correlations and visualizing them with a heatmap. 
+Now let's examine how the various team stats/measurements relate to each other by computing their correlations and visualizing them with a heatmap:
 
 ```{r}
 # Converts back to wide format
@@ -214,9 +217,12 @@ ggplot(hawks_cors_long, aes(x = Var1, y = Var2, fill = value)) +
                        )
 ```
 
-[ a little blurb here about the patterns that emerge from the heatmap ]
+An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing pentalties, as well worsened at taking pentalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our [previous post](https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html) that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.
 
-## PCA
+<br >
+
+## Principal Components Analysis (PCA)
+<hr >
 
 We've explored these measures individually by plotting their change over time (2007-2018) as well as examining their correlations; however, it's difficult to extract meaningful relationships between these variables, especially when there are a lot of variables to consider. Also, all relationships between the variables are not considered simultaneously, but rather one at a time (e.g., bivariate correlations). Is there some way to analyze these variables' relationships simultaneously, while also reducing their complexity?
 
@@ -230,9 +236,11 @@ We go over the very basics of PCA below. There is much more to this technique th
 
 + Abdi, H. (2007). [Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)](https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf). In N.J. Salkind (Ed.): _Encyclopedia of Measurement and Statistics_. Thousand Oaks (CA): Sage. pp. 907-912.
 
+<br >
+
 We first need to preprocess our data such that each column (e.g., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We've already done this above when exploring these data.
 
-A unique feature of this dataset is the shortened 2012 - 2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.
+A unique feature of this dataset is the shortened 2012-2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.
 
 Therefore, the first step here is to convert these data into a matrix format with the season years on the rows as row names:
 
@@ -250,14 +258,17 @@ Next we'll decompose this matrix using a singular value decomposition (SVD), the
 $$
 \mathbf{X = U \Delta V^T}
 $$
+</font>
 
-Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and \Delta is a diagonal matrix of "weights" called singular values that are the square root of the eigenvalues ($\lambda$).
+Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and $\Delta$ is a diagonal matrix of "weights" called singular values that are the square root of the eigenvalues ($\lambda$).
 
-Computing the SVD of our data matrix in R requires one line of code:
+Computing the SVD of our data matrix in R requires just one line of code:
 
 ```{r}
 hawks_data_svd <- svd(hawks_data_mat) # singular value decomposition (SVD)
 ```
+
+<br >
 
 ### Eigen Values
 
@@ -267,7 +278,7 @@ Which components are important? Which ones explain the most variance? Are some o
 
 A good first pass at these questions is examine the scree plot -- plotting the components as a function of variability explained.
 
-To do this, let's first square the singular values (eigenvalues, $\lambda$) and sum them together. This is called __inertia__.
+To do this, let's first square the singular values ($\lambda$) and sum them together. This is called __inertia__.
 
 ```{r}
 inertia <- sum(hawks_data_svd$d^2) # Calculates inertia
@@ -287,10 +298,10 @@ ggplot(scree, aes(factor(comps), eigs)) +
   geom_point() +
   geom_path(aes(group = 1)) +
   scale_y_continuous(sec.axis = sec_axis(~./inertia * 100, 
-                                         name = "Percentage of Explained Variance"
+                                         name = "Explained Variance (%) \n"
                                          )
                      ) +
-  labs(x = "Components", y = "Eigenvalues") +
+  labs(x = "\n Components", y = "Eigenvalues \n") +
   theme_minimal()
 ```
 
@@ -318,10 +329,12 @@ for(i in 1:perm_iters){
 Now let's visualize these results against the observed values. We'll determine that a component is significant if its original observed eigenvalue is greater than 95% of the values derived from the null distribution (i.e., permutation testing).
 
 ```{r}
+# Converts to long format for plotting
 perm_res_long <- as_tibble(perm_res) %>% 
   gather(comps, eigen) %>%
   mutate(comps = as.numeric(gsub("V", "", comps)))
 
+# Plots permutation results
 ggplot(perm_res_long, aes(eigen)) +
   geom_histogram(binwidth = 1) +
   geom_vline(data = scree, 
@@ -330,9 +343,11 @@ ggplot(perm_res_long, aes(eigen)) +
              linetype = 2
              ) +
   coord_cartesian(ylim = c(0, 800)) +
-  labs(x = "Eigenvalue", 
-       y = "Frequency", 
-       caption = "\nNote: Originally observed eigenvalues denoted by red dashed line."
+  scale_y_continuous(minor_breaks = NULL) +
+  scale_x_continuous(minor_breaks = NULL) +
+  labs(x = "\n Eigenvalue", 
+       y = "Frequency \n", 
+       caption = "\n Note: Originally observed eigenvalues denoted by red dashed line."
        ) +
   facet_wrap(~comps) +
   theme_minimal()
@@ -348,14 +363,14 @@ scree_sig <- perm_res_long %>%
   mutate(sig = ifelse(eigs>ul, "p < .05", "p > .05"))
 
 ggplot(scree_sig, aes(factor(comps), eigs)) +
-  geom_path(aes(group = 1), color = rdgy[7], linetype = 2) +
+  geom_path(aes(group = 1), color = rdgy[8], linetype = 2) +
   geom_point(aes(color = sig), size = 2) +
   scale_y_continuous(sec.axis = sec_axis(~./inertia * 100, 
-                                         name = "Percentage of Explained Variance"
+                                         name = "Explained Variance (%) \n"
                                          )
                      ) +
   scale_color_manual(values = c(rdgy[3], rdgy[9]), name = NULL) +
-  labs(x = "Components", y = "Eigenvalues") +
+  labs(x = "\n Components", y = "Eigenvalues \n") +
   theme_minimal() +
   theme(legend.position = "bottom")
 ```
@@ -364,13 +379,15 @@ What we suspected was correct: given a null distribution/hypothesis, only compon
 
 Now that we know what components may be more important than others, let's take a look at what we can learn from examining factor scores for the rows (years) and the columns (measures).
 
+<br >
+
 ### Row-wise Factor Scores
 
-We can explore how the years are seen through the components by first scaling the U matrix by the singular values:
+We can explore how the years are seen through the components by first scaling the U matrix by the singular values. The `%*%` operator performs matrix algebra:
 
 ```{r}
-years <- hawks_data_svd$u %*% diag(hawks_data_svd$d)
-rownames(years) <- rownames(hawks_data_mat)
+years <- hawks_data_svd$u %*% diag(hawks_data_svd$d)  # scaling years data
+rownames(years) <- rownames(hawks_data_mat)           # adds rownames
 ```
 
 Now let's visualize the factor scores for components 1 and 2:
@@ -381,58 +398,120 @@ years_fs <- as_tibble(years) %>%
   mutate(Season = hawks_data_wide$Season) %>%
   left_join(., hawks_events, by = "Season") # imports notable events
 
-ggplot(years_fs, aes(V1, V2, color = SCW)) +
+# Plots factor scores colored by Stanley Cup wins
+# tip: surrounding an action in R with () will automatically plot to screen
+(years_fs_scw <- ggplot(years_fs, aes(V1, V2, color = SCW)) +
   geom_vline(xintercept = 0, alpha = 1/3) +
   geom_hline(yintercept = 0, alpha = 1/3) +
   geom_point() +
   coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
   scale_color_manual(values = c(rdgy[9], rdgy[2]), name = "Stanley Cup Wins") +
-  geom_text_repel(aes(label = Season), segment.alpha = 0) +
+  geom_text_repel(aes(label = Season), segment.alpha = 0, show.legend = FALSE) +
   pca_furnish +
   theme(legend.position = "bottom")
+)
 ```
 
-[blurb here]
+The above graph plots the years as they are seen through the first 2 dimensions of the PCA and colors the points based on Stanley Cup wins. The years cluster together into three distinct groups
+
+* The 2007-2008 and 2008-2009 seasons
+* The 2013 season
+* The 2010-2018 seasons
+
+while the 2010 season is near the origin -- meaning it doesn't contribute much to either group. Interestingly, there seems to be no clear pattern in regards to regular season play and Stanley Cup wins because these winning seasons are not clustered together.
+
+A pattern that does seem to emerge is the improvement of the team over time across principal component 1 (x-axis). Principal component 2 is dominated by the 2012-2013 season, probably due to the uniqueness of this season: shortened season due to lockout, Presidents' trophy winners, and Stanley Cup champions.
+
+Let's now color the points based on playoff performance:
 
 ```{r}
-ggplot(years_fs, aes(V1, V2, color = PF)) +
-  geom_vline(xintercept = 0, alpha = 2/3) +
-  geom_hline(yintercept = 0, alpha = 2/3) +
+# Plots factor scores colored by playoff performance
+# tip: surrounding an action in R with () will automatically plot to screen
+(years_fs_pf <- ggplot(years_fs, aes(V1, V2, color = PF)) +
+  geom_vline(xintercept = 0, alpha = 1/3) +
+  geom_hline(yintercept = 0, alpha = 1/3) +
   geom_point() +
   coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
   scale_color_brewer(palette = "Dark2", direction = -1) +
-  geom_text_repel(aes(label = Season), segment.alpha = 0) +
-  pca_furnish
+  geom_text_repel(aes(label = Season), segment.alpha = 0, show.legend = FALSE) +
+  pca_furnish +
+  theme(legend.position = "bottom")
+)
 ```
 
+One pattern of results that emerges, somewhat unexpectedly, is that the 2007-2008 and 2017-2018 seasons are contrasted on principal component 1 (x-axis). In both seasons, the Hawks missed the playoffs (did not qualify); however, the 2018 season is more similar to the seasons in which the Hawks made the playoffs. These results also highlight the 2015 Stanley Cup winning season, which is surrounded by seasons with early first round playoff exits. This may be indicative of an average regular season in 2015 (in respect to the Hawks), but an exceptional post season performance.
+
+<br >
 
 ### Column-wise Factor Scores
 
+Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let's scale the V matrix by the singular values to obtain the factor scores. Again, the `%*%` operator performs matrix algebra:
+
 ```{r}
+metric <- hawks_data_svd$v %*% diag(hawks_data_svd$d) # scaling years data
+rownames(metric) <- colnames(hawks_data_mat)          # adds rownames
 
-metric <- hawks_data_svd$v
-rownames(metric) <- colnames(hawks_data_mat)
+# Converts to long format for plotting
+metric_fs <- as_tibble(metric) %>% mutate(Metric = colnames(hawks_data_mat))
+```
 
-metric_fs <- as_tibble(hawks_data_svd$v) %>%
-  mutate(Metric = colnames(hawks_data_mat))
-  
-ggplot(metric_fs, aes(V1, V2)) +
-  geom_vline(xintercept = 0, alpha = 2/3) +
-  geom_hline(yintercept = 0, alpha = 2/3) +
+Now let's visualize the factor scores for components 1 and 2:
+
+```{r}
+# Plots the column-wise factor scores
+(metric_plot <- ggplot(metric_fs, aes(V1, V2)) +
+  geom_vline(xintercept = 0, alpha = 1/3) +
+  geom_hline(yintercept = 0, alpha = 1/3) +
   geom_point() +
-  coord_cartesian(xlim = c(-1,1), ylim = c(-1,1)) +
+  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
   geom_text_repel(aes(label = Metric), segment.alpha = 0) +
   pca_furnish
+)
 ```
+
+Similar to the year-wise factor scores, we obtained 3 clusters of team-wise metrics across components 1 and 2. Component 1 contrasts penalty minutes (both drawn and taken) with Corsi (both For and Against), time on ice (TOI) and goals against (GA). 
+
+This contrast suggests a negative relationship with these metrics (e.g., as penalty mintues served increased, Corsi against decreased). This is sort of paradoxical, but it is similar to what we saw above with the correlation plot.
+
+Additionally, the second component is dominated by Shooting Percentage, Save Percentage, and Goals For -- and contrasted by GA. It makes sense that increases in Shooting Percentage would be related to increases in Goals For, which would also be related to decreases in Goals Against.
+
+<br >
+
+### Factor Score Comparisons
+
+To provide more context, let's compare the year-wise and metric-wise factor scores side-by-side:
+
+```{r}
+grid_furnish <- theme(legend.position = "none",
+                      axis.text = element_blank()
+                      )
+# Plots side-by-side
+grid.arrange(years_fs_pf + grid_furnish, 
+             metric_plot + grid_furnish, 
+             nrow = 1
+             )
+```
+
+From here we gain a rich perspective of how each year-wise clustering is described through patterns in team stats:
+
+* Cluster 1: the 2007-2008 and 2008-2009 seasons are well described by elevated pentalty minutes (both drawn and taken)
+* Cluster 2: the 2011-2018 seasons are well described by elevated Corsi (both For and Against), Goals Against (GA), and time on ice (TOI)
+* Cluster 3: the 2012-2013 season was characterized by a high powered offense (elevated Shooting % and Goals For) and excellent defense (high Save % and low Goals Against)
+
+<br >
 
 ### Contributions
 
-We can now take a look at how much each season (row) or metric (column) contributes to the new component or factor. To calculate the contribution of each factor, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.
+We can now take a look at how much each season (row) or metric (column) contributes to each component. To calculate the contribution to each component, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.
 
 $$contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}$$
 
+Here is a function that will compute the contributions:
+
 ```{r}
+# Contribution calculator function ----
 contribution <- function(vector, sign = TRUE) {
+  
   vector_sq <- vector^2
   vector_sq_sum <- sum(vector_sq)
   
@@ -446,6 +525,7 @@ contribution <- function(vector, sign = TRUE) {
 ```
 
 #### Row-wise Contributions
+
 ```{r}
 contributions_years <- apply(years, 2, contribution)
 colnames(contributions_years) <- paste0("fi",1:ncol(contributions_years))
@@ -623,3 +703,49 @@ ggplot(fjs, aes(V1, V2)) +
         )
 ```
 
+
+
+
+
+
+
+## OLD
+
+### Ekarin's version
+
+```{r}
+# adjust metric
+hawks_data_adj <- hawks_data %>%
+  rowwise() %>%
+  mutate(GP_adj = TOI/GP,
+         CF_adj = CF/GP,
+         GF_adj = GF/GP,
+         GA_adj = GA/GP,
+         PENT_adj = PENT/GP,
+         PEND_adj = PEND/GP,
+         ShootPerc_adj = ShootPerc/GP,
+         SavePerc_adj = SavePerc/GP) %>%
+  ungroup() %>%
+  select(Season, contains("_adj")) %>%
+  inner_join(., hawks_events, by = "Season") %>%
+  apply(., 2, as.numeric) %>%
+  apply(., 2, scale)
+
+# correlation matrix
+hawks_cor_mat <- cor(hawks_data_adj)
+
+# convert to long format
+hawks_cor_long <- hawks_cor_mat %>%
+  reshape2::melt() %>%
+  arrange(Var1, Var2)
+
+# heatmap
+ggplot(hawks_cor_long, aes(x = Var1, y = Var2, fill = value)) +
+  geom_raster() + 
+  labs(x = element_blank(),
+       y = element_blank(),
+       fill = "Correlation") + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_distiller(palette = "RdBu", limits = c(-1,1))
+```
