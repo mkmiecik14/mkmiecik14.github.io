@@ -88,7 +88,7 @@ nhl_data <- read_csv(file = getURL(link))
 ## Data Preparation
 <hr >
 
-To make things simple, without losing information, we'll use Chicago Blackhawk's data from the 2007-2008 season up through the 2017-2018 season (11 years of data) and only a subset of the available metrics. These include:
+To make things simple, without losing information, we'll use Chicago Blackhawk's data from the 2007-2008 season up through the 2017-2018 season (11 years of data) and only a subset of the available metrics. These metrics include:
 
 + Games Played (GP)
 + Time on Ice (TOI)
@@ -181,7 +181,7 @@ ggplot(hawks_data_long, aes(factor(Season), Val_Zscore)) +
 
 When inspecting these plots in relation to the Chicago Blackhawk's 3 Stanly Cup wins (triangles), we see very little that stands out. It seems like the 2012-2013 season was a unique one, such that it was a Stanley Cup winning team and their regular season Save Percentage and Shooting Percentage were much greater than their other years. Perhaps these two metrics are important for winning the Presidents' Trophy (awarded to the NHL team finishing with the highest total points), which the Blackhawk's received at the end of their 2012-2013 season.
 
-Additionally, the Blackhawk's 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 sesaon was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see (NYT article)[https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html]). It is likely the change in ownership, hiring of Coach Q, and the aqcuisition of Jonathon Towes and Patrick Kane led to the drastic improvement of team stats in the years following.
+Additionally, the Blackhawk's 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 sesaon was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see [NYT article](https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html)). It is likely that the change in ownership, hiring of Coach Q, and the aqcuisition of Jonathon Towes and Patrick Kane that led to the drastic improvement of team stats in the years following.
 
 <br >
 
@@ -217,7 +217,7 @@ ggplot(hawks_cors_long, aes(x = Var1, y = Var2, fill = value)) +
                        )
 ```
 
-An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing pentalties, as well worsened at taking pentalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our [previous post](https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html) that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.
+An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing penalties, as well worsened at taking pentalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our [previous post](https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html) that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.
 
 <br >
 
@@ -238,7 +238,7 @@ We go over the very basics of PCA below. There is much more to this technique th
 
 <br >
 
-We first need to preprocess our data such that each column (e.g., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We've already done this above when exploring these data.
+We first need to preprocess our data such that each column (i.e., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We've already done this above when exploring these data.
 
 A unique feature of this dataset is the shortened 2012-2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.
 
@@ -249,10 +249,11 @@ Therefore, the first step here is to convert these data into a matrix format wit
 hawks_data_mat <- hawks_data_wide %>% select(-Season) %>% as.matrix()
 rownames(hawks_data_mat) <- hawks_data_wide$Season # Adds rownames
 
-nice_table(hawks_data_mat) # Prints HTML table
+round(hawks_data_mat, 4) %>%
+  nice_table() # Prints HTML table
 ```
 
-Next we'll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose our original matrix (X) into 3 separate matrices (U, $\Delta$, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:
+Next we'll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose (break apart) our original matrix (X) into 3 separate matrices (U, $\Delta$, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:
 
 <font style="font-size: 14pt">
 $$
@@ -276,7 +277,7 @@ Our original data matrix was 11 rows (years) x 9 columns (measures); therefore, 
 
 Which components are important? Which ones explain the most variance? Are some of the components just noise?
 
-A good first pass at these questions is examine the scree plot -- plotting the components as a function of variability explained.
+A good first pass at answering these questions is to examine the scree plot -- plotting the components as a function of variability explained.
 
 To do this, let's first square the singular values ($\lambda$) and sum them together. This is called __inertia__.
 
@@ -307,9 +308,9 @@ ggplot(scree, aes(factor(comps), eigs)) +
 
 As we can see from the scree plot, the first 3 components comprise `r round(sum(scree$perc_explained[1:3]), 2)`% of the total variance, suggesting that these first three components are important to understanding the structure of the data set. The remaining components explain only `r round(sum(scree$perc_explained[4:9]), 2)`% of the variability and may perhaps be noise.
 
-Is there any way to statistically show that these components are important? One method is permutation testing. If you unfamiliar with permutation testing, we recommend checking out our Shiny dashboard [here](https://mattkmiecik.shinyapps.io/boot-perm-dash/).
+Is there any way to statistically show that these components are important? One method is permutation testing. If you are unfamiliar with permutation testing, we recommend checking out our Shiny dashboard [here](https://mattkmiecik.shinyapps.io/boot-perm-dash/).
 
-Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigen values from which to compare our originally observed eigenvalues.
+Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigenvalues from which to compare our originally observed eigenvalues.
 
 ```{r}
 perm_iters <- 2000  # number of permutation iterations
@@ -328,7 +329,7 @@ for(i in 1:perm_iters){
 
 Now let's visualize these results against the observed values. We'll determine that a component is significant if its original observed eigenvalue is greater than 95% of the values derived from the null distribution (i.e., permutation testing).
 
-```{r}
+```{r, warning=F}
 # Converts to long format for plotting
 perm_res_long <- as_tibble(perm_res) %>% 
   gather(comps, eigen) %>%
@@ -383,7 +384,7 @@ Now that we know what components may be more important than others, let's take a
 
 ### Row-wise Factor Scores
 
-We can explore how the years are seen through the components by first scaling the U matrix by the singular values. The `%*%` operator performs matrix algebra:
+We can explore how the years are seen through the components by first scaling (multiplying) the U matrix by the singular values. $$F_{years} = U\Delta$$ The `%*%` operator performs matrix algebra:
 
 ```{r}
 years <- hawks_data_svd$u %*% diag(hawks_data_svd$d)  # scaling years data
@@ -445,7 +446,7 @@ One pattern of results that emerges, somewhat unexpectedly, is that the 2007-200
 
 ### Column-wise Factor Scores
 
-Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let's scale the V matrix by the singular values to obtain the factor scores. Again, the `%*%` operator performs matrix algebra:
+Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let's scale the V matrix by the singular values to obtain the factor scores. $$F_{metric} = V\Delta$$ Again, the `%*%` operator performs matrix algebra:
 
 ```{r}
 metric <- hawks_data_svd$v %*% diag(hawks_data_svd$d) # scaling years data
@@ -502,7 +503,7 @@ From here we gain a rich perspective of how each year-wise clustering is describ
 
 ### Contributions
 
-We can now take a look at how much each season (row) or metric (column) contributes to each component. To calculate the contribution to each component, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.
+We can also take a look at how much each season (row) or metric (column) contributes to each component. To calculate the contribution of each component, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.
 
 $$contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}$$
 
@@ -526,66 +527,98 @@ contribution <- function(vector, sign = TRUE) {
 
 #### Row-wise Contributions
 
-```{r}
+```{r, warning = F, message = F}
+# calculates the contribution of each row (e.g., season)
 contributions_years <- apply(years, 2, contribution)
-colnames(contributions_years) <- paste0("fi",1:ncol(contributions_years))
-contributions_years <- contributions_years %>%
-  as.tibble() %>%
-  mutate(Season = rownames(years)) %>%
-  reshape2::melt(value.name = "Contributions")
 
+# add column names
+colnames(contributions_years) <- paste0("Component_",1:ncol(contributions_years)) 
+
+# converts contributions to long format
+contributions_years <- contributions_years %>% 
+  as_tibble() %>%                                   
+  mutate(Season = rownames(years)) %>%            # add Seasons 
+  reshape2::melt(value.name = "Contributions")    # ensure values are called contributions
+
+# calculate the mean of each component for graphing
 contributions_years_means <- contributions_years %>%
   group_by(variable) %>%
   summarise(mean = mean(Contributions))
 
+# plot the contribution bars with the +/- mean
+# filtering only the first two components 
 contributions_years %>%
-  filter(variable %in% c("fi1", "fi2")) %>%
-  ggplot(., aes(x = Season, y = Contributions)) +
+  filter(variable %in% c("Component_1", "Component_2")) %>%
+  ggplot(., aes(x = Season, y = Contributions)) +             
     geom_bar(stat = "identity") +
-    geom_hline(data = contributions_years_means %>% filter(variable %in% c("fi1", "fi2")), aes(yintercept = mean), linetype = "dashed", alpha = 0.5) +
-     geom_hline(data = contributions_years_means %>% filter(variable %in% c("fi1", "fi2")), aes(yintercept = -mean), linetype = "dashed", alpha = 0.5) +
-    facet_wrap(~ variable) +
+    geom_hline(data = contributions_years_means %>% filter(variable %in% c("Component_1", "Component_2")), aes(yintercept = mean), linetype = "dashed", alpha = 0.5) +  
+     geom_hline(data = contributions_years_means %>% filter(variable %in% c("Component_1", "Component_2")), aes(yintercept = -mean), linetype = "dashed", alpha = 0.5) +
+    facet_wrap(~ variable, labeller = as_labeller(c(`Component_1` = "Component 1\n", `Component_2` = "Component 2\n"))) +
     theme_minimal() +
     theme(axis.text.x = element_text(hjust = 1, angle = 45)) +
-  labs(caption = "\nNote: Dashed lines represent the mean contribution.")
+    labs(x = "\nSeason",
+         y = "Contributions\n",
+         caption = "\nNote: Dashed lines represent the mean contribution.")
 ```
 
-Season 2008 and 2009 contribute more than the mean season on the negative side of component 1 and season 2016-2018 contribute more than the mean season on the positive side of component 1.
+Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1.
 
-Season 2013 contributes more than the mean season on the negative side of component 2. 
+For component 2, only season 2013 contributes more than the mean season and on the negative side of component 2. 
 
 #### Column-wise Contributions
-```{r}
+```{r, message = F}
+# calculates the contribution of each row (e.g., metric)
 contributions_metric <- apply(metric, 2, contribution)
-colnames(contributions_metric) <- paste0("fj",1:ncol(metric))
 
+# add column names
+colnames(contributions_metric) <- paste0("Component_",1:ncol(metric)) 
+
+# converts contributions to long format
 contributions_metric <- as_tibble(contributions_metric) %>%
   mutate(Metric = rownames(contributions_metric)) %>%
   reshape2::melt(value.name = "Contributions")
 
+# rename grouping to factor
 colnames(contributions_metric)[2] <- "factor"
 
+# calculate the mean of each component for graphing
 contributions_metric_means <- contributions_metric %>%
   group_by(factor) %>%
   summarise(mean = mean(Contributions))
 
+# plot the contributions bars with +/-mean
+# filtering only the first two components
 contributions_metric %>%
-  filter(factor %in% c("fj1", "fj2")) %>%
+  filter(factor %in% c("Component_1", "Component_2")) %>%
   ggplot(., aes(x = Metric, y = Contributions)) +
     geom_bar(stat = "identity") +
-    geom_hline(data = contributions_metric_means %>% filter(factor %in% c("fj1", "fj2")), aes(yintercept = mean), linetype = "dashed", alpha = 0.5) +
-    geom_hline(data = contributions_metric_means %>% filter(factor %in% c("fj1", "fj2")), aes(yintercept = -mean), linetype = "dashed", alpha = 0.5) +
-    facet_wrap(~ factor) +
+    geom_hline(data = contributions_metric_means %>% filter(factor %in% c("Component_1", "Component_2")), aes(yintercept = mean), linetype = "dashed", alpha = 0.5) +
+    geom_hline(data = contributions_metric_means %>% filter(factor %in% c("Component_1", "Component_2")), aes(yintercept = -mean), linetype = "dashed", alpha = 0.5) +
+    facet_wrap(~ factor, labeller = as_labeller(c(`Component_1` = "Component 1\n", `Component_2` = "Component 2\n"))) +
     theme_minimal() +
     theme(axis.text.x = element_text(hjust = 1, angle = 45)) +
   labs(caption = "\nNote: Dashed lines represent the mean contribution.")
 ```
 
-PEND and PENT contribute more than the mean metric to the negative side of component 1. CA, CF, GA, and TOI contribute more than the mean metric to the positive side of component 1. 
+Penalty minutes drawn (PEND) and penalty minutes served (PENT) contribute more than the mean metric to the negative side of component 1; while Corsi Against (CA), Corsi For (CF), Goals Against (GA), and Time on Ice (TOI) contribute more than the mean metric to the positive side of component 1. 
 
-GF, SavePerc, and ShootPerc contribute more than the mean metric to the negative side of component 2. GA contributes more than the mean metric to the positive side of component 2.
+Goals For (GF), Save Percentage (SavePerc), and Shooting Percentage (ShootPerc) contribute more than the mean metric to the negative side of component 2; while Goals Against (GA) contributes more than the mean metric to the positive side of component 2.
 
-GA appears to contribute to both the positive side of component 1 and 2.
+Goals Against (GA) appears to contribute to both the positive side of component 1 and 2.
+
+Taking into both the row-wise and column-wise contributions confirm the factor score plots:
+
+**Component 1**
+
+* Season 2008 and 2009 are associated with penalty minutes drawn and served (PEND and PENT, respectively) and both contribute negatively to component 1. 
+* On the other hand, seasons 2016 to 2018 are associated with Corsi For (CF), Corsi Against (CA), Goals Against (GA), and Time on Ice (TOI) and contribute to the postively to component 1. 
+
+**Component 2** 
+
+* Season 2013 is associated with Goals For (GF), Save Percentage (SavePerv), and Shooting Percentage (ShootPerc) and contribute negatively to component 2. 
+* On the other hand, Goals Against (GA) contributes positively to component 2.  
+
+## OLD
 
 ```{r, eval=FALSE}
 nhl_data_mat <- as.matrix(nhl_data[,2:ncol(nhl_data)])
@@ -702,14 +735,6 @@ ggplot(fjs, aes(V1, V2)) +
         axis.line = element_blank()
         )
 ```
-
-
-
-
-
-
-
-## OLD
 
 ### Ekarin's version
 

@@ -42,7 +42,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -79,7 +79,29 @@ code > span.do { color: #7f9f7f; } /* Documentation */
 code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
 code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
 code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -143,6 +165,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -157,7 +182,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -177,6 +201,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -198,18 +259,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -436,7 +556,7 @@ nhl_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span cl
 <div id="data-preparation" class="section level2">
 <h2>Data Preparation</h2>
 <hr >
-<p>To make things simple, without losing information, we’ll use Chicago Blackhawk’s data from the 2007-2008 season up through the 2017-2018 season (11 years of data) and only a subset of the available metrics. These include:</p>
+<p>To make things simple, without losing information, we’ll use Chicago Blackhawk’s data from the 2007-2008 season up through the 2017-2018 season (11 years of data) and only a subset of the available metrics. These metrics include:</p>
 <ul>
 <li>Games Played (GP)</li>
 <li>Time on Ice (TOI)</li>
@@ -941,7 +1061,7 @@ hawks_data_long &lt;-<span class="st"> </span>hawks_data <span class="op">%&gt;%
         )</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>When inspecting these plots in relation to the Chicago Blackhawk’s 3 Stanly Cup wins (triangles), we see very little that stands out. It seems like the 2012-2013 season was a unique one, such that it was a Stanley Cup winning team and their regular season Save Percentage and Shooting Percentage were much greater than their other years. Perhaps these two metrics are important for winning the Presidents’ Trophy (awarded to the NHL team finishing with the highest total points), which the Blackhawk’s received at the end of their 2012-2013 season.</p>
-<p>Additionally, the Blackhawk’s 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 sesaon was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see (NYT article)[<a href="https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html" class="uri">https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html</a>]). It is likely the change in ownership, hiring of Coach Q, and the aqcuisition of Jonathon Towes and Patrick Kane led to the drastic improvement of team stats in the years following.</p>
+<p>Additionally, the Blackhawk’s 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 sesaon was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see <a href="https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html">NYT article</a>). It is likely that the change in ownership, hiring of Coach Q, and the aqcuisition of Jonathon Towes and Patrick Kane that led to the drastic improvement of team stats in the years following.</p>
 <p><br ></p>
 </div>
 <div id="correlations" class="section level2">
@@ -973,7 +1093,7 @@ hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%
                        <span class="dt">name =</span> <span class="st">&quot;Correlation&quot;</span>
                        )</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing pentalties, as well worsened at taking pentalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our <a href="https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">previous post</a> that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.</p>
+<p>An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing penalties, as well worsened at taking pentalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our <a href="https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">previous post</a> that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.</p>
 <p><br ></p>
 </div>
 <div id="principal-components-analysis-pca" class="section level2">
@@ -988,14 +1108,15 @@ hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%
 <li><p>Abdi, H. (2007). <a href="https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf">Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)</a>. In N.J. Salkind (Ed.): <em>Encyclopedia of Measurement and Statistics</em>. Thousand Oaks (CA): Sage. pp. 907-912.</p></li>
 </ul>
 <p><br ></p>
-<p>We first need to preprocess our data such that each column (e.g., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We’ve already done this above when exploring these data.</p>
+<p>We first need to preprocess our data such that each column (i.e., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We’ve already done this above when exploring these data.</p>
 <p>A unique feature of this dataset is the shortened 2012-2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.</p>
 <p>Therefore, the first step here is to convert these data into a matrix format with the season years on the rows as row names:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Converts to matrix</span>
 hawks_data_mat &lt;-<span class="st"> </span>hawks_data_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Season) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()
 <span class="kw">rownames</span>(hawks_data_mat) &lt;-<span class="st"> </span>hawks_data_wide<span class="op">$</span>Season <span class="co"># Adds rownames</span>
 
-<span class="kw">nice_table</span>(hawks_data_mat) <span class="co"># Prints HTML table</span></code></pre></div>
+<span class="kw">round</span>(hawks_data_mat, <span class="dv">4</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">nice_table</span>() <span class="co"># Prints HTML table</span></code></pre></div>
 <table class="table table-striped table-hover table-responsive table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1036,31 +1157,31 @@ TOI
 2008
 </td>
 <td style="text-align:right;">
--1.3890061
+-1.3890
 </td>
 <td style="text-align:right;">
--2.4688368
+-2.4688
 </td>
 <td style="text-align:right;">
--0.4854171
+-0.4854
 </td>
 <td style="text-align:right;">
--0.9263934
+-0.9264
 </td>
 <td style="text-align:right;">
-1.8463464
+1.8463
 </td>
 <td style="text-align:right;">
-2.1908251
+2.1908
 </td>
 <td style="text-align:right;">
--0.2057746
+-0.2058
 </td>
 <td style="text-align:right;">
-0.3069261
+0.3069
 </td>
 <td style="text-align:right;">
--2.3384033
+-2.3384
 </td>
 </tr>
 <tr>
@@ -1068,31 +1189,31 @@ TOI
 2009
 </td>
 <td style="text-align:right;">
--1.4909528
+-1.4910
 </td>
 <td style="text-align:right;">
--0.9280729
+-0.9281
 </td>
 <td style="text-align:right;">
--1.0362482
+-1.0362
 </td>
 <td style="text-align:right;">
--0.9635667
+-0.9636
 </td>
 <td style="text-align:right;">
-1.7270345
+1.7270
 </td>
 <td style="text-align:right;">
-1.4018816
+1.4019
 </td>
 <td style="text-align:right;">
--0.2953539
+-0.2954
 </td>
 <td style="text-align:right;">
--0.4588701
+-0.4589
 </td>
 <td style="text-align:right;">
--1.4947316
+-1.4947
 </td>
 </tr>
 <tr>
@@ -1100,31 +1221,31 @@ TOI
 2010
 </td>
 <td style="text-align:right;">
--0.8442424
+-0.8442
 </td>
 <td style="text-align:right;">
-0.3075156
+0.3075
 </td>
 <td style="text-align:right;">
-0.3333859
+0.3334
 </td>
 <td style="text-align:right;">
-1.1052072
+1.1052
 </td>
 <td style="text-align:right;">
-0.3829492
+0.3829
 </td>
 <td style="text-align:right;">
-0.2988564
+0.2989
 </td>
 <td style="text-align:right;">
--0.3895168
+-0.3895
 </td>
 <td style="text-align:right;">
--0.1004303
+-0.1004
 </td>
 <td style="text-align:right;">
--0.0620987
+-0.0621
 </td>
 </tr>
 <tr>
@@ -1132,31 +1253,31 @@ TOI
 2011
 </td>
 <td style="text-align:right;">
-0.2002461
+0.2002
 </td>
 <td style="text-align:right;">
-0.1090275
+0.1090
 </td>
 <td style="text-align:right;">
-0.1547380
+0.1547
 </td>
 <td style="text-align:right;">
-0.3940662
+0.3941
 </td>
 <td style="text-align:right;">
--0.0455997
+-0.0456
 </td>
 <td style="text-align:right;">
--0.3928713
+-0.3929
 </td>
 <td style="text-align:right;">
--0.3147844
+-0.3148
 </td>
 <td style="text-align:right;">
--0.2016368
+-0.2016
 </td>
 <td style="text-align:right;">
-0.3929729
+0.3930
 </td>
 </tr>
 <tr>
@@ -1164,31 +1285,31 @@ TOI
 2012
 </td>
 <td style="text-align:right;">
-0.1386547
+0.1387
 </td>
 <td style="text-align:right;">
-0.0941409
+0.0941
 </td>
 <td style="text-align:right;">
-1.3457241
+1.3457
 </td>
 <td style="text-align:right;">
-0.3294170
+0.3294
 </td>
 <td style="text-align:right;">
-0.1491952
+0.1492
 </td>
 <td style="text-align:right;">
-0.1866843
+0.1867
 </td>
 <td style="text-align:right;">
--0.3665989
+-0.3666
 </td>
 <td style="text-align:right;">
--0.1636844
+-0.1637
 </td>
 <td style="text-align:right;">
-0.3253106
+0.3253
 </td>
 </tr>
 <tr>
@@ -1196,31 +1317,31 @@ TOI
 2013
 </td>
 <td style="text-align:right;">
--0.4876321
+-0.4876
 </td>
 <td style="text-align:right;">
--0.1673052
+-0.1673
 </td>
 <td style="text-align:right;">
--1.5027177
+-1.5027
 </td>
 <td style="text-align:right;">
-1.1940998
+1.1941
 </td>
 <td style="text-align:right;">
--0.1503020
+-0.1503
 </td>
 <td style="text-align:right;">
--0.0384388
+-0.0384
 </td>
 <td style="text-align:right;">
-3.0104356
+3.0104
 </td>
 <td style="text-align:right;">
-2.8614429
+2.8614
 </td>
 <td style="text-align:right;">
-0.2383715
+0.2384
 </td>
 </tr>
 <tr>
@@ -1228,31 +1349,31 @@ TOI
 2014
 </td>
 <td style="text-align:right;">
--0.2745214
+-0.2745
 </td>
 <td style="text-align:right;">
-0.5705123
+0.5705
 </td>
 <td style="text-align:right;">
-0.4524845
+0.4525
 </td>
 <td style="text-align:right;">
-1.3638039
+1.3638
 </td>
 <td style="text-align:right;">
--0.9416566
+-0.9417
 </td>
 <td style="text-align:right;">
--0.2993946
+-0.2994
 </td>
 <td style="text-align:right;">
--0.3466702
+-0.3467
 </td>
 <td style="text-align:right;">
--0.0413931
+-0.0414
 </td>
 <td style="text-align:right;">
-0.5364805
+0.5365
 </td>
 </tr>
 <tr>
@@ -1260,31 +1381,31 @@ TOI
 2015
 </td>
 <td style="text-align:right;">
-0.5800601
+0.5801
 </td>
 <td style="text-align:right;">
-0.8508768
+0.8509
 </td>
 <td style="text-align:right;">
--0.7980509
+-0.7981
 </td>
 <td style="text-align:right;">
--0.7049700
+-0.7050
 </td>
 <td style="text-align:right;">
--0.6105051
+-0.6105
 </td>
 <td style="text-align:right;">
--0.6546061
+-0.6546
 </td>
 <td style="text-align:right;">
--0.2395537
+-0.2396
 </td>
 <td style="text-align:right;">
--0.7034527
+-0.7035
 </td>
 <td style="text-align:right;">
-0.5410605
+0.5411
 </td>
 </tr>
 <tr>
@@ -1292,31 +1413,31 @@ TOI
 2016
 </td>
 <td style="text-align:right;">
-0.8957164
+0.8957
 </td>
 <td style="text-align:right;">
-0.0494811
+0.0495
 </td>
 <td style="text-align:right;">
--0.0239099
+-0.0239
 </td>
 <td style="text-align:right;">
--1.6747077
+-1.6747
 </td>
 <td style="text-align:right;">
--0.8832181
+-0.8832
 </td>
 <td style="text-align:right;">
--0.8228642
+-0.8229
 </td>
 <td style="text-align:right;">
--0.2759235
+-0.2759
 </td>
 <td style="text-align:right;">
--0.7287543
+-0.7288
 </td>
 <td style="text-align:right;">
-0.5732428
+0.5732
 </td>
 </tr>
 <tr>
@@ -1324,31 +1445,31 @@ TOI
 2017
 </td>
 <td style="text-align:right;">
-1.1703117
+1.1703
 </td>
 <td style="text-align:right;">
-0.2454881
+0.2455
 </td>
 <td style="text-align:right;">
--0.3216565
+-0.3217
 </td>
 <td style="text-align:right;">
-0.2001186
+0.2001
 </td>
 <td style="text-align:right;">
--1.1169721
+-1.1170
 </td>
 <td style="text-align:right;">
--1.0098176
+-1.0098
 </td>
 <td style="text-align:right;">
--0.2510127
+-0.2510
 </td>
 <td style="text-align:right;">
--0.1552505
+-0.1553
 </td>
 <td style="text-align:right;">
-0.9891094
+0.9891
 </td>
 </tr>
 <tr>
@@ -1356,36 +1477,36 @@ TOI
 2018
 </td>
 <td style="text-align:right;">
-1.5013658
+1.5014
 </td>
 <td style="text-align:right;">
-1.3371727
+1.3372
 </td>
 <td style="text-align:right;">
-1.8816679
+1.8817
 </td>
 <td style="text-align:right;">
--0.3170749
+-0.3171
 </td>
 <td style="text-align:right;">
--0.3572717
+-0.3573
 </td>
 <td style="text-align:right;">
--0.8602549
+-0.8603
 </td>
 <td style="text-align:right;">
--0.3252469
+-0.3252
 </td>
 <td style="text-align:right;">
--0.6148969
+-0.6149
 </td>
 <td style="text-align:right;">
-0.2986854
+0.2987
 </td>
 </tr>
 </tbody>
 </table>
-<p>Next we’ll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose our original matrix (X) into 3 separate matrices (U, <span class="math inline">\(\Delta\)</span>, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:</p>
+<p>Next we’ll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose (break apart) our original matrix (X) into 3 separate matrices (U, <span class="math inline">\(\Delta\)</span>, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:</p>
 <p><font style="font-size: 14pt"> <span class="math display">\[
 \mathbf{X = U \Delta V^T}
 \]</span> </font></p>
@@ -1397,7 +1518,7 @@ TOI
 <h3>Eigen Values</h3>
 <p>Our original data matrix was 11 rows (years) x 9 columns (measures); therefore, the SVD of that matrix will produce 9 singular values/components – with the smaller side dictating the number of components produced.</p>
 <p>Which components are important? Which ones explain the most variance? Are some of the components just noise?</p>
-<p>A good first pass at these questions is examine the scree plot – plotting the components as a function of variability explained.</p>
+<p>A good first pass at answering these questions is to examine the scree plot – plotting the components as a function of variability explained.</p>
 <p>To do this, let’s first square the singular values (<span class="math inline">\(\lambda\)</span>) and sum them together. This is called <strong>inertia</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculates inertia</span></code></pre></div>
 <p>Next, we’ll use the inertia to calculate the percentage of variability explained for each component and plot the scree:</p>
@@ -1419,8 +1540,8 @@ scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As we can see from the scree plot, the first 3 components comprise 91.75% of the total variance, suggesting that these first three components are important to understanding the structure of the data set. The remaining components explain only 8.25% of the variability and may perhaps be noise.</p>
-<p>Is there any way to statistically show that these components are important? One method is permutation testing. If you unfamiliar with permutation testing, we recommend checking out our Shiny dashboard <a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/">here</a>.</p>
-<p>Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigen values from which to compare our originally observed eigenvalues.</p>
+<p>Is there any way to statistically show that these components are important? One method is permutation testing. If you are unfamiliar with permutation testing, we recommend checking out our Shiny dashboard <a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/">here</a>.</p>
+<p>Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigenvalues from which to compare our originally observed eigenvalues.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">perm_iters &lt;-<span class="st"> </span><span class="dv">2000</span>  <span class="co"># number of permutation iterations</span>
 <span class="kw">set.seed</span>(<span class="dv">2019</span>)      <span class="co"># sets seed for reproducible results</span>
 
@@ -1482,7 +1603,7 @@ perm_res_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(pe
 </div>
 <div id="row-wise-factor-scores" class="section level3">
 <h3>Row-wise Factor Scores</h3>
-<p>We can explore how the years are seen through the components by first scaling the U matrix by the singular values. The <code>%*%</code> operator performs matrix algebra:</p>
+<p>We can explore how the years are seen through the components by first scaling (multiplying) the U matrix by the singular values. <span class="math display">\[F_{years} = U\Delta\]</span> The <code>%*%</code> operator performs matrix algebra:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">years &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d)  <span class="co"># scaling years data</span>
 <span class="kw">rownames</span>(years) &lt;-<span class="st"> </span><span class="kw">rownames</span>(hawks_data_mat)           <span class="co"># adds rownames</span></code></pre></div>
 <p>Now let’s visualize the factor scores for components 1 and 2:</p>
@@ -1531,7 +1652,7 @@ years_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(years) 
 </div>
 <div id="column-wise-factor-scores" class="section level3">
 <h3>Column-wise Factor Scores</h3>
-<p>Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let’s scale the V matrix by the singular values to obtain the factor scores. Again, the <code>%*%</code> operator performs matrix algebra:</p>
+<p>Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let’s scale the V matrix by the singular values to obtain the factor scores. <span class="math display">\[F_{metric} = V\Delta\]</span> Again, the <code>%*%</code> operator performs matrix algebra:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">metric &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>v <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d) <span class="co"># scaling years data</span>
 <span class="kw">rownames</span>(metric) &lt;-<span class="st"> </span><span class="kw">colnames</span>(hawks_data_mat)          <span class="co"># adds rownames</span>
 
@@ -1575,7 +1696,7 @@ metric_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(metric
 </div>
 <div id="contributions" class="section level3">
 <h3>Contributions</h3>
-<p>We can now take a look at how much each season (row) or metric (column) contributes to each component. To calculate the contribution to each component, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.</p>
+<p>We can also take a look at how much each season (row) or metric (column) contributes to each component. To calculate the contribution of each component, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.</p>
 <p><span class="math display">\[contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}\]</span></p>
 <p>Here is a function that will compute the contributions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Contribution calculator function ----</span>
@@ -1593,60 +1714,94 @@ contribution &lt;-<span class="st"> </span><span class="cf">function</span>(vect
 }</code></pre></div>
 <div id="row-wise-contributions" class="section level4">
 <h4>Row-wise Contributions</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">contributions_years &lt;-<span class="st"> </span><span class="kw">apply</span>(years, <span class="dv">2</span>, contribution)
-<span class="kw">colnames</span>(contributions_years) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;fi&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(contributions_years))
-contributions_years &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">as.tibble</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> <span class="kw">rownames</span>(years)) <span class="op">%&gt;%</span>
-<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>)</code></pre></div>
-<pre><code>## Using Season as id variables</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">contributions_years_means &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculates the contribution of each row (e.g., season)</span>
+contributions_years &lt;-<span class="st"> </span><span class="kw">apply</span>(years, <span class="dv">2</span>, contribution)
+
+<span class="co"># add column names</span>
+<span class="kw">colnames</span>(contributions_years) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(contributions_years)) 
+
+<span class="co"># converts contributions to long format</span>
+contributions_years &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st">                                   </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> <span class="kw">rownames</span>(years)) <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># add Seasons </span>
+<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>)    <span class="co"># ensure values are called contributions</span>
+
+<span class="co"># calculate the mean of each component for graphing</span>
+contributions_years_means &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions))
 
+<span class="co"># plot the contribution bars with the +/- mean</span>
+<span class="co"># filtering only the first two components </span>
 contributions_years <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fi1&quot;</span>, <span class="st">&quot;fi2&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(., <span class="kw">aes</span>(<span class="dt">x =</span> Season, <span class="dt">y =</span> Contributions)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(., <span class="kw">aes</span>(<span class="dt">x =</span> Season, <span class="dt">y =</span> Contributions)) <span class="op">+</span><span class="st">             </span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_years_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fi1&quot;</span>, <span class="st">&quot;fi2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">     </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_years_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fi1&quot;</span>, <span class="st">&quot;fi2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>variable) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_years_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st">  </span>
+<span class="st">     </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_years_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>variable, <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span>))) <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">angle =</span> <span class="dv">45</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span>)</code></pre></div>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Season&quot;</span>,
+         <span class="dt">y =</span> <span class="st">&quot;Contributions</span><span class="ch">\n</span><span class="st">&quot;</span>,
+         <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span>)</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Season 2008 and 2009 contribute more than the mean season on the negative side of component 1 and season 2016-2018 contribute more than the mean season on the positive side of component 1.</p>
-<p>Season 2013 contributes more than the mean season on the negative side of component 2.</p>
+<p>Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1.</p>
+<p>For component 2, only season 2013 contributes more than the mean season and on the negative side of component 2.</p>
 </div>
 <div id="column-wise-contributions" class="section level4">
 <h4>Column-wise Contributions</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">contributions_metric &lt;-<span class="st"> </span><span class="kw">apply</span>(metric, <span class="dv">2</span>, contribution)
-<span class="kw">colnames</span>(contributions_metric) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;fj&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(metric))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculates the contribution of each row (e.g., metric)</span>
+contributions_metric &lt;-<span class="st"> </span><span class="kw">apply</span>(metric, <span class="dv">2</span>, contribution)
 
+<span class="co"># add column names</span>
+<span class="kw">colnames</span>(contributions_metric) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(metric)) 
+
+<span class="co"># converts contributions to long format</span>
 contributions_metric &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(contributions_metric) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Metric =</span> <span class="kw">rownames</span>(contributions_metric)) <span class="op">%&gt;%</span>
-<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>)</code></pre></div>
-<pre><code>## Using Metric as id variables</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(contributions_metric)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;factor&quot;</span>
+<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>)
 
+<span class="co"># rename grouping to factor</span>
+<span class="kw">colnames</span>(contributions_metric)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;factor&quot;</span>
+
+<span class="co"># calculate the mean of each component for graphing</span>
 contributions_metric_means &lt;-<span class="st"> </span>contributions_metric <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(factor) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions))
 
+<span class="co"># plot the contributions bars with +/-mean</span>
+<span class="co"># filtering only the first two components</span>
 contributions_metric <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fj1&quot;</span>, <span class="st">&quot;fj2&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(., <span class="kw">aes</span>(<span class="dt">x =</span> Metric, <span class="dt">y =</span> Contributions)) <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_metric_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fj1&quot;</span>, <span class="st">&quot;fj2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_metric_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fj1&quot;</span>, <span class="st">&quot;fj2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>factor) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_metric_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_metric_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>factor, <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span>))) <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">angle =</span> <span class="dv">45</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span>)</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>PEND and PENT contribute more than the mean metric to the negative side of component 1. CA, CF, GA, and TOI contribute more than the mean metric to the positive side of component 1.</p>
-<p>GF, SavePerc, and ShootPerc contribute more than the mean metric to the negative side of component 2. GA contributes more than the mean metric to the positive side of component 2.</p>
-<p>GA appears to contribute to both the positive side of component 1 and 2.</p>
+<p>Penalty minutes drawn (PEND) and penalty minutes served (PENT) contribute more than the mean metric to the negative side of component 1; while Corsi Against (CA), Corsi For (CF), Goals Against (GA), and Time on Ice (TOI) contribute more than the mean metric to the positive side of component 1.</p>
+<p>Goals For (GF), Save Percentage (SavePerc), and Shooting Percentage (ShootPerc) contribute more than the mean metric to the negative side of component 2; while Goals Against (GA) contributes more than the mean metric to the positive side of component 2.</p>
+<p>Goals Against (GA) appears to contribute to both the positive side of component 1 and 2.</p>
+<p>Taking into both the row-wise and column-wise contributions confirm the factor score plots:</p>
+<p><strong>Component 1</strong></p>
+<ul>
+<li>Season 2008 and 2009 are associated with penalty minutes drawn and served (PEND and PENT, respectively) and both contribute negatively to component 1.</li>
+<li>On the other hand, seasons 2016 to 2018 are associated with Corsi For (CF), Corsi Against (CA), Goals Against (GA), and Time on Ice (TOI) and contribute to the postively to component 1.</li>
+</ul>
+<p><strong>Component 2</strong></p>
+<ul>
+<li>Season 2013 is associated with Goals For (GF), Save Percentage (SavePerv), and Shooting Percentage (ShootPerc) and contribute negatively to component 2.</li>
+<li>On the other hand, Goals Against (GA) contributes positively to component 2.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="old" class="section level2">
+<h2>OLD</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nhl_data_mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(nhl_data[,<span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(nhl_data)])
 <span class="kw">rownames</span>(nhl_data_mat) &lt;-<span class="st"> </span>nhl_data<span class="op">$</span>Season
 
@@ -1757,11 +1912,6 @@ scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="
         <span class="dt">axis.ticks=</span><span class="kw">element_blank</span>(),
         <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()
         )</code></pre></div>
-</div>
-</div>
-</div>
-<div id="old" class="section level2">
-<h2>OLD</h2>
 <div id="ekarins-version" class="section level3">
 <h3>Ekarin’s version</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># adjust metric</span>
