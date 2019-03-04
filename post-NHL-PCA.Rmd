@@ -23,7 +23,7 @@ We explore these data using a variety of techniques, such as:
 
 + Z-scores across time
 + Correlations
-+ Principal components analysis (PCA)
++ Principal Components Analysis (PCA)
 
 The results suggest that:
 
@@ -528,42 +528,73 @@ contribution <- function(vector, sign = TRUE) {
 #### Row-wise Contributions
 
 ```{r, warning = F, message = F}
-# calculates the contribution of each row (e.g., season)
+# calculates the contribution of each row (e.g., season) ----
 contributions_years <- apply(years, 2, contribution)
 
 # add column names
-colnames(contributions_years) <- paste0("Component_",1:ncol(contributions_years)) 
+colnames(contributions_years) <- paste0("Component_",1:ncol(contributions_years))
 
-# converts contributions to long format
-contributions_years <- contributions_years %>% 
+# converts contributions to long format ----
+contributions_years_long <- contributions_years %>% 
   as_tibble() %>%                                   
-  mutate(Season = rownames(years)) %>%            # add Seasons 
-  reshape2::melt(value.name = "Contributions")    # ensure values are called contributions
-
-# calculate the mean of each component for graphing
-contributions_years_means <- contributions_years %>%
+  mutate(Season = rownames(years)) %>%              # add Seasons 
+  reshape2::melt(value.name = "Contributions") %>%  # ensure values are called contributions
   group_by(variable) %>%
-  summarise(mean = mean(Contributions))
+  mutate(Contributes = ifelse(abs(Contributions) > abs(mean(Contributions)), 
+                              "Yes", 
+                              "No")
+         ) %>%
+  ungroup()
+
+# calculate the mean of each component for graphing ----
+contributions_years_means <- contributions_years_long %>%
+  group_by(variable) %>%
+  summarise(mean = mean(Contributions)) %>%
+  ungroup()
+
+# looking only at first two components ----
+year_contrib <- contributions_years_long %>% 
+  filter(variable %in% c("Component_1", "Component_2"))
+  
+year_contrib_means <- contributions_years_means %>%
+  filter(variable %in% c("Component_1", "Component_2"))
+
 
 # plot the contribution bars with the +/- mean
 # filtering only the first two components 
-contributions_years %>%
-  filter(variable %in% c("Component_1", "Component_2")) %>%
-  ggplot(., aes(x = Season, y = Contributions)) +             
-    geom_bar(stat = "identity") +
-    geom_hline(data = contributions_years_means %>% filter(variable %in% c("Component_1", "Component_2")), aes(yintercept = mean), linetype = "dashed", alpha = 0.5) +  
-     geom_hline(data = contributions_years_means %>% filter(variable %in% c("Component_1", "Component_2")), aes(yintercept = -mean), linetype = "dashed", alpha = 0.5) +
-    facet_wrap(~ variable, labeller = as_labeller(c(`Component_1` = "Component 1\n", `Component_2` = "Component 2\n"))) +
-    theme_minimal() +
-    theme(axis.text.x = element_text(hjust = 1, angle = 45)) +
-    labs(x = "\nSeason",
-         y = "Contributions\n",
-         caption = "\nNote: Dashed lines represent the mean contribution.")
+ggplot(year_contrib, aes(x = Season, y = Contributions, fill = Contributes)) +             
+  geom_bar(stat = "identity", color = "black") +
+  coord_flip(ylim = c(-.9, .9)) +
+  geom_hline(data = year_contrib_means, 
+             aes(yintercept = mean), 
+             linetype = "dashed", 
+             alpha = 0.5
+             ) +  
+  geom_hline(data = year_contrib_means, 
+             aes(yintercept = -mean), 
+             linetype = "dashed", 
+             alpha = 0.5
+             ) +
+  scale_fill_manual(values = c(rdgy[8], rdgy[3])) +
+  labs(x = "Season \n",
+       y = "\n Contributions",
+       caption = "\nNote: Dashed lines represent the mean contribution."
+       ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(hjust = 1, angle = 45), 
+        legend.position = "bottom"
+        ) +
+  facet_wrap(~variable, 
+             labeller = as_labeller(c(`Component_1` = "Component 1\n", 
+                                      `Component_2` = "Component 2\n"
+                                      )
+                                    )
+             )
 ```
 
-Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1.
+Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1. In other words, the 2008 and 2009 seaons are in stark contrast to the 2016-2018 seasons on component 1.
 
-For component 2, only season 2013 contributes more than the mean season and on the negative side of component 2. 
+For component 2, only season 2013 contributes more than the mean season and on the negative side of component 2. Thus, component 2 likely reflects the 2013 season.
 
 #### Column-wise Contributions
 ```{r, message = F}
@@ -574,30 +605,58 @@ contributions_metric <- apply(metric, 2, contribution)
 colnames(contributions_metric) <- paste0("Component_",1:ncol(metric)) 
 
 # converts contributions to long format
-contributions_metric <- as_tibble(contributions_metric) %>%
+contributions_metric_long <- as_tibble(contributions_metric) %>%
   mutate(Metric = rownames(contributions_metric)) %>%
-  reshape2::melt(value.name = "Contributions")
-
-# rename grouping to factor
-colnames(contributions_metric)[2] <- "factor"
+  reshape2::melt(value.name = "Contributions") %>%
+  group_by(variable) %>%
+  mutate(Contributes = ifelse(abs(Contributions) > abs(mean(Contributions)), 
+                              "Yes", 
+                              "No")
+         ) %>%
+  ungroup()
 
 # calculate the mean of each component for graphing
-contributions_metric_means <- contributions_metric %>%
-  group_by(factor) %>%
+contributions_metric_means <- contributions_metric_long %>%
+  group_by(variable) %>%
   summarise(mean = mean(Contributions))
+
+# looking only at first two components ----
+metric_contrib <- contributions_metric_long %>% 
+  filter(variable %in% c("Component_1", "Component_2"))
+  
+metric_contrib_means <- contributions_metric_means %>%
+  filter(variable %in% c("Component_1", "Component_2"))
 
 # plot the contributions bars with +/-mean
 # filtering only the first two components
-contributions_metric %>%
-  filter(factor %in% c("Component_1", "Component_2")) %>%
-  ggplot(., aes(x = Metric, y = Contributions)) +
-    geom_bar(stat = "identity") +
-    geom_hline(data = contributions_metric_means %>% filter(factor %in% c("Component_1", "Component_2")), aes(yintercept = mean), linetype = "dashed", alpha = 0.5) +
-    geom_hline(data = contributions_metric_means %>% filter(factor %in% c("Component_1", "Component_2")), aes(yintercept = -mean), linetype = "dashed", alpha = 0.5) +
-    facet_wrap(~ factor, labeller = as_labeller(c(`Component_1` = "Component 1\n", `Component_2` = "Component 2\n"))) +
-    theme_minimal() +
-    theme(axis.text.x = element_text(hjust = 1, angle = 45)) +
-  labs(caption = "\nNote: Dashed lines represent the mean contribution.")
+ggplot(metric_contrib, aes(x = reorder(Metric, Contributions), y = Contributions, fill = Contributes)) +             
+  geom_bar(stat = "identity", color = "black") +
+  coord_flip(ylim = c(-.9, .9)) +
+  geom_hline(data = metric_contrib_means, 
+             aes(yintercept = mean), 
+             linetype = "dashed", 
+             alpha = 0.5
+             ) +  
+  geom_hline(data = metric_contrib_means, 
+             aes(yintercept = -mean), 
+             linetype = "dashed", 
+             alpha = 0.5
+             ) +
+  scale_fill_manual(values = c(rdgy[8], rdgy[3])) +
+  labs(x = "Metric \n",
+       y = "\n Contributions",
+       caption = "\nNote: Dashed lines represent the mean contribution."
+       ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(hjust = 1, angle = 45), 
+        legend.position = "bottom"
+        ) +
+  facet_wrap(~variable, 
+             labeller = as_labeller(c(`Component_1` = "Component 1\n", 
+                                      `Component_2` = "Component 2\n"
+                                      )
+                                    )
+             )
 ```
 
 Penalty minutes drawn (PEND) and penalty minutes served (PENT) contribute more than the mean metric to the negative side of component 1; while Corsi Against (CA), Corsi For (CF), Goals Against (GA), and Time on Ice (TOI) contribute more than the mean metric to the positive side of component 1. 
@@ -612,165 +671,22 @@ Taking into both the row-wise and column-wise contributions confirm the factor s
 
 * Season 2008 and 2009 are associated with penalty minutes drawn and served (PEND and PENT, respectively) and both contribute negatively to component 1. 
 * On the other hand, seasons 2016 to 2018 are associated with Corsi For (CF), Corsi Against (CA), Goals Against (GA), and Time on Ice (TOI) and contribute to the postively to component 1. 
-
 **Component 2** 
 
 * Season 2013 is associated with Goals For (GF), Save Percentage (SavePerv), and Shooting Percentage (ShootPerc) and contribute negatively to component 2. 
 * On the other hand, Goals Against (GA) contributes positively to component 2.  
 
-## OLD
+## Summary
 
-```{r, eval=FALSE}
-nhl_data_mat <- as.matrix(nhl_data[,2:ncol(nhl_data)])
-rownames(nhl_data_mat) <- nhl_data$Season
+In this investigation we used z-scores, correlations, and Principal Components Analysis (PCA) to examine 11 years of data from the Chicago Blackhawks spanning from the 2007-2008 season to the 2017-2018 season. We determined that the first two components described these data well across time though various readily available and simple metrics, such as goals scored, pentalty minutes served, shooting percentage, etc.
 
-nhl_data_mat_scaled <- apply(nhl_data_mat, 2, scale)
+The main take away messages include:
 
-nhl_data_svd <- svd(nhl_data_mat_scaled)
+1. The 2007-2008 & 2008-2009 seasons are distinctly opposite when compared to the 2015-2018 seasons. They differ in this respect due to opposing patterns in penalty minutes (served and drawn) and Corsi (both For and Against).
 
-rows <- nhl_data_svd$u %*% diag(nhl_data_svd$d)
-columns <- nhl_data_svd$v %*% diag(nhl_data_svd$d)
+2. The Hawks had an incredible 2012-2013 season that resulted in the Presidents' trophy and a Stanley Cup win. This was reflected in the second principal compoenent and was associated with both heighted offensive (e.g., Shooting Percentage, Goals For) and defensive (e.g., Save Percentage) statistics.
 
+Do these components suggest certain patterns of regular season statistics that predict Stanley Cup performance? No. There seems no distinct pattern that groups the Stanley Cup winning seasons on a separate component; however, the 2012-2013 season did emerge as a unique season in comparison to the other seasons.
 
-fis <- as.tibble(rows) %>% 
-  mutate(Season = nhl_data$Season,
-         SCW = factor(ifelse(Season %in% c("2009_2010", "2012_2013", "2014_2015"), "Won", "Lost"))
-         )
+Future directions include logistic regression approaches that utilize factor scores from this PCA to understand relationships between regular season stats and playoff performacne.
 
-fjs <- as.tibble(columns) %>% 
-  mutate(meas = colnames(nhl_data)[-1])
-
-
-
-
-
-
-ggplot(fjs, aes(V2, V3)) +
-  geom_vline(xintercept = 0, alpha = 2/3) +
-  geom_hline(yintercept = 0, alpha = 2/3) +
-  geom_point() +
-  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
-  scale_color_brewer(palette = "Dark2") +
-  geom_text_repel(aes(label = meas), segment.alpha = 0) +
-  theme_classic() +
-  theme(axis.title=element_blank(),
-        #axis.text=element_blank(),
-        axis.ticks=element_blank(),
-        axis.line = element_blank()
-        )
-
-ggplot(nhl_data, aes(PEND, PENT)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-
-cor.test(nhl_data$PENT, nhl_data$PEND)
-summary(lm(PENT~PEND, data = nhl_data))
-```
-
-```{r, eval=FALSE}
-gp <- nhl_data$GP
-
-nhl_data_mat_2 <- as.matrix(nhl_data[3:ncol(nhl_data)])
-
-nhl_data_scaled1 <- apply(nhl_data_mat_2[,1:7], 2, function(x){x/gp})
-
-nhl_ready <- cbind(nhl_data_scaled1, nhl_data_mat_2[,8:9])
-
-nhl_scaled <- apply(nhl_ready, 2, scale)
-
-nhl_svd <- svd(nhl_scaled)
-
-rows <- nhl_svd$u %*% diag(nhl_svd$d)
-columns <- nhl_svd$v %*% diag(nhl_svd$d)
-
-fis <- as.tibble(rows) %>% 
-  mutate(Season = nhl_data$Season,
-         SCW = factor(ifelse(Season %in% c("2009_2010", "2012_2013", "2014_2015"), "Won", "Lost"))
-         )
-
-fjs <- as.tibble(columns) %>% 
-  mutate(meas = colnames(nhl_data)[3:ncol(nhl_data)])
-
-inertia <- sum(nhl_svd$d)
-
-scree <- tibble(eigs = nhl_svd$d, 
-                perc_explained = (eigs/inertia)*100,
-                comps = 1:length(eigs)
-                )
-
-ggplot(scree, aes(factor(comps), eigs)) +
-  geom_point() +
-  geom_path(aes(group = 1)) +
-  scale_y_continuous(sec.axis = sec_axis(~./inertia * 100, 
-                                         name = "Percentage of Explained Variance"
-                                         )
-                     ) +
-  theme_minimal()
-
-ggplot(fis, aes(V1, V2, color = SCW)) +
-  geom_vline(xintercept = 0, alpha = 2/3) +
-  geom_hline(yintercept = 0, alpha = 2/3) +
-  geom_point() +
-  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
-  scale_color_brewer(palette = "Dark2") +
-  geom_text_repel(aes(label = Season), segment.alpha = 0) +
-  theme_classic() +
-  theme(axis.title=element_blank(),
-        #axis.text=element_blank(),
-        axis.ticks=element_blank(),
-        axis.line = element_blank()
-        )
-
-ggplot(fjs, aes(V1, V2)) +
-  geom_vline(xintercept = 0, alpha = 2/3) +
-  geom_hline(yintercept = 0, alpha = 2/3) +
-  geom_point() +
-  coord_cartesian(xlim = c(-7,7), ylim = c(-7,7)) +
-  scale_color_brewer(palette = "Dark2") +
-  geom_text_repel(aes(label = meas), segment.alpha = 0) +
-  theme_classic() +
-  theme(axis.title=element_blank(),
-        #axis.text=element_blank(),
-        axis.ticks=element_blank(),
-        axis.line = element_blank()
-        )
-```
-
-### Ekarin's version
-
-```{r}
-# adjust metric
-hawks_data_adj <- hawks_data %>%
-  rowwise() %>%
-  mutate(GP_adj = TOI/GP,
-         CF_adj = CF/GP,
-         GF_adj = GF/GP,
-         GA_adj = GA/GP,
-         PENT_adj = PENT/GP,
-         PEND_adj = PEND/GP,
-         ShootPerc_adj = ShootPerc/GP,
-         SavePerc_adj = SavePerc/GP) %>%
-  ungroup() %>%
-  select(Season, contains("_adj")) %>%
-  inner_join(., hawks_events, by = "Season") %>%
-  apply(., 2, as.numeric) %>%
-  apply(., 2, scale)
-
-# correlation matrix
-hawks_cor_mat <- cor(hawks_data_adj)
-
-# convert to long format
-hawks_cor_long <- hawks_cor_mat %>%
-  reshape2::melt() %>%
-  arrange(Var1, Var2)
-
-# heatmap
-ggplot(hawks_cor_long, aes(x = Var1, y = Var2, fill = value)) +
-  geom_raster() + 
-  labs(x = element_blank(),
-       y = element_blank(),
-       fill = "Correlation") + 
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  scale_fill_distiller(palette = "RdBu", limits = c(-1,1))
-```
