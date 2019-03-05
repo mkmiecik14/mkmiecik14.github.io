@@ -42,7 +42,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -79,7 +79,29 @@ code > span.do { color: #7f9f7f; } /* Documentation */
 code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
 code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
 code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -143,6 +165,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -157,7 +182,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -177,6 +201,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -198,18 +259,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -380,7 +500,7 @@ div.tocify {
 <ul>
 <li>Z-scores across time</li>
 <li>Correlations</li>
-<li>Principal components analysis (PCA)</li>
+<li>Principal Components Analysis (PCA)</li>
 </ul>
 <p>The results suggest that:</p>
 <ul>
@@ -1594,40 +1714,70 @@ contribution &lt;-<span class="st"> </span><span class="cf">function</span>(vect
 }</code></pre></div>
 <div id="row-wise-contributions" class="section level4">
 <h4>Row-wise Contributions</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculates the contribution of each row (e.g., season)</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculates the contribution of each row (e.g., season) ----</span>
 contributions_years &lt;-<span class="st"> </span><span class="kw">apply</span>(years, <span class="dv">2</span>, contribution)
 
 <span class="co"># add column names</span>
-<span class="kw">colnames</span>(contributions_years) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(contributions_years)) 
+<span class="kw">colnames</span>(contributions_years) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(contributions_years))
 
-<span class="co"># converts contributions to long format</span>
-contributions_years &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="co"># converts contributions to long format ----</span>
+contributions_years_long &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st">                                   </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> <span class="kw">rownames</span>(years)) <span class="op">%&gt;%</span><span class="st">            </span><span class="co"># add Seasons </span>
-<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>)    <span class="co"># ensure values are called contributions</span>
-
-<span class="co"># calculate the mean of each component for graphing</span>
-contributions_years_means &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> <span class="kw">rownames</span>(years)) <span class="op">%&gt;%</span><span class="st">              </span><span class="co"># add Seasons </span>
+<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># ensure values are called contributions</span>
 <span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions))
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Contributes =</span> <span class="kw">ifelse</span>(<span class="kw">abs</span>(Contributions) <span class="op">&gt;</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">mean</span>(Contributions)), 
+                              <span class="st">&quot;Yes&quot;</span>, 
+                              <span class="st">&quot;No&quot;</span>)
+         ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()
+
+<span class="co"># calculate the mean of each component for graphing ----</span>
+contributions_years_means &lt;-<span class="st"> </span>contributions_years_long <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()
+
+<span class="co"># looking only at first two components ----</span>
+year_contrib &lt;-<span class="st"> </span>contributions_years_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))
+  
+year_contrib_means &lt;-<span class="st"> </span>contributions_years_means <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))
+
 
 <span class="co"># plot the contribution bars with the +/- mean</span>
 <span class="co"># filtering only the first two components </span>
-contributions_years <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(., <span class="kw">aes</span>(<span class="dt">x =</span> Season, <span class="dt">y =</span> Contributions)) <span class="op">+</span><span class="st">             </span>
-<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_years_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st">  </span>
-<span class="st">     </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_years_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>variable, <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span>))) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">angle =</span> <span class="dv">45</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Season&quot;</span>,
-         <span class="dt">y =</span> <span class="st">&quot;Contributions</span><span class="ch">\n</span><span class="st">&quot;</span>,
-         <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span>)</code></pre></div>
+<span class="kw">ggplot</span>(year_contrib, <span class="kw">aes</span>(<span class="dt">x =</span> Season, <span class="dt">y =</span> Contributions, <span class="dt">fill =</span> Contributes)) <span class="op">+</span><span class="st">             </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_flip</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">9</span>, .<span class="dv">9</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> year_contrib_means, 
+             <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), 
+             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, 
+             <span class="dt">alpha =</span> <span class="fl">0.5</span>
+             ) <span class="op">+</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> year_contrib_means, 
+             <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), 
+             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, 
+             <span class="dt">alpha =</span> <span class="fl">0.5</span>
+             ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">8</span>], rdgy[<span class="dv">3</span>])) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Season </span><span class="ch">\n</span><span class="st">&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Contributions&quot;</span>,
+       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span>
+       ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>
+        ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, 
+             <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, 
+                                      <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span>
+                                      )
+                                    )
+             )</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1.</p>
-<p>For component 2, only season 2013 contributes more than the mean season and on the negative side of component 2.</p>
+<p>Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1. In other words, the 2008 and 2009 seaons are in stark contrast to the 2016-2018 seasons on component 1.</p>
+<p>For component 2, only season 2013 contributes more than the mean season and on the negative side of component 2. Thus, component 2 likely reflects the 2013 season.</p>
 </div>
 <div id="column-wise-contributions" class="section level4">
 <h4>Column-wise Contributions</h4>
@@ -1638,30 +1788,57 @@ contributions_metric &lt;-<span class="st"> </span><span class="kw">apply</span>
 <span class="kw">colnames</span>(contributions_metric) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(metric)) 
 
 <span class="co"># converts contributions to long format</span>
-contributions_metric &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(contributions_metric) <span class="op">%&gt;%</span>
+contributions_metric_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(contributions_metric) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Metric =</span> <span class="kw">rownames</span>(contributions_metric)) <span class="op">%&gt;%</span>
-<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>)
-
-<span class="co"># rename grouping to factor</span>
-<span class="kw">colnames</span>(contributions_metric)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;factor&quot;</span>
+<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Contributes =</span> <span class="kw">ifelse</span>(<span class="kw">abs</span>(Contributions) <span class="op">&gt;</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">mean</span>(Contributions)), 
+                              <span class="st">&quot;Yes&quot;</span>, 
+                              <span class="st">&quot;No&quot;</span>)
+         ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()
 
 <span class="co"># calculate the mean of each component for graphing</span>
-contributions_metric_means &lt;-<span class="st"> </span>contributions_metric <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(factor) <span class="op">%&gt;%</span>
+contributions_metric_means &lt;-<span class="st"> </span>contributions_metric_long <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions))
+
+<span class="co"># looking only at first two components ----</span>
+metric_contrib &lt;-<span class="st"> </span>contributions_metric_long <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))
+  
+metric_contrib_means &lt;-<span class="st"> </span>contributions_metric_means <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))
 
 <span class="co"># plot the contributions bars with +/-mean</span>
 <span class="co"># filtering only the first two components</span>
-contributions_metric <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(., <span class="kw">aes</span>(<span class="dt">x =</span> Metric, <span class="dt">y =</span> Contributions)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_metric_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> contributions_metric_means <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(factor <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>)), <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>factor, <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span>))) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="dv">1</span>, <span class="dt">angle =</span> <span class="dv">45</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span>)</code></pre></div>
+<span class="kw">ggplot</span>(metric_contrib, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(Metric, Contributions), <span class="dt">y =</span> Contributions, <span class="dt">fill =</span> Contributes)) <span class="op">+</span><span class="st">             </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_flip</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">9</span>, .<span class="dv">9</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> metric_contrib_means, 
+             <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), 
+             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, 
+             <span class="dt">alpha =</span> <span class="fl">0.5</span>
+             ) <span class="op">+</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> metric_contrib_means, 
+             <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), 
+             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, 
+             <span class="dt">alpha =</span> <span class="fl">0.5</span>
+             ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">8</span>], rdgy[<span class="dv">3</span>])) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Metric </span><span class="ch">\n</span><span class="st">&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Contributions&quot;</span>,
+       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span>
+       ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>
+        ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, 
+             <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, 
+                                      <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span>
+                                      )
+                                    )
+             )</code></pre></div>
 <p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Penalty minutes drawn (PEND) and penalty minutes served (PENT) contribute more than the mean metric to the negative side of component 1; while Corsi Against (CA), Corsi For (CF), Goals Against (GA), and Time on Ice (TOI) contribute more than the mean metric to the positive side of component 1.</p>
 <p>Goals For (GF), Save Percentage (SavePerc), and Shooting Percentage (ShootPerc) contribute more than the mean metric to the negative side of component 2; while Goals Against (GA) contributes more than the mean metric to the positive side of component 2.</p>
@@ -1680,156 +1857,16 @@ contributions_metric <span class="op">%&gt;%</span>
 </div>
 </div>
 </div>
-<div id="old" class="section level2">
-<h2>OLD</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nhl_data_mat &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(nhl_data[,<span class="dv">2</span><span class="op">:</span><span class="kw">ncol</span>(nhl_data)])
-<span class="kw">rownames</span>(nhl_data_mat) &lt;-<span class="st"> </span>nhl_data<span class="op">$</span>Season
-
-nhl_data_mat_scaled &lt;-<span class="st"> </span><span class="kw">apply</span>(nhl_data_mat, <span class="dv">2</span>, scale)
-
-nhl_data_svd &lt;-<span class="st"> </span><span class="kw">svd</span>(nhl_data_mat_scaled)
-
-rows &lt;-<span class="st"> </span>nhl_data_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(nhl_data_svd<span class="op">$</span>d)
-columns &lt;-<span class="st"> </span>nhl_data_svd<span class="op">$</span>v <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(nhl_data_svd<span class="op">$</span>d)
-
-
-fis &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(rows) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> nhl_data<span class="op">$</span>Season,
-         <span class="dt">SCW =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(Season <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2009_2010&quot;</span>, <span class="st">&quot;2012_2013&quot;</span>, <span class="st">&quot;2014_2015&quot;</span>), <span class="st">&quot;Won&quot;</span>, <span class="st">&quot;Lost&quot;</span>))
-         )
-
-fjs &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(columns) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">meas =</span> <span class="kw">colnames</span>(nhl_data)[<span class="op">-</span><span class="dv">1</span>])
-
-
-
-
-
-
-<span class="kw">ggplot</span>(fjs, <span class="kw">aes</span>(V2, V3)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> meas), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title=</span><span class="kw">element_blank</span>(),
-        <span class="co">#axis.text=element_blank(),</span>
-        <span class="dt">axis.ticks=</span><span class="kw">element_blank</span>(),
-        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()
-        )
-
-<span class="kw">ggplot</span>(nhl_data, <span class="kw">aes</span>(PEND, PENT)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)
-
-<span class="kw">cor.test</span>(nhl_data<span class="op">$</span>PENT, nhl_data<span class="op">$</span>PEND)
-<span class="kw">summary</span>(<span class="kw">lm</span>(PENT<span class="op">~</span>PEND, <span class="dt">data =</span> nhl_data))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gp &lt;-<span class="st"> </span>nhl_data<span class="op">$</span>GP
-
-nhl_data_mat_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(nhl_data[<span class="dv">3</span><span class="op">:</span><span class="kw">ncol</span>(nhl_data)])
-
-nhl_data_scaled1 &lt;-<span class="st"> </span><span class="kw">apply</span>(nhl_data_mat_<span class="dv">2</span>[,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>], <span class="dv">2</span>, <span class="cf">function</span>(x){x<span class="op">/</span>gp})
-
-nhl_ready &lt;-<span class="st"> </span><span class="kw">cbind</span>(nhl_data_scaled1, nhl_data_mat_<span class="dv">2</span>[,<span class="dv">8</span><span class="op">:</span><span class="dv">9</span>])
-
-nhl_scaled &lt;-<span class="st"> </span><span class="kw">apply</span>(nhl_ready, <span class="dv">2</span>, scale)
-
-nhl_svd &lt;-<span class="st"> </span><span class="kw">svd</span>(nhl_scaled)
-
-rows &lt;-<span class="st"> </span>nhl_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(nhl_svd<span class="op">$</span>d)
-columns &lt;-<span class="st"> </span>nhl_svd<span class="op">$</span>v <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(nhl_svd<span class="op">$</span>d)
-
-fis &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(rows) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> nhl_data<span class="op">$</span>Season,
-         <span class="dt">SCW =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(Season <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;2009_2010&quot;</span>, <span class="st">&quot;2012_2013&quot;</span>, <span class="st">&quot;2014_2015&quot;</span>), <span class="st">&quot;Won&quot;</span>, <span class="st">&quot;Lost&quot;</span>))
-         )
-
-fjs &lt;-<span class="st"> </span><span class="kw">as.tibble</span>(columns) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">meas =</span> <span class="kw">colnames</span>(nhl_data)[<span class="dv">3</span><span class="op">:</span><span class="kw">ncol</span>(nhl_data)])
-
-inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(nhl_svd<span class="op">$</span>d)
-
-scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">eigs =</span> nhl_svd<span class="op">$</span>d, 
-                <span class="dt">perc_explained =</span> (eigs<span class="op">/</span>inertia)<span class="op">*</span><span class="dv">100</span>,
-                <span class="dt">comps =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(eigs)
-                )
-
-<span class="kw">ggplot</span>(scree, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis =</span> <span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span>inertia <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, 
-                                         <span class="dt">name =</span> <span class="st">&quot;Percentage of Explained Variance&quot;</span>
-                                         )
-                     ) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_minimal</span>()
-
-<span class="kw">ggplot</span>(fis, <span class="kw">aes</span>(V1, V2, <span class="dt">color =</span> SCW)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Season), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title=</span><span class="kw">element_blank</span>(),
-        <span class="co">#axis.text=element_blank(),</span>
-        <span class="dt">axis.ticks=</span><span class="kw">element_blank</span>(),
-        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()
-        )
-
-<span class="kw">ggplot</span>(fjs, <span class="kw">aes</span>(V1, V2)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> meas), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title=</span><span class="kw">element_blank</span>(),
-        <span class="co">#axis.text=element_blank(),</span>
-        <span class="dt">axis.ticks=</span><span class="kw">element_blank</span>(),
-        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()
-        )</code></pre></div>
-<div id="ekarins-version" class="section level3">
-<h3>Ekarin’s version</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># adjust metric</span>
-hawks_data_adj &lt;-<span class="st"> </span>hawks_data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">GP_adj =</span> TOI<span class="op">/</span>GP,
-         <span class="dt">CF_adj =</span> CF<span class="op">/</span>GP,
-         <span class="dt">GF_adj =</span> GF<span class="op">/</span>GP,
-         <span class="dt">GA_adj =</span> GA<span class="op">/</span>GP,
-         <span class="dt">PENT_adj =</span> PENT<span class="op">/</span>GP,
-         <span class="dt">PEND_adj =</span> PEND<span class="op">/</span>GP,
-         <span class="dt">ShootPerc_adj =</span> ShootPerc<span class="op">/</span>GP,
-         <span class="dt">SavePerc_adj =</span> SavePerc<span class="op">/</span>GP) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(Season, <span class="kw">contains</span>(<span class="st">&quot;_adj&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">inner_join</span>(., hawks_events, <span class="dt">by =</span> <span class="st">&quot;Season&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">apply</span>(., <span class="dv">2</span>, as.numeric) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">apply</span>(., <span class="dv">2</span>, scale)
-
-<span class="co"># correlation matrix</span>
-hawks_cor_mat &lt;-<span class="st"> </span><span class="kw">cor</span>(hawks_data_adj)
-
-<span class="co"># convert to long format</span>
-hawks_cor_long &lt;-<span class="st"> </span>hawks_cor_mat <span class="op">%&gt;%</span>
-<span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(Var1, Var2)
-
-<span class="co"># heatmap</span>
-<span class="kw">ggplot</span>(hawks_cor_long, <span class="kw">aes</span>(<span class="dt">x =</span> Var1, <span class="dt">y =</span> Var2, <span class="dt">fill =</span> value)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_raster</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="kw">element_blank</span>(),
-       <span class="dt">y =</span> <span class="kw">element_blank</span>(),
-       <span class="dt">fill =</span> <span class="st">&quot;Correlation&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;RdBu&quot;</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>In this investigation we used z-scores, correlations, and Principal Components Analysis (PCA) to examine 11 years of data from the Chicago Blackhawks spanning from the 2007-2008 season to the 2017-2018 season. We determined that the first two components described these data well across time though various readily available and simple metrics, such as goals scored, pentalty minutes served, shooting percentage, etc.</p>
+<p>The main take away messages include:</p>
+<ol style="list-style-type: decimal">
+<li><p>The 2007-2008 &amp; 2008-2009 seasons are distinctly opposite when compared to the 2015-2018 seasons. They differ in this respect due to opposing patterns in penalty minutes (served and drawn) and Corsi (both For and Against).</p></li>
+<li><p>The Hawks had an incredible 2012-2013 season that resulted in the Presidents’ trophy and a Stanley Cup win. This was reflected in the second principal compoenent and was associated with both heighted offensive (e.g., Shooting Percentage, Goals For) and defensive (e.g., Save Percentage) statistics.</p></li>
+</ol>
+<p>Do these components suggest certain patterns of regular season statistics that predict Stanley Cup performance? No. There seems no distinct pattern that groups the Stanley Cup winning seasons on a separate component; however, the 2012-2013 season did emerge as a unique season in comparison to the other seasons.</p>
+<p>Future directions include logistic regression approaches that utilize factor scores from this PCA to understand relationships between regular season stats and playoff performacne.</p>
 </div>
 
 </div> <!-- articleBandContent -->

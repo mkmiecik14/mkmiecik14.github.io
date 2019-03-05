@@ -581,8 +581,7 @@ ggplot(year_contrib, aes(x = Season, y = Contributions, fill = Contributes)) +
        caption = "\nNote: Dashed lines represent the mean contribution."
        ) +
   theme_minimal() +
-  theme(axis.text.x = element_text(hjust = 1, angle = 45), 
-        legend.position = "bottom"
+  theme(legend.position = "bottom"
         ) +
   facet_wrap(~variable, 
              labeller = as_labeller(c(`Component_1` = "Component 1\n", 
@@ -648,8 +647,7 @@ ggplot(metric_contrib, aes(x = reorder(Metric, Contributions), y = Contributions
        caption = "\nNote: Dashed lines represent the mean contribution."
        ) +
   theme_minimal() +
-  theme(axis.text.x = element_text(hjust = 1, angle = 45), 
-        legend.position = "bottom"
+  theme(legend.position = "bottom"
         ) +
   facet_wrap(~variable, 
              labeller = as_labeller(c(`Component_1` = "Component 1\n", 
@@ -671,6 +669,7 @@ Taking into both the row-wise and column-wise contributions confirm the factor s
 
 * Season 2008 and 2009 are associated with penalty minutes drawn and served (PEND and PENT, respectively) and both contribute negatively to component 1. 
 * On the other hand, seasons 2016 to 2018 are associated with Corsi For (CF), Corsi Against (CA), Goals Against (GA), and Time on Ice (TOI) and contribute to the postively to component 1. 
+
 **Component 2** 
 
 * Season 2013 is associated with Goals For (GF), Save Percentage (SavePerv), and Shooting Percentage (ShootPerc) and contribute negatively to component 2. 
