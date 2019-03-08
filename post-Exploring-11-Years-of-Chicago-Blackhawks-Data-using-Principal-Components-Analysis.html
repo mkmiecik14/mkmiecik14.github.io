@@ -12,7 +12,7 @@
 <meta name="author" content="Matthew J. Kmiecik &amp; Ekarin E. Pongpipat" />
 
 
-<title>Exploring Chicago Blackhawk’s Data using Principal Components Analysis</title>
+<title>Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,7 +42,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
+<style type="text/css">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -79,29 +79,7 @@ code > span.do { color: #7f9f7f; } /* Documentation */
 code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
 code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
 code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
-
 </style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -165,9 +143,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -182,6 +157,7 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
+
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -201,43 +177,6 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -259,77 +198,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -488,25 +368,34 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Exploring Chicago Blackhawk’s Data using Principal Components Analysis</h1>
+<h1 class="title toc-ignore">Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis</h1>
 <h4 class="author"><em>Matthew J. Kmiecik &amp; Ekarin E. Pongpipat</em></h4>
-<h4 class="date"><em>date here</em></h4>
+<h4 class="date"><em>7 March 2019</em></h4>
 
 </div>
 
 
-<p>In this post we explore 11 seasons (2007 - 2018) of summary data from the Chicago Blackhawks of the National Hockey League (NHL). Our question was, “Are there any summary measures, such as goals scored or save percentage, that predict playoff performance or championship wins?”</p>
+<p><br ></p>
+<p>In this post we explore 11 seasons (2007 - 2018) of team summary data from the Chicago Blackhawks of the National Hockey League (NHL). Our question was, “Are there any summary measures, such as goals scored or save percentage, that predict playoff performance or championship wins?”</p>
+<p><br ></p>
 <p>We explore these data using a variety of techniques, such as:</p>
+<p><br ></p>
+<p><strong>Z-scores across time</strong></p>
 <ul>
-<li>Z-scores across time</li>
-<li>Correlations</li>
-<li>Principal Components Analysis (PCA)</li>
+<li><p>Finding #1a: 2007-2008 was characterized by low time on ice (TOI), Corsi for (CF), and elevated served penalty minutes</p></li>
+<li><p>Finding #1b: 2012-2013 was characterized by elevated save and shooting percentage</p></li>
 </ul>
-<p>The results suggest that:</p>
+<p><br ></p>
+<p><strong>Correlations</strong></p>
 <ul>
-<li>[finding #1]</li>
-<li>[finding #2]</li>
-<li>[finding #3]</li>
+<li><p>Finding #2a: Powerplay units are more selective in their shooting resulting in decreased Corsi estimates; however, this is a speculative hypothesis and needs additional study</p></li>
+<li><p>Finding #2b: Through time, Blackhawks had more time on ice (likely more overtime play) and decreased their penalties served and taken. Perhaps decreased penalties are related to changes in rules and league-wide game play style</p></li>
+</ul>
+<p><br ></p>
+<p><strong>Principal Components Analysis (PCA)</strong></p>
+<ul>
+<li><p>Finding #3a: Component 1 was characterized by the Blackhawks improving as a team over time in penalty minutes and taking more shots, while simultaneously receiving more shots and goals against</p></li>
+<li><p>Finding #3b: Component 2 was dominated by the 2012-2013 season that was characterized by excellent defense and great offense. This season was the Blackhawk’s Presidents’ Trophy winning season, a Stanley Cup winning season, a shortened lockout season, as well as setting franchise records for win streaks</p></li>
 </ul>
 <p><br ></p>
 <div id="setup" class="section level2">
@@ -564,7 +453,7 @@ nhl_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span cl
 <li>Corsi Against (CA) = Shot attempts against at even strength: Shots + Blocks + Misses</li>
 <li>Goals For (GF)</li>
 <li>Goals Against (GA)</li>
-<li>Pentaly minutes served (PENT)</li>
+<li>Penalty minutes served (PENT)</li>
 <li>Penalty minutes drawn (PEND)</li>
 <li>Shooting Percentage (ShootPerc)</li>
 <li>Save Percentage (SavePerc)</li>
@@ -1059,9 +948,9 @@ hawks_data_long &lt;-<span class="st"> </span>hawks_data <span class="op">%&gt;%
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),
         <span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>
         )</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>When inspecting these plots in relation to the Chicago Blackhawk’s 3 Stanly Cup wins (triangles), we see very little that stands out. It seems like the 2012-2013 season was a unique one, such that it was a Stanley Cup winning team and their regular season Save Percentage and Shooting Percentage were much greater than their other years. Perhaps these two metrics are important for winning the Presidents’ Trophy (awarded to the NHL team finishing with the highest total points), which the Blackhawk’s received at the end of their 2012-2013 season.</p>
-<p>Additionally, the Blackhawk’s 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 sesaon was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see <a href="https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html">NYT article</a>). It is likely that the change in ownership, hiring of Coach Q, and the aqcuisition of Jonathon Towes and Patrick Kane that led to the drastic improvement of team stats in the years following.</p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>When inspecting these plots in relation to the Chicago Blackhawk’s 3 Stanley Cup wins (triangles), we see very little that stands out. It seems like the 2012-2013 season was a unique one, such that it was a Stanley Cup winning team and their regular season Save Percentage and Shooting Percentage were much greater than their other years. Perhaps these two metrics are important for winning the Presidents’ Trophy (awarded to the NHL team finishing with the highest total points), which the Blackhawk’s received at the end of their 2012-2013 season.</p>
+<p>Additionally, the Blackhawk’s 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 season was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see <a href="https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html">NYT article</a>). It is likely that the change in ownership, hiring of Coach Q, and the acquisition of Jonathon Towes and Patrick Kane that led to the drastic improvement of team stats in the years following.</p>
 <p><br ></p>
 </div>
 <div id="correlations" class="section level2">
@@ -1092,8 +981,8 @@ hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%
                        <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), 
                        <span class="dt">name =</span> <span class="st">&quot;Correlation&quot;</span>
                        )</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing penalties, as well worsened at taking pentalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our <a href="https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">previous post</a> that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.</p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing penalties, as well worsened at taking penalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our <a href="https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">previous post</a> that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.</p>
 <p><br ></p>
 </div>
 <div id="principal-components-analysis-pca" class="section level2">
@@ -1104,8 +993,8 @@ hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%
 <p>Additionally, the PCA that we will demonstrate below places a constraint on the components such that they are orthogonal to each other, meaning that each component is perfectly uncorrelated with every other component (<em>r</em> = 0).</p>
 <p>We go over the very basics of PCA below. There is much more to this technique than we present, so we recommend the interested reader the following papers on this statistical technique:</p>
 <ul>
-<li><p>Abdi, H., &amp; Williams, L.J. (2010). <a href="https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf">Principal component analysis</a>. <em>Wiley Interdisciplinary Reviews: Computational Statistics</em>, 2, 433-459.</p></li>
-<li><p>Abdi, H. (2007). <a href="https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf">Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)</a>. In N.J. Salkind (Ed.): <em>Encyclopedia of Measurement and Statistics</em>. Thousand Oaks (CA): Sage. pp. 907-912.</p></li>
+<li><p>Abdi, H., &amp; Williams, L.J. (2010). <a href="https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf" target="_blank">Principal component analysis</a>. <em>Wiley Interdisciplinary Reviews: Computational Statistics</em>, 2, 433-459.</p></li>
+<li><p>Abdi, H. (2007). <a href="https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf" target="_blank">Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)</a>. In N.J. Salkind (Ed.): <em>Encyclopedia of Measurement and Statistics</em>. Thousand Oaks (CA): Sage. pp. 907-912.</p></li>
 </ul>
 <p><br ></p>
 <p>We first need to preprocess our data such that each column (i.e., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We’ve already done this above when exploring these data.</p>
@@ -1115,8 +1004,7 @@ hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%
 hawks_data_mat &lt;-<span class="st"> </span>hawks_data_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Season) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()
 <span class="kw">rownames</span>(hawks_data_mat) &lt;-<span class="st"> </span>hawks_data_wide<span class="op">$</span>Season <span class="co"># Adds rownames</span>
 
-<span class="kw">round</span>(hawks_data_mat, <span class="dv">4</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">nice_table</span>() <span class="co"># Prints HTML table</span></code></pre></div>
+<span class="kw">round</span>(hawks_data_mat, <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nice_table</span>() <span class="co"># Prints HTML table</span></code></pre></div>
 <table class="table table-striped table-hover table-responsive table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1508,7 +1396,7 @@ TOI
 </table>
 <p>Next we’ll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose (break apart) our original matrix (X) into 3 separate matrices (U, <span class="math inline">\(\Delta\)</span>, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:</p>
 <p><font style="font-size: 14pt"> <span class="math display">\[
-\mathbf{X = U \Delta V^T}
+X = U \Delta V^T
 \]</span> </font></p>
 <p>Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and <span class="math inline">\(\Delta\)</span> is a diagonal matrix of “weights” called singular values that are the square root of the eigenvalues (<span class="math inline">\(\lambda\)</span>).</p>
 <p>Computing the SVD of our data matrix in R requires just one line of code:</p>
@@ -1519,7 +1407,10 @@ TOI
 <p>Our original data matrix was 11 rows (years) x 9 columns (measures); therefore, the SVD of that matrix will produce 9 singular values/components – with the smaller side dictating the number of components produced.</p>
 <p>Which components are important? Which ones explain the most variance? Are some of the components just noise?</p>
 <p>A good first pass at answering these questions is to examine the scree plot – plotting the components as a function of variability explained.</p>
-<p>To do this, let’s first square the singular values (<span class="math inline">\(\lambda\)</span>) and sum them together. This is called <strong>inertia</strong>.</p>
+<p>To do this, let’s first square the singular values (<span class="math inline">\(\Delta\)</span>) and sum them together. This is called <strong>inertia</strong>.</p>
+<p><font style="font-size: 14pt"> <span class="math display">\[
+I = \Sigma\lambda = \Sigma\Delta^2
+\]</span> </font></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculates inertia</span></code></pre></div>
 <p>Next, we’ll use the inertia to calculate the percentage of variability explained for each component and plot the scree:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculates values for the scree plot</span>
@@ -1538,9 +1429,9 @@ scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="
                      ) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues </span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As we can see from the scree plot, the first 3 components comprise 91.75% of the total variance, suggesting that these first three components are important to understanding the structure of the data set. The remaining components explain only 8.25% of the variability and may perhaps be noise.</p>
-<p>Is there any way to statistically show that these components are important? One method is permutation testing. If you are unfamiliar with permutation testing, we recommend checking out our Shiny dashboard <a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/">here</a>.</p>
+<p>Is there any way to statistically show that these components are important? One method is permutation testing. If you are unfamiliar with permutation testing, we recommend checking out our Shiny dashboard <a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/" target="_blank">here</a>.</p>
 <p>Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigenvalues from which to compare our originally observed eigenvalues.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">perm_iters &lt;-<span class="st"> </span><span class="dv">2000</span>  <span class="co"># number of permutation iterations</span>
 <span class="kw">set.seed</span>(<span class="dv">2019</span>)      <span class="co"># sets seed for reproducible results</span>
@@ -1577,7 +1468,7 @@ perm_res_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(pe
        ) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>comps) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like the only components that have a shot at being greater than 95% of the null distribution are components 1 and 2. Let’s see if this is the case:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scree_sig &lt;-<span class="st"> </span>perm_res_long <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(comps) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -1596,14 +1487,14 @@ perm_res_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(pe
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues </span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>What we suspected was correct: given a null distribution/hypothesis, only components 1 and 2 were greater than 95% permuted eigenvalues. In other words, there is less than a 5% chance that the pattern of the results seen on components 1 and 2 are this extreme given that the null hypothesis is true (i.e., no relationship). Therefore, we’ll pay special attention to components 1 and 2.</p>
 <p>Now that we know what components may be more important than others, let’s take a look at what we can learn from examining factor scores for the rows (years) and the columns (measures).</p>
 <p><br ></p>
 </div>
 <div id="row-wise-factor-scores" class="section level3">
 <h3>Row-wise Factor Scores</h3>
-<p>We can explore how the years are seen through the components by first scaling (multiplying) the U matrix by the singular values. <span class="math display">\[F_{years} = U\Delta\]</span> The <code>%*%</code> operator performs matrix algebra:</p>
+<p>We can explore how the years are seen through the components by first scaling (multiplying) the U matrix by the singular values. <font style="font-size: 14pt"> <span class="math display">\[F_{years} = U\Delta\]</span> </font> The <code>%*%</code> operator performs matrix algebra:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">years &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d)  <span class="co"># scaling years data</span>
 <span class="kw">rownames</span>(years) &lt;-<span class="st"> </span><span class="kw">rownames</span>(hawks_data_mat)           <span class="co"># adds rownames</span></code></pre></div>
 <p>Now let’s visualize the factor scores for components 1 and 2:</p>
@@ -1624,7 +1515,7 @@ years_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(years) 
 <span class="st">  </span>pca_furnish <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)
 )</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The above graph plots the years as they are seen through the first 2 dimensions of the PCA and colors the points based on Stanley Cup wins. The years cluster together into three distinct groups</p>
 <ul>
 <li>The 2007-2008 and 2008-2009 seasons</li>
@@ -1646,13 +1537,13 @@ years_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(years) 
 <span class="st">  </span>pca_furnish <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)
 )</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>One pattern of results that emerges, somewhat unexpectedly, is that the 2007-2008 and 2017-2018 seasons are contrasted on principal component 1 (x-axis). In both seasons, the Hawks missed the playoffs (did not qualify); however, the 2018 season is more similar to the seasons in which the Hawks made the playoffs. These results also highlight the 2015 Stanley Cup winning season, which is surrounded by seasons with early first round playoff exits. This may be indicative of an average regular season in 2015 (in respect to the Hawks), but an exceptional post season performance.</p>
 <p><br ></p>
 </div>
 <div id="column-wise-factor-scores" class="section level3">
 <h3>Column-wise Factor Scores</h3>
-<p>Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let’s scale the V matrix by the singular values to obtain the factor scores. <span class="math display">\[F_{metric} = V\Delta\]</span> Again, the <code>%*%</code> operator performs matrix algebra:</p>
+<p>Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let’s scale the V matrix by the singular values to obtain the factor scores. <font style="font-size: 14pt"><span class="math display">\[F_{metric} = V\Delta\]</span></font> Again, the <code>%*%</code> operator performs matrix algebra:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">metric &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>v <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d) <span class="co"># scaling years data</span>
 <span class="kw">rownames</span>(metric) &lt;-<span class="st"> </span><span class="kw">colnames</span>(hawks_data_mat)          <span class="co"># adds rownames</span>
 
@@ -1668,9 +1559,9 @@ metric_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(metric
 <span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Metric), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span>
 <span class="st">  </span>pca_furnish
 )</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Similar to the year-wise factor scores, we obtained 3 clusters of team-wise metrics across components 1 and 2. Component 1 contrasts penalty minutes (both drawn and taken) with Corsi (both For and Against), time on ice (TOI) and goals against (GA).</p>
-<p>This contrast suggests a negative relationship with these metrics (e.g., as penalty mintues served increased, Corsi against decreased). This is sort of paradoxical, but it is similar to what we saw above with the correlation plot.</p>
+<p>This contrast suggests a negative relationship with these metrics (e.g., as penalty minutes served increased, Corsi against decreased). This is sort of paradoxical, but it is similar to what we saw above with the correlation plot.</p>
 <p>Additionally, the second component is dominated by Shooting Percentage, Save Percentage, and Goals For – and contrasted by GA. It makes sense that increases in Shooting Percentage would be related to increases in Goals For, which would also be related to decreases in Goals Against.</p>
 <p><br ></p>
 </div>
@@ -1685,10 +1576,10 @@ metric_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(metric
              metric_plot <span class="op">+</span><span class="st"> </span>grid_furnish, 
              <span class="dt">nrow =</span> <span class="dv">1</span>
              )</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>From here we gain a rich perspective of how each year-wise clustering is described through patterns in team stats:</p>
 <ul>
-<li>Cluster 1: the 2007-2008 and 2008-2009 seasons are well described by elevated pentalty minutes (both drawn and taken)</li>
+<li>Cluster 1: the 2007-2008 and 2008-2009 seasons are well described by elevated penalty minutes (both drawn and taken)</li>
 <li>Cluster 2: the 2011-2018 seasons are well described by elevated Corsi (both For and Against), Goals Against (GA), and time on ice (TOI)</li>
 <li>Cluster 3: the 2012-2013 season was characterized by a high powered offense (elevated Shooting % and Goals For) and excellent defense (high Save % and low Goals Against)</li>
 </ul>
@@ -1697,7 +1588,7 @@ metric_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(metric
 <div id="contributions" class="section level3">
 <h3>Contributions</h3>
 <p>We can also take a look at how much each season (row) or metric (column) contributes to each component. To calculate the contribution of each component, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.</p>
-<p><span class="math display">\[contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}\]</span></p>
+<p><font style="font-size: 14pt"> <span class="math display">\[contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}\]</span> </font></p>
 <p>Here is a function that will compute the contributions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Contribution calculator function ----</span>
 contribution &lt;-<span class="st"> </span><span class="cf">function</span>(vector, <span class="dt">sign =</span> <span class="ot">TRUE</span>) {
@@ -1714,6 +1605,7 @@ contribution &lt;-<span class="st"> </span><span class="cf">function</span>(vect
 }</code></pre></div>
 <div id="row-wise-contributions" class="section level4">
 <h4>Row-wise Contributions</h4>
+<p>Now let’s apply the above function to calculate the contributions of the years (rows):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculates the contribution of each row (e.g., season) ----</span>
 contributions_years &lt;-<span class="st"> </span><span class="kw">apply</span>(years, <span class="dv">2</span>, contribution)
 
@@ -1730,9 +1622,9 @@ contributions_years_long &lt;-<span class="st"> </span>contributions_years <span
                               <span class="st">&quot;Yes&quot;</span>, 
                               <span class="st">&quot;No&quot;</span>)
          ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-<span class="co"># calculate the mean of each component for graphing ----</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<p>Now let’s plot these contributions. Any years that have contributions greater than the mean are said to contribute to the variability on that component:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate the mean of each component for graphing ----</span>
 contributions_years_means &lt;-<span class="st"> </span>contributions_years_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions)) <span class="op">%&gt;%</span>
@@ -1775,12 +1667,13 @@ year_contrib_means &lt;-<span class="st"> </span>contributions_years_means <span
                                       )
                                     )
              )</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1. In other words, the 2008 and 2009 seaons are in stark contrast to the 2016-2018 seasons on component 1.</p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1. In other words, the 2008 and 2009 seasons are in stark contrast to the 2016-2018 seasons on component 1.</p>
 <p>For component 2, only season 2013 contributes more than the mean season and on the negative side of component 2. Thus, component 2 likely reflects the 2013 season.</p>
 </div>
 <div id="column-wise-contributions" class="section level4">
 <h4>Column-wise Contributions</h4>
+<p>Now let’s repeat this procedure for the metrics (columns):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculates the contribution of each row (e.g., metric)</span>
 contributions_metric &lt;-<span class="st"> </span><span class="kw">apply</span>(metric, <span class="dv">2</span>, contribution)
 
@@ -1796,9 +1689,9 @@ contributions_metric_long &lt;-<span class="st"> </span><span class="kw">as_tibb
                               <span class="st">&quot;Yes&quot;</span>, 
                               <span class="st">&quot;No&quot;</span>)
          ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-<span class="co"># calculate the mean of each component for graphing</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<p>And here are the contribution plots for the metrics on components 1 and 2:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate the mean of each component for graphing</span>
 contributions_metric_means &lt;-<span class="st"> </span>contributions_metric_long <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions))
@@ -1839,7 +1732,7 @@ metric_contrib_means &lt;-<span class="st"> </span>contributions_metric_means <s
                                       )
                                     )
              )</code></pre></div>
-<p><img src="post-NHL-PCA_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Penalty minutes drawn (PEND) and penalty minutes served (PENT) contribute more than the mean metric to the negative side of component 1; while Corsi Against (CA), Corsi For (CF), Goals Against (GA), and Time on Ice (TOI) contribute more than the mean metric to the positive side of component 1.</p>
 <p>Goals For (GF), Save Percentage (SavePerc), and Shooting Percentage (ShootPerc) contribute more than the mean metric to the negative side of component 2; while Goals Against (GA) contributes more than the mean metric to the positive side of component 2.</p>
 <p>Goals Against (GA) appears to contribute to both the positive side of component 1 and 2.</p>
@@ -1847,26 +1740,59 @@ metric_contrib_means &lt;-<span class="st"> </span>contributions_metric_means <s
 <p><strong>Component 1</strong></p>
 <ul>
 <li>Season 2008 and 2009 are associated with penalty minutes drawn and served (PEND and PENT, respectively) and both contribute negatively to component 1.</li>
-<li>On the other hand, seasons 2016 to 2018 are associated with Corsi For (CF), Corsi Against (CA), Goals Against (GA), and Time on Ice (TOI) and contribute to the postively to component 1.</li>
+<li>On the other hand, seasons 2016 to 2018 are associated with Corsi For (CF), Corsi Against (CA), Goals Against (GA), and Time on Ice (TOI) and contribute to the positively to component 1.</li>
 </ul>
 <p><strong>Component 2</strong></p>
 <ul>
-<li>Season 2013 is associated with Goals For (GF), Save Percentage (SavePerv), and Shooting Percentage (ShootPerc) and contribute negatively to component 2.</li>
+<li>Season 2013 is associated with Goals For (GF), Save Percentage (SavePerc), and Shooting Percentage (ShootPerc) and contribute negatively to component 2.</li>
 <li>On the other hand, Goals Against (GA) contributes positively to component 2.</li>
 </ul>
+<p><br ></p>
 </div>
 </div>
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
-<p>In this investigation we used z-scores, correlations, and Principal Components Analysis (PCA) to examine 11 years of data from the Chicago Blackhawks spanning from the 2007-2008 season to the 2017-2018 season. We determined that the first two components described these data well across time though various readily available and simple metrics, such as goals scored, pentalty minutes served, shooting percentage, etc.</p>
+<hr >
+<p>In this investigation we used z-scores, correlations, and Principal Components Analysis (PCA) to examine 11 years of data from the Chicago Blackhawks spanning from the 2007-2008 season to the 2017-2018 season. We determined that the first two components described these data well across time though various readily available and simple metrics, such as goals scored, penalty minutes served, shooting percentage, etc.</p>
 <p>The main take away messages include:</p>
 <ol style="list-style-type: decimal">
 <li><p>The 2007-2008 &amp; 2008-2009 seasons are distinctly opposite when compared to the 2015-2018 seasons. They differ in this respect due to opposing patterns in penalty minutes (served and drawn) and Corsi (both For and Against).</p></li>
-<li><p>The Hawks had an incredible 2012-2013 season that resulted in the Presidents’ trophy and a Stanley Cup win. This was reflected in the second principal compoenent and was associated with both heighted offensive (e.g., Shooting Percentage, Goals For) and defensive (e.g., Save Percentage) statistics.</p></li>
+<li><p>The Hawks had an incredible 2012-2013 season that resulted in the Presidents’ trophy and a Stanley Cup win. This was reflected in the second principal component and was associated with both heightened offensive (e.g., Shooting Percentage, Goals For) and defensive (e.g., Save Percentage) statistics.</p></li>
 </ol>
 <p>Do these components suggest certain patterns of regular season statistics that predict Stanley Cup performance? No. There seems no distinct pattern that groups the Stanley Cup winning seasons on a separate component; however, the 2012-2013 season did emerge as a unique season in comparison to the other seasons.</p>
-<p>Future directions include logistic regression approaches that utilize factor scores from this PCA to understand relationships between regular season stats and playoff performacne.</p>
+<p>Future directions include logistic regression approaches that utilize factor scores from this PCA to understand relationships between regular season stats and playoff performance.</p>
+<p><br ></p>
+</div>
+<div id="exercise" class="section level2">
+<h2>Exercise</h2>
+<hr >
+<p>Even though component 3 is not significant according to the permutation testing, does it still tell us something meaningful? Try replicating these analyses above and let us know what you think!</p>
+<!-- disqus START -->
+<div id="disqus_thread">
+
+</div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = 'https://mattkmiecik.com/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mattkmiecik.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>
+Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!-- disqus END -->
 </div>
 
 </div> <!-- articleBandContent -->
