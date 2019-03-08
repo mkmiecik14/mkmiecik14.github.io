@@ -5,6 +5,19 @@ title: "Academic Blog"
 <h2><span class="far fa-file-alt" aria-hidden="true"></span> Posts</h2> 
 <hr>
 
+<!-- Blackhawks PCA -->
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="postLink"> Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis</a></h3>
+
+<span class="far fa-clock"></span> March 7, 2019
+<span class="label label-primary">Academic</span>
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+In this post we explore 11 seasons (2007 - 2018) of team summary data from the Chicago Blackhawks of the National Hockey League (NHL). Our question was, “Are there any summary measures, such as goals scored or save percentage, that predict playoff performance or championship wins?”...
+
+<br>
+
 <!-- My Reads -->
 
 <h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-My-Reads.html" class="postLink"> My Reads</a></h3>
