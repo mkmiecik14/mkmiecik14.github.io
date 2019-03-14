@@ -73,7 +73,7 @@ rdata_completed <- rdata %>% filter(complete.cases(pages))
 
 # Pages histogram
 ggplot(rdata_completed, aes(pages)) +
-  geom_histogram(binwidth = 5) +
+  geom_histogram(binwidth = 4) +
   labs(y = "frequency") +
   theme_minimal()
 ```
@@ -161,6 +161,16 @@ ggplot(weekday_rdata_sum %>% filter(year == 2019), aes(weekday, m)) +
 Here's a list of books that have heavily influenced my work one way or another. I'm sure there are plenty more that I haven't thought of, but I'll add them along the way.
 
 What are your favorite books and why? I'd love to know if you have any recommendations of books I should read and add to my list! Just leave a comment below.
+
+<br >
+
+```{r, echo=FALSE, message=FALSE}
+knitr::include_graphics("images/cohen-book.jpg")
+```
+
++ __Analyzing Neural Time Series Data: Theory and Practice__ _Mike X Cohen_
+
+A definite must read for anyone interested in performing time frequency analyses with their EEG data or designing experiments for later time frequency decompositions. Dr. Cohen artfully explains a myriad of time-frequency methods by blending conceptual understanding and practical application with code examples/tips, equations, and wonderful figures. I really appreciated his bottom-up approach in EEG analyses, often doing things by "scratch", i.e., writing Matlab code to perform computations on matrices of data, rather than using software packages and toolboxes (e.g., EEGLAB or ERPLAB). I must admit that I didn't grasp every concept on my first read through, but I will definitely revisit come analysis time!
 
 <br >
 
