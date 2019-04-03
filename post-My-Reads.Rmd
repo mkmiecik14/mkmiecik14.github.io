@@ -54,7 +54,7 @@ pages_plot <- ggplot(rdata, aes(date, pages, color = title, group = title)) +
   geom_line() +
   scale_x_date(date_labels = "%d-%b",
                limits = c(min(rdata$date), as.Date(Sys.Date() + 5)),
-               date_breaks = "1 week",
+               date_breaks = "2 weeks",
                date_minor_breaks = "1 day"
                ) +
   coord_cartesian(ylim = c(0, 40)) +
