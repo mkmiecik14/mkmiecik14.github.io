@@ -118,6 +118,8 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Poster Presentations
 
+* Nagele, M. M., Kmiecik, M. J., & Krawczyk, D. C. (2019, April). Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster presented at UT Dallas School of Behavioral and Brain Sciences Psychological Sciences annual meeting, Dallas, TX.
+
 * Kmiecik, M. J., Martin A. D., Kim, L. M., Perez, R., Martinez, D. M., Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of Reasoning Ability and Relational Cueing in Solving Relational Match-to-Sample Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems). Poster presented at the Cognitive Neuroscience Society Annual Meeting, San Francisco, CA.
 
 * Kim, L. M., Kmiecik, M. J., Martinez, D. M., Martin A. D., & Krawczyk, D. C. (2019, March). [The Similar Situations Task: Measuring Differing Levels of Reasoning Using Scene Analogies](https://www.researchgate.net/publication/332058003_The_Similar_Situations_Task_Measuring_Differing_Levels_of_Reasoning_Using_Scene_Analogies). Poster presented at the Cognitive Neuroscience Society Annual Meeting, San Francisco, CA.
@@ -335,6 +337,14 @@ kable(committee) %>%
 <h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank"> Chicago Blackhawks: analyzing Patrick Kane’s career scoring tendencies</a></h3>
 
 <span class="far fa-clock"></span> April 9th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+<br />
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/04/18/blackhawks-player-grades-patrick-kane/" class="postLink" target="_blank"> Chicago Blackhawks 2018-19 Player Grades: Patrick Kane</a></h3>
+
+<span class="far fa-clock"></span> April 19th, 2019
 <span class="label label-info">Hockey Analytics</span>
 <span class="label label-default">R</span>
 
