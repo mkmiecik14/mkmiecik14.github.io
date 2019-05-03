@@ -58,7 +58,7 @@ pages_plot <- ggplot(rdata, aes(date, pages, color = title, group = title)) +
                date_minor_breaks = "1 day"
                ) +
   coord_cartesian(ylim = c(0, 40)) +
-  labs(x = paste0("date (last updated: ", format(Sys.Date(), "%d-%b-%Y"), ")")) +
+  labs(x = paste0("\n date (last updated: ", format(Sys.Date(), "%d-%b-%Y"), ")")) +
   scale_color_brewer(palette = "Paired") +
   theme_minimal() +
   theme(legend.position = "none")
@@ -103,8 +103,8 @@ ggplot(weekly_rdata %>% filter(year == 2019), aes(as.factor(week), m)) +
   geom_point(size = 2) +
   geom_errorbar(aes(ymin = m-sd, ymax = m+sd), width = .05) +
   coord_cartesian(ylim = c(0, 50)) +
-  labs(x = "Week number in 2019", 
-       y = "Average Number of pages read/week",
+  labs(x = "\n Week number in 2019", 
+       y = "Average Number of pages read/week \n",
        caption = "SD error bars"
        ) +
   theme_minimal()
@@ -147,8 +147,8 @@ ggplot(weekday_rdata_sum %>% filter(year == 2019), aes(weekday, m)) +
   geom_point(size = 2) +
   geom_errorbar(aes(ymin = m-sd, ymax = m+sd), width = .05) +
   coord_cartesian(ylim = c(0, 50)) +
-  labs(x = "Weekday in 2019", 
-       y = "Average Number of pages read/day",
+  labs(x = "\n Weekday in 2019", 
+       y = "Average Number of pages read/day \n",
        caption = "SD error bars"
        ) +
   theme_minimal()
