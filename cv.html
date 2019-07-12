@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>cv.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -88,9 +88,7 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -115,6 +113,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -129,7 +130,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -149,6 +149,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -170,18 +207,75 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -269,6 +363,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -373,10 +477,7 @@ Matthew J. Kmiecik, B.S.
 <!-- social icons bar END-->
 <p><br /></p>
 <div class="alert alert-dismissible alert-info">
-<button type="button" class="close" data-dismiss="alert">
-×
-</button>
-<p><strong>Thanks for checking out my CV!</strong> I’m currently looking for post-doctoral positions. Please email me if you are interested matthew.kmiecik (at) utdallas.edu.</p>
+<p><button type="button" class="close" data-dismiss="alert">×</button> <strong>Thanks for checking out my CV!</strong> I’m currently looking for post-doctoral positions. Please email me if you are interested matthew.kmiecik (at) utdallas.edu.</p>
 </div>
 <p><br /></p>
 <div id="education" class="section level1">
@@ -411,9 +512,10 @@ Matthew J. Kmiecik, B.S.
 <h1>Publications</h1>
 <hr />
 <ul>
-<li><p>Kmiecik, M. J., Brisson, R. J., &amp; Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. <em>Brain and Cognition</em>, <em>129</em>, 25-34. <a href="https://doi.org/10.1016/j.bandc.2018.11.012" class="uri">https://doi.org/10.1016/j.bandc.2018.11.012</a></p></li>
-<li><p>Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., &amp; Krawczyk, D. C. (2018). <a href="https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury">A method for characterizing semantic and lexical properties of sentence completions in traumatic brain injury.</a> <em>Psychological Assessment</em>, <em>30</em>(5), 645-655. <a href="http://dx.doi.org/10.1037/pas0000510" class="uri">http://dx.doi.org/10.1037/pas0000510</a></p></li>
-<li><p>Stockdale, L. A., Morrison, R. G., Kmiecik, M. J., Garbarino, J., &amp; Silton, R. L. (2015). <a href="https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces">Emotionally anesthetized: media violence induces neural changes during emotional face processing.</a> <em>Social Cognitive and Affective Neuroscience</em>, <em>10</em>(10), 1373-1382. doi: 10.1093/scan/nsv025</p></li>
+<li><p>Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., <strong>Kmiecik, M. J.</strong>, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (in press). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. <em>TRIALS</em>. <a href="https://doi.org/10.21203/rs.2.273/v1" class="uri">https://doi.org/10.21203/rs.2.273/v1</a></p></li>
+<li><p><strong>Kmiecik, M. J.</strong>, Brisson, R. J., &amp; Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. <em>Brain and Cognition</em>, <em>129</em>, 25-34. <a href="https://doi.org/10.1016/j.bandc.2018.11.012" class="uri">https://doi.org/10.1016/j.bandc.2018.11.012</a></p></li>
+<li><p><strong>Kmiecik, M. J.</strong>, Rodgers, B. N., Martinez, D. M., Chapman, S. B., &amp; Krawczyk, D. C. (2018). <a href="https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury">A method for characterizing semantic and lexical properties of sentence completions in traumatic brain injury.</a> <em>Psychological Assessment</em>, <em>30</em>(5), 645-655. <a href="http://dx.doi.org/10.1037/pas0000510" class="uri">http://dx.doi.org/10.1037/pas0000510</a></p></li>
+<li><p>Stockdale, L. A., Morrison, R. G., <strong>Kmiecik, M. J.</strong>, Garbarino, J., &amp; Silton, R. L. (2015). <a href="https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces">Emotionally anesthetized: media violence induces neural changes during emotional face processing.</a> <em>Social Cognitive and Affective Neuroscience</em>, <em>10</em>(10), 1373-1382. doi: 10.1093/scan/nsv025</p></li>
 </ul>
 <p><br /></p>
 </div>
@@ -635,6 +737,36 @@ Loyola University Chicago
 </tbody>
 </table>
 <p><br /></p>
+</div>
+<div id="academic-service" class="section level1">
+<h1>Academic Service</h1>
+<hr >
+<div id="paper-reviews" class="section level2">
+<h2>Paper Reviews</h2>
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Year
+</th>
+<th style="text-align:left;">
+Journal
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:left;">
+Applied Cognitive Psychology
+</td>
+</tr>
+</tbody>
+</table>
+<p><br ></p>
+</div>
 </div>
 <div id="teaching-experience" class="section level1">
 <h1>Teaching Experience</h1>
@@ -1003,6 +1135,16 @@ Center for BrainHealth at The University of Texas at Dallas
 <div id="sports-writing" class="section level1">
 <h1>Sports Writing</h1>
 <hr />
+<h3>
+<span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/06/27/chicago-blackhawks-efficient-offensive-machine/" class="postLink" target="_blank"> Chicago Blackhawks: An Efficient Offensive Machine</a>
+</h3>
+<p><span class="far fa-clock"></span> June 27th, 2019 <span class="label label-info">Hockey Analytics</span> <span class="label label-default">R</span></p>
+<p><br /></p>
+<h3>
+<span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/05/14/q-colliton-first-67-games-blackhawks-head-coach/" class="postLink" target="_blank"> Coach Q vs. Jeremy Colliton: First 67 Games As Blackhawks’ Head Coach</a>
+</h3>
+<p><span class="far fa-clock"></span> May 15th, 2019 <span class="label label-info">Hockey Analytics</span> <span class="label label-default">R</span></p>
+<p><br /></p>
 <h3>
 <span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank"> Chicago Blackhawks: analyzing Patrick Kane’s career scoring tendencies</a>
 </h3>

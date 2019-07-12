@@ -1,5 +1,5 @@
 ---
-title: <center>Matthew J. Kmiecik, B.S.<center>
+title: "<center>Matthew J. Kmiecik, B.S.<center>"
 output: 
   html_document:
     toc: true
@@ -14,8 +14,7 @@ library(knitr); library(kableExtra)
 
 # suppresses warnings globally
 knitr::opts_chunk$set(warning = F, message = F, echo = F, cache = F)
-options(knitr.table.format = 'html') # For the html tables
-
+options(knitr.table.format = "html") # For the html tables
 ```
 
 <!-- social icons bar START-->
@@ -81,13 +80,15 @@ Loyola University Chicago <br/>
 # Publications
 <hr />
 
-* Kmiecik, M. J., Brisson, R. J., & Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. _Brain and Cognition_, _129_, 25-34. https://doi.org/10.1016/j.bandc.2018.11.012
+* Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (in press). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS_. https://doi.org/10.21203/rs.2.273/v1
 
-* Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). [A
+* **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. _Brain and Cognition_, _129_, 25-34. https://doi.org/10.1016/j.bandc.2018.11.012
+
+* **Kmiecik, M. J.**, Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). [A
 method for characterizing semantic and lexical properties of sentence completions in traumatic
 brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury) _Psychological Assessment_, _30_(5), 645-655. http://dx.doi.org/10.1037/pas0000510
 
-* Stockdale, L. A., Morrison, R. G., Kmiecik, M. J., Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) _Social Cognitive and Affective Neuroscience_, _10_(10), 1373-1382. doi: 10.1093/scan/nsv025
+* Stockdale, L. A., Morrison, R. G., **Kmiecik, M. J.**, Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) _Social Cognitive and Affective Neuroscience_, _10_(10), 1373-1382. doi: 10.1093/scan/nsv025
 
 <br />
 
@@ -206,6 +207,25 @@ kable(awards) %>%
 
 <br />
 
+# Academic Service
+<hr >
+
+## Paper Reviews
+
+```{r, paper-reviews}
+# Paper Reviews Dataframe
+paper_reviews <- data.frame(
+  Year = c(2019),
+  Journal = c("Applied Cognitive Psychology")
+)
+
+# Paper Reviews Table
+kable(paper_reviews) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+```
+
+<br >
+
 # Teaching Experience
 <hr />
 
@@ -273,8 +293,6 @@ kable(guest) %>%
 
 ```
 
-
-
 <br />
 
 # Internships
@@ -334,6 +352,23 @@ kable(committee) %>%
 
 # Sports Writing
 <hr />
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/06/27/chicago-blackhawks-efficient-offensive-machine/" class="postLink" target="_blank"> Chicago Blackhawks: An Efficient Offensive Machine</a></h3>
+
+<span class="far fa-clock"></span> June 27th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+<br />
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/05/14/q-colliton-first-67-games-blackhawks-head-coach/" class="postLink" target="_blank"> Coach Q vs. Jeremy Colliton: First 67 Games As Blackhawks’ Head Coach</a></h3>
+
+<span class="far fa-clock"></span> May 15th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+<br />
+
 <h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank"> Chicago Blackhawks: analyzing Patrick Kane’s career scoring tendencies</a></h3>
 
 <span class="far fa-clock"></span> April 9th, 2019
