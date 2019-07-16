@@ -80,7 +80,7 @@ Loyola University Chicago <br/>
 # Publications
 <hr />
 
-* Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (in press). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS_. https://doi.org/10.21203/rs.2.273/v1
+* Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS. 20_:435 https://doi.org/10.21203/rs.2.273/v1 Open Access [PDF](https://rdcu.be/bKxw4)
 
 * **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. _Brain and Cognition_, _129_, 25-34. https://doi.org/10.1016/j.bandc.2018.11.012
 
