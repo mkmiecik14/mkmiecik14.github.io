@@ -119,6 +119,11 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Poster Presentations
 
+* Nagele, M., Kmiecik, M. J., Chang, Z., Martinez, D., Juarez, M., Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C. (2019, August). Using the Virtual Multiple Errands Task (VMET) to Assess Executive Functioning in Traumatic Brain Injury. Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
+
+* Chang, Z., Kmiecik, M. J., Martinez, D., Nagele, M., Lundie, M., Cole, R., Kim, L., Khachaturyan, M., Balloun, B., Juarez, M., Didehbani, N., Clover, M., Rule, G., Scott, G., & Krawczyk, D. C. (2019, August). Using a Virtual-Reality Based Rehabilitation Program to Enhance Daily Functioning in Veterans Surviving Traumatic Brain Injury. Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
+
+
 * Nagele, M. M., Kmiecik, M. J., & Krawczyk, D. C. (2019, April). Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster presented at UT Dallas School of Behavioral and Brain Sciences Psychological Sciences annual meeting, Dallas, TX.
 
 * Kmiecik, M. J., Martin A. D., Kim, L. M., Perez, R., Martinez, D. M., Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of Reasoning Ability and Relational Cueing in Solving Relational Match-to-Sample Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems). Poster presented at the Cognitive Neuroscience Society Annual Meeting, San Francisco, CA.
@@ -352,6 +357,14 @@ kable(committee) %>%
 
 # Sports Writing
 <hr />
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/07/19/chicago-blackhawks-scoring-density-analysis-2018-2019-season/" class="postLink" target="_blank"> Chicago Blackhawks: Scoring Density Analysis for the 2018-2019 Season</a></h3>
+
+<span class="far fa-clock"></span> July 19th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+<br />
 
 <h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/06/27/chicago-blackhawks-efficient-offensive-machine/" class="postLink" target="_blank"> Chicago Blackhawks: An Efficient Offensive Machine</a></h3>
 
