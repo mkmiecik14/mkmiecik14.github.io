@@ -92,6 +92,8 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 * Stockdale, L. A., Morrison, R. G., **Kmiecik, M. J.**, Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) _Social Cognitive and Affective Neuroscience_, _10_(10), 1373-1382. doi: 10.1093/scan/nsv025
 
+<br />
+
 ## Books
 
 * Pongpipat, E. E., Miranda, G. G., Kmiecik, M. J. (2019). A Practical Extension of Introductory Statistics in Psychology using R. *Free online textbook written in `bookdown` and `R`.* **Read it here: https://rpsystats.com/**
@@ -124,6 +126,8 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 <br />
 
 ## Poster Presentations
+
+* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster to be presented at the Society for Personality and Social Psychology’s Annual Conference, New Orleans, LA.
 
 * Nagele, M., Kmiecik, M. J., Chang, Z., Martinez, D., Juarez, M., Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C. (2019, August). [Using the Virtual Multiple Errands Task (VMET) to Assess Executive Functioning in Traumatic Brain Injury.](https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury) Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
 
