@@ -182,14 +182,20 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 <hr />
 
 ```{r grants}
-grants <- data.frame(Year = c('2017', '2015', '2013', '2013', '2012', '2011'),
-                     Award = c('Dianne Cash Pre-Doctoral Fellowship',
-                               'Friends of BrainHealth Distinguished New Scientist Award',
-                               'European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award',
-                               'Loyola University Chicago Mulcahy Research Scholarship',
-                               'Loyola University Chicago Provost Research Fellowship',
-                               'Loyola University Chicago Provost Research Fellowship'),
-                     Amount = c('$2,500', '$20,000', '€500', '$1,000', '$1,000', '$1,000'))
+grants <- 
+  data.frame(
+  Year = c('2019','2017', '2015', '2013', '2013', '2012', '2011'),
+  Award = c(
+    'Friends of BrainHealth Distinguished New Scientist Award',
+    'Dianne Cash Pre-Doctoral Fellowship',
+    'Friends of BrainHealth Distinguished New Scientist Award',
+    'European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award',
+    'Loyola University Chicago Mulcahy Research Scholarship',
+    'Loyola University Chicago Provost Research Fellowship',
+    'Loyola University Chicago Provost Research Fellowship'
+    ),
+  Amount = c('$20,000', '$2,500', '$20,000', '€500', '$1,000', '$1,000', '$1,000')
+  )
 
 kable(grants) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
@@ -230,8 +236,8 @@ kable(awards) %>%
 ```{r, paper-reviews}
 # Paper Reviews Dataframe
 paper_reviews <- data.frame(
-  Year = c(2019),
-  Journal = c("Applied Cognitive Psychology")
+  Year = c(2019, 2019),
+  Journal = c("Cognition and Emotion", "Applied Cognitive Psychology")
 )
 
 # Paper Reviews Table
