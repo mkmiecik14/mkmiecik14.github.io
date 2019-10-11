@@ -30,7 +30,11 @@ I absolutely love reading and collecting books. Whenever I'm in a phase where I 
 
 ```{r, message = FALSE, fig.align='center'}
 # Packages
-library(tidyverse); library(readxl); library(plotly); library(httr)
+library(tidyverse); library(readxl); library(plotly);
+library(httr); library(RColorBrewer)
+
+# Color pallete
+rdgy_pal <- brewer.pal(11, "RdGy")
 
 # Importing reading data
 # From: https://community.rstudio.com/t/read-xlsx-from-github/9386/3
@@ -55,9 +59,9 @@ rdata <- left_join(reading_data, book_list, by = "book")
 pages_plot <- 
   ggplot(rdata, aes(date, pages, color = title, group = title)) +
   geom_point(aes(group = author)) +
-  geom_line() +
+  geom_line(alpha = 2/3) +
   scale_x_date(
-    date_labels = "%d-%b",
+    date_labels = "%b",
     limits = c(min(rdata$date), as.Date(Sys.Date() + 5)),
     date_breaks = "1 month",
     date_minor_breaks = "1 day"
@@ -77,9 +81,10 @@ ggplotly(pages_plot)
 rdata_completed <- rdata %>% filter(complete.cases(pages))
 
 # Pages histogram
+bwidth <- 2
 ggplot(rdata_completed, aes(pages)) +
-  geom_histogram(binwidth = 4) +
-  labs(y = "frequency") +
+  geom_histogram(binwidth = bwidth) +
+  labs(y = "frequency", caption = paste("Binwidth =", bwidth)) +
   theme_minimal()
 ```
 
@@ -107,17 +112,17 @@ ggplot(weekly_rdata %>% filter(year == 2019), aes(week, m)) +
     position = pj,
     color = "#f4a582"
     ) +
-  geom_path(aes(group = 1), color = "lightgrey", linetype = 2) +
+  #geom_path(aes(group = 1), color = "black", linetype = 1) +
   geom_point(size = 2) +
   geom_errorbar(aes(ymin = m-sd, ymax = m+sd), width = .05) +
-  #coord_cartesian(ylim = c(0, 50)) +
+  geom_smooth(method = "loess", se = FALSE, color = rdgy_pal[3]) +
   labs(
     x = "\n Week number in 2019", 
     y = "Average Number of pages read/week \n",
     caption = "SD error bars"
     ) +
-  scale_x_continuous(breaks = seq(1, 33, 2)) +
   theme_minimal()
+  
 ```
 
 ```{r}
@@ -157,7 +162,7 @@ ggplot(weekday_rdata_sum %>% filter(year == 2019), aes(weekday, m)) +
     position = pj,
     color = "#92c5de"
     ) +
-  geom_path(aes(group = 1), color = "lightgrey", linetype = 2) +
+  geom_path(aes(group = 1), color = "black", linetype = 2) +
   geom_point(size = 2) +
   geom_errorbar(aes(ymin = m-sd, ymax = m+sd), width = .05) +
   #coord_cartesian(ylim = c(0, 50)) +
