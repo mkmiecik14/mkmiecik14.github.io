@@ -23,7 +23,7 @@ title: ""
 
 <h2><i class="fas fa-user-circle" aria-hidden="true"></i> About Me</h2>
 <hr>
-I am a fifth year PhD student studying cognitive neuroscience at The University of Texas at Dallas under [Dr. Daniel C. Krawczyk](https://www.utdallas.edu/bbs/faculty/detail.php5?i=321). I am interested in how language interacts with human thinking, reasoning, and problem solving. My work utilizes neuroimaging techniques, such as fMRI and EEG/ERP, to understand the cognitive mechanisms of reasoning and how these relate to neural functioning and behavior. I am also interested in how traumatic brain injuries affect cognitive constructs, such as attention and semantic memory, to inform and develop cognitive rehabilitation programs. I enjoy visualizing and analyzing data, learning programming, blogging, and watching hockey. [Click here for my CV.](https://mattkmiecik.com/cv.html)
+I am a recent doctoral graduate from the Cognition and Neuroscience PhD program at The University of Texas at Dallas under [Dr. Daniel C. Krawczyk](https://www.utdallas.edu/bbs/faculty/detail.php5?i=321). I am interested in how language interacts with human thinking, reasoning, and problem solving. My work utilizes neuroimaging techniques, such as fMRI and EEG/ERP, to understand the cognitive mechanisms of reasoning and how these relate to neural functioning and behavior. I am also interested in how traumatic brain injuries affect cognitive constructs, such as attention and semantic memory, to inform and develop cognitive rehabilitation programs. I enjoy visualizing and analyzing data, learning programming, blogging, and watching hockey. [Click here for my CV.](https://mattkmiecik.com/cv.html)
 
 <br>
 
