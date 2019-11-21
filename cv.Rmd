@@ -32,14 +32,6 @@ options(knitr.table.format = "html") # For the html tables
 
 <br />
 
-<div class="alert alert-dismissible alert-info">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Thanks for checking out my CV!</strong> I'm currently looking for post-doctoral positions. 
-  Please email me if you are interested matthew.kmiecik (at) utdallas.edu.
-</div>
-
-<br />
-
 # Education
 <hr />
 
@@ -110,6 +102,8 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Talks
 
+* Kmiecik, M. J. (November, 2019). Effective Presentations of Quantitative Information: A Study in Edward 	Tufte. Talk presented at the inaugural [UT Dallas BrainHack](https://brainhack-dallas.github.io/mini-brainhack-utd/), Dallas, TX.
+
 * Kmiecik, M. J., Nagele, M., Sharma, R., Vaughn, A. Thakur, P., & Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk presented at the Brain Performance Institute's Inaugural TBI Research Showcase. Dallas, TX.
 
 * Kmiecik, M. J. & Krawczyk, D. C. (2017, October). Reasoning With Complex Relational Structures. Talk given at the UT Dallas School of Behavioral and Brain Sciences Cognition and Neuroscience program annual Fall retreat. Dallas, TX.
@@ -174,6 +168,26 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 * Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, April). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Cognitive Neuroscience Society Annual Meeting, Chicago, IL.
 
 * Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, March). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Society for Neuroscience Chicago Chapter 2012 Annual Meeting, Chicago, IL.
+
+<br />
+
+## Conference Organization
+
+```{r conf-org}
+# links in html tables:
+# https://stackoverflow.com/questions/35078430/including-links-within-rmarkdown-tables-pdf
+
+conf_org_urls <- "https://brainhack-dallas.github.io/mini-brainhack-utd/"
+conf_org <- 
+  data.frame(
+  Year = c("2019"),
+  Conference = c(paste0("[BrainHack Dallas](", conf_org_urls, ")")),
+  Location = c("Dallas, TX")
+  )
+
+kable(conf_org) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+```
 
 <br />
 
