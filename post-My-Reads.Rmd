@@ -1,7 +1,7 @@
 ---
 title: "My Reads"
 author: "Matthew J. Kmiecik"
-date: "First posted: 3 January 2019"
+date: "First posted: 3 January 2019; Final update: 26 December 2019"
 output:
   html_document:
     highlight: zenburn
@@ -21,7 +21,9 @@ options(knitr.table.format = 'html') # For the html tables
 
 <br >
 
-I absolutely love reading and collecting books. Whenever I'm in a phase where I am constantly reading, I feel more creative and confident in my academic work. However, in the busy mix of an academic semester, it's easy to put reading off to the side in lieu of data analysis, writing, and conferences. Below is a live tracker of my reading progress (I'm trying for around 20 pages per day) to help motivate me to read every day. I'll do my best to update this monthly.
+I absolutely love reading and collecting books. Whenever I'm in a phase where I am constantly reading, I feel more creative and confident in my academic work. However, it's easy to put reading off when life gets in the way. 
+
+To motivate me to read more, I tracked the number of pages I read per day through the year 2019 (I was trying for around 20 pages per day). I found the process of tracking my reading progress a daily reading motivator and I highly recommend it for those looking to up your daily/weekly/monthly reading productivity.
 
 <br >
 
