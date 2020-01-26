@@ -7,12 +7,11 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>index.utf8</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -85,7 +84,9 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
+</head>
 
+<body>
 
 <style type = "text/css">
 .main-container {
@@ -99,6 +100,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -108,9 +110,6 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
-}
-summary {
-  display: list-item;
 }
 </style>
 
@@ -126,6 +125,7 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
+
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -145,43 +145,6 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -203,73 +166,19 @@ $(document).ready(function () {
 });
 </script>
 
+
+<div class="container-fluid main-container">
+
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
 
 <!-- code folding -->
 
 
-
-
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
 
 
 
@@ -284,7 +193,7 @@ $(document).ready(function () {
       <a class="navbar-brand" href="index.html">
         <i class="fas fa-chart-area logo-icon1" aria-hidden="true"></i> 
         <i class="far fa-chart-bar logo-icon2" aria-hidden="true"></i> 
-        <i class="fas fa-chart-line logo-icon3" aria-hidden="true"></i> Matthew J. Kmiecik</a> <!-- You can put words here for nav -->
+        <i class="fas fa-chart-line logo-icon3" aria-hidden="true"></i> Matthew J. Kmiecik, PhD</a> <!-- You can put words here for nav -->
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -337,7 +246,7 @@ $(document).ready(function () {
 
 
 <div class="prof-pic">
-<p><img src="images/matt-kmiecik.jpg" class="img-circle" width="250" height="250"></p>
+<p><img src="images/kmiecik-prof-square.jpg" class="img-circle" width="250" height="250"></p>
 </div>
 <!-- social icons bar START-->
 <div class="social-icons" style="font-size: 2.4rem;">
@@ -349,7 +258,7 @@ $(document).ready(function () {
 <a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
 </li>
 <li>
-<a href="https://www.linkedin.com/in/matt-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
+<a href="https://www.linkedin.com/in/matthew-j-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
 </li>
 <li>
 <a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
@@ -368,7 +277,7 @@ $(document).ready(function () {
 <i class="fas fa-user-circle" aria-hidden="true"></i> About Me
 </h2>
 <hr>
-<p>I am a recent doctoral graduate from the Cognition and Neuroscience PhD program at The University of Texas at Dallas under <a href="https://www.utdallas.edu/bbs/faculty/detail.php5?i=321">Dr. Daniel C. Krawczyk</a>. I am interested in how language interacts with human thinking, reasoning, and problem solving. My work utilizes neuroimaging techniques, such as fMRI and EEG/ERP, to understand the cognitive mechanisms of reasoning and how these relate to neural functioning and behavior. I am also interested in how traumatic brain injuries affect cognitive constructs, such as attention and semantic memory, to inform and develop cognitive rehabilitation programs. I enjoy visualizing and analyzing data, learning programming, blogging, and watching hockey. <a href="https://mattkmiecik.com/cv.html">Click here for my CV.</a></p>
+<p>I’m a cognitive neuroscientist doing my postdoctoral fellowship training at Evanston Hospital in the Department of Obstetrics and Gynecology studying pelvic pain under Dr. Kevin Hellman, PhD, and Dr. Frank Tu, MD MPH. I utlize EEG and functional MRI techniques to better understand mechanisms of pain underlying dysmenorrhea. My prior graduate work under <a href="https://www.utdallas.edu/bbs/faculty/detail.php5?i=321">Dr. Daniel C. Krawczyk</a> at The University of Texas at Dallas investigated volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury (TBI), and human reasoning. I enjoy visualizing and analyzing data, learning programming, blogging, and watching the Chicago Blackhawks. <a href="https://mattkmiecik.com/cv.html">Click here for my CV.</a></p>
 <p><br></p>
 <!-- MY BLOGS -->
 <h2>
@@ -484,7 +393,7 @@ $(document).ready(function () {
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2019 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2020 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 
@@ -504,23 +413,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
