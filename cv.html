@@ -7,12 +7,11 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>cv.utf8</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -89,7 +88,9 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
+</head>
 
+<body>
 
 <style type = "text/css">
 .main-container {
@@ -103,6 +104,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -112,9 +114,6 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
-}
-summary {
-  display: list-item;
 }
 </style>
 
@@ -130,6 +129,7 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
+
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -149,43 +149,6 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -207,65 +170,47 @@ $(document).ready(function () {
 });
 </script>
 
+
+<div class="container-fluid main-container">
+
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
 
 <!-- code folding -->
 
 
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <style type="text/css">
 
@@ -314,6 +259,8 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -322,16 +269,6 @@ div.tocify {
 
 
 </style>
-
-
-
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
-
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -420,7 +357,7 @@ Matthew J. Kmiecik, PhD
 <a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
 </li>
 <li>
-<a href="https://www.linkedin.com/in/matt-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
+<a href="https://www.linkedin.com/in/matthew-j-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
 </li>
 <li>
 <a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
@@ -438,6 +375,17 @@ Matthew J. Kmiecik, PhD
 <div id="education" class="section level1">
 <h1>Education</h1>
 <hr />
+<!-- NorthShore -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<p><img class="schoollogo center-block" width="100" height="100" src="images/northshore.jpg"></p>
+</div>
+<div class="col-xs-12 col-sm-10">
+<p><strong>Postdoctoral Research Fellow (2020 - )</strong><br/> Department of Obstetrics and Gynecology <br/> Evanston Hospital <br/> NorthShore University HealthSystem <br/></p>
+</div>
+</div>
+</div>
 <!-- UTD -->
 <div class="container-fluid">
 <div class="row">
@@ -463,6 +411,55 @@ Matthew J. Kmiecik, PhD
 </div>
 <p><br /></p>
 </div>
+<div id="professional-positions" class="section level1">
+<h1>Professional Positions</h1>
+<hr />
+<!-- University of Chicago -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<p><img class="schoollogo center-block" width="100" height="100" src="images/uofc-shield.png"></p>
+</div>
+<div class="col-xs-12 col-sm-10">
+<p><strong>Clinician Researcher (2020 - )</strong><br/> Department of Obstetrics and Gynecology <br/> Evanston Hospital <br/> The University of Chicago Pritzker School of Medicine <br/></p>
+</div>
+</div>
+</div>
+<!-- NorthShore -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<p><img class="schoollogo center-block" width="100" height="100" src="images/northshore.jpg"></p>
+</div>
+<div class="col-xs-12 col-sm-10">
+<p><strong>Postdoctoral Research Fellow (2020 - )</strong><br/> Department of Obstetrics and Gynecology <br/> Evanston Hospital <br/> NorthShore University HealthSystem <br/></p>
+</div>
+</div>
+</div>
+<!-- RA/TA ships -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<p><img class="schoollogo center-block" width="100" height="100" src="images/utdlogo.jpg"></p>
+</div>
+<div class="col-xs-12 col-sm-10">
+<p><strong>Research and Teaching Assistant (2014 - 2019)</strong><br/> School of Behavioral &amp; Brain Sciences <br/> The University of Texas at Dallas <br/></p>
+</div>
+</div>
+</div>
+<!-- CAN Lab -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<p><img class="schoollogo center-block" width="100" height="100" src="images/luc-shield.png"></p>
+</div>
+<div class="col-xs-12 col-sm-10">
+<p><strong>Laboratory Manager (2013 - 2014)</strong> <br/> <a href="http://canlab.org/">Cognitive and Affective Neuroscience Laboratory</a> <br/> PI: Dr. Robert G. Morrison, PhD <br/> Loyola University Chicago <br/></p>
+</div>
+</div>
+</div>
+<p><br /></p>
+</div>
 <div id="publications" class="section level1">
 <h1>Publications</h1>
 <hr />
@@ -479,7 +476,7 @@ Matthew J. Kmiecik, PhD
 <div id="books" class="section level2">
 <h2>Books</h2>
 <ul>
-<li>Pongpipat, E. E., Miranda, G. G., Kmiecik, M. J. (2019). A Practical Extension of Introductory Statistics in Psychology using R. <em>Free online textbook written in <code>bookdown</code> and <code>R</code>.</em> <strong>Read it here: <a href="https://rpsystats.com/" class="uri">https://rpsystats.com/</a></strong></li>
+<li>Pongpipat, E. E., Miranda, G. G., Kmiecik, M. J. (2019). A Practical Extension of Introductory Statistics in Psychology using R. <em>Free online textbook written in <code>bookdown</code> and <code>R</code>.</em> **Read it here: <a href="https://rpsystats.com/**" class="uri">https://rpsystats.com/**</a></li>
 </ul>
 <p><br /></p>
 </div>
@@ -514,6 +511,8 @@ Matthew J. Kmiecik, PhD
 <div id="poster-presentations" class="section level2">
 <h2>Poster Presentations</h2>
 <ul>
+<li><p>Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, March). The Time Course of Meaning Construction with Varying Expectations. Poster to be presented at the Cognitive Neuroscience Society’s Annual Conference, Boston, MA.</p></li>
+<li><p>Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., &amp; Krawczyk, D. C. (2020, March). The Nuances of Norepinephrine: Salivary Alpha Amylase’s Role as a Biomarker in tDCS - Directed Judgment &amp; Decision Making. Poster to be presented at the Cognitive Neuroscience Society’s Annual Conference, Boston, MA.</p></li>
 <li><p>Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., &amp; Krawczyk, D. C. (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster to be presented at the Society for Personality and Social Psychology’s Annual Conference, New Orleans, LA.</p></li>
 <li><p>Nagele, M., Kmiecik, M. J., Chang, Z., Martinez, D., Juarez, M., Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., &amp; Krawczyk, D. C. (2019, August). <a href="https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury">Using the Virtual Multiple Errands Task (VMET) to Assess Executive Functioning in Traumatic Brain Injury.</a> Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.</p></li>
 <li><p>Chang, Z., Kmiecik, M. J., Martinez, D., Nagele, M., Lundie, M., Cole, R., Kim, L., Khachaturyan, M., Balloun, B., Juarez, M., Didehbani, N., Clover, M., Rule, G., Scott, G., &amp; Krawczyk, D. C. (2019, August). Using a Virtual-Reality Based Rehabilitation Program to Enhance Daily Functioning in Veterans Surviving Traumatic Brain Injury. Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.</p></li>
@@ -781,6 +780,14 @@ Cognition and Emotion
 </td>
 <td style="text-align:left;">
 Applied Cognitive Psychology
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:left;">
+Neuropsychologia
 </td>
 </tr>
 </tbody>
@@ -1300,49 +1307,6 @@ $(document).ready(function () {
 });
 
 
-</script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

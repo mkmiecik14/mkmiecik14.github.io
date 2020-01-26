@@ -3,7 +3,7 @@ title: ""
 ---
 
 <div class="prof-pic">
-<img src="images/matt-kmiecik.jpg" class="img-circle" width="250" height="250">
+<img src="images/kmiecik-prof-square.jpg" class="img-circle" width="250" height="250">
 </div>
 
 <!-- social icons bar START-->
@@ -11,7 +11,7 @@ title: ""
 <ul>
 <li><a href="mailto:matthew.kmiecik@utdallas.edu"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-<li><a href="https://www.linkedin.com/in/matt-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://www.linkedin.com/in/matthew-j-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
@@ -23,7 +23,7 @@ title: ""
 
 <h2><i class="fas fa-user-circle" aria-hidden="true"></i> About Me</h2>
 <hr>
-I am a recent doctoral graduate from the Cognition and Neuroscience PhD program at The University of Texas at Dallas under [Dr. Daniel C. Krawczyk](https://www.utdallas.edu/bbs/faculty/detail.php5?i=321). I am interested in how language interacts with human thinking, reasoning, and problem solving. My work utilizes neuroimaging techniques, such as fMRI and EEG/ERP, to understand the cognitive mechanisms of reasoning and how these relate to neural functioning and behavior. I am also interested in how traumatic brain injuries affect cognitive constructs, such as attention and semantic memory, to inform and develop cognitive rehabilitation programs. I enjoy visualizing and analyzing data, learning programming, blogging, and watching hockey. [Click here for my CV.](https://mattkmiecik.com/cv.html)
+I'm a cognitive neuroscientist doing my postdoctoral fellowship training at Evanston Hospital in the Department of Obstetrics and Gynecology studying pelvic pain under Dr. Kevin Hellman, PhD, and Dr. Frank Tu, MD MPH. I utlize EEG and functional MRI techniques to better understand mechanisms of pain underlying dysmenorrhea. My prior graduate work under [Dr. Daniel C. Krawczyk](https://www.utdallas.edu/bbs/faculty/detail.php5?i=321) at The University of Texas at Dallas investigated volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury (TBI), and human reasoning. I enjoy visualizing and analyzing data, learning programming, blogging, and watching the Chicago Blackhawks. [Click here for my CV.](https://mattkmiecik.com/cv.html)
 
 <br>
 

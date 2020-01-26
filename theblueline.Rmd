@@ -9,6 +9,58 @@ Doors closing… Welcome to the Blue Line.
 <h2><span class="far fa-file-alt" aria-hidden="true"></span> Posts</h2> 
 <hr>
 
+<!-- BlackhawkUp Posts -->
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/07/19/chicago-blackhawks-scoring-density-analysis-2018-2019-season/" class="postLink" target="_blank"> Chicago Blackhawks: Scoring Density Analysis for the 2018-2019 Season</a></h3>
+
+<span class="far fa-clock"></span> July 19th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+We’ve all heard Wayne Gretzky’s famous quote, “You miss 100% of the shots you don’t take.” Historically, the Chicago Blackhawks have taken Gretzky’s advice to heart and are one of the top four most efficient offenses since 2007 (for a statistical analysis, see my previous article)...
+
+<br />
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/06/27/chicago-blackhawks-efficient-offensive-machine/" class="postLink" target="_blank"> Chicago Blackhawks: An Efficient Offensive Machine</a></h3>
+
+<span class="far fa-clock"></span> June 27th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+When watching Game 7 of the Dallas and St. Louis playoff series this year, I received a text from a friend of mine commenting on the sheer discrepancy of shots on goal between the teams...
+
+<br />
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/05/14/q-colliton-first-67-games-blackhawks-head-coach/" class="postLink" target="_blank"> Coach Q vs. Jeremy Colliton: First 67 Games As Blackhawks’ Head Coach</a></h3>
+
+<span class="far fa-clock"></span> May 15th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+Coach Q had become Chicago’s steadfast leader and genius architect, constructing synergistic line combinations and masterfully adapting to player matchups throughout his 3 Stanley Cup winning tenure...
+
+<br />
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank"> Chicago Blackhawks: analyzing Patrick Kane’s career scoring tendencies</a></h3>
+
+<span class="far fa-clock"></span> April 9th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+The Chicago Blackhawks‘ own Patrick “Showtime” Kane. The breaker of records, the daddy of dangles, the lighter of lamps. No matter what you call him, Kaner has had a tremendous year and is deserving of some hardware at the end of the season...
+
+<br />
+
+<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/04/18/blackhawks-player-grades-patrick-kane/" class="postLink" target="_blank"> Chicago Blackhawks 2018-19 Player Grades: Patrick Kane</a></h3>
+
+<span class="far fa-clock"></span> April 19th, 2019
+<span class="label label-info">Hockey Analytics</span>
+<span class="label label-default">R</span>
+
+Patrick Kane battled through adversity at every corner this season. His ability to take over a game, frequent double shifts (including powerplays) and his knack for finding teammates with precise passes injected hope into the bloodstream of ‘Hawks fans every time he took the ice...
+
+<br />
+
 <!-- Blackhawks PCA -->
 
 <h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="postLink"> Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis</a></h3>
