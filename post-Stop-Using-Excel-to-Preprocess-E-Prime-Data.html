@@ -11,7 +11,6 @@
 
 <meta name="author" content="Matt Kmiecik" />
 
-<meta name="date" content="2017-05-15" />
 
 <title>Stop Using Excel to Preprocess E-Prime Data</title>
 
@@ -25,8 +24,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -42,22 +39,51 @@
 <!-- Twittercards -->
 <meta name="twitter:card" content="summary" />
 
+
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
 
 
 <style type="text/css">
@@ -196,7 +222,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -343,11 +369,18 @@ div.tocify {
 
 <h1 class="title toc-ignore">Stop Using Excel to Preprocess E-Prime Data</h1>
 <h4 class="author"><em>Matt Kmiecik</em></h4>
-<h4 class="date"><em>15 May 2017</em></h4>
+<h4 class="date"><em>22 Feb. 2020 UPDATE (original post: 15 May 2017)</em></h4>
 
 </div>
 
 
+<p><br ></p>
+<div class="alert alert-dismissible alert-info">
+<button type="button" class="close" data-dismiss="alert">
+×
+</button>
+<p><strong>UPDATE!</strong> I’ve updated this post to showcase some changes to my general pipeline.</p>
+</div>
 <p>Excel is a great tool for processing data. Whether it’s calculating a quick average, standard deviation, or t-test, Excel is fast and simple to learn and use. In fact, most of my colleagues use Excel to preprocess their data from experiments programmed in E-Prime, a software tool for running psychological experiments. However, preprocessing your E-Prime data in Excel will:</p>
 <ol style="list-style-type: decimal">
 <li>limit the statistical methods used to analyze your data</li>
@@ -357,12 +390,14 @@ div.tocify {
 </ol>
 <p>I’ll demonstrate a different method on how to preprocess your E-Prime data with R and the R package dplyr (Wickham &amp; Francois, 2016) using a small data set from a real experiment of mine. This method is much faster, efficient, and saves soooooo much time when it comes to reviewer #2’s requests.</p>
 <p>Just a few notes about the experiment: participants completed a task that required them to reason about items on the screen and press #1 or #2 on the keyboard. There were 3 conditions randomly distributed over 4 blocks with 24 trials per block (8 trials per condition). I was interested in the participants’ accuracy and reaction time for correct solutions across the conditions and blocks. Therefore, each participant has only 1 E-Prime file.</p>
-<div id="step-1---merging-e-dataaid-files" class="section level1">
-<h1>Step 1 - Merging E-DataAid Files</h1>
+<p><br /></p>
+<div id="step-1---merging-e-dataaid-files" class="section level2">
+<h2>Step 1 - Merging E-DataAid Files</h2>
 <hr >
 <p>E-Prime spat out an E-DataAid file (*.edat2) for every participant upon completion of the experiment. Let’s first concatenate these files row-wise (on top of each other) so that we end up with one big file that has each participant’s data. This is done using E-Prime’s E-Merge software.</p>
-<div id="concatenating-with-e-merge" class="section level2">
-<h2>Concatenating with E-Merge</h2>
+<p><br /></p>
+<div id="concatenating-with-e-merge" class="section level3">
+<h3>Concatenating with E-Merge</h3>
 <ol style="list-style-type: decimal">
 <li>Open E-Merge and navigate to the directory where all the E-DataAid files are stored using the Folder Tree</li>
 <li>Select all the E-DataAid files and click Merge…</li>
@@ -374,9 +409,10 @@ div.tocify {
 <li>Name your file and save it as a *.emrg2 file (the default)</li>
 </ol>
 <p>As long as your E-DataAids are consistent with each other, they should seamlessly merge. Next, we have to convert this to a format R and other programs can read using E-DataAid:</p>
+<p><br /></p>
 </div>
-<div id="converting-merged-e-dataaid" class="section level2">
-<h2>Converting Merged E-DataAid</h2>
+<div id="converting-merged-e-dataaid" class="section level3">
+<h3>Converting Merged E-DataAid</h3>
 <ol style="list-style-type: decimal">
 <li>Double click on the *.emrg2 file that you just created</li>
 <li>Go to File &gt; Export</li>
@@ -385,204 +421,234 @@ div.tocify {
 <li>Click OK and name/save the file as a *.txt (the default)</li>
 </ol>
 <p>Now these data are in one central file and prepared for R. Next, let’s import into R:</p>
+<p><br /></p>
 </div>
 </div>
-<div id="step-2---importing-into-r" class="section level1">
-<h1>Step 2 - Importing into R</h1>
+<div id="step-2---importing-into-r" class="section level2">
+<h2>Step 2 - Importing into R</h2>
 <hr >
 <ol style="list-style-type: decimal">
-<li>Open R or RStudio and **ensure your working directory is set to where you saved your text file (*.txt) from above.**</li>
+<li>Open R or RStudio and <strong>ensure your working directory is set to where you saved your text file (.txt) from above.</strong></li>
+<li>Load the <code>tidyverse</code>. For more information about the tidyverse click <a href="https://www.tidyverse.org/">here</a>.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<ol start="3" style="list-style-type: decimal">
 <li>Import the file into R and save it as a variable:</li>
 </ol>
-<pre class="r"><code>eData &lt;- read.table(&#39;data.txt&#39;, # The name of your *.txt file from above
-                    sep = &#39;\t&#39;, # These data are tab separated
-                    header = T) # Appends variables as column names </code></pre>
-<p>For the purposes of this tutorial, these data are available on this website’s github repository and can be downloaded into R like this:</p>
-<pre class="r"><code>rm(list = ls())                 # Clears workspace
-library(RCurl)                  # To retrive data from github repo
-eData &lt;- read.table(text = getURL(&quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/data.txt&quot;), 
-                   sep = &#39;\t&#39;,
-                   header = T)
-dim(eData)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eData &lt;-<span class="st"> </span><span class="kw">read_delim</span>(
+  <span class="st">&#39;data.txt&#39;</span>,  <span class="co"># The name of your *.txt file from above</span>
+  <span class="dt">delim =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>,  <span class="co"># These data are tab separated</span>
+  ) </code></pre></div>
+<blockquote>
+<p>HINT! <code>read_delim()</code> has several arguments, so be sure to check them out using <code>?read_delim()</code>. One really useful one is <code>guess_max=</code> which will search the first <em>n</em> rows of the data to gather the column type. For really long experiments, this option should be set to the number of rows generated for a single participant, that way it can scan at least an entire participant’s data file before “guessing” the column type.</p>
+</blockquote>
+<p>For the purposes of this tutorial, these data are available on this website’s <a href="https://github.com/mkmiecik14/mkmiecik14.github.io">GitHub repository</a> and can be downloaded into R like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RCurl) <span class="co"># To retrive data from github repo</span>
+link &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/data.txt&quot;</span>
+eData &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="kw">getURL</span>(link), <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)
+<span class="kw">dim</span>(eData)</code></pre></div>
 <pre><code>&gt; [1] 480  47</code></pre>
 <p>As we can see, this dataframe has 480 rows and 47 columns. Each row is a trial from a participant and each column is a measure/information from your E-prime experiment. E-prime gives us way too much information, so I like to clean this up and only include the essentials (<em>Note: These variable names will vary based on your experiment</em>):</p>
-<pre class="r"><code># Variables that I want to keep
-vars &lt;- c(&#39;Subject&#39;,&#39;probType&#39;,&#39;stimulus.ACC&#39;,&#39;stimulus.RT&#39;)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">eData_simple &lt;-<span class="st"> </span>
+<span class="st">  </span>eData <span class="op">%&gt;%</span><span class="st">                  </span><span class="co"># original data</span>
+<span class="st">  </span><span class="kw">select</span>(
+    <span class="dt">ss =</span> Subject,            <span class="co"># subject</span>
+    <span class="dt">cond =</span> probType,         <span class="co"># condition</span>
+    <span class="dt">acc =</span> stimulus.ACC,      <span class="co"># accuracy</span>
+    <span class="dt">rt =</span> stimulus.RT         <span class="co"># reaction time</span>
+    )
 
-# Subsetting these variables
-eDataSimple &lt;- subset(eData, select = vars)
-
-# Let&#39;s take a look
-head(eDataSimple); tail(eDataSimple)</code></pre>
-<pre><code>&gt;   Subject probType stimulus.ACC stimulus.RT
-&gt; 1     413        a            1        5578
-&gt; 2     413        s            0        9889
-&gt; 3     413        a            0        4218
-&gt; 4     413        p            1        1376
-&gt; 5     413        s            0        6169
-&gt; 6     413        p            1        2663</code></pre>
-<pre><code>&gt;     Subject probType stimulus.ACC stimulus.RT
-&gt; 475     416        s            1        4671
-&gt; 476     416        a            1        2765
-&gt; 477     416        s            1       13400
-&gt; 478     416        p            1         957
-&gt; 479     416        a            1        2112
-&gt; 480     416        s            1        8193</code></pre>
+<span class="co"># Let&#39;s take a look</span>
+<span class="kw">head</span>(eData_simple); <span class="kw">tail</span>(eData_simple)</code></pre></div>
+<pre><code>&gt; # A tibble: 6 x 4
+&gt;      ss cond    acc    rt
+&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
+&gt; 1   413 a         1  5578
+&gt; 2   413 s         0  9889
+&gt; 3   413 a         0  4218
+&gt; 4   413 p         1  1376
+&gt; 5   413 s         0  6169
+&gt; 6   413 p         1  2663</code></pre>
+<pre><code>&gt; # A tibble: 6 x 4
+&gt;      ss cond    acc    rt
+&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
+&gt; 1   416 s         1  4671
+&gt; 2   416 a         1  2765
+&gt; 3   416 s         1 13400
+&gt; 4   416 p         1   957
+&gt; 5   416 a         1  2112
+&gt; 6   416 s         1  8193</code></pre>
+<blockquote>
+<p>TIP! The <code>select()</code> function allows you to rename the column names on the fly. Pretty sweet if you ask me!</p>
+</blockquote>
 <p>I’ve printed the top and bottom 6 rows of this dataframe. As you can see, the first participant’s ID is 413, while the last participant’s ID is 416. Each trial is a row and has a problem type (either p, a, or s), an accuracy (1 for correct, 0 for incorrect), as well as an associated reaction time (RT) measure in milliseconds. Now, I forgot to program the block each trial appeared in my E-Prime experiment, but I can add it like this:</p>
-<pre class="r"><code># Adding block
-eDataSimple$Block &lt;- rep(c(1,2,3,4), each = 24) # 24 trials/block
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Adding block</span>
+eData_simple<span class="op">$</span>block &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="dt">each =</span> <span class="dv">24</span>) <span class="co"># 24 trials/block</span>
 
-# Let&#39;s take another look
-head(eDataSimple); tail(eDataSimple)</code></pre>
-<pre><code>&gt;   Subject probType stimulus.ACC stimulus.RT Block
-&gt; 1     413        a            1        5578     1
-&gt; 2     413        s            0        9889     1
-&gt; 3     413        a            0        4218     1
-&gt; 4     413        p            1        1376     1
-&gt; 5     413        s            0        6169     1
-&gt; 6     413        p            1        2663     1</code></pre>
-<pre><code>&gt;     Subject probType stimulus.ACC stimulus.RT Block
-&gt; 475     416        s            1        4671     4
-&gt; 476     416        a            1        2765     4
-&gt; 477     416        s            1       13400     4
-&gt; 478     416        p            1         957     4
-&gt; 479     416        a            1        2112     4
-&gt; 480     416        s            1        8193     4</code></pre>
-<p>Now these data are in a perfect format to summarize using the R package dplyr.</p>
+<span class="co"># Let&#39;s take a look</span>
+<span class="kw">head</span>(eData_simple); <span class="kw">tail</span>(eData_simple)</code></pre></div>
+<pre><code>&gt; # A tibble: 6 x 5
+&gt;      ss cond    acc    rt block
+&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+&gt; 1   413 a         1  5578     1
+&gt; 2   413 s         0  9889     1
+&gt; 3   413 a         0  4218     1
+&gt; 4   413 p         1  1376     1
+&gt; 5   413 s         0  6169     1
+&gt; 6   413 p         1  2663     1</code></pre>
+<pre><code>&gt; # A tibble: 6 x 5
+&gt;      ss cond    acc    rt block
+&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+&gt; 1   416 s         1  4671     4
+&gt; 2   416 a         1  2765     4
+&gt; 3   416 s         1 13400     4
+&gt; 4   416 p         1   957     4
+&gt; 5   416 a         1  2112     4
+&gt; 6   416 s         1  8193     4</code></pre>
+<p>Now these data are in a great format to summarize using the <code>dplyr</code> package included in the <code>tidyverse</code>.</p>
 </div>
-<div id="step-3---summarize-with-dplyr" class="section level1">
-<h1>Step 3 - Summarize with dplyr</h1>
+<div id="step-3---summarize-with-dplyr" class="section level2">
+<h2>Step 3 - Summarize with dplyr</h2>
 <hr >
-<p>Let’s calculate the mean accuracy for condition x block (3 x 4 repeated-measures factorial design). But first, let’s group based on our factors, which are 1) the subjects, 2) the conditions, and 3) the blocks. dplyr also lets you rename the columns easily:</p>
-<pre class="r"><code>library(dplyr) # Loads dplyr
+<p>Let’s calculate the mean accuracy for condition x block (3 x 4 repeated-measures factorial design). But first, let’s group based on our factors, which are 1) the subjects, 2) the conditions, and 3) the blocks.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acc &lt;-<span class="st"> </span>
+<span class="st">  </span>eData_simple <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(ss, cond, block) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">m =</span> <span class="kw">mean</span>(acc),    <span class="co"># mean</span>
+    <span class="dt">n =</span> <span class="kw">n</span>()           <span class="co"># number of trials</span>
+    ) <span class="op">%&gt;%</span><span class="st">               </span>
+<span class="st">  </span><span class="kw">ungroup</span>()           <span class="co"># generally a good idea to ungroup when finished</span>
 
-acc &lt;- group_by(eDataSimple,              # Dataframe   
-                ss = Subject,             # Subjects
-                cond = probType,          # Conditions 
-                block = as.factor(Block)) # Blocks</code></pre>
-<p>Next, let’s calculate the average based on these factors. In other words, for each subject, what was his or her accuracy for each condition crossed with block?</p>
-<pre class="r"><code>acc &lt;- summarise(acc, meanAcc = mean(stimulus.ACC))
-
-head(acc); tail(acc) </code></pre>
-<pre><code>&gt; # A tibble: 6 x 4
-&gt; # Groups:   ss, cond [2]
-&gt;      ss cond  block meanAcc
-&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
-&gt; 1   413 a     1       0.875
-&gt; 2   413 a     2       1    
-&gt; 3   413 a     3       1    
-&gt; 4   413 a     4       0.75 
-&gt; 5   413 p     1       0.75 
-&gt; 6   413 p     2       1</code></pre>
-<pre><code>&gt; # A tibble: 6 x 4
-&gt; # Groups:   ss, cond [2]
-&gt;      ss cond  block meanAcc
-&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
-&gt; 1   418 p     3       1    
-&gt; 2   418 p     4       1    
-&gt; 3   418 s     1       0.875
-&gt; 4   418 s     2       0.625
-&gt; 5   418 s     3       0.625
-&gt; 6   418 s     4       0.875</code></pre>
-<p>dplyr can also be used to create pipelines that streamline the code with the %&gt;% operator. Here is an example of a pipeline that calculates both accuracy and RT:</p>
-<pre class="r"><code>results &lt;-  eDataSimple %&gt;% 
-              group_by(ss = Subject,
-                       cond = probType,
-                       block = as.factor(Block)) %&gt;%
-              summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))
-
-head(results); tail(results)</code></pre>
-<pre><code>&gt; # A tibble: 6 x 5
-&gt; # Groups:   ss, cond [2]
-&gt;      ss cond  block stimulus.ACC stimulus.RT
-&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-&gt; 1   413 a     1            0.875       5776.
-&gt; 2   413 a     2            1           2393.
-&gt; 3   413 a     3            1           2517.
-&gt; 4   413 a     4            0.75        1940 
-&gt; 5   413 p     1            0.75        5912.
-&gt; 6   413 p     2            1           3228.</code></pre>
-<pre><code>&gt; # A tibble: 6 x 5
-&gt; # Groups:   ss, cond [2]
-&gt;      ss cond  block stimulus.ACC stimulus.RT
-&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-&gt; 1   418 p     3            1           2223 
-&gt; 2   418 p     4            1           2333.
-&gt; 3   418 s     1            0.875       6749 
-&gt; 4   418 s     2            0.625       5387.
-&gt; 5   418 s     3            0.625       7239 
-&gt; 6   418 s     4            0.875       5255.</code></pre>
-<p>The dataframe ‘results’ is ready for stats in R.</p>
+<span class="kw">print</span>(acc) <span class="co"># prints to screen</span></code></pre></div>
+<pre><code>&gt; # A tibble: 60 x 5
+&gt;       ss cond  block     m     n
+&gt;    &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
+&gt;  1   413 a         1 0.875     8
+&gt;  2   413 a         2 1         8
+&gt;  3   413 a         3 1         8
+&gt;  4   413 a         4 0.75      8
+&gt;  5   413 p         1 0.75      8
+&gt;  6   413 p         2 1         8
+&gt;  7   413 p         3 1         8
+&gt;  8   413 p         4 1         8
+&gt;  9   413 s         1 0.375     8
+&gt; 10   413 s         2 0.5       8
+&gt; # … with 50 more rows</code></pre>
+<p>Now to look at task-wide performance, we group by condition and block and repeat:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">acc_sum &lt;-
+<span class="st">  </span>acc <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(cond, block) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">M =</span> <span class="kw">mean</span>(m),       <span class="co"># mean</span>
+    <span class="dt">SD =</span> <span class="kw">sd</span>(m),        <span class="co"># standard deviation</span>
+    <span class="dt">N =</span> <span class="kw">n</span>(),           <span class="co"># number of observations</span>
+    <span class="dt">sem =</span> SD<span class="op">/</span><span class="kw">sqrt</span>(N)   <span class="co"># standard error of the mean</span>
+    ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()            <span class="co"># generally a good idea to regroup</span></code></pre></div>
+<blockquote>
+<p>TIP! Summarise can compute variables defined within summarise! See above for how this works for the standard error of the mean (sem).</p>
+</blockquote>
+<p>These are the summary results:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(acc_sum) <span class="co"># prints to screen</span></code></pre></div>
+<pre><code>&gt; # A tibble: 12 x 6
+&gt;    cond  block     M     SD     N    sem
+&gt;    &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;
+&gt;  1 a         1 0.875 0.0884     5 0.0395
+&gt;  2 a         2 1     0          5 0     
+&gt;  3 a         3 1     0          5 0     
+&gt;  4 a         4 0.95  0.112      5 0.0500
+&gt;  5 p         1 0.95  0.112      5 0.0500
+&gt;  6 p         2 1     0          5 0     
+&gt;  7 p         3 1     0          5 0     
+&gt;  8 p         4 1     0          5 0     
+&gt;  9 s         1 0.775 0.240      5 0.108 
+&gt; 10 s         2 0.625 0.125      5 0.0559
+&gt; 11 s         3 0.625 0.0884     5 0.0395
+&gt; 12 s         4 0.85  0.0559     5 0.0250</code></pre>
 <p>Now what about that pesky reviewer #2? Let’s say reviewer #2 asks for a new analysis that, instead of looking at reaction time, asks for the results with reaction time for only correct solutions? If you preprocessed your data in Excel, you would probably have to re-compute all these values in each sheet and then re-do the analyses. But this is simple in R and is only one additional line of code:</p>
-<pre class="r"><code>corRT &lt;-  eDataSimple %&gt;%
-          filter(stimulus.ACC == 1) %&gt;%  # Filters out inaccurate trials
-          group_by(ss = Subject,
-                   cond = probType,
-                   block = as.factor(Block)) %&gt;%
-          summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corRT &lt;-<span class="st">  </span>
+<span class="st">  </span>eData_simple <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(acc <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Filters out inaccurate trials</span>
+<span class="st">  </span><span class="kw">group_by</span>(ss, cond, block) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">m =</span> <span class="kw">mean</span>(rt),       <span class="co"># mean</span>
+    <span class="dt">n =</span> <span class="kw">n</span>()             <span class="co"># number of trials</span>
+    ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()             <span class="co"># generally a good idea to ungroup when finished</span>
 
-head(corRT); tail(corRT)</code></pre>
-<pre><code>&gt; # A tibble: 6 x 5
-&gt; # Groups:   ss, cond [2]
-&gt;      ss cond  block stimulus.ACC stimulus.RT
-&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-&gt; 1   413 a     1                1       5999 
-&gt; 2   413 a     2                1       2393.
-&gt; 3   413 a     3                1       2517.
-&gt; 4   413 a     4                1       2069 
-&gt; 5   413 p     1                1       5792.
-&gt; 6   413 p     2                1       3228.</code></pre>
-<pre><code>&gt; # A tibble: 6 x 5
-&gt; # Groups:   ss, cond [2]
-&gt;      ss cond  block stimulus.ACC stimulus.RT
-&gt;   &lt;int&gt; &lt;fct&gt; &lt;fct&gt;        &lt;dbl&gt;       &lt;dbl&gt;
-&gt; 1   418 p     3                1       2223 
-&gt; 2   418 p     4                1       2333.
-&gt; 3   418 s     1                1       6574 
-&gt; 4   418 s     2                1       5326 
-&gt; 5   418 s     3                1       6407 
-&gt; 6   418 s     4                1       4871.</code></pre>
-<p>To summarize, the entire R script to process these data is quite concise and can accommodate <em>many</em> more participants with ease:</p>
-<pre class="r"><code>rm(list = ls()) # Clears workspace
+<span class="kw">print</span>(corRT)            <span class="co"># prints to screen</span></code></pre></div>
+<pre><code>&gt; # A tibble: 60 x 5
+&gt;       ss cond  block     m     n
+&gt;    &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
+&gt;  1   413 a         1 5999      7
+&gt;  2   413 a         2 2393.     8
+&gt;  3   413 a         3 2517.     8
+&gt;  4   413 a         4 2069      6
+&gt;  5   413 p         1 5792.     6
+&gt;  6   413 p         2 3228.     8
+&gt;  7   413 p         3 1616.     8
+&gt;  8   413 p         4 1113      8
+&gt;  9   413 s         1 7689.     3
+&gt; 10   413 s         2 4858.     4
+&gt; # … with 50 more rows</code></pre>
+<p>For completeness, here’s how to compute the task-wide correct RT performance:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corRT_sum &lt;-
+<span class="st">  </span>corRT <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(cond, block) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">M =</span> <span class="kw">mean</span>(m),     <span class="co"># mean </span>
+    <span class="dt">SD =</span> <span class="kw">sd</span>(m),      <span class="co"># standard devation</span>
+    <span class="dt">N =</span> <span class="kw">n</span>(),         <span class="co"># number of observations</span>
+    <span class="dt">sem =</span> SD<span class="op">/</span><span class="kw">sqrt</span>(N) <span class="co"># standard error of the mean</span>
+    ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ungroup</span>()
 
-eData &lt;- read.table(&#39;data.txt&#39;, # The name of your *.txt file from above
-                    sep = &#39;\t&#39;, # These data are tab separated
-                    header = T) # Appends variables as column names
-
-# Variables that I want to keep
-vars &lt;- c(&#39;Subject&#39;,&#39;probType&#39;,&#39;stimulus.ACC&#39;,&#39;stimulus.RT&#39;)
-
-# Subsetting these variables
-eDataSimple &lt;- subset(eData, select = vars)
-
-# Adding block
-eDataSimple$Block &lt;- rep(c(1,2,3,4), each = 24) # 24 trials/block
-
-library(dplyr) # Loads dplyr
-
-# Results with regular RT
-results &lt;-  eDataSimple %&gt;% 
-              group_by(ss = Subject,
-                       cond = probType,
-                       block = as.factor(Block)) %&gt;%
-              summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))
-
-# Correct RT results
-corRT &lt;-  eDataSimple %&gt;%
-          filter(stimulus.ACC == 1) %&gt;%  # Filters out inaccurate trials
-          group_by(ss = Subject,
-                   cond = probType,
-                   block = as.factor(Block)) %&gt;%
-          summarise_each(&#39;mean&#39;, c(stimulus.ACC, stimulus.RT))</code></pre>
+<span class="kw">print</span>(corRT_sum)     <span class="co"># prints to screen</span></code></pre></div>
+<pre><code>&gt; # A tibble: 12 x 6
+&gt;    cond  block     M    SD     N   sem
+&gt;    &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
+&gt;  1 a         1 5261. 1019.     5  456.
+&gt;  2 a         2 3380. 1303.     5  583.
+&gt;  3 a         3 3379. 1209.     5  541.
+&gt;  4 a         4 3022.  889.     5  397.
+&gt;  5 p         1 5525. 1429.     5  639.
+&gt;  6 p         2 3292. 1028.     5  460.
+&gt;  7 p         3 2667. 1632.     5  730.
+&gt;  8 p         4 2108.  942.     5  421.
+&gt;  9 s         1 8324. 1707.     5  763.
+&gt; 10 s         2 6682. 1865.     5  834.
+&gt; 11 s         3 6315. 2780.     5 1243.
+&gt; 12 s         4 5400. 1486.     5  664.</code></pre>
+<p>To summarize, the entire R script to process these data is quite concise and can accommodate <em>many</em> more participants with ease.</p>
 <p>After programming your experiment with the E-Prime beast, dragging undergraduate participants through your study, and wrangling the data into one place, why not make your life easier? Ditch the Excel templates. You’ll thank me when reviewer #2 comes around!</p>
 </div>
-<div id="acknowledgments" class="section level1">
-<h1>Acknowledgments</h1>
+<div id="plotting" class="section level2">
+<h2>Plotting</h2>
+<hr >
+<p>Processing E-Prime data this way puts it in a great format for plotting with <code>ggplot2</code> — another package in the <code>tidyverse</code>.</p>
+<p>I like to plot the raw data underneath the summary data, so here is an example plot for correct reaction times:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Correct RT plot</span>
+pj &lt;-<span class="st"> </span><span class="kw">position_jitter</span>(<span class="dt">width =</span> .<span class="dv">1</span>)
+<span class="kw">ggplot</span>(corRT_sum, <span class="kw">aes</span>(block, M, <span class="dt">group =</span> cond, <span class="dt">color =</span> cond)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> corRT, <span class="kw">aes</span>(<span class="dt">y =</span> m), <span class="dt">position =</span> pj, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> M<span class="op">-</span>sem, <span class="dt">ymax =</span> M<span class="op">+</span>sem), <span class="dt">width =</span> .<span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">12000</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Block&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Mean Correct RT (ms)&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;SEM error bars.&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
+<p><img src="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="acknowledgments" class="section level2">
+<h2>Acknowledgments</h2>
 <hr >
 <p>This tutorial was inspired by Dr. Jahn’s amazing <a href="http://andysbrainblog.blogspot.com/">blog</a> that helped me and I’m sure hundreds of other graduate students stumble through the crazy world that is fMRI analysis. Andy’s Brain Blog is the best!</p>
 </div>
-<div id="references" class="section level1">
-<h1>References</h1>
+<div id="references" class="section level2">
+<h2>References</h2>
 <hr >
 <p>Wickham, H., and R. Francois. 2016. dplyr: A Grammar of Data Manipulation. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
 <!-- disqus START -->
