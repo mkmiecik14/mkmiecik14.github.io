@@ -10,6 +10,8 @@ output:
     toc_float:
       collapsed: yes
       smooth_scroll: yes
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -20,8 +22,6 @@ knitr::opts_chunk$set(
   warning = FALSE
   )
 ```
-
-<br >
 
 <div class="alert alert-dismissible alert-info">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -86,8 +86,8 @@ library(tidyverse)
 
 ```{r import, eval=FALSE}
 eData <- read_delim(
-  'data.txt',  # The name of your *.txt file from above
-  delim = '\t',  # These data are tab separated
+  'data.txt',   # The name of your *.txt file from above
+  delim = '\t', # These data are tab separated
   ) 
 ```
 
@@ -167,7 +167,7 @@ acc_sum <-
   ungroup()            # generally a good idea to regroup
 ```
 
-> TIP! Summarise can compute variables defined within summarise! See above for how this works for the standard error of the mean (sem).
+> TIP! `summarise()` can compute variables defined within `summarise()`. See above for how this works for the standard error of the mean (sem).
 
 These are the summary results:
 
@@ -180,7 +180,7 @@ Now what about that pesky reviewer #2? Let's say reviewer #2 asks for a new anal
 ```{r reviewer2}
 corRT <-  
   eData_simple %>%
-  filter(acc == 1) %>%  # Filters out inaccurate trials
+  filter(acc == 1) %>%  # filters out inaccurate trials
   group_by(ss, cond, block) %>%
   summarise(
     m = mean(rt),       # mean
@@ -210,7 +210,9 @@ print(corRT_sum)     # prints to screen
 
 To summarize, the entire R script to process these data is quite concise and can accommodate *many* more participants with ease.
 
-After programming your experiment with the E-Prime beast, dragging undergraduate participants through your study, and wrangling the data into one place, why not make your life easier? Ditch the Excel templates. You'll thank me when reviewer #2 comes around! 
+After programming your experiment with the E-Prime beast, dragging undergraduate participants through your study, and wrangling the data into one place, why not make your life easier? Ditch the Excel templates. You'll thank me when reviewer #2 comes around!
+
+<br >
 
 ## Plotting
 <hr >
@@ -234,15 +236,49 @@ ggplot(corRT_sum, aes(block, M, group = cond, color = cond)) +
   theme(legend.position = "bottom")
 ```
 
+And here's an example of how I could inspect RT curves per condition and block for all participants (trial-wise). A great way to detect outliers:
+
+```{r}
+bnwidth <- 1 # in seconds
+ggplot(eData_simple, aes(rt/1000)) +
+  geom_histogram(binwidth = bnwidth) +
+  labs(
+    x = "RT (seconds)", 
+    y = "Frequency", 
+    caption = paste("Binwidth = ", bnwidth, "sec.")
+    ) +
+  theme_minimal() +
+  facet_grid(cond~block)
+```
+
+Comparisons across conditions are faciltiated using a density plot:
+
+```{r}
+ggplot(eData_simple, aes(rt/1000, group = cond, color = cond)) +
+  geom_density() +
+  labs(x = "RT (seconds)", y = "Density") +
+  scale_color_brewer(palette = "Dark2") +
+  theme_minimal() +
+  facet_wrap(~block)
+```
+
+Good luck with wrangling the e-prime beast and I hope you enjoyed this (updated) tutorial!
+
+<br >
+
 ## Acknowledgments
 <hr >
 
-This tutorial was inspired by Dr. Jahn's amazing [blog](http://andysbrainblog.blogspot.com/) that helped me and I'm sure hundreds of other graduate students stumble through the crazy world that is fMRI analysis. Andy's Brain Blog is the best! 
+This tutorial was inspired by Dr. Jahn's amazing [blog](http://andysbrainblog.blogspot.com/) that helped me and I'm sure hundreds of other graduate students stumble through the crazy world that is fMRI analysis. Andy's Brain Blog is the best!
+
+<br >
 
 ## References
 <hr >
 
-Wickham, H., and R. Francois. 2016. dplyr: A Grammar of Data Manipulation. https://CRAN.R-project.org/package=dplyr.
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” _Journal of Open Source Software_, **4**(43), 1686. doi: [10.21105/joss.01686](https://joss.theoj.org/papers/10.21105/joss.01686). 
+
+<br >
 
 <!-- disqus START -->
 
