@@ -166,7 +166,7 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Books
 
-* Pongpipat, E. E., Miranda, G. G., Kmiecik, M. J. (2019). A Practical Extension of Introductory Statistics in Psychology using R. *Free online textbook written in `bookdown` and `R`.* **Read it here: https://rpsystats.com/**
+* Pongpipat, E. E., Miranda, G. G., Kmiecik, M. J. (2019). A Practical Extension of Introductory Statistics in Psychology using R. *Free online textbook written in `bookdown` and `R`.* Read it here: https://rpsystats.com/
 
 <br />
 
@@ -199,11 +199,13 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Poster Presentations
 
-* Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, March). The Time Course of Meaning Construction with Varying Expectations. Poster to be presented at the Cognitive Neuroscience Society's Annual Conference, Boston, MA.
+* Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, March). The Time Course of Meaning Construction with Varying Expectations. Poster was to be presented at the Society for Neuroscience Chicago Chapter annual meeting, Chicago, IL. * Cancelled due to COVID-19
 
-* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, March). The Nuances of Norepinephrine: Salivary Alpha Amylase’s Role as a Biomarker in tDCS - Directed Judgment & Decision Making. Poster to be presented at the Cognitive Neuroscience Society's Annual Conference, Boston, MA.
+* Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, March). The Time Course of Meaning Construction with Varying Expectations. Poster to be presented at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
 
-* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster to be presented at the Society for Personality and Social Psychology’s Annual Conference, New Orleans, LA.
+* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, March). The Nuances of Norepinephrine: Salivary Alpha Amylase’s Role as a Biomarker in tDCS - Directed Judgment & Decision Making. Poster to be presented at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
+
+* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster to be presented at the Society for Personality and Social Psychology’s annual conference, New Orleans, LA.
 
 * Nagele, M., Kmiecik, M. J., Chang, Z., Martinez, D., Juarez, M., Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C. (2019, August). [Using the Virtual Multiple Errands Task (VMET) to Assess Executive Functioning in Traumatic Brain Injury.](https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury) Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
 
@@ -212,9 +214,9 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 * Nagele, M. M., Kmiecik, M. J., & Krawczyk, D. C. (2019, April). Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster presented at UT Dallas School of Behavioral and Brain Sciences Psychological Sciences annual meeting, Dallas, TX.
 
-* Kmiecik, M. J., Martin A. D., Kim, L. M., Perez, R., Martinez, D. M., Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of Reasoning Ability and Relational Cueing in Solving Relational Match-to-Sample Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems). Poster presented at the Cognitive Neuroscience Society Annual Meeting, San Francisco, CA.
+* Kmiecik, M. J., Martin A. D., Kim, L. M., Perez, R., Martinez, D. M., Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of Reasoning Ability and Relational Cueing in Solving Relational Match-to-Sample Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems). Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
 
-* Kim, L. M., Kmiecik, M. J., Martinez, D. M., Martin A. D., & Krawczyk, D. C. (2019, March). [The Similar Situations Task: Measuring Differing Levels of Reasoning Using Scene Analogies](https://www.researchgate.net/publication/332058003_The_Similar_Situations_Task_Measuring_Differing_Levels_of_Reasoning_Using_Scene_Analogies). Poster presented at the Cognitive Neuroscience Society Annual Meeting, San Francisco, CA.
+* Kim, L. M., Kmiecik, M. J., Martinez, D. M., Martin A. D., & Krawczyk, D. C. (2019, March). [The Similar Situations Task: Measuring Differing Levels of Reasoning Using Scene Analogies](https://www.researchgate.net/publication/332058003_The_Similar_Situations_Task_Measuring_Differing_Levels_of_Reasoning_Using_Scene_Analogies). Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
 
 * Kais, L.A., Lee, C., Kmiecik, M.J., Silton, R.L. (2018, February). The Influence of Affect on Interference 	Processing in Blocked and Mixed Presentations of a Stroop Color-Word Task. Poster presented at the annual meeting of the International Neuropsychological Society: Washington, D.C.
 
@@ -226,7 +228,7 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 * Martinez, D., Kmiecik, M.J., Chapman, S., Krawczyk, D.C. (2016, November). [Observing Changes in Cognition, Mood, and White Matter in Chronic TBI Using Multiple Factor Analysis After Cognitive Intervention.](https://www.researchgate.net/publication/308601754_Observing_Changes_in_Cognition_Mood_and_White_Matter_in_Chronic_TBI_Using_Multiple_Factor_Analysis_After_Cognitive_Intervention) Archives of Physical Medicine and Rehabilitation, 97(10), e75. doi: 10.1016/j.apmr.2016.08.229
 
-* Kmiecik, M.J., Schauer, G.F., Martinez, D., & Krawczyk, D.C. (2016, April). [The Similar Situations Task: An Assessment of Analogical Reasoning in Healthy and Clinical Populations.](https://www.researchgate.net/publication/299782139_The_Similar_Situations_Task_An_Assessment_of_Analogical_Reasoning_in_Healthy_and_Clinical_Populations) Poster presented at the Cognitive Neuroscience Society Annual Meeting, New York, NY.
+* Kmiecik, M.J., Schauer, G.F., Martinez, D., & Krawczyk, D.C. (2016, April). [The Similar Situations Task: An Assessment of Analogical Reasoning in Healthy and Clinical Populations.](https://www.researchgate.net/publication/299782139_The_Similar_Situations_Task_An_Assessment_of_Analogical_Reasoning_in_Healthy_and_Clinical_Populations) Poster presented at the Cognitive Neuroscience Society annual meeting, New York, NY.
 
 * Kmiecik, M. J., Chapman, S., & Krawczyk, D., (2015). Executive Functioning in Traumatic Brain Injury: A Detailed Investigation of the Hayling Test. Archives of Physical Medicine and Rehabilitation, 96(10), e97-e98. doi: 10.1016/j.apmr.2015.08.326
 
@@ -242,15 +244,15 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 * Morrison, R. G., Kmiecik, M.J., Irwin, J.L., Unsworth, N., Jones, L.L. (2014, July). Working memory and crystallized knowledge in visual analogy. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
 
-* Brisson, R.J., Kmiecik, M.J., Sweis, A.S. & Morrison, R.G. (2014, April). The Effect of Semantic and Relational Similarity on the N400 in Verbal Analogical Reasoning. Poster presented at the Cognitive Neuroscience Society Annual Meeting, Boston, MA.
+* Brisson, R.J., Kmiecik, M.J., Sweis, A.S. & Morrison, R.G. (2014, April). The Effect of Semantic and Relational Similarity on the N400 in Verbal Analogical Reasoning. Poster presented at the Cognitive Neuroscience Society annual meeting, Boston, MA.
 
-* Stockdale, L., Palumbo, R., Kmiecik, M., Silton, R.L. & Morrison, R.G. (2014, April). The Effects of Media Violence on the Neural Correlates of Emotional Facial Processing: An ERP Investigation. Poster presented at the Cognitive Neuroscience Society Annual Meeting, Boston, MA.
+* Stockdale, L., Palumbo, R., Kmiecik, M., Silton, R.L. & Morrison, R.G. (2014, April). The Effects of Media Violence on the Neural Correlates of Emotional Facial Processing: An ERP Investigation. Poster presented at the Cognitive Neuroscience Society annual meeting, Boston, MA.
 
-* Kmiecik, M.J., Brisson, R.J., & Morrison, R.G. (2013, April). Semantic distance in verbal analogical reasoning modulates the N400 event-related potential. Poster presented at the Cognitive Neuroscience Society Annual Meeting, San Francisco, CA.
+* Kmiecik, M.J., Brisson, R.J., & Morrison, R.G. (2013, April). Semantic distance in verbal analogical reasoning modulates the N400 event-related potential. Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
 
-* Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, April). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Cognitive Neuroscience Society Annual Meeting, Chicago, IL.
+* Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, April). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Cognitive Neuroscience Society annual meeting, Chicago, IL.
 
-* Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, March). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Society for Neuroscience Chicago Chapter 2012 Annual Meeting, Chicago, IL.
+* Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, March). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Society for Neuroscience Chicago Chapter 2012 annual meeting, Chicago, IL.
 
 <br />
 
@@ -273,6 +275,33 @@ kable(conf_org) %>%
 ```
 
 <br />
+
+# Invited Talks
+<hr >
+
+* __Steps Toward Graduate School__ (October 2016) Loyola Neuroscience Society, Loyola University Chicago
+
+* __Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology__ (December 2019) Frontiers of BrainHealth Lecture Series, The University of Texas at Dallas
+
+* __Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology__ (March 2020) Neuroscience Seminar, Loyola University Chicago
+
+<br >
+
+```{r, eval = FALSE}
+inv_talks <-
+  data.frame(
+    Date = c("Oct. 2016", "Dec. 2019", "Mar. 2020"),
+    `Talk Title` = c(
+      "Steps Toward Graduate School", 
+      "Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology", 
+      "Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology"
+      ),
+    `Forum/Location` = c(
+      "Loyola Neuroscience Society, Loyola University Chicago",
+      "Frontiers of BrainHealth Lecture Series, The University of Texas at Dallas",)
+  )
+```
+
 
 # Grants & Fellowships
 <hr />
