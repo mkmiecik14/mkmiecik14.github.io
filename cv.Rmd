@@ -485,13 +485,19 @@ kable(training) %>%
 <hr />
 
 ```{r committee}
-committee <- data.frame(Year = c('Spring 2018 - Present',
-                                 'Spring 2018 - Present'),
-                       Position = c('Graduate Student Ambassador',
-                                    'Center-wide RA/Internship Facilitator'),
-                       Institution = c('Center for BrainHealth at The University of Texas at Dallas', 
-                                       'Center for BrainHealth at The University of Texas at Dallas'),
-                       check.names = F)
+committee <- 
+  data.frame(
+    Year = c('2018 - 2019', '2018 - 2019'),
+    Position = c(
+      'Graduate Student Ambassador',
+      'Center-wide RA/Internship Facilitator'
+      ),
+    Institution = c(
+      'Center for BrainHealth at The University of Texas at Dallas', 
+      'Center for BrainHealth at The University of Texas at Dallas'
+      ),
+    check.names = FALSE
+    )
 
 kable(committee) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))

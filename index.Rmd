@@ -23,7 +23,7 @@ title: ""
 
 <h2><i class="fas fa-user-circle" aria-hidden="true"></i> About Me</h2>
 <hr>
-I'm a cognitive neuroscientist doing my postdoctoral fellowship training at Evanston Hospital in the Department of Obstetrics and Gynecology studying pelvic pain under Dr. Kevin Hellman, PhD, and Dr. Frank Tu, MD MPH. I utilize EEG and functional MRI techniques to better understand mechanisms of pain underlying dysmenorrhea. My prior graduate work under [Dr. Daniel C. Krawczyk](https://www.utdallas.edu/bbs/faculty/detail.php5?i=321) at The University of Texas at Dallas investigated volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury (TBI), and human reasoning. I enjoy visualizing and analyzing data, learning programming, blogging, and watching the Chicago Blackhawks. [Click here for my CV.](https://mattkmiecik.com/cv.html)
+I'm a cognitive neuroscientist doing my postdoctoral fellowship training at Evanston Hospital in the Department of Obstetrics and Gynecology studying pelvic pain under Kevin Hellman, PhD, and Frank Tu, MD MPH. I utilize EEG to better understand mechanisms of pain underlying dysmenorrhea. My prior graduate work under [Daniel C. Krawczyk, PhD](https://www.utdallas.edu/bbs/faculty/detail.php5?i=321), at The University of Texas at Dallas investigated volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury, and human reasoning. I enjoy visualizing and analyzing data, learning programming, blogging, and watching the Chicago Blackhawks. [Click here for my CV.](https://mattkmiecik.com/cv.html)
 
 <br>
 
