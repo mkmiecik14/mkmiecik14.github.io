@@ -152,7 +152,9 @@ Loyola University Chicago <br/>
 
 ## Papers
 
-* Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS. 20_:435 https://doi.org/10.21203/rs.2.273/v1 Open Access [PDF](https://rdcu.be/bKxw4)
+* **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (in press). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_. || Project code available on [GitHub](https://github.com/mkmiecik14/fractal-rmts).
+
+* Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS. 20_:435 https://doi.org/10.21203/rs.2.273/v1 || Open Access [PDF](https://rdcu.be/bKxw4).
 
 * **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. _Brain and Cognition_, _129_, 25-34. https://doi.org/10.1016/j.bandc.2018.11.012
 
@@ -466,13 +468,19 @@ kable(intern) %>%
 <hr />
 
 ```{r training}
-training <- data.frame(Year = c(2016, 2016),
-                       Month = c('May','November'),
-                       `Training/Certifications` = c('The 22nd EEGLAB Workshop',
-                                                  'Graduate Teaching Certificate'),
-                       Institution = c('University of California San Diego',
-                                       'The University of Texas at Dallas'),
-                       check.names = F)
+training <- 
+  data.frame(
+    Year = c(2016, 2016),
+    Month = c('November','May'),
+    `Training/Certifications` = c(
+      'The 22nd EEGLAB Workshop',
+      'Graduate Teaching Certificate'
+      ),
+    Institution = c(
+      'University of California San Diego', 
+      'The University of Texas at Dallas'),
+      check.names = F
+    )
 
 kable(training) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
