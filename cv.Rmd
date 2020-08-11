@@ -39,7 +39,7 @@ options(knitr.table.format = "html") # For the html tables
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" height="100" src="images/northshore.jpg">
+<img class="schoollogo center-block" width="100" src="images/northshore.jpg">
 </div>
 <div class="col-xs-12 col-sm-10">
 **Postdoctoral Research Fellow (2020 - )**<br/>
@@ -54,7 +54,7 @@ NorthShore University HealthSystem <br/>
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" height="100" src="images/utdlogo.jpg">
+<img class="schoollogo center-block" width="100" src="images/utdlogo.jpg">
 </div>
 <div class="col-xs-12 col-sm-10">
 **PhD Cognition and Neuroscience (2014 - 2019)**<br/>
@@ -70,7 +70,7 @@ The University of Texas at Dallas <br/>
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" height="100" src="images/luc-shield.png">
+<img class="schoollogo center-block" width="100" src="images/luc-shield.png">
 </div>
 <div class="col-xs-12 col-sm-10">
 **BS Psychology: Nautral Science (2009 - 2013)** <br/>
@@ -90,7 +90,7 @@ Loyola University Chicago <br/>
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" height="100" src="images/uofc-shield.png">
+<img class="schoollogo center-block" width="100" src="images/uofc-shield.png">
 </div>
 <div class="col-xs-12 col-sm-10">
 **Clinician Researcher (2020 - )**<br/>
@@ -105,7 +105,7 @@ The University of Chicago Pritzker School of Medicine  <br/>
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" height="100" src="images/northshore.jpg">
+<img class="schoollogo center-block" width="100" src="images/northshore.jpg">
 </div>
 <div class="col-xs-12 col-sm-10">
 **Postdoctoral Research Fellow (2020 - )**<br/>
@@ -120,7 +120,7 @@ NorthShore University HealthSystem <br/>
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" height="100" src="images/utdlogo.jpg">
+<img class="schoollogo center-block" width="100" src="images/utdlogo.jpg">
 </div>
 <div class="col-xs-12 col-sm-10">
 **Research and Teaching Assistant (2014 - 2019)**<br/>
@@ -134,7 +134,7 @@ The University of Texas at Dallas <br/>
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" height="100" src="images/luc-shield.png">
+<img class="schoollogo center-block" width="100" src="images/luc-shield.png">
 </div>
 <div class="col-xs-12 col-sm-10">
 **Laboratory Manager (2013 - 2014)** <br/>
