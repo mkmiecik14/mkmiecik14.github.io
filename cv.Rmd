@@ -86,6 +86,20 @@ Loyola University Chicago <br/>
 # Professional Positions
 <hr />
 
+<!-- LUC Teaching Position -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<img class="schoollogo center-block" width="100" src="images/luc-shield.png">
+</div>
+<div class="col-xs-12 col-sm-10">
+**Part-time Faculty (Fall 2020 - )**<br/>
+Department of Psychology <br/>
+Loyola University Chicago <br/>
+</div>
+</div>
+</div>
+
 <!-- University of Chicago -->
 <div class="container-fluid">
 <div class="row">
@@ -152,7 +166,7 @@ Loyola University Chicago <br/>
 
 ## Papers
 
-* **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (in press). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_. || Project code available on [GitHub](https://github.com/mkmiecik14/fractal-rmts).
+* **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (in press). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_. https://doi-org.proxy.uchicago.edu/10.1162/jocn_a_01618 || Project code available on [GitHub](https://github.com/mkmiecik14/fractal-rmts).
 
 * Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS. 20_:435 https://doi.org/10.21203/rs.2.273/v1 || Open Access [PDF](https://rdcu.be/bKxw4).
 
@@ -203,7 +217,7 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 * Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, May). [The Time Course of Meaning Construction with Varying Expectations](https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations). Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
 
-* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, May). The Nuances of Norepinephrine: Salivary Alpha Amylase’s Role as a Biomarker in tDCS - Directed Judgment & Decision Making. Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
+* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, May). [The Nuances of Norepinephrine: Salivary Alpha Amylase’s Role as a Biomarker in tDCS - Directed Judgment & Decision Making.](https://www.researchgate.net/publication/343193718_The_Nuances_of_Norepinephrine_Investigating_the_Role_of_Salivary_Alpha_Amylase_on_tDCS_-_Modulated_Decision_Making) Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
 
 * Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, March). The Time Course of Meaning Construction with Varying Expectations. Poster was to be presented at the Society for Neuroscience Chicago Chapter annual meeting, Chicago, IL. * Cancelled due to COVID-19
 
@@ -212,7 +226,6 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 * Nagele, M., Kmiecik, M. J., Chang, Z., Martinez, D., Juarez, M., Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C. (2019, August). [Using the Virtual Multiple Errands Task (VMET) to Assess Executive Functioning in Traumatic Brain Injury.](https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury) Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
 
 * Chang, Z., Kmiecik, M. J., Martinez, D., Nagele, M., Lundie, M., Cole, R., Kim, L., Khachaturyan, M., Balloun, B., Juarez, M., Didehbani, N., Clover, M., Rule, G., Scott, G., & Krawczyk, D. C. (2019, August). Using a Virtual-Reality Based Rehabilitation Program to Enhance Daily Functioning in Veterans Surviving Traumatic Brain Injury. Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
-
 
 * Nagele, M. M., Kmiecik, M. J., & Krawczyk, D. C. (2019, April). Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster presented at UT Dallas School of Behavioral and Brain Sciences Psychological Sciences annual meeting, Dallas, TX.
 
@@ -380,6 +393,22 @@ kable(paper_reviews) %>%
 
 # Teaching Experience
 <hr />
+
+## Professor of Record
+
+```{r prof}
+prof_of_rec <- 
+  data.frame(
+    Year = c(2020),
+    Semester = c("Fall"),
+    Class = c("Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)"),
+    Institution = c("Loyola University Chicago")
+  )
+
+kable(prof_of_rec) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+```
+
 
 ## Teaching Assistant
 
