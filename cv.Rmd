@@ -166,7 +166,7 @@ Loyola University Chicago <br/>
 
 ## Papers
 
-* **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (in press). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_. https://doi-org.proxy.uchicago.edu/10.1162/jocn_a_01618 || Project code available on [GitHub](https://github.com/mkmiecik14/fractal-rmts).
+* **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (in press). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_. https://doi.org/10.1162/jocn_a_01618 || Project code available on [GitHub](https://github.com/mkmiecik14/fractal-rmts).
 
 * Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS. 20_:435 https://doi.org/10.21203/rs.2.273/v1 || Open Access [PDF](https://rdcu.be/bKxw4).
 
@@ -378,9 +378,13 @@ kable(awards) %>%
 ```{r, paper-reviews}
 # Paper Reviews Dataframe
 paper_reviews <- data.frame(
-  Year = c(2019, 2019, 2020),
-  Journal = c(
-    "Cognition and Emotion", "Applied Cognitive Psychology", "Neuropsychologia"
+  Year = c(2019, 2019, 2020, 2020),
+  Journal = 
+    c(
+    "Cognition and Emotion", 
+    "Applied Cognitive Psychology", 
+    "Neuropsychologia",
+    "JINS"
     )
 )
 
