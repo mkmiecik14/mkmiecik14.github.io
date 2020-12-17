@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Ekarin Pongpipat &amp; Matthew J. Kmiecik" />
@@ -90,9 +90,7 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -106,7 +104,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -116,6 +113,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -131,7 +131,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -151,6 +150,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -172,47 +208,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3,h4",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -226,6 +281,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -261,8 +322,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -271,6 +330,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -343,8 +412,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Multilevel Modeling in R with NHL Power Play Data</h1>
-<h4 class="author"><em>Ekarin Pongpipat &amp; Matthew J. Kmiecik</em></h4>
-<h4 class="date"><em>11 February 2018</em></h4>
+<h4 class="author">Ekarin Pongpipat &amp; Matthew J. Kmiecik</h4>
+<h4 class="date">11 February 2018</h4>
 
 </div>
 
@@ -385,6 +454,18 @@ data5v4$Team &lt;- plyr::revalue(data5v4$Team, c(ATL = &#39;ATL.WPG&#39;, WPG = 
 <pre class="r"><code>data5v4 &lt;- data5v4 %&gt;% 
             separate(Season, c(&#39;StartYear&#39;, &#39;EndYear&#39;), sep = 4, remove = F) %&gt;%
             mutate_at(c(&#39;StartYear&#39;, &#39;EndYear&#39;), funs(as.numeric))</code></pre>
+<pre><code>## Warning: funs() is soft deprecated as of dplyr 0.8.0
+## Please use a list of either functions or lambdas: 
+## 
+##   # Simple named list: 
+##   list(mean = mean, median = median)
+## 
+##   # Auto named with `tibble::lst()`: 
+##   tibble::lst(mean, median)
+## 
+##   # Using lambdas
+##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+## This warning is displayed once per session.</code></pre>
 <p>Next, we coded each team into its division following the 2013-2014 realignment scheme.</p>
 <p><strong>Note: This has serious implications for our later analysis of conference and divisions. This realignment took place 6 years from the first season in this analysis. Therefore, identifying the teams using this realignment scheme is used for illustrative purposes.</strong></p>
 <pre class="r"><code># Initializing variables to store team names
@@ -554,6 +635,8 @@ BUF
   guides(color = guide_legend(title = &#39;Division&#39;)) +
   scale_x_continuous(limits = c(2007, 2016), breaks = c(2007:2016)) +
   theme_minimal()</code></pre>
+<pre><code>## Warning: Ignoring unknown parameters: fun.y</code></pre>
+<pre><code>## No summary function supplied, defaulting to `mean_se()`</code></pre>
 <p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/vis1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The plot above demonstrates a dramatic decrease in power play goals, league-wide, during the 2012-2013 season. This is clearly a result of the shortened season, which would greatly reduce the amount of powerplay goal attempts, due to the 2012-2013 NHL lockout.</p>
 <p>Let’s control for this shortended season by dividing the powerplay goals (GF) by the amount of games played (GP) per season:</p>
@@ -567,6 +650,8 @@ BUF
   guides(color = guide_legend(title = &#39;Division&#39;)) +
   scale_x_continuous(limits = c(2007, 2016), breaks = c(2007:2016)) +
   theme_minimal()</code></pre>
+<pre><code>## Warning: Ignoring unknown parameters: fun.y</code></pre>
+<pre><code>## No summary function supplied, defaulting to `mean_se()`</code></pre>
 <p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/vis2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now that we’ve controlled for the number of games played per season, we can see that there seems to be a decrease in the average powerplay goals (red line) scored per season for each subsequent year of play.</p>
 <p>Further ways to plot these data include a boxplot and an average trend line:</p>
@@ -726,10 +811,11 @@ avPlot &lt;- ggplot(level1Fits, aes(StartYear, .fitted, group = Team)) +
   stat_summary(aes(group = 1), fun.y = &#39;mean&#39;, 
                geom = &#39;line&#39;, color = &#39;red&#39;, size = 1) +
   labs(x = &#39;Season Start Year&#39;, y = NULL, title = &#39;Average Plot&#39;) +
-  theme_minimal()
-
-# Plots them together
+  theme_minimal()</code></pre>
+<pre><code>## Warning: `fun.y` is deprecated. Use `fun` instead.</code></pre>
+<pre class="r"><code># Plots them together
 grid.arrange(lmPlot, avPlot, ncol = 2)</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data_files/figure-html/level2_plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As we can see above, both these processes produce the same result. Powerplay goals are decreasing, on average, given each team’s performace across one decade of play (2007-2017).</p>
 </div>
@@ -1068,6 +1154,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
