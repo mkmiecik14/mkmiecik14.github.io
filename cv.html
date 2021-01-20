@@ -26,6 +26,9 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -40,6 +43,15 @@
 
 <!-- Twittercards -->
 <meta name="twitter:card" content="summary" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -85,6 +97,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -564,7 +577,7 @@ Matthew J. Kmiecik, PhD
 <div id="preprints" class="section level2">
 <h2>Preprints</h2>
 <ul>
-<li><strong>Kmiecik, M. J.</strong>, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., &amp; Hellman, K. M. (2020). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. <em>MedRxiv</em>, 2020.12.03.20242032. <a href="https://doi.org/10.1101/2020.12.03.20242032" class="uri">https://doi.org/10.1101/2020.12.03.20242032</a></li>
+<li><strong>Kmiecik, M. J.</strong>, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., &amp; Hellman, K. M. (2020). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. <em>MedRxiv</em>, 2020.12.03.20242032. <a href="https://www.medrxiv.org/content/10.1101/2020.12.03.20242032v2" class="uri">https://www.medrxiv.org/content/10.1101/2020.12.03.20242032v2</a></li>
 </ul>
 <p><br /></p>
 </div>
@@ -1445,7 +1458,7 @@ Center for BrainHealth at The University of Texas at Dallas
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1484,7 +1497,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
