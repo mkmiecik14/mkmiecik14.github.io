@@ -7,6 +7,8 @@ output:
     toc_float:
       collapsed: true
       smooth_scroll: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, echo=F}
@@ -382,17 +384,19 @@ kable(awards) %>%
 ## Paper Reviews
 
 ```{r, paper-reviews}
-# Paper Reviews Dataframe
-paper_reviews <- data.frame(
-  Year = c(2019, 2019, 2020, 2020),
-  Journal = 
-    c(
-    "Cognition and Emotion", 
-    "Applied Cognitive Psychology", 
-    "Neuropsychologia",
-    "JINS"
-    )
-)
+# Paper reviews data frame
+paper_reviews <- 
+  data.frame(
+    Year = c(2019, 2019, 2020, 2020, 2021),
+    Journal = 
+      c(
+      "Cognition and Emotion", 
+      "Applied Cognitive Psychology", 
+      "Neuropsychologia",
+      "JINS",
+      "Pain Medicine"
+      )
+     )
 
 # Paper Reviews Table
 kable(paper_reviews) %>%
