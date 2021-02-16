@@ -28,6 +28,7 @@ options(knitr.table.format = "html") # For the html tables
 <li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://orcid.org/0000-0001-5340-3872"><i class="ai ai-orcid fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 </ul>
 </div>
 <!-- social icons bar END-->
@@ -168,7 +169,7 @@ Loyola University Chicago <br/>
 
 ## Papers
 
-* **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (in press). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_. https://doi.org/10.1162/jocn_a_01618 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span>
+* **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_, _33_(3), 357-376. https://doi.org/10.1162/jocn_a_01618 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span>
 
 * Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS. 20_:435 https://doi.org/10.21203/rs.2.273/v1 <span class="label label-default"><a href ="https://rdcu.be/bKxw4" target="_blank" style="color: #FFFFFF">PDF</a></span>
 
@@ -599,90 +600,3 @@ kable(committee) %>%
 <span class="label label-default">R</span>
 
 <br />
-
-# Skills
-<hr />
-
-<div class="container-fluid"> <!-- Skill Container -->
-<!-- Skill: Microsoft Suite START -->
-<div class="row"> 
-<div class="col-md-3">
-<span class="progress-label">Microsoft Suite</span> <!-- Skill Name-->
-</div>
-<div class="col-md-9">
-<div class="progress progress-skill">
-<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100" style="width:98%;"> <!-- Skill Proficiency-->
-</div>
-</div>
-</div>
-</div> 
-<!-- Skill: Microsoft Suite END -->
-<!-- Skill: EPRIME START -->
-<div class="row"> 
-<div class="col-md-3">
-<span class="progress-label">E-Prime 2.0</span> <!-- Skill Name-->
-</div>
-<div class="col-md-9">
-<div class="progress progress-skill">
-<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width:95%;"> <!-- Skill Proficiency-->
-</div>
-</div>
-</div>
-</div> 
-<!-- Skill: Eprime END -->
-<!-- Skill: R START -->
-<div class="row"> 
-<div class="col-md-3">
-<span class="progress-label">R/RStudio</span> <!-- Skill Name-->
-</div>
-<div class="col-md-9">
-<div class="progress progress-skill">
-<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="width:92%;"> <!-- Skill Proficiency-->
-</div>
-</div>
-</div>
-</div> 
-<!-- Skill: R END -->
-<!-- Skill: MATLAB START -->
-<div class="row"> 
-<div class="col-md-3">
-<span class="progress-label">MATLAB</span> <!-- Skill Name-->
-</div>
-<div class="col-md-9">
-<div class="progress progress-skill">
-<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%;"> <!-- Skill Proficiency-->
-</div>
-</div>
-</div>
-</div> 
-<!-- Skill: MATLAB END -->
-<!-- Skill: AFNI START -->
-<div class="row"> 
-<div class="col-md-3">
-<span class="progress-label">AFNI</span> <!-- Skill Name-->
-</div>
-<div class="col-md-9">
-<div class="progress progress-skill">
-<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%;"> <!-- Skill Proficiency-->
-</div>
-</div>
-</div>
-</div> 
-<!-- Skill: AFNI END -->
-<!-- Skill: HTML/CSS START -->
-<div class="row"> 
-<div class="col-md-3">
-<span class="progress-label">HTML/CSS</span> <!-- Skill Name-->
-</div>
-<div class="col-md-9">
-<div class="progress progress-skill">
-<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%;"> <!-- Skill Proficiency-->
-</div>
-</div>
-</div>
-</div> 
-<!-- Skill: HTML/CSS END -->
-</div> <!-- Skill Container -->
-
-
-
