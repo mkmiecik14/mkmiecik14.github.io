@@ -303,6 +303,8 @@ kable(conf_org) %>%
 # Invited Talks
 <hr >
 
+* __Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain__ (March 2021) Neuroscience Seminar, Loyola University Chicago
+
 * __Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology__ (April 2020) Department of Obstetrics and Gynecology Grand Rounds, Evanston Hospital
 
 * __Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology__ (March 2020) Neuroscience Seminar, Loyola University Chicago
