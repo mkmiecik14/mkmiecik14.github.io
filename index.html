@@ -22,6 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -36,6 +38,15 @@
 
 <!-- Twittercards -->
 <meta name="twitter:card" content="summary" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -81,6 +92,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -343,7 +355,7 @@ $(document).ready(function () {
 <div class="social-icons" style="font-size: 2.4rem;">
 <ul>
 <li>
-<a href="mailto:matthew.kmiecik@utdallas.edu"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
+<a href="mailto:mkmiecik14@gmail.com"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
 </li>
 <li>
 <a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a>
@@ -496,7 +508,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

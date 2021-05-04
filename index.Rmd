@@ -9,7 +9,7 @@ title: ""
 <!-- social icons bar START-->
 <div class="social-icons" style="font-size: 2.4rem;">
 <ul>
-<li><a href="mailto:matthew.kmiecik@utdallas.edu"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="mailto:mkmiecik14@gmail.com"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://www.linkedin.com/in/matthew-j-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
