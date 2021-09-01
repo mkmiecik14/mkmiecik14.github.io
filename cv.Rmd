@@ -89,6 +89,21 @@ Loyola University Chicago <br/>
 # Professional Positions
 <hr />
 
+<!-- SRA Visiting Scholar -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<img class="schoollogo center-block" width="100" src="images/sra-logo.png">
+</div>
+<div class="col-xs-12 col-sm-10">
+**Visiting Scholar (2021 - )**<br/>
+The Max Näder Lab for Rehabilitation Technologies and Outcomes Research<br/>
+Center for Bionic Medicine<br/>
+Shirley Ryan AbilityLab<br/>
+</div>
+</div>
+</div>
+
 <!-- LUC Teaching Position -->
 <div class="container-fluid">
 <div class="row">
@@ -96,7 +111,7 @@ Loyola University Chicago <br/>
 <img class="schoollogo center-block" width="100" src="images/luc-shield.png">
 </div>
 <div class="col-xs-12 col-sm-10">
-**Part-time Faculty (Fall 2020)**<br/>
+**Part-time Faculty (Fall 2020, 2021)**<br/>
 Department of Psychology <br/>
 Loyola University Chicago <br/>
 </div>
@@ -206,6 +221,8 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Talks
 
+* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk to be presented at the International Association for the Study of Pain (IASP) Neuropathic Pain SIG (NeuPSIG) webinar series.
+
 * Kmiecik, M. J. (November, 2019). Effective Presentations of Quantitative Information: A Study in Edward 	Tufte. Talk presented at the inaugural [UT Dallas BrainHack](https://brainhack-dallas.github.io/mini-brainhack-utd/), Dallas, TX.
 
 * Kmiecik, M. J., Nagele, M., Sharma, R., Vaughn, A. Thakur, P., & Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk presented at the Brain Performance Institute's Inaugural TBI Research Showcase. Dallas, TX.
@@ -223,6 +240,8 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 <br />
 
 ## Poster Presentations
+
+* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Oct. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster to be presented at the 24th annual scientific meeting of the International Pelvic Pain Society (IPPS), Baltimore, MD.
 
 * Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, May). [The Time Course of Meaning Construction with Varying Expectations](https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations). Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
 
@@ -416,10 +435,13 @@ kable(paper_reviews) %>%
 ```{r prof}
 prof_of_rec <- 
   data.frame(
-    Year = c(2020),
-    Semester = c("Fall"),
-    Class = c("Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)"),
-    Institution = c("Loyola University Chicago")
+    Year = c(2020, 2021),
+    Semester = c("Fall", "Fall"),
+    Class = c(
+      "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)",
+      "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)"
+      ),
+    Institution = c("Loyola University Chicago", "Loyola University Chicago")
   )
 
 kable(prof_of_rec) %>%
