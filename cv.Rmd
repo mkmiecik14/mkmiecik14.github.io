@@ -45,7 +45,7 @@ options(knitr.table.format = "html") # For the html tables
 <img class="schoollogo center-block" width="100" src="images/northshore.jpg">
 </div>
 <div class="col-xs-12 col-sm-10">
-**Postdoctoral Research Fellow (2020 - )**<br/>
+**Postdoctoral Research Fellowship (2020 - )**<br/>
 Department of Obstetrics and Gynecology <br/>
 Evanston Hospital <br/>
 NorthShore University HealthSystem <br/>
@@ -184,6 +184,8 @@ Loyola University Chicago <br/>
 
 ## Papers
 
+* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., Hellman, K. M. (in press). Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain. _PAIN_. doi: 10.1097/j.pain.0000000000002469
+
 * **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_, _33_(3), 357-376. https://doi.org/10.1162/jocn_a_01618 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span>
 
 * Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS. 20_:435 https://doi.org/10.21203/rs.2.273/v1 <span class="label label-default"><a href ="https://rdcu.be/bKxw4" target="_blank" style="color: #FFFFFF">PDF</a></span>
@@ -220,6 +222,8 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 <br />
 
 ## Talks
+
+* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Sept. 2021). 	Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Flash talk 	presented at The University of Chicago Postdoctoral Symposium.
 
 * Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk to be presented at the International Association for the Study of Pain (IASP) Neuropathic Pain SIG (NeuPSIG) webinar series.
 
@@ -308,9 +312,13 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 conf_org_urls <- "https://brainhack-dallas.github.io/mini-brainhack-utd/"
 conf_org <- 
   data.frame(
-  Year = c("2019"),
-  Conference = c(paste0("[BrainHack Dallas](", conf_org_urls, ")")),
-  Location = c("Dallas, TX")
+  Year = c("2021-22", "2019"),
+  Role = c("Fundraising Chair", "Organizer"),
+  Conference = 
+    c(
+      "Chicago Society for Neuroscience",
+      paste0("[BrainHack Dallas](", conf_org_urls, ")", " @ UT Dallas")
+    )
   )
 
 kable(conf_org) %>%
@@ -381,17 +389,24 @@ kable(grants) %>%
 <hr />
 
 ```{r awards}
-awards <- data.frame(Year = c('2014', '2013', '2013', '2013', '2010-2013'),
-                     Award = c('People’s Choice Poster Award',
-                               'First Place Libraries Undergraduate Research Paper Award',
-                               'Department of Psychology Research Award',
-                               'Department of Psychology Honors Award',
-                               'Dean’s List'),
-                     Institution = c('Cognitive Neuroscience Society',
-                                     'Loyola University Chicago',
-                                     'Loyola University Chicago',
-                                     'Loyola University Chicago',
-                                     'Loyola University Chicago'))
+awards <- 
+  data.frame(
+    Year = c('2014', '2013', '2013', '2013', '2010-2013'),
+    Award = c(
+      'People’s Choice Poster Award',
+      'First Place Libraries Undergraduate Research Paper Award',
+      'Department of Psychology Research Award',
+      'Department of Psychology Honors Award',
+      'Dean’s List'
+      ),
+    Institution = c(
+      'Cognitive Neuroscience Society',
+      'Loyola University Chicago',
+      'Loyola University Chicago',
+      'Loyola University Chicago',
+      'Loyola University Chicago'
+      )
+    )
 
 kable(awards) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
@@ -423,6 +438,48 @@ paper_reviews <-
 # Paper Reviews Table
 kable(paper_reviews) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+```
+
+## Committee Involvement
+
+```{r committee}
+committee <- 
+  data.frame(
+    Year = c('2018 - 2019', '2018 - 2019'),
+    Position = c(
+      'Graduate Student Ambassador',
+      'Center-wide RA/Internship Facilitator'
+      ),
+    Institution = c(
+      'Center for BrainHealth at The University of Texas at Dallas', 
+      'Center for BrainHealth at The University of Texas at Dallas'
+      ),
+    check.names = FALSE
+    )
+
+kable(committee) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+
+```
+
+## Memberships
+
+```{r memberships}
+memberships <- 
+  data.frame(
+    Year = c(
+      '2021', 
+      '2021'
+      ),
+    Organization = c(
+      "International Association for the Study of Pain (IASP)",
+      "American Academy of Neurology (AAN) "
+      )
+  )
+
+kable(memberships) %>%
+  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+
 ```
 
 <br >
@@ -551,31 +608,6 @@ training <-
     )
 
 kable(training) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
-
-```
-
-<br />
-
-# Committee Involvement
-<hr />
-
-```{r committee}
-committee <- 
-  data.frame(
-    Year = c('2018 - 2019', '2018 - 2019'),
-    Position = c(
-      'Graduate Student Ambassador',
-      'Center-wide RA/Internship Facilitator'
-      ),
-    Institution = c(
-      'Center for BrainHealth at The University of Texas at Dallas', 
-      'Center for BrainHealth at The University of Texas at Dallas'
-      ),
-    check.names = FALSE
-    )
-
-kable(committee) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
 
 ```
