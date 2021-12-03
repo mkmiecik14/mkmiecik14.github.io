@@ -184,7 +184,7 @@ Loyola University Chicago <br/>
 
 ## Papers
 
-* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., Hellman, K. M. (in press). Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain. _PAIN_. doi: 10.1097/j.pain.0000000000002469
+* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., Hellman, K. M. (in press). Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain. _PAIN_. doi: [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx) <span class="label label-primary"><a href ="https://github.com/mkmiecik14/ssvep" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span> <span class="label label-success"><a href ="https://osf.io/yrzac/?view_only51231254dc96-c4999832ea0c8056374fa" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
 
 * **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_, _33_(3), 357-376. https://doi.org/10.1162/jocn_a_01618 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span>
 
@@ -424,14 +424,15 @@ kable(awards) %>%
 # Paper reviews data frame
 paper_reviews <- 
   data.frame(
-    Year = c(2019, 2019, 2020, 2020, 2021),
+    Year = c(2019, 2019, 2020, 2020, 2021, 2021),
     Journal = 
       c(
       "Cognition and Emotion", 
       "Applied Cognitive Psychology", 
       "Neuropsychologia",
       "JINS",
-      "Pain Medicine"
+      "Pain Medicine",
+      "Applied Cognitive Psychology"
       )
      )
 
@@ -468,12 +469,14 @@ kable(committee) %>%
 memberships <- 
   data.frame(
     Year = c(
-      '2021', 
-      '2021'
+      "2021", 
+      "2021",
+      "2021"
       ),
     Organization = c(
       "International Association for the Study of Pain (IASP)",
-      "American Academy of Neurology (AAN) "
+      "American Academy of Neurology (AAN)",
+      "Skype a Scientist"
       )
   )
 
