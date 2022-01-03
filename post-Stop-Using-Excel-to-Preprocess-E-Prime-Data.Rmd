@@ -96,9 +96,12 @@ eData <- read_delim(
 For the purposes of this tutorial, these data are available on this website's [GitHub repository](https://github.com/mkmiecik14/mkmiecik14.github.io) and can be downloaded into R like this:
 
 ```{r import2}
-library(RCurl) # To retrive data from github repo
+library(httr) # To retrive data from github repo
 link <- "https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/data.txt"
-eData <- read_delim(file = getURL(link), delim = "\t")
+
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(link)
+eData <- read_delim(content(data, "raw"), delim = "\t")
 dim(eData)
 ```
 
@@ -124,8 +127,12 @@ I've printed the top and bottom 6 rows of this dataframe. As you can see, the fi
 
 ```{r addBlock}
 # Adding block
-eData_simple$block <- rep(c(1:4), each = 24) # 24 trials/block
-
+eData_simple <- 
+  eData_simple %>% 
+  group_by(ss) %>% 
+  mutate(block = rep(c(1:4), each = 24)) %>% # 24 trials/block
+  ungroup()
+           
 # Let's take a look
 head(eData_simple); tail(eData_simple)
 ```

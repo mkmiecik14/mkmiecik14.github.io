@@ -9,10 +9,17 @@ output:
     toc_float:
       collapsed: yes
       smooth_scroll: yes
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=F}
-knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  fig.align = 'center', 
+  message = FALSE, 
+  warning = FALSE
+  )
 options(knitr.table.format = 'html') # For the html tables
 ```
 
@@ -40,7 +47,7 @@ To improve this model of NHL 5v4 powerplay goals, we utilized a multi-level line
 Let's first load some useful packages for analysis and plotting:
 
 ```{r packages, message=F}
-library(tidyverse); library(RCurl); library(broom); 
+library(tidyverse); library(httr); library(broom); 
 library(gridExtra); library(knitr); library(kableExtra);
 library(RColorBrewer)
 ```
@@ -49,7 +56,10 @@ These data were retrieved via [Corsica](http://corsica.hockey/) shortly after th
 
 ```{r data}
 link <- 'https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/corsicaData_5v4.csv'
-data5v4 <- read.table(text = getURL(link), sep = ',', header = T)
+
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(link)
+data5v4 <- read_csv(content(data, "raw"))
 ```
 
 The Atlanta Thrashers moved to Winnipeg (Jets) after the 2011 season. Therefore, we combined the entries of the Atlanta Thrashers and the Winnipeg Jets. **The Thrashers and the Jets are considered the same team in this analysis.**
@@ -62,9 +72,10 @@ data5v4$Team <- plyr::revalue(data5v4$Team, c(ATL = 'ATL.WPG', WPG = 'ATL.WPG'))
 For the regression models, it is more desirable to have the year be represented as a continuous variable. This way an increase of 1 year is the equivalent of 1 year of hockey played. This will translate to more interpretable regression coefficents. Year was recoded as the starting year of the season (e.g., 20162017 = 2016):
 
 ```{r year}
-data5v4 <- data5v4 %>% 
-            separate(Season, c('StartYear', 'EndYear'), sep = 4, remove = F) %>%
-            mutate_at(c('StartYear', 'EndYear'), funs(as.numeric))
+data5v4 <- 
+  data5v4 %>% 
+  separate(Season, c('StartYear', 'EndYear'), sep = 4, remove = F) %>%
+  mutate_at(c('StartYear', 'EndYear'), funs(as.numeric))
 ```
 
 Next, we coded each team into its division following the 2013-2014 realignment scheme. 
@@ -80,20 +91,26 @@ atlantic <- c('T.B', 'BOS', 'TOR', 'DET', 'MTL', 'FLA', 'OTT', 'BUF')
 
 # Creating a column to identify each team's division
 data5v4 <- data5v4 %>%
-  mutate(division = case_when(data5v4$Team %in% pacific ~ 'Pacific',
-                              data5v4$Team %in% central ~ 'Central',
-                              data5v4$Team %in% metropolitan ~ 'Metropolitan',
-                              data5v4$Team %in% atlantic ~ 'Atlantic'))
+  mutate(
+    division = case_when(
+      data5v4$Team %in% pacific ~ 'Pacific',
+      data5v4$Team %in% central ~ 'Central',
+      data5v4$Team %in% metropolitan ~ 'Metropolitan',
+      data5v4$Team %in% atlantic ~ 'Atlantic')
+    )
 ```
 
 Here is a table detailing the 2013 realignment:
 
 ```{r divTable}
 # Creates the data frame for html table
-divisions <- data.frame(Pacific = c(pacific, ''),
-                        Central = c(central, ''),
-                        Metropolitan = metropolitan,
-                        Atlantic = atlantic)
+divisions <- 
+  data.frame(
+    Pacific = c(pacific, ''),
+    Central = c(central, ''),
+    Metropolitan = metropolitan,
+    Atlantic = atlantic
+    )
 
 # Prints table
 kable(divisions) %>%
@@ -143,24 +160,31 @@ Further ways to plot these data include a boxplot and an average trend line:
 yaxlim <- c(.25,1) # Locks y-axis
 
 # Box plot
-boxplot <- ggplot(data5v4, aes(factor(StartYear), GF/GP, group = StartYear)) +
+boxplot <- 
+  ggplot(data5v4, aes(factor(StartYear), GF/GP, group = StartYear)) +
   geom_boxplot() +
-  labs(x = 'Season (Start Year)',
-       y = 'Total Season Power Play Goals/Games Played (5v4)',
-       caption = ' ') +
+  labs(
+    x = 'Season (Start Year)',
+    y = 'Total Season Power Play Goals/Games Played (5v4)',
+    caption = ' '
+    ) +
   coord_cartesian(ylim = yaxlim) +
   theme_minimal()
 
 # Summary for line plot
-data5v4_sum <- data5v4 %>% 
+data5v4_sum <- 
+  data5v4 %>% 
   group_by(StartYear) %>% 
-  summarise(mean = mean(GF/GP),
-            sd = mean(GF/GP),
-            n = n(),
-            sem = sd/sqrt(n))
+  summarise(
+    mean = mean(GF/GP),
+    sd = mean(GF/GP),
+    n = n(),
+    sem = sd/sqrt(n)
+    )
 
 # Line plot
-lineplot <- ggplot(data5v4_sum, aes(factor(StartYear), mean, group = 1)) +
+lineplot <- 
+  ggplot(data5v4_sum, aes(factor(StartYear), mean, group = 1)) +
   geom_line(alpha = 1/3) +
   geom_pointrange(aes(ymax = mean + sem, ymin = mean - sem)) +
   coord_cartesian(ylim = yaxlim) +
@@ -192,15 +216,20 @@ The level 1 modeling ignores the conference and division distinction. Each team 
 The code for this is made extremely efficient thanks to dplyr pipe-ing (%>%):
 
 ```{r level1}
-modTeam <-  data5v4 %>% 
-            group_by(Team) %>%
-            do(level1 = lm((GF/GP) ~ StartYear, data = .))
+modTeam <-  
+  data5v4 %>% 
+  nest_by(Team) %>%
+  mutate(level1 = list(lm((GF/GP) ~ StartYear, data = data)))
 ```
 
 Extracting omnibus level statistics, such as _R^2^_, for each of the 30 linear regressions and placing them in a easy-to-use dataframe was done using the 'broom' package function 'glance':
 
 ```{r level1_2}
-level1Omni <- modTeam %>% glance(level1) %>% mutate(sig = p.value < .05)
+level1Omni <- 
+  modTeam %>% 
+  summarise(broom::glance(level1)) %>% 
+  ungroup() %>% 
+  mutate(sig = p.value < .05)
 ```
 
 We'll use these omnibus estimates to examine all 30 regression models simultaneously via _R^2^_ estimates. These allow us to see how much variability in powerplay goals per games played was explained by time:
@@ -224,10 +253,12 @@ Let's first extract these coefficients using dplyr pipeing (%>%) and the 'broom'
 
 ```{r level1_3}
 # Extracting level 1 coefficients
-level1Coef <- modTeam %>% 
-              tidy(level1) %>% 
-              filter(term == 'StartYear') %>%   # Facilitates plotting
-              mutate(sig = p.value < .05)       # For later plotting
+level1Coef <- 
+  modTeam %>% 
+  summarise(broom::tidy(level1)) %>% 
+  ungroup() %>%
+  filter(term == 'StartYear') %>%   # Facilitates plotting
+  mutate(sig = p.value < .05)       # For later plotting
 ```
 
 Now let's plot these coefficients ordered by size:
@@ -235,13 +266,16 @@ Now let's plot these coefficients ordered by size:
 ```{r level1_3fig}
 ggplot(level1Coef, aes(estimate, reorder(Team, -1*estimate), color = sig)) +
   geom_point(size = 2) +
-  geom_errorbarh(aes(xmin = estimate - std.error, 
-                     xmax = estimate + std.error),
-                 alpha = 1/2) +
+  geom_errorbarh(
+    aes(xmin = estimate - std.error, xmax = estimate + std.error),
+    alpha = 1/2
+    ) +
   scale_color_manual(values = sigColorPal[c(9,2)]) +
-  labs(x = 'Estimate (Yearly Change in Power Play Goals/Game)', 
-       y = 'Team',
-       caption = 'SEM error bars') +
+  labs(
+    x = 'Estimate (Yearly Change in Power Play Goals/Game)', 
+    y = 'Team',
+    caption = 'SEM error bars'
+    ) +
   guides(color = guide_legend(title = 'p < .05')) +
   theme_minimal()
 ```
@@ -252,8 +286,9 @@ For a more comprehensive picture, let's look at all the teams in the NHL plotted
 
 ```{r level1_4}     
 # Extracting level 1 model fits
-level1Fits <- modTeam %>% 
-  augment(level1) %>%
+level1Fits <- 
+  modTeam %>% 
+  summarise(broom::augment(level1)) %>%
   ungroup() %>%
   mutate(sig = rep(level1Coef$sig, each = length(unique(StartYear))))
 ```
@@ -264,9 +299,11 @@ And then plot them using ggplot:
 ggplot(level1Fits, aes(StartYear, color = sig)) +
   geom_line(aes(y = .fitted), alpha = 2/3) +
   scale_color_manual(values = sigColorPal[c(9,2)]) +
-  geom_line(aes(y = X.GF.GP.), color = 'black') +
-  labs(x = 'Season (Start Year)',
-       y = 'Power Play Goals/Games Played (5v4)') +
+  geom_line(aes(y = `(GF/GP)`), color = 'black') +
+  labs(
+    x = 'Season (Start Year)',
+    y = 'Power Play Goals/Games Played (5v4)'
+    ) +
   scale_x_continuous(breaks = c(2008, 2015)) +
   facet_wrap(~Team, ncol = 5) +
   guides(color = guide_legend(title = 'p < .05')) +
@@ -310,19 +347,28 @@ One way to visualize these results is to plot each team's predicted model from l
 level2Fits <- augment(level2) # Extracts model fits
 
 # LM plot
-lmPlot <- ggplot(level1Fits, aes(StartYear, .fitted, group = Team)) +
+lmPlot <- 
+  ggplot(level1Fits, aes(StartYear, .fitted, group = Team)) +
   geom_line(alpha = 1/3) +
   geom_smooth(aes(group = 1), method = 'lm', color = 'purple', se = F) +
-  labs(x = 'Season Start Year',
-       y = 'Level 1 Estimates (Power Play Goals/Games Played)',
-       title = 'Linear Model Plot') +
+  labs(
+    x = 'Season Start Year',
+    y = 'Level 1 Estimates (Power Play Goals/Games Played)',
+    title = 'Linear Model Plot'
+    ) +
   theme_minimal()
 
 # Average plot
-avPlot <- ggplot(level1Fits, aes(StartYear, .fitted, group = Team)) +
+avPlot <- 
+  ggplot(level1Fits, aes(StartYear, .fitted, group = Team)) +
   geom_line(alpha = 1/3) +
-  stat_summary(aes(group = 1), fun.y = 'mean', 
-               geom = 'line', color = 'red', size = 1) +
+  stat_summary(
+    aes(group = 1), 
+    fun = 'mean', 
+    geom = 'line', 
+    color = 'red', 
+    size = 1
+    ) +
   labs(x = 'Season Start Year', y = NULL, title = 'Average Plot') +
   theme_minimal()
 
@@ -348,13 +394,18 @@ In order to incorporate these planned comparisons, we have come up with the foll
 
 ```{r L2_contrast}
 # Creates the data frame for html table
-contrasts <- data.frame(Contrast = c('Conference (West vs. East)', 
-                                     'West (Pacific vs. Central)', 
-                                     'East (Metropolitan vs. Atlantic)'),
-                        Pacific = c(.5, -.5, 0),
-                        Central = c(.5, .5, 0),
-                        Metropolitan = c(-.5, 0, .5),
-                        Atlantic = c(-.5, 0, -.5))
+contrasts <- 
+  data.frame(
+    Contrast = c(
+      'Conference (West vs. East)', 
+      'West (Pacific vs. Central)', 
+      'East (Metropolitan vs. Atlantic)'
+      ),
+    Pacific = c(.5, -.5, 0),
+    Central = c(.5, .5, 0),
+    Metropolitan = c(-.5, 0, .5),
+    Atlantic = c(-.5, 0, -.5)
+    )
 
 # Prints table
 kable(contrasts) %>%
@@ -405,39 +456,49 @@ Nevertheless, let's take a look at each of these in turn. First, we'll extract t
 
 ```{r}
 # Extracts estimates from each team from level 2 extended
-level2DivTeam <- level2Div %>% 
-  augment() %>% 
+level2DivTeam <- 
+  level2Div %>% 
+  broom::augment(se_fit = TRUE) %>% 
   mutate(team = level1Coef$Team) %>% 
   ungroup() %>%
-  mutate(division = case_when(team %in% pacific ~ 'pacific',
-                              team %in% central ~ 'central',
-                              team %in% metropolitan ~ 'metropolitan',
-                              team %in% atlantic ~ 'atlantic'),
-         division = factor(division))
+  mutate(
+    division = case_when(
+      team %in% pacific ~ 'pacific',
+      team %in% central ~ 'central',
+      team %in% metropolitan ~ 'metropolitan',
+      team %in% atlantic ~ 'atlantic'
+      ),
+    division = factor(division)
+    )
 
 # Re-orders factor for plotting
-level2DivTeam$division <- factor(level2DivTeam$division,
-                                 levels(level2DivTeam$division)[c(4,2,3,1)])
+level2DivTeam$division <- 
+  factor(level2DivTeam$division, levels(level2DivTeam$division)[c(4,2,3,1)])
 ```
 
 After extracting this information, let's take a look within the Western conference and compare the Pacific and Central divisions:
 
 ```{r level2eWest}
 # Gathers summary info
-west_sum <- level2DivTeam %>%
+west_sum <- 
+  level2DivTeam %>%
   group_by(west) %>%
-  summarise(mean = mean(.fitted),
-            sd = sd(.fitted),
-            n = n(),
-            sem = sd/sqrt(n)) %>%
+  summarise(
+    mean = mean(.fitted),
+    sd = sd(.fitted),
+    n = n(),
+    sem = sd/sqrt(n)
+    ) %>%
   filter(west != 0)
 
 # Plot
 ggplot(west_sum, aes(factor(west), mean, group = 1)) +
   geom_point(size = 2) +
   geom_line(alpha = 1/3) +
-  scale_x_discrete('Western Conference Divisions', 
-                   label = c('Pacific', 'Central')) +
+  scale_x_discrete(
+    'Western Conference Divisions', 
+    label = c('Pacific', 'Central')
+    ) +
   labs(y = 'Yearly Change in Power Play Goals/Games Played') +
   theme_minimal()
 ```
@@ -448,20 +509,25 @@ Next, let's take a look at within the Eastern conference between the Atlantic an
 
 ```{r level2eEast}
 # Gathers summary info
-east_sum <- level2DivTeam %>%
+east_sum <- 
+  level2DivTeam %>%
   group_by(east) %>%
-  summarise(mean = mean(.fitted),
-            sd = sd(.fitted),
-            n = n(),
-            sem = sd/sqrt(n)) %>%
+  summarise(
+    mean = mean(.fitted),
+    sd = sd(.fitted),
+    n = n(),
+    sem = sd/sqrt(n)
+    ) %>%
   filter(east != 0)
 
 # Plot
 ggplot(east_sum, aes(factor(east), mean, group = 1)) +
   geom_point(size = 2) +
   geom_line(alpha = 1/3) +
-  scale_x_discrete('Eastern Conference Divisions', 
-                   label = c('Atlantic', 'Metropolitan')) +
+  scale_x_discrete(
+    'Eastern Conference Divisions', 
+    label = c('Atlantic', 'Metropolitan')
+    ) +
   labs(y = 'Yearly Change in Power Play Goals/Games Played') +
   theme_minimal()
 ```
@@ -472,19 +538,24 @@ Finally, let's compare the Western and Eastern conferences:
 
 ```{r level2eConf}
 # Gathering summary information
-conf_sum <- level2DivTeam %>%
+conf_sum <- 
+  level2DivTeam %>%
   group_by(conf) %>%
-  summarise(mean = mean(.fitted),
-            sd = sd(.fitted),
-            n = n(),
-            sem = sd/sqrt(n))
+  summarise(
+    mean = mean(.fitted),
+    sd = sd(.fitted),
+    n = n(),
+    sem = sd/sqrt(n)
+    )
 
 # Plot
 ggplot(conf_sum, aes(factor(conf), mean, group = 1)) +
   geom_point(size = 2) +
   geom_line(alpha = 1/3) +
-  scale_x_discrete('NHL Conference', 
-                   label = c('East', 'West')) +
+  scale_x_discrete(
+    'NHL Conference', 
+    label = c('East', 'West')
+    ) +
   labs(y = 'Yearly Change in Power Play Goals/Games Played') +
   theme_minimal()
 ```
@@ -499,8 +570,10 @@ yax.lock <- c(-.025, -.01)
 westPlot <- ggplot(west_sum, aes(factor(west), mean, group = 1)) +
   geom_point(size = 2) +
   geom_line(alpha = 1/3) +
-  scale_x_discrete('Western Conference Divisions', 
-                   label = c('Pacific', 'Central')) +
+  scale_x_discrete(
+    'Western Conference Divisions', 
+    label = c('Pacific', 'Central')
+    ) +
   coord_cartesian(ylim = yax.lock) +
   labs(y = 'Yearly Change in Power Play Goals/Games Played') +
   theme_minimal()
@@ -509,8 +582,10 @@ westPlot <- ggplot(west_sum, aes(factor(west), mean, group = 1)) +
 eastPlot <- ggplot(east_sum, aes(factor(east), mean, group = 1)) +
   geom_point(size = 2) +
   geom_line(alpha = 1/3) +
-  scale_x_discrete('Eastern Conference Divisions', 
-                   label = c('Atlantic', 'Metropolitan')) +
+  scale_x_discrete(
+    'Eastern Conference Divisions',
+    label = c('Atlantic', 'Metropolitan')
+    ) +
   coord_cartesian(ylim = yax.lock) +
   labs(y = NULL) +
   theme_minimal()
@@ -519,8 +594,7 @@ eastPlot <- ggplot(east_sum, aes(factor(east), mean, group = 1)) +
 confPlot <- ggplot(conf_sum, aes(factor(conf), mean, group = 1)) +
   geom_point(size = 2) +
   geom_line(alpha = 1/3) +
-  scale_x_discrete('NHL Conference', 
-                   label = c('East', 'West')) +
+  scale_x_discrete('NHL Conference', label = c('East', 'West')) +
   coord_cartesian(ylim = yax.lock) +
   labs(y = NULL) +
   theme_minimal()
@@ -535,11 +609,14 @@ ggplot(level2DivTeam, aes(division, .fitted, group = factor(conf))) +
   geom_pointrange(aes(ymax = .fitted + .se.fit, ymin = .fitted - .se.fit)) +
   geom_line(alpha = 1/3) +
   coord_cartesian(ylim = yax.lock) +
-  scale_x_discrete(labels = c('Pacific', 'Central', 
-                              'Metropolitan', 'Atlantic')) +
-  labs(x = 'Division', 
-       y = 'Yearly Change in Power Play Goals/Games Played',
-       caption = 'SEM error bars') +
+  scale_x_discrete(
+    labels = c('Pacific', 'Central', 'Metropolitan', 'Atlantic')
+    ) +
+  labs(
+    x = 'Division', 
+    y = 'Yearly Change in Power Play Goals/Games Played',
+    caption = 'SEM error bars'
+    ) +
   theme_minimal()
 ```
 

@@ -28,6 +28,9 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -42,6 +45,15 @@
 
 <!-- Twittercards -->
 <meta name="twitter:card" content="summary" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -87,6 +99,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -438,21 +451,21 @@ div.tocify {
 <li><p>Download a program that will allow you to map the buttons on the Xbox controller to keyboard keystrokes. I recommend the program <a href="http://joytokey.net/en/">JoyToKey</a>. Once downloaded, open JoyToKey with the Xbox controller still plugged in and modify or create a new profile. In the right pane, click on the button that you would like to assign a keyboard keystroke to and then click “Edit button assignment”. If you are unsure which controller buttons correspond to the numberic buttons (e.g., Button 1), then type “joy.cpl” into the Windows search bar (see <a href="https://www.howtogeek.com/241421/how-to-calibrate-your-gaming-controller-in-windows-10/">here</a>) and then click “Properties”. The buttons on this window will light up when pressed, indicating the numneric button assignments.</p></li>
 </ol>
 <div class="figure">
-<img src="images/joy2key1.png" alt="I am pressing the A button in this screenshot." />
+<img src="images/joy2key1.png" alt="" />
 <p class="caption"><em>I am pressing the A button in this screenshot.</em></p>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>Assign the necessary buttons to specific keystrokes in JoyToKey by clicking the “Edit button assignment” and then simply pressing the intended keystroke on the keyboard. Click OK to save the assignment. For this experiment, I assigned A (Button 1) to Numpad1 and B (Button 2) to Numpad2.</li>
 </ol>
 <div class="figure">
-<img src="images/joy2key2.png" alt="Assigning numberpad #1 to the A button." />
+<img src="images/joy2key2.png" alt="" />
 <p class="caption"><em>Assigning numberpad #1 to the A button.</em></p>
 </div>
 <ol start="4" style="list-style-type: decimal">
 <li>To get E-Prime to recognize controller button presses requires adding a Joystick device. To do this, double click on Experiment (filename.es2) or Edit &gt; Experiment. Click on Devices &gt; Add… &gt; select Joystick. Double click on Joystick in the Devices tab to edit its properties to Emulate Device: Keyboard. See <a href="https://support.pstnet.com/hc/en-us/articles/229355467-NEW-FEATURE-Joystick-Device-17152-">here</a> for documentation and sample inline code for joystick functions.</li>
 </ol>
 <div class="figure">
-<img src="images/eprimeJoystick.png" alt="Joystick configuration in E-prime." />
+<img src="images/eprimeJoystick.png" alt="" />
 <p class="caption"><em>Joystick configuration in E-prime.</em></p>
 </div>
 <p>E-Prime will now recognize the button presses on the controller as keystrokes. This allows experiments to be programmed as usual, as long as the controller buttons are mapped to appropriate keystrokes (thank you <a href="https://groups.google.com/forum/#!topic/e-prime/-Kdb0qG83-0">Ben</a> for the idea). You can even emulate the controller as a mouse (see <a href="https://www.pstnet.com/support/kb.asp?TopicID=1249">here</a>). To do this, edit the joystick properties (see step 4 above) to "Show Cursor: yes: and include the following inline code at the beginning of your experiment:</p>
@@ -464,7 +477,7 @@ div.tocify {
 <p>It is crucial for those studying event-related potentials (ERPs) that the stimulus computer communicates time-locked onsets and responses from E-prime to the EEG recording. There are several ways this can occur, but the one I will be demonstrating is using a parallel port communication from the E-prime stimulus computer to the amplifier (<em>Note:</em> this will differ from system to system). Triggers are then embedded into the recorded EEG signal and read into the recording software as events. Let’s use a simple experiment to demonstrate sending triggers for the appearance of stimulus events, as well as participant responses. The experiment is available for download <a href="mkmiecik14.github.io/data/triggerTutorialExperiment.es2">here</a>.</p>
 <p>In this experiment participants are presented with a fixation cross and then prompted to press either “1” or “2”. Participants receive feedback regarding the accuracy and reaction time of their response across 10 trials. Here is an image of the experiment structure:</p>
 <div class="figure">
-<img src="images/expStructure.png" alt="E-Prime experiment structure." />
+<img src="images/expStructure.png" alt="" />
 <p class="caption"><em>E-Prime experiment structure.</em></p>
 </div>
 <p>Several methods of passing triggers will be demonstrated, including global variables, List Attributes, onset/offset signaling, and WritePort commands.</p>
@@ -728,7 +741,7 @@ stim.OffsetSignalData = 0</code></pre>
 <li>End Action: (none) – this will not terminate the stimulus</li>
 </ul>
 <div class="figure">
-<img src="images/stim.png" alt="stim TextDisplay configuration." />
+<img src="images/stim.png" alt="" />
 <p class="caption"><em>stim TextDisplay configuration.</em></p>
 </div>
 <p>The basic concept for this is that as soon as “stim” is presented on screen, we must program E-Prime to constantly look for a response. If one is detected, send triggers as soon as possible given the trial accuracy (i.e., 1 = correct, 2 = incorrect).</p>
@@ -811,7 +824,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2020 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2022 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 
@@ -825,7 +838,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -864,7 +877,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

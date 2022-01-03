@@ -25,7 +25,11 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -41,12 +45,21 @@
 <!-- Twittercards -->
 <meta name="twitter:card" content="summary" />
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -56,14 +69,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -73,7 +88,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -160,6 +175,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -518,44 +534,53 @@ div.tocify {
 <h2>Setup</h2>
 <hr >
 <p>Here are the packages that we’ll use for these analyses and functions to style the output/plots.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Packages ----</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(tidyverse)    <span class="co"># For data manipulation, plotting, etc. </span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(RCurl)        <span class="co"># To import data on github</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(TInPosition)  <span class="co"># PCA tools</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(ggrepel)      <span class="co"># Plotting tool for ggplot2</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(kableExtra)   <span class="co"># HTML table tools</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(RColorBrewer) <span class="co"># Nice plotting colors</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="kw">library</span>(gridExtra)    <span class="co"># Plotting tools</span></a>
-<a class="sourceLine" id="cb1-9" title="9"></a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="co"># Custom functions ----</span></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co"># nice_table() simplifies the printing of HTML tables using kable</span></a>
-<a class="sourceLine" id="cb1-12" title="12">nice_table &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb1-13" title="13">  </a>
-<a class="sourceLine" id="cb1-14" title="14">  <span class="kw">kable</span>(x) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&#39;striped&#39;</span>, <span class="st">&#39;hover&#39;</span>, <span class="st">&#39;responsive&#39;</span>, <span class="st">&#39;condensed&#39;</span>))</a>
-<a class="sourceLine" id="cb1-16" title="16">  </a>
-<a class="sourceLine" id="cb1-17" title="17">}</a>
-<a class="sourceLine" id="cb1-18" title="18"></a>
-<a class="sourceLine" id="cb1-19" title="19"><span class="co"># Color palettes ----</span></a>
-<a class="sourceLine" id="cb1-20" title="20">rdgy &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">11</span>, <span class="dt">name =</span> <span class="st">&quot;RdGy&quot;</span>) <span class="co"># display.brewer.pal(11, &quot;RdGy&quot;)</span></a>
-<a class="sourceLine" id="cb1-21" title="21"></a>
-<a class="sourceLine" id="cb1-22" title="22"><span class="co"># ggplot2 finishings</span></a>
-<a class="sourceLine" id="cb1-23" title="23">pca_furnish &lt;-<span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb1-24" title="24"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb1-25" title="25">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb1-26" title="26">        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()</a>
-<a class="sourceLine" id="cb1-27" title="27">        )</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Packages ----</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(tidyverse)    <span class="co"># For data manipulation, plotting, etc. </span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(httr)         <span class="co"># To import data on github</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(TInPosition)  <span class="co"># PCA tools</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">library</span>(ggrepel)      <span class="co"># Plotting tool for ggplot2</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">library</span>(kableExtra)   <span class="co"># HTML table tools</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">library</span>(RColorBrewer) <span class="co"># Nice plotting colors</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">library</span>(gridExtra)    <span class="co"># Plotting tools</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># Custom functions ----</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># nice_table() simplifies the printing of HTML tables using kable</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>nice_table &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb1-13"><a href="#cb1-13"></a>  </span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="kw">kable</span>(x) <span class="op">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="st">    </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&#39;striped&#39;</span>, <span class="st">&#39;hover&#39;</span>, <span class="st">&#39;responsive&#39;</span>, <span class="st">&#39;condensed&#39;</span>))</span>
+<span id="cb1-16"><a href="#cb1-16"></a>  </span>
+<span id="cb1-17"><a href="#cb1-17"></a>}</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># Color palettes ----</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>rdgy &lt;-<span class="st"> </span><span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">11</span>, <span class="dt">name =</span> <span class="st">&quot;RdGy&quot;</span>) <span class="co"># display.brewer.pal(11, &quot;RdGy&quot;)</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="co"># ggplot2 finishings</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>pca_furnish &lt;-<span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb1-25"><a href="#cb1-25"></a>        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb1-26"><a href="#cb1-26"></a>        <span class="dt">axis.line =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb1-27"><a href="#cb1-27"></a>        )</span></code></pre></div>
 <p><br ></p>
 </div>
 <div id="data-import" class="section level2">
 <h2>Data Import</h2>
 <hr >
 <p>Let’s first prepare the data for analysis. These data were downloaded from <a href="http://corsica.hockey/">Corsica’s</a> team stats tool. We’ve prepared these data for you and are available for import into R like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Link to raw data on Github</span></a>
-<a class="sourceLine" id="cb2-2" title="2">link &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/nhl-team-data-corsica.csv&quot;</span></a>
-<a class="sourceLine" id="cb2-3" title="3"></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co"># reads in data from Github</span></a>
-<a class="sourceLine" id="cb2-5" title="5">nhl_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="kw">getURL</span>(link))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Link to raw data on Github</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>link &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/nhl-team-data-corsica.csv&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>data &lt;-<span class="st"> </span><span class="kw">GET</span>(link)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>nhl_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">content</span>(data, <span class="st">&quot;raw&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
+## cols(
+##   .default = col_double(),
+##   Team = col_character(),
+##   Season = col_character()
+## )
+## i Use `spec()` for the full column specifications.</code></pre>
 <p><br ></p>
 </div>
 <div id="data-preparation" class="section level2">
@@ -574,18 +599,18 @@ div.tocify {
 <li>Shooting Percentage (ShootPerc)</li>
 <li>Save Percentage (SavePerc)</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Preparing Hawks data ----</span></a>
-<a class="sourceLine" id="cb3-2" title="2">hawks_data &lt;-<span class="st">  </span>nhl_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="st">  </span><span class="kw">select</span>(Team<span class="op">:</span>CA, GF, GA, PENT, PEND, <span class="dt">ShootPerc =</span> <span class="st">`</span><span class="dt">Sh%</span><span class="st">`</span>, <span class="dt">SavePerc =</span> <span class="st">`</span><span class="dt">Sv%</span><span class="st">`</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="st">  </span><span class="kw">filter</span>(Team <span class="op">==</span><span class="st"> &quot;CHI&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="st">  </span><span class="kw">separate</span>(Season, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Start_Year&quot;</span>, <span class="st">&quot;Season&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Team =</span> <span class="ot">NULL</span>, </a>
-<a class="sourceLine" id="cb3-7" title="7">         <span class="dt">Start_Year =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb3-8" title="8">         <span class="dt">Season =</span> <span class="kw">as.numeric</span>(Season)</a>
-<a class="sourceLine" id="cb3-9" title="9">         )</a>
-<a class="sourceLine" id="cb3-10" title="10"></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co"># Prints data</span></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="kw">nice_table</span>(hawks_data)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Preparing Hawks data ----</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>hawks_data &lt;-<span class="st">  </span>nhl_data <span class="op">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw">select</span>(Team<span class="op">:</span>CA, GF, GA, PENT, PEND, <span class="dt">ShootPerc =</span> <span class="st">`</span><span class="dt">Sh%</span><span class="st">`</span>, <span class="dt">SavePerc =</span> <span class="st">`</span><span class="dt">Sv%</span><span class="st">`</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw">filter</span>(Team <span class="op">==</span><span class="st"> &quot;CHI&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">separate</span>(Season, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Start_Year&quot;</span>, <span class="st">&quot;Season&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Team =</span> <span class="ot">NULL</span>, </span>
+<span id="cb4-7"><a href="#cb4-7"></a>         <span class="dt">Start_Year =</span> <span class="ot">NULL</span>,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>         <span class="dt">Season =</span> <span class="kw">as.numeric</span>(Season)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>         )</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co"># Prints data</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="kw">nice_table</span>(hawks_data)</span></code></pre></div>
 <table class="table table-striped table-hover table-responsive table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1013,19 +1038,19 @@ SavePerc
 </tbody>
 </table>
 <p>Let’s also prepare a table of notable events of every year in this data set for the Chicago Blackhawks, including their Stanley Cup wins (3) and their playoff success:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Initializing Chicago Blackhawks notable events table ----</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co"># SCW = Stanley Cup Wins</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co"># PF = Playoff Finish:</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#   0 = Did not make playoffs</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#   1 = Lost in first round</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#   2 = Lost in second round</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#   3 = Lost in conference finals</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#   4 = Lost in Stanley Cup final</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#   5 = Won Stanley Cup</span></a>
-<a class="sourceLine" id="cb4-10" title="10">hawks_events &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Season =</span> hawks_data<span class="op">$</span>Season,</a>
-<a class="sourceLine" id="cb4-11" title="11">                       <span class="dt">SCW =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)),</a>
-<a class="sourceLine" id="cb4-12" title="12">                       <span class="dt">PF  =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb4-13" title="13">                       )</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Initializing Chicago Blackhawks notable events table ----</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co"># SCW = Stanley Cup Wins</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># PF = Playoff Finish:</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#   0 = Did not make playoffs</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#   1 = Lost in first round</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#   2 = Lost in second round</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#   3 = Lost in conference finals</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#   4 = Lost in Stanley Cup final</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#   5 = Won Stanley Cup</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>hawks_events &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Season =</span> hawks_data<span class="op">$</span>Season,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>                       <span class="dt">SCW =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)),</span>
+<span id="cb5-12"><a href="#cb5-12"></a>                       <span class="dt">PF  =</span> <span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb5-13"><a href="#cb5-13"></a>                       )</span></code></pre></div>
 <p><br ></p>
 </div>
 <div id="z-scores" class="section level2">
@@ -1036,34 +1061,34 @@ SavePerc
 <li>Adjust all scores by the number of games played due to a shorted 2012-2013 season. We do this by dividing each metric by the number of games played</li>
 <li>Compute z-scores of all measures to facilitate comparisons</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Preprocesses, adjusts, and z-scores hawks data ----</span></a>
-<a class="sourceLine" id="cb5-2" title="2">hawks_data_long &lt;-<span class="st"> </span>hawks_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">gather</span>(Meas, Val, <span class="op">-</span>Season, <span class="op">-</span>GP) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(Meas) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Val_Adj =</span> Val<span class="op">/</span>GP,               <span class="co"># adjusts based on games played</span></a>
-<a class="sourceLine" id="cb5-6" title="6">         <span class="dt">Val_Zscore =</span> <span class="kw">scale</span>(Val_Adj)     <span class="co"># computes z-scores</span></a>
-<a class="sourceLine" id="cb5-7" title="7">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sig =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(<span class="kw">abs</span>(Val_Zscore) <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.96</span>, <span class="st">&quot;p &lt; .05&quot;</span>, <span class="st">&quot;p &gt; .05&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># z score &gt; 1.96</span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="st">  </span><span class="kw">inner_join</span>(., hawks_events, <span class="dt">by =</span> <span class="st">&quot;Season&quot;</span>) <span class="co"># adds notable hawks events</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Preprocesses, adjusts, and z-scores hawks data ----</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>hawks_data_long &lt;-<span class="st"> </span>hawks_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw">gather</span>(Meas, Val, <span class="op">-</span>Season, <span class="op">-</span>GP) <span class="op">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="st">  </span><span class="kw">group_by</span>(Meas) <span class="op">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Val_Adj =</span> Val<span class="op">/</span>GP,               <span class="co"># adjusts based on games played</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>         <span class="dt">Val_Zscore =</span> <span class="kw">scale</span>(Val_Adj)     <span class="co"># computes z-scores</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>         ) <span class="op">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sig =</span> <span class="kw">factor</span>(<span class="kw">ifelse</span>(<span class="kw">abs</span>(Val_Zscore) <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.96</span>, <span class="st">&quot;p &lt; .05&quot;</span>, <span class="st">&quot;p &gt; .05&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># z score &gt; 1.96</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="st">  </span><span class="kw">inner_join</span>(., hawks_events, <span class="dt">by =</span> <span class="st">&quot;Season&quot;</span>) <span class="co"># adds notable hawks events</span></span></code></pre></div>
 <p>Plotting the z-scores of each measure across time allows us to compare across measures using a standardized unit:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Plots all measures together ----</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">ggplot</span>(hawks_data_long, <span class="kw">aes</span>(<span class="kw">factor</span>(Season), Val_Zscore)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">color =</span> rdgy[<span class="dv">8</span>]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sig, <span class="dt">shape =</span> SCW), <span class="dt">size =</span> <span class="fl">1.75</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">3</span>], rdgy[<span class="dv">10</span>]), <span class="dt">name =</span> <span class="st">&quot;Z-Score&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw">scale_shape_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Stanley Cup Wins&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">minor_breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Season&quot;</span>, </a>
-<a class="sourceLine" id="cb6-11" title="11">       <span class="dt">y =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Measurement (Z-Score)&quot;</span>,</a>
-<a class="sourceLine" id="cb6-12" title="12">       <span class="dt">title =</span> <span class="st">&quot;Chicago Blackhawk&#39;s Performance 2007-2018&quot;</span></a>
-<a class="sourceLine" id="cb6-13" title="13">       ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Meas, <span class="dt">nrow =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb6-16" title="16">        <span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span></a>
-<a class="sourceLine" id="cb6-17" title="17">        )</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Plots all measures together ----</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">ggplot</span>(hawks_data_long, <span class="kw">aes</span>(<span class="kw">factor</span>(Season), Val_Zscore)) <span class="op">+</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">color =</span> rdgy[<span class="dv">8</span>]) <span class="op">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sig, <span class="dt">shape =</span> SCW), <span class="dt">size =</span> <span class="fl">1.75</span>) <span class="op">+</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">3</span>], rdgy[<span class="dv">10</span>]), <span class="dt">name =</span> <span class="st">&quot;Z-Score&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="st">  </span><span class="kw">scale_shape_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Stanley Cup Wins&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">minor_breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)) <span class="op">+</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Season&quot;</span>, </span>
+<span id="cb7-11"><a href="#cb7-11"></a>       <span class="dt">y =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Measurement (Z-Score)&quot;</span>,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>       <span class="dt">title =</span> <span class="st">&quot;Chicago Blackhawk&#39;s Performance 2007-2018&quot;</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>       ) <span class="op">+</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Meas, <span class="dt">nrow =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb7-16"><a href="#cb7-16"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>        )</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>When inspecting these plots in relation to the Chicago Blackhawk’s 3 Stanley Cup wins (triangles), we see very little that stands out. It seems like the 2012-2013 season was a unique one, such that it was a Stanley Cup winning team and their regular season Save Percentage and Shooting Percentage were much greater than their other years. Perhaps these two metrics are important for winning the Presidents’ Trophy (awarded to the NHL team finishing with the highest total points), which the Blackhawk’s received at the end of their 2012-2013 season.</p>
 <p>Additionally, the Blackhawk’s 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 season was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see <a href="https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html">NYT article</a>). It is likely that the change in ownership, hiring of Coach Q, and the acquisition of Jonathon Towes and Patrick Kane that led to the drastic improvement of team stats in the years following.</p>
@@ -1073,30 +1098,30 @@ SavePerc
 <h2>Correlations</h2>
 <hr >
 <p>Now let’s examine how the various team stats/measurements relate to each other by computing their correlations and visualizing them with a heatmap:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Converts back to wide format</span></a>
-<a class="sourceLine" id="cb7-2" title="2">hawks_data_wide &lt;-<span class="st"> </span>hawks_data_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">select</span>(Season, Meas, Val_Zscore) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">spread</span>(Meas, Val_Zscore)</a>
-<a class="sourceLine" id="cb7-5" title="5"></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co"># Computes correlations</span></a>
-<a class="sourceLine" id="cb7-7" title="7">hawks_cors &lt;-<span class="st"> </span><span class="kw">cor</span>(hawks_data_wide)</a>
-<a class="sourceLine" id="cb7-8" title="8"></a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="co"># Correlations to long format for plotting</span></a>
-<a class="sourceLine" id="cb7-10" title="10">hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="st">  </span><span class="kw">arrange</span>(Var1, Var2)</a>
-<a class="sourceLine" id="cb7-13" title="13"></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="co"># Correlation heatmap</span></a>
-<a class="sourceLine" id="cb7-15" title="15"><span class="kw">ggplot</span>(hawks_cors_long, <span class="kw">aes</span>(<span class="dt">x =</span> Var1, <span class="dt">y =</span> Var2, <span class="dt">fill =</span> value)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-16" title="16"><span class="st">  </span><span class="kw">geom_raster</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-18" title="18"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb7-19" title="19">        <span class="dt">axis.title =</span> <span class="kw">element_blank</span>()</a>
-<a class="sourceLine" id="cb7-20" title="20">        ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-21" title="21"><span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;BrBG&quot;</span>, </a>
-<a class="sourceLine" id="cb7-22" title="22">                       <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb7-23" title="23">                       <span class="dt">name =</span> <span class="st">&quot;Correlation&quot;</span></a>
-<a class="sourceLine" id="cb7-24" title="24">                       )</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Converts back to wide format</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>hawks_data_wide &lt;-<span class="st"> </span>hawks_data_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">select</span>(Season, Meas, Val_Zscore) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">spread</span>(Meas, Val_Zscore)</span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co"># Computes correlations</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>hawks_cors &lt;-<span class="st"> </span><span class="kw">cor</span>(hawks_data_wide)</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co"># Correlations to long format for plotting</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>hawks_cors_long &lt;-<span class="st"> </span>hawks_cors <span class="op">%&gt;%</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>() <span class="op">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="st">  </span><span class="kw">arrange</span>(Var1, Var2)</span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co"># Correlation heatmap</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="kw">ggplot</span>(hawks_cors_long, <span class="kw">aes</span>(<span class="dt">x =</span> Var1, <span class="dt">y =</span> Var2, <span class="dt">fill =</span> value)) <span class="op">+</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a><span class="st">  </span><span class="kw">geom_raster</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb8-19"><a href="#cb8-19"></a>        <span class="dt">axis.title =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb8-20"><a href="#cb8-20"></a>        ) <span class="op">+</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a><span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;BrBG&quot;</span>, </span>
+<span id="cb8-22"><a href="#cb8-22"></a>                       <span class="dt">limits =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), </span>
+<span id="cb8-23"><a href="#cb8-23"></a>                       <span class="dt">name =</span> <span class="st">&quot;Correlation&quot;</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a>                       )</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing penalties, as well worsened at taking penalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our <a href="https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">previous post</a> that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.</p>
 <p><br ></p>
@@ -1116,11 +1141,11 @@ SavePerc
 <p>We first need to preprocess our data such that each column (i.e., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We’ve already done this above when exploring these data.</p>
 <p>A unique feature of this dataset is the shortened 2012-2013 NHL season that we accounted for by scaling each column by the number of games played that season. We already did this above and do not need to repeat this step.</p>
 <p>Therefore, the first step here is to convert these data into a matrix format with the season years on the rows as row names:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Converts to matrix</span></a>
-<a class="sourceLine" id="cb8-2" title="2">hawks_data_mat &lt;-<span class="st"> </span>hawks_data_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Season) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw">rownames</span>(hawks_data_mat) &lt;-<span class="st"> </span>hawks_data_wide<span class="op">$</span>Season <span class="co"># Adds rownames</span></a>
-<a class="sourceLine" id="cb8-4" title="4"></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="kw">round</span>(hawks_data_mat, <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nice_table</span>() <span class="co"># Prints HTML table</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Converts to matrix</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>hawks_data_mat &lt;-<span class="st"> </span>hawks_data_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Season) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="kw">rownames</span>(hawks_data_mat) &lt;-<span class="st"> </span>hawks_data_wide<span class="op">$</span>Season <span class="co"># Adds rownames</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="kw">round</span>(hawks_data_mat, <span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nice_table</span>() <span class="co"># Prints HTML table</span></span></code></pre></div>
 <table class="table table-striped table-hover table-responsive table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1516,7 +1541,7 @@ X = U \Delta V^T
 \]</span> </font></p>
 <p>Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and <span class="math inline">\(\Delta\)</span> is a diagonal matrix of “weights” called singular values that are the square root of the eigenvalues (<span class="math inline">\(\lambda\)</span>).</p>
 <p>Computing the SVD of our data matrix in R requires just one line of code:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">hawks_data_svd &lt;-<span class="st"> </span><span class="kw">svd</span>(hawks_data_mat) <span class="co"># singular value decomposition (SVD)</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>hawks_data_svd &lt;-<span class="st"> </span><span class="kw">svd</span>(hawks_data_mat) <span class="co"># singular value decomposition (SVD)</span></span></code></pre></div>
 <p><br ></p>
 <div id="eigen-values" class="section level3">
 <h3>Eigen Values</h3>
@@ -1527,82 +1552,82 @@ X = U \Delta V^T
 <p><font style="font-size: 14pt"> <span class="math display">\[
 I = \Sigma\lambda = \Sigma\Delta^2
 \]</span> </font></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculates inertia</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>inertia &lt;-<span class="st"> </span><span class="kw">sum</span>(hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculates inertia</span></span></code></pre></div>
 <p>Next, we’ll use the inertia to calculate the percentage of variability explained for each component and plot the scree:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># Calculates values for the scree plot</span></a>
-<a class="sourceLine" id="cb11-2" title="2">scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">eigs =</span> hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb11-3" title="3">                <span class="dt">perc_explained =</span> (eigs<span class="op">/</span>inertia)<span class="op">*</span><span class="dv">100</span>,</a>
-<a class="sourceLine" id="cb11-4" title="4">                <span class="dt">comps =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(eigs)</a>
-<a class="sourceLine" id="cb11-5" title="5">                )</a>
-<a class="sourceLine" id="cb11-6" title="6"></a>
-<a class="sourceLine" id="cb11-7" title="7"><span class="co"># Scree plot</span></a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="kw">ggplot</span>(scree, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-9" title="9"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-10" title="10"><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-11" title="11"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis =</span> <span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span>inertia <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb11-12" title="12">                                         <span class="dt">name =</span> <span class="st">&quot;Explained Variance (%) </span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb11-13" title="13">                                         )</a>
-<a class="sourceLine" id="cb11-14" title="14">                     ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-15" title="15"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues </span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-16" title="16"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Calculates values for the scree plot</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>scree &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">eigs =</span> hawks_data_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>, </span>
+<span id="cb12-3"><a href="#cb12-3"></a>                <span class="dt">perc_explained =</span> (eigs<span class="op">/</span>inertia)<span class="op">*</span><span class="dv">100</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                <span class="dt">comps =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(eigs)</span>
+<span id="cb12-5"><a href="#cb12-5"></a>                )</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co"># Scree plot</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="kw">ggplot</span>(scree, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis =</span> <span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span>inertia <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, </span>
+<span id="cb12-12"><a href="#cb12-12"></a>                                         <span class="dt">name =</span> <span class="st">&quot;Explained Variance (%) </span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>                                         )</span>
+<span id="cb12-14"><a href="#cb12-14"></a>                     ) <span class="op">+</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues </span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="op">+</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As we can see from the scree plot, the first 3 components comprise 91.75% of the total variance, suggesting that these first three components are important to understanding the structure of the data set. The remaining components explain only 8.25% of the variability and may perhaps be noise.</p>
 <p>Is there any way to statistically show that these components are important? One method is permutation testing. If you are unfamiliar with permutation testing, we recommend checking out our Shiny dashboard <a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/" target="_blank">here</a>.</p>
 <p>Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigenvalues from which to compare our originally observed eigenvalues.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">perm_iters &lt;-<span class="st"> </span><span class="dv">2000</span>  <span class="co"># number of permutation iterations</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="kw">set.seed</span>(<span class="dv">2019</span>)      <span class="co"># sets seed for reproducible results</span></a>
-<a class="sourceLine" id="cb12-3" title="3"></a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="co"># Initializes matrix to hold permutation results</span></a>
-<a class="sourceLine" id="cb12-5" title="5">perm_res &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">nrow =</span> perm_iters, <span class="dt">ncol =</span> <span class="kw">length</span>(hawks_data_svd<span class="op">$</span>d))</a>
-<a class="sourceLine" id="cb12-6" title="6"></a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>perm_iters){</a>
-<a class="sourceLine" id="cb12-8" title="8">  </a>
-<a class="sourceLine" id="cb12-9" title="9">  this_matrix &lt;-<span class="st"> </span><span class="kw">apply</span>(hawks_data_mat, <span class="dv">2</span>, sample) <span class="co"># scrambles down columns</span></a>
-<a class="sourceLine" id="cb12-10" title="10">  perm_res[i,] &lt;-<span class="st"> </span><span class="kw">svd</span>(this_matrix)<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span> <span class="co"># saves eigenvalues to perm_res</span></a>
-<a class="sourceLine" id="cb12-11" title="11">  </a>
-<a class="sourceLine" id="cb12-12" title="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>perm_iters &lt;-<span class="st"> </span><span class="dv">2000</span>  <span class="co"># number of permutation iterations</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">set.seed</span>(<span class="dv">2019</span>)      <span class="co"># sets seed for reproducible results</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># Initializes matrix to hold permutation results</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>perm_res &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">nrow =</span> perm_iters, <span class="dt">ncol =</span> <span class="kw">length</span>(hawks_data_svd<span class="op">$</span>d))</span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>perm_iters){</span>
+<span id="cb13-8"><a href="#cb13-8"></a>  </span>
+<span id="cb13-9"><a href="#cb13-9"></a>  this_matrix &lt;-<span class="st"> </span><span class="kw">apply</span>(hawks_data_mat, <span class="dv">2</span>, sample) <span class="co"># scrambles down columns</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  perm_res[i,] &lt;-<span class="st"> </span><span class="kw">svd</span>(this_matrix)<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span> <span class="co"># saves eigenvalues to perm_res</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  </span>
+<span id="cb13-12"><a href="#cb13-12"></a>}</span></code></pre></div>
 <p>Now let’s visualize these results against the observed values. We’ll determine that a component is significant if its original observed eigenvalue is greater than 95% of the values derived from the null distribution (i.e., permutation testing).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Converts to long format for plotting</span></a>
-<a class="sourceLine" id="cb13-2" title="2">perm_res_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(perm_res) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="st">  </span><span class="kw">gather</span>(comps, eigen) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">comps =</span> <span class="kw">as.numeric</span>(<span class="kw">gsub</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;&quot;</span>, comps)))</a>
-<a class="sourceLine" id="cb13-5" title="5"></a>
-<a class="sourceLine" id="cb13-6" title="6"><span class="co"># Plots permutation results</span></a>
-<a class="sourceLine" id="cb13-7" title="7"><span class="kw">ggplot</span>(perm_res_long, <span class="kw">aes</span>(eigen)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-8" title="8"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-9" title="9"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> scree, </a>
-<a class="sourceLine" id="cb13-10" title="10">             <span class="kw">aes</span>(<span class="dt">xintercept =</span> eigs), </a>
-<a class="sourceLine" id="cb13-11" title="11">             <span class="dt">color =</span> rdgy[<span class="dv">3</span>], </a>
-<a class="sourceLine" id="cb13-12" title="12">             <span class="dt">linetype =</span> <span class="dv">2</span></a>
-<a class="sourceLine" id="cb13-13" title="13">             ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-14" title="14"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">800</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-15" title="15"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">minor_breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-16" title="16"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">minor_breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-17" title="17"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Eigenvalue&quot;</span>, </a>
-<a class="sourceLine" id="cb13-18" title="18">       <span class="dt">y =</span> <span class="st">&quot;Frequency </span><span class="ch">\n</span><span class="st">&quot;</span>, </a>
-<a class="sourceLine" id="cb13-19" title="19">       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Note: Originally observed eigenvalues denoted by red dashed line.&quot;</span></a>
-<a class="sourceLine" id="cb13-20" title="20">       ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-21" title="21"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>comps) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-22" title="22"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Converts to long format for plotting</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>perm_res_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(perm_res) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw">gather</span>(comps, eigen) <span class="op">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">comps =</span> <span class="kw">as.numeric</span>(<span class="kw">gsub</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;&quot;</span>, comps)))</span>
+<span id="cb14-5"><a href="#cb14-5"></a></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="co"># Plots permutation results</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="kw">ggplot</span>(perm_res_long, <span class="kw">aes</span>(eigen)) <span class="op">+</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> scree, </span>
+<span id="cb14-10"><a href="#cb14-10"></a>             <span class="kw">aes</span>(<span class="dt">xintercept =</span> eigs), </span>
+<span id="cb14-11"><a href="#cb14-11"></a>             <span class="dt">color =</span> rdgy[<span class="dv">3</span>], </span>
+<span id="cb14-12"><a href="#cb14-12"></a>             <span class="dt">linetype =</span> <span class="dv">2</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>             ) <span class="op">+</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">800</span>)) <span class="op">+</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">minor_breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">minor_breaks =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Eigenvalue&quot;</span>, </span>
+<span id="cb14-18"><a href="#cb14-18"></a>       <span class="dt">y =</span> <span class="st">&quot;Frequency </span><span class="ch">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb14-19"><a href="#cb14-19"></a>       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Note: Originally observed eigenvalues denoted by red dashed line.&quot;</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a>       ) <span class="op">+</span></span>
+<span id="cb14-21"><a href="#cb14-21"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>comps) <span class="op">+</span></span>
+<span id="cb14-22"><a href="#cb14-22"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It looks like the only components that have a shot at being greater than 95% of the null distribution are components 1 and 2. Let’s see if this is the case:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">scree_sig &lt;-<span class="st"> </span>perm_res_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(comps) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">ul =</span> <span class="kw">quantile</span>(eigen, <span class="fl">.975</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># computes upper limit of 95%</span></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span><span class="kw">inner_join</span>(., scree, <span class="dt">by =</span> <span class="st">&quot;comps&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sig =</span> <span class="kw">ifelse</span>(eigs<span class="op">&gt;</span>ul, <span class="st">&quot;p &lt; .05&quot;</span>, <span class="st">&quot;p &gt; .05&quot;</span>))</a>
-<a class="sourceLine" id="cb14-6" title="6"></a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="kw">ggplot</span>(scree_sig, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-8" title="8"><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">color =</span> rdgy[<span class="dv">8</span>], <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-9" title="9"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sig), <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-10" title="10"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis =</span> <span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span>inertia <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb14-11" title="11">                                         <span class="dt">name =</span> <span class="st">&quot;Explained Variance (%) </span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb14-12" title="12">                                         )</a>
-<a class="sourceLine" id="cb14-13" title="13">                     ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-14" title="14"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">3</span>], rdgy[<span class="dv">9</span>]), <span class="dt">name =</span> <span class="ot">NULL</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-15" title="15"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues </span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-16" title="16"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-17" title="17"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>scree_sig &lt;-<span class="st"> </span>perm_res_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">group_by</span>(comps) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">ul =</span> <span class="kw">quantile</span>(eigen, <span class="fl">.975</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># computes upper limit of 95%</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="st">  </span><span class="kw">inner_join</span>(., scree, <span class="dt">by =</span> <span class="st">&quot;comps&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sig =</span> <span class="kw">ifelse</span>(eigs<span class="op">&gt;</span>ul, <span class="st">&quot;p &lt; .05&quot;</span>, <span class="st">&quot;p &gt; .05&quot;</span>))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">ggplot</span>(scree_sig, <span class="kw">aes</span>(<span class="kw">factor</span>(comps), eigs)) <span class="op">+</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">color =</span> rdgy[<span class="dv">8</span>], <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> sig), <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">sec.axis =</span> <span class="kw">sec_axis</span>(<span class="op">~</span>.<span class="op">/</span>inertia <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, </span>
+<span id="cb17-5"><a href="#cb17-5"></a>                                         <span class="dt">name =</span> <span class="st">&quot;Explained Variance (%) </span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>                                         )</span>
+<span id="cb17-7"><a href="#cb17-7"></a>                     ) <span class="op">+</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">3</span>], rdgy[<span class="dv">9</span>]), <span class="dt">name =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Components&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Eigenvalues </span><span class="ch">\n</span><span class="st">&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>What we suspected was correct: given a null distribution/hypothesis, only components 1 and 2 were greater than 95% permuted eigenvalues. In other words, there is less than a 5% chance that the pattern of the results seen on components 1 and 2 are this extreme given that the null hypothesis is true (i.e., no relationship). Therefore, we’ll pay special attention to components 1 and 2.</p>
 <p>Now that we know what components may be more important than others, let’s take a look at what we can learn from examining factor scores for the rows (years) and the columns (measures).</p>
@@ -1611,26 +1636,26 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div id="row-wise-factor-scores" class="section level3">
 <h3>Row-wise Factor Scores</h3>
 <p>We can explore how the years are seen through the components by first scaling (multiplying) the U matrix by the singular values. <font style="font-size: 14pt"> <span class="math display">\[F_{years} = U\Delta\]</span> </font> The <code>%*%</code> operator performs matrix algebra:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">years &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d)  <span class="co"># scaling years data</span></a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="kw">rownames</span>(years) &lt;-<span class="st"> </span><span class="kw">rownames</span>(hawks_data_mat)           <span class="co"># adds rownames</span></a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>years &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d)  <span class="co"># scaling years data</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">rownames</span>(years) &lt;-<span class="st"> </span><span class="kw">rownames</span>(hawks_data_mat)           <span class="co"># adds rownames</span></span></code></pre></div>
 <p>Now let’s visualize the factor scores for components 1 and 2:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Builds dataframe of row-wise factor scores with notable events</span></a>
-<a class="sourceLine" id="cb16-2" title="2">years_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(years) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> hawks_data_wide<span class="op">$</span>Season) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="st">  </span><span class="kw">left_join</span>(., hawks_events, <span class="dt">by =</span> <span class="st">&quot;Season&quot;</span>) <span class="co"># imports notable events</span></a>
-<a class="sourceLine" id="cb16-5" title="5"></a>
-<a class="sourceLine" id="cb16-6" title="6"><span class="co"># Plots factor scores colored by Stanley Cup wins</span></a>
-<a class="sourceLine" id="cb16-7" title="7"><span class="co"># tip: surrounding an action in R with () will automatically plot to screen</span></a>
-<a class="sourceLine" id="cb16-8" title="8">(years_fs_scw &lt;-<span class="st"> </span><span class="kw">ggplot</span>(years_fs, <span class="kw">aes</span>(V1, V2, <span class="dt">color =</span> SCW)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-9" title="9"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-10" title="10"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-11" title="11"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-12" title="12"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-13" title="13"><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">9</span>], rdgy[<span class="dv">2</span>]), <span class="dt">name =</span> <span class="st">&quot;Stanley Cup Wins&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-14" title="14"><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Season), <span class="dt">segment.alpha =</span> <span class="dv">0</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-15" title="15"><span class="st">  </span>pca_furnish <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-16" title="16"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a>
-<a class="sourceLine" id="cb16-17" title="17">)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Builds dataframe of row-wise factor scores with notable events</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>years_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(years) <span class="op">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> hawks_data_wide<span class="op">$</span>Season) <span class="op">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="st">  </span><span class="kw">left_join</span>(., hawks_events, <span class="dt">by =</span> <span class="st">&quot;Season&quot;</span>) <span class="co"># imports notable events</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="co"># Plots factor scores colored by Stanley Cup wins</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="co"># tip: surrounding an action in R with () will automatically plot to screen</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>(years_fs_scw &lt;-<span class="st"> </span><span class="kw">ggplot</span>(years_fs, <span class="kw">aes</span>(V1, V2, <span class="dt">color =</span> SCW)) <span class="op">+</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">9</span>], rdgy[<span class="dv">2</span>]), <span class="dt">name =</span> <span class="st">&quot;Stanley Cup Wins&quot;</span>) <span class="op">+</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Season), <span class="dt">segment.alpha =</span> <span class="dv">0</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb19-15"><a href="#cb19-15"></a><span class="st">  </span>pca_furnish <span class="op">+</span></span>
+<span id="cb19-16"><a href="#cb19-16"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb19-17"><a href="#cb19-17"></a>)</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The above graph plots the years as they are seen through the first 2 dimensions of the PCA and colors the points based on Stanley Cup wins. The years cluster together into three distinct groups</p>
 <ul>
@@ -1641,18 +1666,18 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <p>while the 2010 season is near the origin – meaning it doesn’t contribute much to either group. Interestingly, there seems to be no clear pattern in regards to regular season play and Stanley Cup wins because these winning seasons are not clustered together.</p>
 <p>A pattern that does seem to emerge is the improvement of the team over time across principal component 1 (x-axis). Principal component 2 is dominated by the 2012-2013 season, probably due to the uniqueness of this season: shortened season due to lockout, Presidents’ trophy winners, and Stanley Cup champions.</p>
 <p>Let’s now color the points based on playoff performance:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Plots factor scores colored by playoff performance</span></a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="co"># tip: surrounding an action in R with () will automatically plot to screen</span></a>
-<a class="sourceLine" id="cb17-3" title="3">(years_fs_pf &lt;-<span class="st"> </span><span class="kw">ggplot</span>(years_fs, <span class="kw">aes</span>(V1, V2, <span class="dt">color =</span> PF)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-5" title="5"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-7" title="7"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-8" title="8"><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="dt">direction =</span> <span class="dv">-1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-9" title="9"><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Season), <span class="dt">segment.alpha =</span> <span class="dv">0</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-10" title="10"><span class="st">  </span>pca_furnish <span class="op">+</span></a>
-<a class="sourceLine" id="cb17-11" title="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a>
-<a class="sourceLine" id="cb17-12" title="12">)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Plots factor scores colored by playoff performance</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="co"># tip: surrounding an action in R with () will automatically plot to screen</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>(years_fs_pf &lt;-<span class="st"> </span><span class="kw">ggplot</span>(years_fs, <span class="kw">aes</span>(V1, V2, <span class="dt">color =</span> PF)) <span class="op">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>, <span class="dt">direction =</span> <span class="dv">-1</span>) <span class="op">+</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Season), <span class="dt">segment.alpha =</span> <span class="dv">0</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a><span class="st">  </span>pca_furnish <span class="op">+</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb20-12"><a href="#cb20-12"></a>)</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>One pattern of results that emerges, somewhat unexpectedly, is that the 2007-2008 and 2017-2018 seasons are contrasted on principal component 1 (x-axis). In both seasons, the Hawks missed the playoffs (did not qualify); however, the 2018 season is more similar to the seasons in which the Hawks made the playoffs. These results also highlight the 2015 Stanley Cup winning season, which is surrounded by seasons with early first round playoff exits. This may be indicative of an average regular season in 2015 (in respect to the Hawks), but an exceptional post season performance.</p>
 <p><br ></p>
@@ -1660,21 +1685,21 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div id="column-wise-factor-scores" class="section level3">
 <h3>Column-wise Factor Scores</h3>
 <p>Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let’s scale the V matrix by the singular values to obtain the factor scores. <font style="font-size: 14pt"><span class="math display">\[F_{metric} = V\Delta\]</span></font> Again, the <code>%*%</code> operator performs matrix algebra:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">metric &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>v <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d) <span class="co"># scaling years data</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">rownames</span>(metric) &lt;-<span class="st"> </span><span class="kw">colnames</span>(hawks_data_mat)          <span class="co"># adds rownames</span></a>
-<a class="sourceLine" id="cb18-3" title="3"></a>
-<a class="sourceLine" id="cb18-4" title="4"><span class="co"># Converts to long format for plotting</span></a>
-<a class="sourceLine" id="cb18-5" title="5">metric_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(metric) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Metric =</span> <span class="kw">colnames</span>(hawks_data_mat))</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>metric &lt;-<span class="st"> </span>hawks_data_svd<span class="op">$</span>v <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(hawks_data_svd<span class="op">$</span>d) <span class="co"># scaling years data</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">rownames</span>(metric) &lt;-<span class="st"> </span><span class="kw">colnames</span>(hawks_data_mat)          <span class="co"># adds rownames</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># Converts to long format for plotting</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>metric_fs &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(metric) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Metric =</span> <span class="kw">colnames</span>(hawks_data_mat))</span></code></pre></div>
 <p>Now let’s visualize the factor scores for components 1 and 2:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Plots the column-wise factor scores</span></a>
-<a class="sourceLine" id="cb19-2" title="2">(metric_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(metric_fs, <span class="kw">aes</span>(V1, V2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-4" title="4"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-6" title="6"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-7" title="7"><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Metric), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb19-8" title="8"><span class="st">  </span>pca_furnish</a>
-<a class="sourceLine" id="cb19-9" title="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Plots the column-wise factor scores</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>(metric_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(metric_fs, <span class="kw">aes</span>(V1, V2)) <span class="op">+</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>)) <span class="op">+</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="st">  </span><span class="kw">geom_text_repel</span>(<span class="kw">aes</span>(<span class="dt">label =</span> Metric), <span class="dt">segment.alpha =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="st">  </span>pca_furnish</span>
+<span id="cb22-9"><a href="#cb22-9"></a>)</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Similar to the year-wise factor scores, we obtained 3 clusters of team-wise metrics across components 1 and 2. Component 1 contrasts penalty minutes (both drawn and taken) with Corsi (both For and Against), time on ice (TOI) and goals against (GA).</p>
 <p>This contrast suggests a negative relationship with these metrics (e.g., as penalty minutes served increased, Corsi against decreased). This is sort of paradoxical, but it is similar to what we saw above with the correlation plot.</p>
@@ -1684,14 +1709,14 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div id="factor-score-comparisons" class="section level3">
 <h3>Factor Score Comparisons</h3>
 <p>To provide more context, let’s compare the year-wise and metric-wise factor scores side-by-side:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">grid_furnish &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,</a>
-<a class="sourceLine" id="cb20-2" title="2">                      <span class="dt">axis.text =</span> <span class="kw">element_blank</span>()</a>
-<a class="sourceLine" id="cb20-3" title="3">                      )</a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="co"># Plots side-by-side</span></a>
-<a class="sourceLine" id="cb20-5" title="5"><span class="kw">grid.arrange</span>(years_fs_pf <span class="op">+</span><span class="st"> </span>grid_furnish, </a>
-<a class="sourceLine" id="cb20-6" title="6">             metric_plot <span class="op">+</span><span class="st"> </span>grid_furnish, </a>
-<a class="sourceLine" id="cb20-7" title="7">             <span class="dt">nrow =</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb20-8" title="8">             )</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>grid_furnish &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb23-2"><a href="#cb23-2"></a>                      <span class="dt">axis.text =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb23-3"><a href="#cb23-3"></a>                      )</span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="co"># Plots side-by-side</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="kw">grid.arrange</span>(years_fs_pf <span class="op">+</span><span class="st"> </span>grid_furnish, </span>
+<span id="cb23-6"><a href="#cb23-6"></a>             metric_plot <span class="op">+</span><span class="st"> </span>grid_furnish, </span>
+<span id="cb23-7"><a href="#cb23-7"></a>             <span class="dt">nrow =</span> <span class="dv">1</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>             )</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>From here we gain a rich perspective of how each year-wise clustering is described through patterns in team stats:</p>
 <ul>
@@ -1706,83 +1731,83 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <p>We can also take a look at how much each season (row) or metric (column) contributes to each component. To calculate the contribution of each component, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.</p>
 <p><font style="font-size: 14pt"> <span class="math display">\[contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}\]</span> </font></p>
 <p>Here is a function that will compute the contributions:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Contribution calculator function ----</span></a>
-<a class="sourceLine" id="cb21-2" title="2">contribution &lt;-<span class="st"> </span><span class="cf">function</span>(vector, <span class="dt">sign =</span> <span class="ot">TRUE</span>) {</a>
-<a class="sourceLine" id="cb21-3" title="3">  </a>
-<a class="sourceLine" id="cb21-4" title="4">  vector_sq &lt;-<span class="st"> </span>vector<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb21-5" title="5">  vector_sq_sum &lt;-<span class="st"> </span><span class="kw">sum</span>(vector_sq)</a>
-<a class="sourceLine" id="cb21-6" title="6">  </a>
-<a class="sourceLine" id="cb21-7" title="7">  <span class="cf">if</span> (sign <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) {</a>
-<a class="sourceLine" id="cb21-8" title="8">    vector &lt;-<span class="st"> </span>vector_sq<span class="op">/</span>vector_sq_sum<span class="op">*</span><span class="kw">sign</span>(vector)</a>
-<a class="sourceLine" id="cb21-9" title="9">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb21-10" title="10">    vector &lt;-<span class="st"> </span>vector_sq<span class="op">/</span>vector_sq_sum</a>
-<a class="sourceLine" id="cb21-11" title="11">  }</a>
-<a class="sourceLine" id="cb21-12" title="12">  </a>
-<a class="sourceLine" id="cb21-13" title="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Contribution calculator function ----</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>contribution &lt;-<span class="st"> </span><span class="cf">function</span>(vector, <span class="dt">sign =</span> <span class="ot">TRUE</span>) {</span>
+<span id="cb24-3"><a href="#cb24-3"></a>  </span>
+<span id="cb24-4"><a href="#cb24-4"></a>  vector_sq &lt;-<span class="st"> </span>vector<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>  vector_sq_sum &lt;-<span class="st"> </span><span class="kw">sum</span>(vector_sq)</span>
+<span id="cb24-6"><a href="#cb24-6"></a>  </span>
+<span id="cb24-7"><a href="#cb24-7"></a>  <span class="cf">if</span> (sign <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) {</span>
+<span id="cb24-8"><a href="#cb24-8"></a>    vector &lt;-<span class="st"> </span>vector_sq<span class="op">/</span>vector_sq_sum<span class="op">*</span><span class="kw">sign</span>(vector)</span>
+<span id="cb24-9"><a href="#cb24-9"></a>  } <span class="cf">else</span> {</span>
+<span id="cb24-10"><a href="#cb24-10"></a>    vector &lt;-<span class="st"> </span>vector_sq<span class="op">/</span>vector_sq_sum</span>
+<span id="cb24-11"><a href="#cb24-11"></a>  }</span>
+<span id="cb24-12"><a href="#cb24-12"></a>  </span>
+<span id="cb24-13"><a href="#cb24-13"></a>}</span></code></pre></div>
 <div id="row-wise-contributions" class="section level4">
 <h4>Row-wise Contributions</h4>
 <p>Now let’s apply the above function to calculate the contributions of the years (rows):</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># calculates the contribution of each row (e.g., season) ----</span></a>
-<a class="sourceLine" id="cb22-2" title="2">contributions_years &lt;-<span class="st"> </span><span class="kw">apply</span>(years, <span class="dv">2</span>, contribution)</a>
-<a class="sourceLine" id="cb22-3" title="3"></a>
-<a class="sourceLine" id="cb22-4" title="4"><span class="co"># add column names</span></a>
-<a class="sourceLine" id="cb22-5" title="5"><span class="kw">colnames</span>(contributions_years) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(contributions_years))</a>
-<a class="sourceLine" id="cb22-6" title="6"></a>
-<a class="sourceLine" id="cb22-7" title="7"><span class="co"># converts contributions to long format ----</span></a>
-<a class="sourceLine" id="cb22-8" title="8">contributions_years_long &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-9" title="9"><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st">                                   </span></a>
-<a class="sourceLine" id="cb22-10" title="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> <span class="kw">rownames</span>(years)) <span class="op">%&gt;%</span><span class="st">              </span><span class="co"># add Seasons </span></a>
-<a class="sourceLine" id="cb22-11" title="11"><span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># ensure values are called contributions</span></a>
-<a class="sourceLine" id="cb22-12" title="12"><span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-13" title="13"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Contributes =</span> <span class="kw">ifelse</span>(<span class="kw">abs</span>(Contributions) <span class="op">&gt;</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">mean</span>(Contributions)), </a>
-<a class="sourceLine" id="cb22-14" title="14">                              <span class="st">&quot;Yes&quot;</span>, </a>
-<a class="sourceLine" id="cb22-15" title="15">                              <span class="st">&quot;No&quot;</span>)</a>
-<a class="sourceLine" id="cb22-16" title="16">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb22-17" title="17"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># calculates the contribution of each row (e.g., season) ----</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>contributions_years &lt;-<span class="st"> </span><span class="kw">apply</span>(years, <span class="dv">2</span>, contribution)</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co"># add column names</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="kw">colnames</span>(contributions_years) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(contributions_years))</span>
+<span id="cb25-6"><a href="#cb25-6"></a></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="co"># converts contributions to long format ----</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a>contributions_years_long &lt;-<span class="st"> </span>contributions_years <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st">                                   </span></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Season =</span> <span class="kw">rownames</span>(years)) <span class="op">%&gt;%</span><span class="st">              </span><span class="co"># add Seasons </span></span>
+<span id="cb25-11"><a href="#cb25-11"></a><span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># ensure values are called contributions</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Contributes =</span> <span class="kw">ifelse</span>(<span class="kw">abs</span>(Contributions) <span class="op">&gt;</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">mean</span>(Contributions)), </span>
+<span id="cb25-14"><a href="#cb25-14"></a>                              <span class="st">&quot;Yes&quot;</span>, </span>
+<span id="cb25-15"><a href="#cb25-15"></a>                              <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb25-16"><a href="#cb25-16"></a>         ) <span class="op">%&gt;%</span></span>
+<span id="cb25-17"><a href="#cb25-17"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
 <p>Now let’s plot these contributions. Any years that have contributions greater than the mean are said to contribute to the variability on that component:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># calculate the mean of each component for graphing ----</span></a>
-<a class="sourceLine" id="cb23-2" title="2">contributions_years_means &lt;-<span class="st"> </span>contributions_years_long <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-5" title="5"><span class="st">  </span><span class="kw">ungroup</span>()</a>
-<a class="sourceLine" id="cb23-6" title="6"></a>
-<a class="sourceLine" id="cb23-7" title="7"><span class="co"># looking only at first two components ----</span></a>
-<a class="sourceLine" id="cb23-8" title="8">year_contrib &lt;-<span class="st"> </span>contributions_years_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb23-9" title="9"><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))</a>
-<a class="sourceLine" id="cb23-10" title="10">  </a>
-<a class="sourceLine" id="cb23-11" title="11">year_contrib_means &lt;-<span class="st"> </span>contributions_years_means <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-12" title="12"><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))</a>
-<a class="sourceLine" id="cb23-13" title="13"></a>
-<a class="sourceLine" id="cb23-14" title="14"></a>
-<a class="sourceLine" id="cb23-15" title="15"><span class="co"># plot the contribution bars with the +/- mean</span></a>
-<a class="sourceLine" id="cb23-16" title="16"><span class="co"># filtering only the first two components </span></a>
-<a class="sourceLine" id="cb23-17" title="17"><span class="kw">ggplot</span>(year_contrib, <span class="kw">aes</span>(<span class="dt">x =</span> Season, <span class="dt">y =</span> Contributions, <span class="dt">fill =</span> Contributes)) <span class="op">+</span><span class="st">             </span></a>
-<a class="sourceLine" id="cb23-18" title="18"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb23-19" title="19"><span class="st">  </span><span class="kw">coord_flip</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">9</span>, <span class="fl">.9</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb23-20" title="20"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> year_contrib_means, </a>
-<a class="sourceLine" id="cb23-21" title="21">             <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), </a>
-<a class="sourceLine" id="cb23-22" title="22">             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </a>
-<a class="sourceLine" id="cb23-23" title="23">             <span class="dt">alpha =</span> <span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb23-24" title="24">             ) <span class="op">+</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb23-25" title="25"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> year_contrib_means, </a>
-<a class="sourceLine" id="cb23-26" title="26">             <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), </a>
-<a class="sourceLine" id="cb23-27" title="27">             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </a>
-<a class="sourceLine" id="cb23-28" title="28">             <span class="dt">alpha =</span> <span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb23-29" title="29">             ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb23-30" title="30"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">8</span>], rdgy[<span class="dv">3</span>])) <span class="op">+</span></a>
-<a class="sourceLine" id="cb23-31" title="31"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Season </span><span class="ch">\n</span><span class="st">&quot;</span>,</a>
-<a class="sourceLine" id="cb23-32" title="32">       <span class="dt">y =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Contributions&quot;</span>,</a>
-<a class="sourceLine" id="cb23-33" title="33">       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span></a>
-<a class="sourceLine" id="cb23-34" title="34">       ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb23-35" title="35"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb23-36" title="36"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span></a>
-<a class="sourceLine" id="cb23-37" title="37">        ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb23-38" title="38"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, </a>
-<a class="sourceLine" id="cb23-39" title="39">             <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, </a>
-<a class="sourceLine" id="cb23-40" title="40">                                      <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb23-41" title="41">                                      )</a>
-<a class="sourceLine" id="cb23-42" title="42">                                    )</a>
-<a class="sourceLine" id="cb23-43" title="43">             )</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># calculate the mean of each component for graphing ----</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>contributions_years_means &lt;-<span class="st"> </span>contributions_years_long <span class="op">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions)) <span class="op">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># looking only at first two components ----</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>year_contrib &lt;-<span class="st"> </span>contributions_years_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))</span>
+<span id="cb28-4"><a href="#cb28-4"></a>  </span>
+<span id="cb28-5"><a href="#cb28-5"></a>year_contrib_means &lt;-<span class="st"> </span>contributions_years_means <span class="op">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))</span>
+<span id="cb28-7"><a href="#cb28-7"></a></span>
+<span id="cb28-8"><a href="#cb28-8"></a></span>
+<span id="cb28-9"><a href="#cb28-9"></a><span class="co"># plot the contribution bars with the +/- mean</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a><span class="co"># filtering only the first two components </span></span>
+<span id="cb28-11"><a href="#cb28-11"></a><span class="kw">ggplot</span>(year_contrib, <span class="kw">aes</span>(<span class="dt">x =</span> Season, <span class="dt">y =</span> Contributions, <span class="dt">fill =</span> Contributes)) <span class="op">+</span><span class="st">             </span></span>
+<span id="cb28-12"><a href="#cb28-12"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a><span class="st">  </span><span class="kw">coord_flip</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">9</span>, <span class="fl">.9</span>)) <span class="op">+</span></span>
+<span id="cb28-14"><a href="#cb28-14"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> year_contrib_means, </span>
+<span id="cb28-15"><a href="#cb28-15"></a>             <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), </span>
+<span id="cb28-16"><a href="#cb28-16"></a>             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </span>
+<span id="cb28-17"><a href="#cb28-17"></a>             <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb28-18"><a href="#cb28-18"></a>             ) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb28-19"><a href="#cb28-19"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> year_contrib_means, </span>
+<span id="cb28-20"><a href="#cb28-20"></a>             <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), </span>
+<span id="cb28-21"><a href="#cb28-21"></a>             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </span>
+<span id="cb28-22"><a href="#cb28-22"></a>             <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb28-23"><a href="#cb28-23"></a>             ) <span class="op">+</span></span>
+<span id="cb28-24"><a href="#cb28-24"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">8</span>], rdgy[<span class="dv">3</span>])) <span class="op">+</span></span>
+<span id="cb28-25"><a href="#cb28-25"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Season </span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb28-26"><a href="#cb28-26"></a>       <span class="dt">y =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Contributions&quot;</span>,</span>
+<span id="cb28-27"><a href="#cb28-27"></a>       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span></span>
+<span id="cb28-28"><a href="#cb28-28"></a>       ) <span class="op">+</span></span>
+<span id="cb28-29"><a href="#cb28-29"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb28-30"><a href="#cb28-30"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
+<span id="cb28-31"><a href="#cb28-31"></a>        ) <span class="op">+</span></span>
+<span id="cb28-32"><a href="#cb28-32"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, </span>
+<span id="cb28-33"><a href="#cb28-33"></a>             <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb28-34"><a href="#cb28-34"></a>                                      <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb28-35"><a href="#cb28-35"></a>                                      )</span>
+<span id="cb28-36"><a href="#cb28-36"></a>                                    )</span>
+<span id="cb28-37"><a href="#cb28-37"></a>             )</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Season 2008 and 2009 contribute more than the mean season on the negative side of component 1, while seasons 2016 to 2018 contribute more than the mean season on the positive side of component 1. In other words, the 2008 and 2009 seasons are in stark contrast to the 2016-2018 seasons on component 1.</p>
 <p>For component 2, only season 2013 contributes more than the mean season and on the negative side of component 2. Thus, component 2 likely reflects the 2013 season.</p>
@@ -1790,64 +1815,64 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div id="column-wise-contributions" class="section level4">
 <h4>Column-wise Contributions</h4>
 <p>Now let’s repeat this procedure for the metrics (columns):</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># calculates the contribution of each row (e.g., metric)</span></a>
-<a class="sourceLine" id="cb24-2" title="2">contributions_metric &lt;-<span class="st"> </span><span class="kw">apply</span>(metric, <span class="dv">2</span>, contribution)</a>
-<a class="sourceLine" id="cb24-3" title="3"></a>
-<a class="sourceLine" id="cb24-4" title="4"><span class="co"># add column names</span></a>
-<a class="sourceLine" id="cb24-5" title="5"><span class="kw">colnames</span>(contributions_metric) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(metric)) </a>
-<a class="sourceLine" id="cb24-6" title="6"></a>
-<a class="sourceLine" id="cb24-7" title="7"><span class="co"># converts contributions to long format</span></a>
-<a class="sourceLine" id="cb24-8" title="8">contributions_metric_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(contributions_metric) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-9" title="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Metric =</span> <span class="kw">rownames</span>(contributions_metric)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-10" title="10"><span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-11" title="11"><span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Contributes =</span> <span class="kw">ifelse</span>(<span class="kw">abs</span>(Contributions) <span class="op">&gt;</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">mean</span>(Contributions)), </a>
-<a class="sourceLine" id="cb24-13" title="13">                              <span class="st">&quot;Yes&quot;</span>, </a>
-<a class="sourceLine" id="cb24-14" title="14">                              <span class="st">&quot;No&quot;</span>)</a>
-<a class="sourceLine" id="cb24-15" title="15">         ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-16" title="16"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># calculates the contribution of each row (e.g., metric)</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>contributions_metric &lt;-<span class="st"> </span><span class="kw">apply</span>(metric, <span class="dv">2</span>, contribution)</span>
+<span id="cb29-3"><a href="#cb29-3"></a></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co"># add column names</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="kw">colnames</span>(contributions_metric) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Component_&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(metric)) </span>
+<span id="cb29-6"><a href="#cb29-6"></a></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="co"># converts contributions to long format</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a>contributions_metric_long &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(contributions_metric) <span class="op">%&gt;%</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Metric =</span> <span class="kw">rownames</span>(contributions_metric)) <span class="op">%&gt;%</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a><span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">value.name =</span> <span class="st">&quot;Contributions&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a><span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span></span>
+<span id="cb29-12"><a href="#cb29-12"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Contributes =</span> <span class="kw">ifelse</span>(<span class="kw">abs</span>(Contributions) <span class="op">&gt;</span><span class="st"> </span><span class="kw">abs</span>(<span class="kw">mean</span>(Contributions)), </span>
+<span id="cb29-13"><a href="#cb29-13"></a>                              <span class="st">&quot;Yes&quot;</span>, </span>
+<span id="cb29-14"><a href="#cb29-14"></a>                              <span class="st">&quot;No&quot;</span>)</span>
+<span id="cb29-15"><a href="#cb29-15"></a>         ) <span class="op">%&gt;%</span></span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
 <p>And here are the contribution plots for the metrics on components 1 and 2:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># calculate the mean of each component for graphing</span></a>
-<a class="sourceLine" id="cb25-2" title="2">contributions_metric_means &lt;-<span class="st"> </span>contributions_metric_long <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions))</a>
-<a class="sourceLine" id="cb25-5" title="5"></a>
-<a class="sourceLine" id="cb25-6" title="6"><span class="co"># looking only at first two components ----</span></a>
-<a class="sourceLine" id="cb25-7" title="7">metric_contrib &lt;-<span class="st"> </span>contributions_metric_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb25-8" title="8"><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))</a>
-<a class="sourceLine" id="cb25-9" title="9">  </a>
-<a class="sourceLine" id="cb25-10" title="10">metric_contrib_means &lt;-<span class="st"> </span>contributions_metric_means <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-11" title="11"><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))</a>
-<a class="sourceLine" id="cb25-12" title="12"></a>
-<a class="sourceLine" id="cb25-13" title="13"><span class="co"># plot the contributions bars with +/-mean</span></a>
-<a class="sourceLine" id="cb25-14" title="14"><span class="co"># filtering only the first two components</span></a>
-<a class="sourceLine" id="cb25-15" title="15"><span class="kw">ggplot</span>(metric_contrib, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(Metric, Contributions), <span class="dt">y =</span> Contributions, <span class="dt">fill =</span> Contributes)) <span class="op">+</span><span class="st">             </span></a>
-<a class="sourceLine" id="cb25-16" title="16"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb25-17" title="17"><span class="st">  </span><span class="kw">coord_flip</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">9</span>, <span class="fl">.9</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb25-18" title="18"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> metric_contrib_means, </a>
-<a class="sourceLine" id="cb25-19" title="19">             <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), </a>
-<a class="sourceLine" id="cb25-20" title="20">             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </a>
-<a class="sourceLine" id="cb25-21" title="21">             <span class="dt">alpha =</span> <span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb25-22" title="22">             ) <span class="op">+</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb25-23" title="23"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> metric_contrib_means, </a>
-<a class="sourceLine" id="cb25-24" title="24">             <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), </a>
-<a class="sourceLine" id="cb25-25" title="25">             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </a>
-<a class="sourceLine" id="cb25-26" title="26">             <span class="dt">alpha =</span> <span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb25-27" title="27">             ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb25-28" title="28"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">8</span>], rdgy[<span class="dv">3</span>])) <span class="op">+</span></a>
-<a class="sourceLine" id="cb25-29" title="29"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Metric </span><span class="ch">\n</span><span class="st">&quot;</span>,</a>
-<a class="sourceLine" id="cb25-30" title="30">       <span class="dt">y =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Contributions&quot;</span>,</a>
-<a class="sourceLine" id="cb25-31" title="31">       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span></a>
-<a class="sourceLine" id="cb25-32" title="32">       ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb25-33" title="33"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb25-34" title="34"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span></a>
-<a class="sourceLine" id="cb25-35" title="35">        ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb25-36" title="36"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, </a>
-<a class="sourceLine" id="cb25-37" title="37">             <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, </a>
-<a class="sourceLine" id="cb25-38" title="38">                                      <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb25-39" title="39">                                      )</a>
-<a class="sourceLine" id="cb25-40" title="40">                                    )</a>
-<a class="sourceLine" id="cb25-41" title="41">             )</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># calculate the mean of each component for graphing</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>contributions_metric_means &lt;-<span class="st"> </span>contributions_metric_long <span class="op">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="st">  </span><span class="kw">group_by</span>(variable) <span class="op">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Contributions))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># looking only at first two components ----</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>metric_contrib &lt;-<span class="st"> </span>contributions_metric_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))</span>
+<span id="cb32-4"><a href="#cb32-4"></a>  </span>
+<span id="cb32-5"><a href="#cb32-5"></a>metric_contrib_means &lt;-<span class="st"> </span>contributions_metric_means <span class="op">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a><span class="st">  </span><span class="kw">filter</span>(variable <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Component_1&quot;</span>, <span class="st">&quot;Component_2&quot;</span>))</span>
+<span id="cb32-7"><a href="#cb32-7"></a></span>
+<span id="cb32-8"><a href="#cb32-8"></a><span class="co"># plot the contributions bars with +/-mean</span></span>
+<span id="cb32-9"><a href="#cb32-9"></a><span class="co"># filtering only the first two components</span></span>
+<span id="cb32-10"><a href="#cb32-10"></a><span class="kw">ggplot</span>(metric_contrib, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(Metric, Contributions), <span class="dt">y =</span> Contributions, <span class="dt">fill =</span> Contributes)) <span class="op">+</span><span class="st">             </span></span>
+<span id="cb32-11"><a href="#cb32-11"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb32-12"><a href="#cb32-12"></a><span class="st">  </span><span class="kw">coord_flip</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span>.<span class="dv">9</span>, <span class="fl">.9</span>)) <span class="op">+</span></span>
+<span id="cb32-13"><a href="#cb32-13"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> metric_contrib_means, </span>
+<span id="cb32-14"><a href="#cb32-14"></a>             <span class="kw">aes</span>(<span class="dt">yintercept =</span> mean), </span>
+<span id="cb32-15"><a href="#cb32-15"></a>             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </span>
+<span id="cb32-16"><a href="#cb32-16"></a>             <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb32-17"><a href="#cb32-17"></a>             ) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb32-18"><a href="#cb32-18"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> metric_contrib_means, </span>
+<span id="cb32-19"><a href="#cb32-19"></a>             <span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="op">-</span>mean), </span>
+<span id="cb32-20"><a href="#cb32-20"></a>             <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </span>
+<span id="cb32-21"><a href="#cb32-21"></a>             <span class="dt">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb32-22"><a href="#cb32-22"></a>             ) <span class="op">+</span></span>
+<span id="cb32-23"><a href="#cb32-23"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(rdgy[<span class="dv">8</span>], rdgy[<span class="dv">3</span>])) <span class="op">+</span></span>
+<span id="cb32-24"><a href="#cb32-24"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Metric </span><span class="ch">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb32-25"><a href="#cb32-25"></a>       <span class="dt">y =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st"> Contributions&quot;</span>,</span>
+<span id="cb32-26"><a href="#cb32-26"></a>       <span class="dt">caption =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">Note: Dashed lines represent the mean contribution.&quot;</span></span>
+<span id="cb32-27"><a href="#cb32-27"></a>       ) <span class="op">+</span></span>
+<span id="cb32-28"><a href="#cb32-28"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb32-29"><a href="#cb32-29"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span></span>
+<span id="cb32-30"><a href="#cb32-30"></a>        ) <span class="op">+</span></span>
+<span id="cb32-31"><a href="#cb32-31"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, </span>
+<span id="cb32-32"><a href="#cb32-32"></a>             <span class="dt">labeller =</span> <span class="kw">as_labeller</span>(<span class="kw">c</span>(<span class="st">`</span><span class="dt">Component_1</span><span class="st">`</span> =<span class="st"> &quot;Component 1</span><span class="ch">\n</span><span class="st">&quot;</span>, </span>
+<span id="cb32-33"><a href="#cb32-33"></a>                                      <span class="st">`</span><span class="dt">Component_2</span><span class="st">`</span> =<span class="st"> &quot;Component 2</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+<span id="cb32-34"><a href="#cb32-34"></a>                                      )</span>
+<span id="cb32-35"><a href="#cb32-35"></a>                                    )</span>
+<span id="cb32-36"><a href="#cb32-36"></a>             )</span></code></pre></div>
 <p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Penalty minutes drawn (PEND) and penalty minutes served (PENT) contribute more than the mean metric to the negative side of component 1; while Corsi Against (CA), Corsi For (CF), Goals Against (GA), and Time on Ice (TOI) contribute more than the mean metric to the positive side of component 1.</p>
 <p>Goals For (GF), Save Percentage (SavePerc), and Shooting Percentage (ShootPerc) contribute more than the mean metric to the negative side of component 2; while Goals Against (GA) contributes more than the mean metric to the positive side of component 2.</p>
@@ -1917,7 +1942,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2020 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2022 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 
@@ -1931,7 +1956,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1970,7 +1995,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

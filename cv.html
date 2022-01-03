@@ -11,24 +11,14 @@
 
 
 
-<title>cv.knit</title>
+<title>cv.utf8</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -36,6 +26,7 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <!-- Google Analytics -->
@@ -63,6 +54,11 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -75,6 +71,32 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -86,6 +108,10 @@ if (window.hljs) {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -102,13 +128,40 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-pre code {
-  padding: 0;
-}
 </style>
 
 
 <style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
 .dropdown-submenu {
   position: relative;
 }
@@ -136,7 +189,7 @@ pre code {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #adb5bd;
+  border-left-color: #ffffff;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -148,7 +201,7 @@ pre code {
 }
 </style>
 
-<script type="text/javascript">
+<script>
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -159,23 +212,10 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.tab('show');
+  menuAnchor.parent().addClass('active');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
-
-  // Navbar adjustments
-  var navHeight = $(".navbar").first().height() + 15;
-  var style = document.createElement('style');
-  var pt = "padding-top: " + navHeight + "px; ";
-  var mt = "margin-top: -" + navHeight + "px; ";
-  var css = "";
-  // offset scroll position for anchor links (for fixed navbar)
-  for (var i = 1; i <= 6; i++) {
-    css += ".section h" + i + "{ " + pt + mt + "}\n";
-  }
-  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-  document.head.appendChild(style);
 });
 </script>
 
@@ -187,6 +227,7 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
+  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -312,7 +353,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
+<div class="row-fluid">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -377,7 +418,7 @@ div.tocify {
 
 -->
 
-<div id="header">
+<div class="fluid-row" id="header">
 
 
 
@@ -555,6 +596,13 @@ Matthew J. Kmiecik, PhD
 </ul>
 <p><br /></p>
 </div>
+<div id="dissertation" class="section level2">
+<h2>Dissertation</h2>
+<ul>
+<li><strong>Kmiecik, M. J.</strong> (2019). <a href="https://hdl.handle.net/10735.1/9357">The Time Course of Meaning Construction with Varying Expectations</a>.</li>
+</ul>
+<p><br /></p>
+</div>
 </div>
 <div id="conference-participation" class="section level1">
 <h1>Conference Participation</h1>
@@ -570,7 +618,7 @@ Matthew J. Kmiecik, PhD
 <h2>Talks</h2>
 <ul>
 <li><p>Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., &amp; Hellman, K. M. (Sept. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Flash talk presented at The University of Chicago Postdoctoral Symposium.</p></li>
-<li><p>Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., &amp; Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk to be presented at the International Association for the Study of Pain (IASP) Neuropathic Pain SIG (NeuPSIG) webinar series.</p></li>
+<li><p>Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., &amp; Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk presented at the International Association for the Study of Pain (IASP) Neuropathic Pain SIG (NeuPSIG) webinar series. Link to talk <a href="https://www.pathlms.com/iasp/courses/30608/video_presentations/223042">here</a>.</p></li>
 <li><p>Kmiecik, M. J. (November, 2019). Effective Presentations of Quantitative Information: A Study in Edward Tufte. Talk presented at the inaugural <a href="https://brainhack-dallas.github.io/mini-brainhack-utd/">UT Dallas BrainHack</a>, Dallas, TX.</p></li>
 <li><p>Kmiecik, M. J., Nagele, M., Sharma, R., Vaughn, A. Thakur, P., &amp; Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk presented at the Brain Performance Institute’s Inaugural TBI Research Showcase. Dallas, TX.</p></li>
 <li><p>Kmiecik, M. J. &amp; Krawczyk, D. C. (2017, October). Reasoning With Complex Relational Structures. Talk given at the UT Dallas School of Behavioral and Brain Sciences Cognition and Neuroscience program annual Fall retreat. Dallas, TX.</p></li>
@@ -588,7 +636,7 @@ Matthew J. Kmiecik, PhD
 <div id="poster-presentations" class="section level2">
 <h2>Poster Presentations</h2>
 <ul>
-<li><p>Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., &amp; Hellman, K. M. (Oct. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster to be presented at the 24th annual scientific meeting of the International Pelvic Pain Society (IPPS), Baltimore, MD.</p></li>
+<li><p>Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., &amp; Hellman, K. M. (Oct. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster presented at the 24th annual scientific meeting of the International Pelvic Pain Society (IPPS), Baltimore, MD.</p></li>
 <li><p>Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, May). <a href="https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations">The Time Course of Meaning Construction with Varying Expectations</a>. Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.</p></li>
 <li><p>Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., &amp; Krawczyk, D. C. (2020, May). <a href="https://www.researchgate.net/publication/343193718_The_Nuances_of_Norepinephrine_Investigating_the_Role_of_Salivary_Alpha_Amylase_on_tDCS_-_Modulated_Decision_Making">The Nuances of Norepinephrine: Salivary Alpha Amylase’s Role as a Biomarker in tDCS - Directed Judgment &amp; Decision Making.</a> Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.</p></li>
 <li><p>Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, March). The Time Course of Meaning Construction with Varying Expectations. Poster was to be presented at the Society for Neuroscience Chicago Chapter annual meeting, Chicago, IL. * Cancelled due to COVID-19</p></li>
@@ -1411,7 +1459,7 @@ The University of Texas at Dallas
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2020 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2022 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 
@@ -1443,7 +1491,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open');
+    $(this).parent().toggleClass('nav-tabs-open')
   });
 });
 </script>

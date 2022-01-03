@@ -24,6 +24,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -39,12 +42,21 @@
 <!-- Twittercards -->
 <meta name="twitter:card" content="summary" />
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -54,14 +66,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -71,7 +85,7 @@ pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   { color: #cccccc; background-color: #303030; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ffcfaf; } /* Alert */
 code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
@@ -158,6 +172,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -542,35 +557,38 @@ div.tocify {
 <li>Open R or RStudio and <strong>ensure your working directory is set to where you saved your text file (.txt) from above.</strong></li>
 <li>Load the <code>tidyverse</code>. For more information about the tidyverse click <a href="https://www.tidyverse.org/">here</a>.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Import the file into R and save it as a variable:</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">eData &lt;-<span class="st"> </span><span class="kw">read_delim</span>(</a>
-<a class="sourceLine" id="cb2-2" title="2">  <span class="st">&#39;data.txt&#39;</span>,   <span class="co"># The name of your *.txt file from above</span></a>
-<a class="sourceLine" id="cb2-3" title="3">  <span class="dt">delim =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>, <span class="co"># These data are tab separated</span></a>
-<a class="sourceLine" id="cb2-4" title="4">  ) </a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>eData &lt;-<span class="st"> </span><span class="kw">read_delim</span>(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="st">&#39;data.txt&#39;</span>,   <span class="co"># The name of your *.txt file from above</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="dt">delim =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>, <span class="co"># These data are tab separated</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  ) </span></code></pre></div>
 <blockquote>
 <p>HINT! <code>read_delim()</code> has several arguments, so be sure to check them out using <code>?read_delim()</code>. One really useful one is <code>guess_max=</code> which will search the first <em>n</em> rows of the data to gather the column type. For really long experiments, this option should be set to the number of rows generated for a single participant, that way it can scan at least an entire participant’s data file before “guessing” the column type.</p>
 </blockquote>
 <p>For the purposes of this tutorial, these data are available on this website’s <a href="https://github.com/mkmiecik14/mkmiecik14.github.io">GitHub repository</a> and can be downloaded into R like this:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(RCurl) <span class="co"># To retrive data from github repo</span></a>
-<a class="sourceLine" id="cb3-2" title="2">link &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/data.txt&quot;</span></a>
-<a class="sourceLine" id="cb3-3" title="3">eData &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="dt">file =</span> <span class="kw">getURL</span>(link), <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw">dim</span>(eData)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(httr) <span class="co"># To retrive data from github repo</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>link &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/data.txt&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>data &lt;-<span class="st"> </span><span class="kw">GET</span>(link)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>eData &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="kw">content</span>(data, <span class="st">&quot;raw&quot;</span>), <span class="dt">delim =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="kw">dim</span>(eData)</span></code></pre></div>
 <pre><code>&gt; [1] 480  47</code></pre>
 <p>As we can see, this dataframe has 480 rows and 47 columns. Each row is a trial from a participant and each column is a measure/information from your E-prime experiment. E-prime gives us way too much information, so I like to clean this up and only include the essentials (<em>Note: These variable names will vary based on your experiment</em>):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">eData_simple &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span>eData <span class="op">%&gt;%</span><span class="st">                  </span><span class="co"># original data</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb5-4" title="4">    <span class="dt">ss =</span> Subject,            <span class="co"># subject</span></a>
-<a class="sourceLine" id="cb5-5" title="5">    <span class="dt">cond =</span> probType,         <span class="co"># condition</span></a>
-<a class="sourceLine" id="cb5-6" title="6">    <span class="dt">acc =</span> stimulus.ACC,      <span class="co"># accuracy</span></a>
-<a class="sourceLine" id="cb5-7" title="7">    <span class="dt">rt =</span> stimulus.RT         <span class="co"># reaction time</span></a>
-<a class="sourceLine" id="cb5-8" title="8">    )</a>
-<a class="sourceLine" id="cb5-9" title="9"></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co"># Let&#39;s take a look</span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="kw">head</span>(eData_simple); <span class="kw">tail</span>(eData_simple)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>eData_simple &lt;-<span class="st"> </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span>eData <span class="op">%&gt;%</span><span class="st">                  </span><span class="co"># original data</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="dt">ss =</span> Subject,            <span class="co"># subject</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="dt">cond =</span> probType,         <span class="co"># condition</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="dt">acc =</span> stimulus.ACC,      <span class="co"># accuracy</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="dt">rt =</span> stimulus.RT         <span class="co"># reaction time</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    )</span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co"># Let&#39;s take a look</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="kw">head</span>(eData_simple); <span class="kw">tail</span>(eData_simple)</span></code></pre></div>
 <pre><code>&gt; # A tibble: 6 x 4
 &gt;      ss cond    acc    rt
 &gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -593,11 +611,15 @@ div.tocify {
 <p>TIP! The <code>select()</code> function allows you to rename the column names on the fly. Pretty sweet if you ask me!</p>
 </blockquote>
 <p>I’ve printed the top and bottom 6 rows of this dataframe. As you can see, the first participant’s ID is 413, while the last participant’s ID is 416. Each trial is a row and has a problem type (either p, a, or s), an accuracy (1 for correct, 0 for incorrect), as well as an associated reaction time (RT) measure in milliseconds. Now, I forgot to program the block each trial appeared in my E-Prime experiment, but I can add it like this:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Adding block</span></a>
-<a class="sourceLine" id="cb8-2" title="2">eData_simple<span class="op">$</span>block &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="dt">each =</span> <span class="dv">24</span>) <span class="co"># 24 trials/block</span></a>
-<a class="sourceLine" id="cb8-3" title="3"></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co"># Let&#39;s take a look</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="kw">head</span>(eData_simple); <span class="kw">tail</span>(eData_simple)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Adding block</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>eData_simple &lt;-<span class="st"> </span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span>eData_simple <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">group_by</span>(ss) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">block =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="dt">each =</span> <span class="dv">24</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># 24 trials/block</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb8-7"><a href="#cb8-7"></a>           </span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co"># Let&#39;s take a look</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="kw">head</span>(eData_simple); <span class="kw">tail</span>(eData_simple)</span></code></pre></div>
 <pre><code>&gt; # A tibble: 6 x 5
 &gt;      ss cond    acc    rt block
 &gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
@@ -623,16 +645,16 @@ div.tocify {
 <h2>Step 3 - Summarize with dplyr</h2>
 <hr >
 <p>Let’s calculate the mean accuracy for condition x block (3 x 4 repeated-measures factorial design). But first, let’s group based on our factors, which are 1) the subjects, 2) the conditions, and 3) the blocks.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">acc &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span>eData_simple <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(ss, cond, block) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb11-5" title="5">    <span class="dt">m =</span> <span class="kw">mean</span>(acc),    <span class="co"># mean</span></a>
-<a class="sourceLine" id="cb11-6" title="6">    <span class="dt">n =</span> <span class="kw">n</span>()           <span class="co"># number of trials</span></a>
-<a class="sourceLine" id="cb11-7" title="7">    ) <span class="op">%&gt;%</span><span class="st">               </span></a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="st">  </span><span class="kw">ungroup</span>()           <span class="co"># generally a good idea to ungroup when finished</span></a>
-<a class="sourceLine" id="cb11-9" title="9"></a>
-<a class="sourceLine" id="cb11-10" title="10"><span class="kw">print</span>(acc) <span class="co"># prints to screen</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>acc &lt;-<span class="st"> </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span>eData_simple <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">group_by</span>(ss, cond, block) <span class="op">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="dt">m =</span> <span class="kw">mean</span>(acc),    <span class="co"># mean</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="dt">n =</span> <span class="kw">n</span>()           <span class="co"># number of trials</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>    ) <span class="op">%&gt;%</span><span class="st">               </span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="st">  </span><span class="kw">ungroup</span>()           <span class="co"># generally a good idea to ungroup when finished</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="kw">print</span>(acc) <span class="co"># prints to screen</span></span></code></pre></div>
 <pre><code>&gt; # A tibble: 60 x 5
 &gt;       ss cond  block     m     n
 &gt;    &lt;dbl&gt; &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
@@ -648,21 +670,21 @@ div.tocify {
 &gt; 10   413 s         2 0.5       8
 &gt; # ... with 50 more rows</code></pre>
 <p>Now to look at task-wide performance, we group by condition and block and repeat:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">acc_sum &lt;-</a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span>acc <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(cond, block) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb13-5" title="5">    <span class="dt">M =</span> <span class="kw">mean</span>(m),       <span class="co"># mean</span></a>
-<a class="sourceLine" id="cb13-6" title="6">    <span class="dt">SD =</span> <span class="kw">sd</span>(m),        <span class="co"># standard deviation</span></a>
-<a class="sourceLine" id="cb13-7" title="7">    <span class="dt">N =</span> <span class="kw">n</span>(),           <span class="co"># number of observations</span></a>
-<a class="sourceLine" id="cb13-8" title="8">    <span class="dt">sem =</span> SD<span class="op">/</span><span class="kw">sqrt</span>(N)   <span class="co"># standard error of the mean</span></a>
-<a class="sourceLine" id="cb13-9" title="9">    ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-10" title="10"><span class="st">  </span><span class="kw">ungroup</span>()            <span class="co"># generally a good idea to regroup</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>acc_sum &lt;-</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="st">  </span>acc <span class="op">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="st">  </span><span class="kw">group_by</span>(cond, block) <span class="op">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="dt">M =</span> <span class="kw">mean</span>(m),       <span class="co"># mean</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="dt">SD =</span> <span class="kw">sd</span>(m),        <span class="co"># standard deviation</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="dt">N =</span> <span class="kw">n</span>(),           <span class="co"># number of observations</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="dt">sem =</span> SD<span class="op">/</span><span class="kw">sqrt</span>(N)   <span class="co"># standard error of the mean</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>    ) <span class="op">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="st">  </span><span class="kw">ungroup</span>()            <span class="co"># generally a good idea to regroup</span></span></code></pre></div>
 <blockquote>
 <p>TIP! <code>summarise()</code> can compute variables defined within <code>summarise()</code>. See above for how this works for the standard error of the mean (sem).</p>
 </blockquote>
 <p>These are the summary results:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">print</span>(acc_sum) <span class="co"># prints to screen</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">print</span>(acc_sum) <span class="co"># prints to screen</span></span></code></pre></div>
 <pre><code>&gt; # A tibble: 12 x 6
 &gt;    cond  block     M     SD     N    sem
 &gt;    &lt;chr&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt;
@@ -679,17 +701,17 @@ div.tocify {
 &gt; 11 s         3 0.625 0.0884     5 0.0395
 &gt; 12 s         4 0.85  0.0559     5 0.0250</code></pre>
 <p>Now what about that pesky reviewer #2? Let’s say reviewer #2 asks for a new analysis that, instead of looking at reaction time, asks for the results with reaction time for only correct solutions? If you preprocessed your data in Excel, you would probably have to re-compute all these values in each sheet and then re-do the analyses. But this is simple in R and is only one additional line of code:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">corRT &lt;-<span class="st">  </span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="st">  </span>eData_simple <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="st">  </span><span class="kw">filter</span>(acc <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># filters out inaccurate trials</span></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(ss, cond, block) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb16-6" title="6">    <span class="dt">m =</span> <span class="kw">mean</span>(rt),       <span class="co"># mean</span></a>
-<a class="sourceLine" id="cb16-7" title="7">    <span class="dt">n =</span> <span class="kw">n</span>()             <span class="co"># number of trials</span></a>
-<a class="sourceLine" id="cb16-8" title="8">    ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-9" title="9"><span class="st">  </span><span class="kw">ungroup</span>()             <span class="co"># generally a good idea to ungroup when finished</span></a>
-<a class="sourceLine" id="cb16-10" title="10"></a>
-<a class="sourceLine" id="cb16-11" title="11"><span class="kw">print</span>(corRT)            <span class="co"># prints to screen</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>corRT &lt;-<span class="st">  </span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span>eData_simple <span class="op">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="st">  </span><span class="kw">filter</span>(acc <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># filters out inaccurate trials</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="st">  </span><span class="kw">group_by</span>(ss, cond, block) <span class="op">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    <span class="dt">m =</span> <span class="kw">mean</span>(rt),       <span class="co"># mean</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>    <span class="dt">n =</span> <span class="kw">n</span>()             <span class="co"># number of trials</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>    ) <span class="op">%&gt;%</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="st">  </span><span class="kw">ungroup</span>()             <span class="co"># generally a good idea to ungroup when finished</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="kw">print</span>(corRT)            <span class="co"># prints to screen</span></span></code></pre></div>
 <pre><code>&gt; # A tibble: 60 x 5
 &gt;       ss cond  block     m     n
 &gt;    &lt;dbl&gt; &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;int&gt;
@@ -705,18 +727,18 @@ div.tocify {
 &gt; 10   413 s         2 4858.     4
 &gt; # ... with 50 more rows</code></pre>
 <p>For completeness, here’s how to compute the task-wide correct RT performance:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">corRT_sum &lt;-</a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="st">  </span>corRT <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(cond, block) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb18-5" title="5">    <span class="dt">M =</span> <span class="kw">mean</span>(m),     <span class="co"># mean </span></a>
-<a class="sourceLine" id="cb18-6" title="6">    <span class="dt">SD =</span> <span class="kw">sd</span>(m),      <span class="co"># standard devation</span></a>
-<a class="sourceLine" id="cb18-7" title="7">    <span class="dt">N =</span> <span class="kw">n</span>(),         <span class="co"># number of observations</span></a>
-<a class="sourceLine" id="cb18-8" title="8">    <span class="dt">sem =</span> SD<span class="op">/</span><span class="kw">sqrt</span>(N) <span class="co"># standard error of the mean</span></a>
-<a class="sourceLine" id="cb18-9" title="9">    ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-10" title="10"><span class="st">  </span><span class="kw">ungroup</span>()</a>
-<a class="sourceLine" id="cb18-11" title="11"></a>
-<a class="sourceLine" id="cb18-12" title="12"><span class="kw">print</span>(corRT_sum)     <span class="co"># prints to screen</span></a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>corRT_sum &lt;-</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="st">  </span>corRT <span class="op">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="st">  </span><span class="kw">group_by</span>(cond, block) <span class="op">%&gt;%</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="dt">M =</span> <span class="kw">mean</span>(m),     <span class="co"># mean </span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="dt">SD =</span> <span class="kw">sd</span>(m),      <span class="co"># standard devation</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>    <span class="dt">N =</span> <span class="kw">n</span>(),         <span class="co"># number of observations</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a>    <span class="dt">sem =</span> SD<span class="op">/</span><span class="kw">sqrt</span>(N) <span class="co"># standard error of the mean</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a>    ) <span class="op">%&gt;%</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
+<span id="cb18-11"><a href="#cb18-11"></a></span>
+<span id="cb18-12"><a href="#cb18-12"></a><span class="kw">print</span>(corRT_sum)     <span class="co"># prints to screen</span></span></code></pre></div>
 <pre><code>&gt; # A tibble: 12 x 6
 &gt;    cond  block     M    SD     N   sem
 &gt;    &lt;chr&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
@@ -741,38 +763,38 @@ div.tocify {
 <hr >
 <p>Processing E-Prime data this way puts it in a great format for plotting with <code>ggplot2</code> — another package in the <code>tidyverse</code>.</p>
 <p>I like to plot the raw data underneath the summary data, so here is an example plot for correct reaction times:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Correct RT plot</span></a>
-<a class="sourceLine" id="cb20-2" title="2">pj &lt;-<span class="st"> </span><span class="kw">position_jitter</span>(<span class="dt">width =</span> <span class="fl">.1</span>)</a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="kw">ggplot</span>(corRT_sum, <span class="kw">aes</span>(block, M, <span class="dt">group =</span> cond, <span class="dt">color =</span> cond)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> corRT, <span class="kw">aes</span>(<span class="dt">y =</span> m), <span class="dt">position =</span> pj, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-6" title="6"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> M<span class="op">-</span>sem, <span class="dt">ymax =</span> M<span class="op">+</span>sem), <span class="dt">width =</span> <span class="fl">.1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-8" title="8"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">12000</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-9" title="9"><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-10" title="10"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Block&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Mean Correct RT (ms)&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;SEM error bars.&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-11" title="11"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-12" title="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Correct RT plot</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>pj &lt;-<span class="st"> </span><span class="kw">position_jitter</span>(<span class="dt">width =</span> <span class="fl">.1</span>)</span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">ggplot</span>(corRT_sum, <span class="kw">aes</span>(block, M, <span class="dt">group =</span> cond, <span class="dt">color =</span> cond)) <span class="op">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> corRT, <span class="kw">aes</span>(<span class="dt">y =</span> m), <span class="dt">position =</span> pj, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> M<span class="op">-</span>sem, <span class="dt">ymax =</span> M<span class="op">+</span>sem), <span class="dt">width =</span> <span class="fl">.1</span>) <span class="op">+</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">12000</span>)) <span class="op">+</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Block&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Mean Correct RT (ms)&quot;</span>, <span class="dt">caption =</span> <span class="st">&quot;SEM error bars.&quot;</span>) <span class="op">+</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb20-12"><a href="#cb20-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>And here’s an example of how I could inspect RT curves per condition and block for all participants (trial-wise). A great way to detect outliers:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">bnwidth &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># in seconds</span></a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="kw">ggplot</span>(eData_simple, <span class="kw">aes</span>(rt<span class="op">/</span><span class="dv">1000</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> bnwidth) <span class="op">+</span></a>
-<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">labs</span>(</a>
-<a class="sourceLine" id="cb21-5" title="5">    <span class="dt">x =</span> <span class="st">&quot;RT (seconds)&quot;</span>, </a>
-<a class="sourceLine" id="cb21-6" title="6">    <span class="dt">y =</span> <span class="st">&quot;Frequency&quot;</span>, </a>
-<a class="sourceLine" id="cb21-7" title="7">    <span class="dt">caption =</span> <span class="kw">paste</span>(<span class="st">&quot;Binwidth = &quot;</span>, bnwidth, <span class="st">&quot;sec.&quot;</span>)</a>
-<a class="sourceLine" id="cb21-8" title="8">    ) <span class="op">+</span></a>
-<a class="sourceLine" id="cb21-9" title="9"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb21-10" title="10"><span class="st">  </span><span class="kw">facet_grid</span>(cond<span class="op">~</span>block)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>bnwidth &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># in seconds</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">ggplot</span>(eData_simple, <span class="kw">aes</span>(rt<span class="op">/</span><span class="dv">1000</span>)) <span class="op">+</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> bnwidth) <span class="op">+</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="st">  </span><span class="kw">labs</span>(</span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="dt">x =</span> <span class="st">&quot;RT (seconds)&quot;</span>, </span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="dt">y =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
+<span id="cb21-7"><a href="#cb21-7"></a>    <span class="dt">caption =</span> <span class="kw">paste</span>(<span class="st">&quot;Binwidth = &quot;</span>, bnwidth, <span class="st">&quot;sec.&quot;</span>)</span>
+<span id="cb21-8"><a href="#cb21-8"></a>    ) <span class="op">+</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="st">  </span><span class="kw">facet_grid</span>(cond<span class="op">~</span>block)</span></code></pre></div>
 <p><img src="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Comparisons across conditions are faciltiated using a density plot:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">ggplot</span>(eData_simple, <span class="kw">aes</span>(rt<span class="op">/</span><span class="dv">1000</span>, <span class="dt">group =</span> cond, <span class="dt">color =</span> cond)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;RT (seconds)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-4" title="4"><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-5" title="5"><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-6" title="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>block)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">ggplot</span>(eData_simple, <span class="kw">aes</span>(rt<span class="op">/</span><span class="dv">1000</span>, <span class="dt">group =</span> cond, <span class="dt">color =</span> cond)) <span class="op">+</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;RT (seconds)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="op">+</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="st">  </span><span class="kw">scale_color_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Dark2&quot;</span>) <span class="op">+</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>block)</span></code></pre></div>
 <p><img src="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Good luck with wrangling the e-prime beast and I hope you enjoyed this (updated) tutorial!</p>
 <p><br ></p>
@@ -821,7 +843,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2020 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2022 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 
@@ -835,7 +857,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -874,7 +896,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

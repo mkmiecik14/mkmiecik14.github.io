@@ -25,6 +25,8 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -39,6 +41,15 @@
 
 <!-- Twittercards -->
 <meta name="twitter:card" content="summary" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -84,6 +95,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -363,12 +375,14 @@ $(document).ready(function () {
 rm(list=ls()) # Clear workspace
 
 # Load packages
-library(ggplot2); library(dplyr); library(plotly); library(RCurl)
+library(tidyverse); library(plotly); library(httr)
 
 # Step 1: Load data
-data5v4 &lt;- read.table(text = getURL(&quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/corsicaData_5v4.csv&quot;),
-                      sep = &#39;,&#39;,
-                      header = T)
+link &lt;- &quot;https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/corsicaData_5v4.csv&quot;
+
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data &lt;- GET(link)
+data5v4 &lt;- read_csv(content(data, &quot;raw&quot;))
 
 # Step 2: Clean up the data a little bit
 # ATL moved to WPG for 2011-2012 season
@@ -381,7 +395,6 @@ ggplot(data5v4, aes(factor(Season), GF, group = 1)) +
   xlab(&#39;Season&#39;) +
   ylab(&#39;Total Season Power Play Goals (5v4)&#39;) +
   theme(axis.text.x = element_text(angle = 15, hjust = 1))</code></pre>
-<pre><code>&gt; No summary function supplied, defaulting to `mean_se()`</code></pre>
 <p><img src="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams_files/figure-html/decade-nhl-power-play-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In this above plot, each team is a grey line, while the average total power play goals for each season is plotted in the red trend line. However, we see that this doesn’t control for the shortened lockout season that occurred in 2012-2013. Let’s control for this by dividing the total power play goals (GF) by the total games played (GP) each season.</p>
 <pre class="r"><code># Step 2b: Control for games played due to partial lockout season (2012-2013)
@@ -391,8 +404,6 @@ ggplot(data5v4, aes(factor(Season), GF/GP, group = 1)) +
   xlab(&#39;Season&#39;) +
   ylab(&#39;Total Season Power Play Goals/Games Played (5v4)&#39;) +
   theme(axis.text.x = element_text(angle = 15, hjust = 1))</code></pre>
-<pre><code>&gt; Warning: Ignoring unknown parameters: fun.y</code></pre>
-<pre><code>&gt; No summary function supplied, defaulting to `mean_se()`</code></pre>
 <p><img src="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams_files/figure-html/decade-nhl-power-play-controlled-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We now see each team’s power play performance controlled for the games played that season. What is interesting about this above plot is the seemingly decrease in power play goals across time. Let’s model this with a linear regression that predicts the total season power play goals controlled for games played as a function of time/season.</p>
 <pre class="r"><code># Step 3a: Linearly model this negative relationship between 
@@ -434,9 +445,6 @@ ggplot(data5v4, aes(factor(Season), GF/GP, group = 1)) +
   ylab(&#39;Total Season Power Play Goals/Games Played (5v4)&#39;) +
   stat_smooth(method = &#39;lm&#39;, col = &#39;blue&#39;, se = F) +
   theme(axis.text.x = element_text(angle = 15, hjust = 1))</code></pre>
-<pre><code>&gt; Warning: Ignoring unknown parameters: fun.y</code></pre>
-<pre><code>&gt; No summary function supplied, defaulting to `mean_se()`</code></pre>
-<pre><code>&gt; `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams_files/figure-html/decade-nhl-power-play-decrease-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>I then wondered which teams, despite this decrease in power play goals over time, had the best or worst power play across the last decade? To remove this negative trend over time, I extracted the residuals from the model. The residuals are simply the distance from the blue line (the predicted power play goals over time) to each team’s grey line (total power play goals/games played for each year).</p>
 <pre class="r"><code># Step 4a: Remove this linear trend and focus on residuals
@@ -459,7 +467,7 @@ bestPP &lt;- data5v4 %&gt;%
 print(bestPP)</code></pre>
 <pre><code>&gt; # A tibble: 30 x 6
 &gt;    Team         mean     sd    sem   tpval sig  
-&gt;    &lt;fct&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt;
+&gt;    &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;lgl&gt;
 &gt;  1 ANA      0.0296   0.0814 0.0257 0.280   FALSE
 &gt;  2 ARI     -0.0556   0.0777 0.0246 0.0497  TRUE 
 &gt;  3 ATL.WPG -0.0456   0.0735 0.0232 0.0811  FALSE
@@ -523,8 +531,6 @@ ggplot(bestPP, aes(mean, reorder(Team, mean), colour = sig)) +
          alpha = 1/3) +
   annotate(&#39;text&#39;, x = -.1, y = above$Team[3], label = &#39;Best Teams&#39;) +
   annotate(&#39;text&#39;, x = .1, y = below$Team[4], label = &#39;Worst Teams&#39;)</code></pre>
-<pre><code>&gt; Warning: Vectorized input to `element_text()` is not officially supported.
-&gt; Results may be unexpected or may change in future versions of ggplot2.</code></pre>
 <p><img src="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams_files/figure-html/nhl-best-worst-power-play-teams-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As we can see from this plot, the top power play teams in the past decade have been the Washington Capitals, Philadelphia Flyers, Detroit Red Wings, San Jose Sharks, and Pittsburgh Penguins. Meanwhile, the worst power play teams have been the New York Islanders, Phoenix Coyotes, Nashville Predators, New York Rangers, New Jersey Devils, Colorado Avalanche, and Florida Panthers.</p>
 <p>Interestingly, only 5 different teams have won the Stanley Cup in this ten year span. Of the top power play teams from this analysis, only the Red Wings and the Penguins have won the Stanley Cup, while the Blackhawks, the Kings, the Bruins all had average regular-season power plays. It is unclear how regular-season power play performance relates to Stanley Cup wins; however, this analysis demonstrated 3 key findings for this last decade of hockey (2007 – 2017):</p>
@@ -592,7 +598,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; 2020 Matthew J. Kmiecik. All rights reserved.</span>
+    <span class="text-muted">&copy; 2022 Matthew J. Kmiecik. All rights reserved.</span>
   </div>
 </footer>
 
@@ -604,7 +610,7 @@ Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

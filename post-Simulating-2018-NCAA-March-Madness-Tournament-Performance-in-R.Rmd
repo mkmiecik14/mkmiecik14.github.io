@@ -10,6 +10,8 @@ output:
     toc_float:
       collapsed: true
       smooth_scroll: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +36,7 @@ A few of us graduate students decided it would be fun to simulate this year's NC
 The packages needed for this method:
 
 ```{r}
-library(tidyverse); library(repmis); library(RCurl)
+library(tidyverse); library(repmis); library(httr)
 ```
 
 ### Simulation
@@ -61,7 +63,11 @@ regions <- c('South', 'East', 'West', 'Midwest')
 # Import the team names and their seeds from 2018
 # These data are being pulled from this website's Github repo
 link <- 'https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/ncaa-2018-teams-updated.csv'
-ncaa.2018 <- read_csv(getURL(link)) %>% 
+
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(link)
+ncaa.2018 <- 
+  read_csv(content(data, "raw")) %>% 
   rename(region = Region, team = Team1, seed = Seed)
 
 # Initializations
@@ -322,7 +328,7 @@ Wish me luck!
 Packages needed for this method:
 
 ```{r}
-library(tidyverse); library(repmis); library(RCurl)
+library(tidyverse); library(repmis); library(httr)
 ```
 
 Similar to Matt's method, we also decided to go with a sliding range approach; however, we wanted to include historical win probabilities of first round play to determine the width of each team's number range, as well as the overlap between seeds.
@@ -476,7 +482,11 @@ regions <- c('South', 'East', 'West', 'Midwest')
 # Import the team names and their seeds from 2018
 # These data are being pulled from this website's Github repo
 link <- 'https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/ncaa-2018-teams-updated.csv'
-ncaa.2018 <- read_csv(getURL(link)) %>% 
+
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(link)
+ncaa.2018 <- 
+  read_csv(content(data, "raw")) %>%
   rename(region = Region, team = Team1, seed = Seed)
 
 # Initializations
@@ -743,7 +753,11 @@ regions <- c('South', 'East', 'West', 'Midwest')
 # Import the team names and their seeds from 2018
 # These data are being pulled from this website's Github repo
 link <- 'https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/ncaa-2018-teams-updated.csv'
-ncaa.2018 <- read_csv(getURL(link)) %>% 
+
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(link)
+ncaa.2018 <- 
+  read_csv(content(data, "raw")) %>%
   rename(region = Region, team = Team1, seed = Seed)
 
 # Initializations
@@ -984,7 +998,7 @@ According to this method, overall wins track well with increasing seed. Lower se
 R packages needed for this method:
 
 ```{r}
-library(tidyverse); library(RCurl); library(repmis)
+library(tidyverse); library(httr); library(repmis)
 ```
 
 For my bracket, I wanted to match the probability of any given seed (seed X) beating any other given seed (seed Y) to the actual proportion of times that seed X has beaten seed Y in real life. For example, 15^th^ seed teams have beaten 2^nd^ seed teams 8 times in 132 games, or 6.1% of the time.  Luckily for me, someone has already gone through every single game played and calculated the [proportions for every match-up](http://mcubed.net/ncaab/seeds.shtml). 
@@ -997,15 +1011,18 @@ These data are available on this website's [Github data repository](https://gith
 # Table of probabilites to reference for each seed vs. seed match-up
 propLink <- 'https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/SeedMatchupProportions.csv'
 
-ProportionsData <- read.table(text = getURL(propLink), sep = ',', 
-                              row.names = 1, header = T)
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(propLink)
+data_temp <- read_csv(content(data, "raw"))
+
+ProportionsData <- data_temp %>% select(-Seed) %>% as.matrix(.)
+rownames(ProportionsData) <- data_temp$Seed
 ```
 
 The historical proportions data looks like this:
 
 ```{r, echo=FALSE}
-kable(bind_cols(data.frame(Seed = colnames(ProportionsData)),
-                ProportionsData)) %>%
+kable(data_temp) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive')) %>%
   scroll_box(height = "400px")
 ```
@@ -1019,8 +1036,12 @@ For the first round, it was easier to create the data in excel beforehand and is
 # We will load a data frame containing each match-up for the round of 64
 r1Link <- 'https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/NCAA2018Bracket.csv'
 
-Round1Data <- read.table(text = getURL(r1Link), sep = ',', 
-                         row.names = 1, header = T)
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(r1Link)
+data_temp <- read_csv(content(data, "raw"))
+
+Round1Data <- data_temp %>% select(-Game) %>% as.data.frame(.)
+rownames(Round1Data) <- data_temp$Game
 
 # We also need to coerce the Team Name columns into character vectors
 Round1Data$Team1 <- as.character(Round1Data$Team1)

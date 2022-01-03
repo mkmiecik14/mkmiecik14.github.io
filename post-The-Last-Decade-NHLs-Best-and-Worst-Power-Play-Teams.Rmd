@@ -17,7 +17,9 @@ library(knitr)
 knitr::opts_chunk$set(fig.align = 'center', 
                       #fig.width = inWidth, 
                       #fig.height = inHeight,
-                      comment = '>')
+                      comment = '>',
+                      warning = FALSE,
+                      message = FALSE)
 ``` 
 
 > Note: This blog post presents a model of powerplay goals in the NHL over 10 years. However, this model is inaccurate. I encourage readers to read this post and then proceed to my [follow-up blog post](https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html) where I explain the source of these potential errors and provide a more accurate and informative model. 
@@ -33,12 +35,14 @@ First, I loaded the data and made sure to combine the entries of the Atlanta Thr
 rm(list=ls()) # Clear workspace
 
 # Load packages
-library(ggplot2); library(dplyr); library(plotly); library(RCurl)
+library(tidyverse); library(plotly); library(httr)
 
 # Step 1: Load data
-data5v4 <- read.table(text = getURL("https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/corsicaData_5v4.csv"),
-                      sep = ',',
-                      header = T)
+link <- "https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/corsicaData_5v4.csv"
+
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(link)
+data5v4 <- read_csv(content(data, "raw"))
 
 # Step 2: Clean up the data a little bit
 # ATL moved to WPG for 2011-2012 season
