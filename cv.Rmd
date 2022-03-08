@@ -184,6 +184,8 @@ Loyola University Chicago <br/>
 
 ## Papers
 
+* Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (in press). Differential effects of semantic distance, distractor salience, and relations in verbal analogy. _Psychonomic Bulletin & Review_. https://doi.org/10.3758/s13423-022-02062-8 <span class="label label-success"><a href ="https://osf.io/cd7b9/" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
+
 * **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., Hellman, K. M. (in press). Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain. _PAIN_. doi: [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx) <span class="label label-primary"><a href ="https://github.com/mkmiecik14/ssvep" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span> <span class="label label-success"><a href ="https://osf.io/yrzac/?view_only51231254dc96-c4999832ea0c8056374fa" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
 
 * **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_, _33_(3), 357-376. https://doi.org/10.1162/jocn_a_01618 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span>
@@ -251,7 +253,9 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Poster Presentations
 
-* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Oct. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster presented at the 24th annual scientific meeting of the International Pelvic Pain Society (IPPS), Baltimore, MD.
+* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2022, March). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster presented at the Chicago Chapter of the Society for Neuroscience annual meeting, Chicago, IL.
+
+* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2021, Oct.). [Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain.](https://www.researchgate.net/publication/355493213_Cortical_Mechanisms_of_Visual_Hypersensitivity_in_Women_at_Risk_for_Chronic_Pelvic_Pain) Poster presented at the 24th annual scientific meeting of the International Pelvic Pain Society (IPPS), Baltimore, MD.
 
 * Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, May). [The Time Course of Meaning Construction with Varying Expectations](https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations). Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
 
