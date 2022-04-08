@@ -210,7 +210,9 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Preprints
 
-* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. _MedRxiv_, 2020.12.03.20242032. https://www.medrxiv.org/content/10.1101/2020.12.03.20242032v2
+* **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Long-Term Pelvic Pain Outcome. _MedRxiv_, 2022.04.01.22272964. doi: https://doi.org/10.1101/2022.04.01.22272964
+
+* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. _MedRxiv_, 2020.12.03.20242032. doi: https://doi.org/10.1101/2020.12.03.20242032
 
 <br />
 
@@ -552,31 +554,39 @@ kable(teaching) %>%
 ## Guest Lectures
 
 ```{r guest}
-guest <- data.frame(Year     = c(2018, 
-                                 2018, 
-                                 2018
-                                 ),
-                    Semester = c('Fall', 
-                                 'Fall',
-                                 'Fall'
-                                 ),
-                    Topic = c("Language", 
-                              "Short-term & Working Memory", 
-                              "Analogical Reasoning"
-                              ),
-                    Class = c("Cognitive Neuroscience",
-                              "Cognitive Neuroscience",
-                              "Reasoning"
-                              ),
-                       Professor = c("Dr. Bart Rypma",
-                                     "Dr. Bart Rypma",
-                                     "Dr. Daniel C. Krawczyk"
-                                     ),
-                       Institution = c('The University of Texas at Dallas',
-                                       'The University of Texas at Dallas',
-                                       'The University of Texas at Dallas'
-                                       )
-                    )
+guest <- 
+  data.frame(
+    Year = c(2018, 2018, 2018, 2022, 2022),
+    Semester = c('Fall', 'Fall', 'Fall', "Spring", "Spring"),
+    Topic = c(
+      "Language", 
+      "Short-term & Working Memory", 
+      "Analogical Reasoning",
+      "Introduction to R",
+      "Data Visualization Principles"
+      ),
+    Class = c(
+      "Cognitive Neuroscience", 
+      "Cognitive Neuroscience", 
+      "Reasoning",
+      "Advanced Experimental Lab in Psychology",
+      "Advanced Experimental Lab in Psychology"
+      ),
+    Professor = c(
+      "Dr. Bart Rypma", 
+      "Dr. Bart Rypma", 
+      "Dr. Daniel C. Krawczyk",
+      "Professor Mina Kim",
+      "Professor Mina Kim"
+      ),
+    Institution = c(
+      'The University of Texas at Dallas',
+      'The University of Texas at Dallas',
+      'The University of Texas at Dallas',
+      "Loyola University Chicago",
+      "Loyola University Chicago"
+      )
+    )
 
 kable(guest) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
