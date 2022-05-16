@@ -11,11 +11,16 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, echo=F}
+```{r setup, echo=FALSE, warning=FALSE}
 library(knitr); library(kableExtra)
 
 # suppresses warnings globally
-knitr::opts_chunk$set(warning = F, message = F, echo = F, cache = F)
+knitr::opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE, 
+  echo = FALSE, 
+  cache = FALSE
+  )
 options(knitr.table.format = "html") # For the html tables
 ```
 
@@ -24,7 +29,7 @@ options(knitr.table.format = "html") # For the html tables
 <ul>
 <li><a href="mailto:mkmiecik14@gmail.com"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-<li><a href="https://www.linkedin.com/in/matthew-j-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+<li><a href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
 <li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
@@ -104,19 +109,6 @@ Shirley Ryan AbilityLab<br/>
 </div>
 </div>
 
-<!-- LUC Teaching Position -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/luc-shield.png">
-</div>
-<div class="col-xs-12 col-sm-10">
-**Part-time Faculty (Fall 2020, 2021)**<br/>
-Department of Psychology <br/>
-Loyola University Chicago <br/>
-</div>
-</div>
-</div>
 
 <!-- University of Chicago -->
 <div class="container-fluid">
@@ -144,6 +136,20 @@ The University of Chicago Pritzker School of Medicine  <br/>
 Department of Obstetrics and Gynecology <br/>
 Evanston Hospital <br/>
 NorthShore University HealthSystem <br/>
+</div>
+</div>
+</div>
+
+<!-- LUC Teaching Position -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 col-sm-2">
+<img class="schoollogo center-block" width="100" src="images/luc-shield.png">
+</div>
+<div class="col-xs-12 col-sm-10">
+**Part-time Faculty (2020-2022)**<br/>
+Department of Psychology <br/>
+Loyola University Chicago <br/>
 </div>
 </div>
 </div>
@@ -186,7 +192,7 @@ Loyola University Chicago <br/>
 
 * Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (in press). Differential effects of semantic distance, distractor salience, and relations in verbal analogy. _Psychonomic Bulletin & Review_. https://doi.org/10.3758/s13423-022-02062-8 <span class="label label-success"><a href ="https://osf.io/cd7b9/" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
 
-* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., Hellman, K. M. (in press). Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain. _PAIN_. doi: [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx) <span class="label label-primary"><a href ="https://github.com/mkmiecik14/ssvep" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span> <span class="label label-success"><a href ="https://osf.io/yrzac/?view_only51231254dc96-c4999832ea0c8056374fa" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
+* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., Hellman, K. M. (2022). Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain. _PAIN, 163_(6), 1035-1048. doi: [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx) <span class="label label-primary"><a href ="https://github.com/mkmiecik14/ssvep" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span> <span class="label label-success"><a href ="https://osf.io/yrzac/?view_only51231254dc96-c4999832ea0c8056374fa" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
 
 * **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_, _33_(3), 357-376. https://doi.org/10.1162/jocn_a_01618 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span>
 
@@ -210,7 +216,7 @@ brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_C
 
 ## Preprints
 
-* **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Long-Term Pelvic Pain Outcome. _MedRxiv_, 2022.04.01.22272964. doi: https://doi.org/10.1101/2022.04.01.22272964
+* **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Long-Term Pelvic Pain Outcome. _MedRxiv_, 2022.04.01.22272964. doi: https://doi.org/10.1101/2022.04.01.22272964 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/mmh" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span> <span class="label label-success"><a href ="https://osf.io/27ky9/?view_only=90108c59ca8a4431800492a5686b7ef2" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
 
 * **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. _MedRxiv_, 2020.12.03.20242032. doi: https://doi.org/10.1101/2020.12.03.20242032
 
@@ -436,7 +442,7 @@ kable(awards) %>%
 # Paper reviews data frame
 paper_reviews <- 
   data.frame(
-    Year = c(2019, 2019, 2020, 2020, 2021, 2021),
+    Year = c(2019, 2019, 2020, 2020, 2021, 2021, 2022),
     Journal = 
       c(
       "Cognition and Emotion", 
@@ -444,7 +450,8 @@ paper_reviews <-
       "Neuropsychologia",
       "JINS",
       "Pain Medicine",
-      "Applied Cognitive Psychology"
+      "Applied Cognitive Psychology",
+      "Pain Medicine"
       )
      )
 
@@ -507,13 +514,18 @@ kable(memberships) %>%
 ```{r prof}
 prof_of_rec <- 
   data.frame(
-    Year = c(2020, 2021),
-    Semester = c("Fall", "Fall"),
+    Year = c(2020, 2021, 2022),
+    Semester = c("Fall", "Fall", "Spring"),
     Class = c(
+      "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)",
       "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)",
       "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)"
       ),
-    Institution = c("Loyola University Chicago", "Loyola University Chicago")
+    Institution = c(
+      "Loyola University Chicago", 
+      "Loyola University Chicago",
+      "Loyola University Chicago"
+      )
   )
 
 kable(prof_of_rec) %>%
