@@ -9,6 +9,8 @@ output:
       smooth_scroll: true
 editor_options: 
   chunk_output_type: console
+  markdown: 
+    wrap: 80
 ---
 
 ```{r setup, echo=FALSE, warning=FALSE}
@@ -25,305 +27,526 @@ options(knitr.table.format = "html") # For the html tables
 ```
 
 <!-- social icons bar START-->
-<div class="social-icons" style="font-size: 2.4rem;">
+
+::: {.social-icons style="font-size: 2.4rem;"}
 <ul>
+
 <li><a href="mailto:mkmiecik14@gmail.com"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+
 <li><a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+
 <li><a href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+
 <li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+
 <li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+
 <li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+
 <li><a href="https://orcid.org/0000-0001-5340-3872"><i class="ai ai-orcid fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
+
 </ul>
-</div>
+:::
+
 <!-- social icons bar END-->
 
 <br />
 
 # Education
+
 <hr />
 
 <!-- NorthShore -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/northshore.jpg">
-</div>
-<div class="col-xs-12 col-sm-10">
-**Postdoctoral Research Fellowship (2020 - )**<br/>
-Department of Obstetrics and Gynecology <br/>
-Evanston Hospital <br/>
-NorthShore University HealthSystem <br/>
-</div>
-</div>
-</div>
+
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/northshore.jpg" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**Postdoctoral Research Fellowship in Pain Research (2020 - 2022)**<br/> Department of Obstetrics and
+Gynecology <br/> Evanston Hospital <br/> NorthShore University HealthSystem
+<br/>
+:::
+:::
+:::
 
 <!-- UTD -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/utdlogo.jpg">
-</div>
-<div class="col-xs-12 col-sm-10">
-**PhD Cognition and Neuroscience (2014 - 2019)**<br/>
-School of Behavioral & Brain Sciences <br/>
-The University of Texas at Dallas <br/>
-</div>
-</div>
-</div>
+
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/utdlogo.jpg" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**PhD Cognition and Neuroscience (2014 - 2019)**<br/> School of Behavioral &
+Brain Sciences <br/> The University of Texas at Dallas <br/>
+:::
+:::
+:::
 
 <br />
 
 <!-- LUC -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/luc-shield.png">
-</div>
-<div class="col-xs-12 col-sm-10">
-**BS Psychology: Nautral Science (2009 - 2013)** <br/>
-Degree Honors: Cum Laude <br/>
-Minors: Biology & Neuroscience <br/>
-Loyola University Chicago <br/>
-</div>
-</div>
-</div>
+
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/luc-shield.png" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**BS Psychology: Nautral Science (2009 - 2013)** <br/> Degree Honors: Cum Laude
+<br/> Minors: Biology & Neuroscience <br/> Loyola University Chicago <br/>
+:::
+:::
+:::
 
 <br />
 
 # Professional Positions
+
 <hr />
 
 <!-- SRA Visiting Scholar -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/sra-logo.png">
-</div>
-<div class="col-xs-12 col-sm-10">
-**Visiting Scholar (2021 - )**<br/>
-The Max Näder Lab for Rehabilitation Technologies and Outcomes Research<br/>
-Center for Bionic Medicine<br/>
-Shirley Ryan AbilityLab<br/>
-</div>
-</div>
-</div>
 
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/sra-logo.png" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**Visiting Scholar (2021 - 2022)**<br/> The Max Näder Lab for Rehabilitation
+Technologies and Outcomes Research<br/> Center for Bionic Medicine<br/> Shirley
+Ryan AbilityLab<br/>
+:::
+:::
+:::
 
 <!-- University of Chicago -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/uofc-shield.png">
-</div>
-<div class="col-xs-12 col-sm-10">
-**Clinician Researcher (2020 - )**<br/>
-Department of Obstetrics and Gynecology <br/>
-Evanston Hospital <br/>
-The University of Chicago Pritzker School of Medicine  <br/>
-</div>
-</div>
-</div>
+
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/uofc-shield.png" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**Clinician Researcher (2020 - 2022)**<br/> Department of Obstetrics and Gynecology
+<br/> Evanston Hospital <br/> The University of Chicago Pritzker School of
+Medicine <br/>
+:::
+:::
+:::
 
 <!-- NorthShore -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/northshore.jpg">
-</div>
-<div class="col-xs-12 col-sm-10">
-**Postdoctoral Research Fellow (2020 - )**<br/>
-Department of Obstetrics and Gynecology <br/>
-Evanston Hospital <br/>
-NorthShore University HealthSystem <br/>
-</div>
-</div>
-</div>
+
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/northshore.jpg" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**Postdoctoral Research Fellow (2020 - 2022)**<br/> Department of Obstetrics and
+Gynecology <br/> Evanston Hospital <br/> NorthShore University HealthSystem
+<br/>
+:::
+:::
+:::
 
 <!-- LUC Teaching Position -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/luc-shield.png">
-</div>
-<div class="col-xs-12 col-sm-10">
-**Part-time Faculty (2020-2022)**<br/>
-Department of Psychology <br/>
-Loyola University Chicago <br/>
-</div>
-</div>
-</div>
+
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/luc-shield.png" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**Part-time Faculty (2020 - 2022)**<br/> Department of Psychology <br/> Loyola
+University Chicago <br/>
+:::
+:::
+:::
 
 <!-- RA/TA ships -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/utdlogo.jpg">
-</div>
-<div class="col-xs-12 col-sm-10">
-**Research and Teaching Assistant (2014 - 2019)**<br/>
-School of Behavioral & Brain Sciences <br/>
-The University of Texas at Dallas <br/>
-</div>
-</div>
-</div>
+
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/utdlogo.jpg" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**Research and Teaching Assistant (2014 - 2019)**<br/> School of Behavioral &
+Brain Sciences <br/> The University of Texas at Dallas <br/>
+:::
+:::
+:::
 
 <!-- CAN Lab -->
-<div class="container-fluid">
-<div class="row">
-<div class="col-xs-12 col-sm-2">
-<img class="schoollogo center-block" width="100" src="images/luc-shield.png">
-</div>
-<div class="col-xs-12 col-sm-10">
-**Laboratory Manager (2013 - 2014)** <br/>
-[Cognitive and Affective Neuroscience Laboratory](http://canlab.org/) <br/>
-PI: Dr. Robert G. Morrison, PhD <br/>
+
+::: container-fluid
+::: row
+::: {.col-xs-12 .col-sm-2}
+<img src="images/luc-shield.png" class="schoollogo center-block" width="100"/>
+:::
+
+::: {.col-xs-12 .col-sm-10}
+**Laboratory Manager (2013 - 2014)** <br/> [Cognitive and Affective Neuroscience
+Laboratory](http://canlab.org/) <br/> PI: Dr. Robert G. Morrison, PhD <br/>
 Loyola University Chicago <br/>
-</div>
-</div>
-</div>
+:::
+:::
+:::
 
 <br />
 
 # Publications
+
 <hr />
 
 ## Papers
 
-* Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (in press). Differential effects of semantic distance, distractor salience, and relations in verbal analogy. _Psychonomic Bulletin & Review_. https://doi.org/10.3758/s13423-022-02062-8 <span class="label label-success"><a href ="https://osf.io/cd7b9/" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
+-   Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (2022).
+    Differential effects of semantic distance, distractor salience, and
+    relations in verbal analogy. *Psychonomic Bulletin & Review, 29*, 1480–1491.
+    <https://doi.org/10.3758/s13423-022-02062-8>
+    [<a href ="https://osf.io/cd7b9/" target="_blank" style="color: #FFFFFF">OSF
+    Project</a>]{.label .label-success}
 
-* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., Hellman, K. M. (2022). Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain. _PAIN, 163_(6), 1035-1048. doi: [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx) <span class="label label-primary"><a href ="https://github.com/mkmiecik14/ssvep" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span> <span class="label label-success"><a href ="https://osf.io/yrzac/?view_only51231254dc96-c4999832ea0c8056374fa" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
+-   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., Hellman, K. M. (2022). Cortical Mechanisms of Visual
+    Hypersensitivity in Women at Risk for Chronic Pelvic Pain. *PAIN, 163*(6),
+    1035-1048. doi:
+    [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx)
+    [<a href ="https://github.com/mkmiecik14/ssvep" target="_blank" style="color: #FFFFFF">GitHub
+    Repo</a>]{.label .label-primary}
+    [<a href ="https://osf.io/yrzac/?view_only51231254dc96-c4999832ea0c8056374fa" target="_blank" style="color: #FFFFFF">OSF
+    Project</a>]{.label .label-success}
 
-* **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. _Journal of Cognitive Neuroscience_, _33_(3), 357-376. https://doi.org/10.1162/jocn_a_01618 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span>
+-   **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing
+    Levels of Relational Complexity: Perceptual, Analogical, and System
+    Mappings. *Journal of Cognitive Neuroscience*, *33*(3), 357-376.
+    <https://doi.org/10.1162/jocn_a_01618>
+    [<a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub
+    Repo</a>]{.label .label-primary}
 
-* Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. _TRIALS. 20_:435 https://doi.org/10.21203/rs.2.273/v1 <span class="label label-default"><a href ="https://rdcu.be/bKxw4" target="_blank" style="color: #FFFFFF">PDF</a></span>
+-   Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**,
+    Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N.
+    (2019). Executive Function Training in Chronic Traumatic Brain Injury
+    Patients: Study Protocol. *TRIALS. 20*:435
+    <https://doi.org/10.21203/rs.2.273/v1>
+    [<a href ="https://rdcu.be/bKxw4" target="_blank" style="color: #FFFFFF">PDF</a>]{.label
+    .label-default}
 
-* **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. _Brain and Cognition_, _129_, 25-34. https://doi.org/10.1016/j.bandc.2018.11.012
+-   **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time
+    course of semantic and relational processing during verbal analogical
+    reasoning. *Brain and Cognition*, *129*, 25-34.
+    <https://doi.org/10.1016/j.bandc.2018.11.012>
 
-* **Kmiecik, M. J.**, Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). [A
-method for characterizing semantic and lexical properties of sentence completions in traumatic
-brain injury.](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury) _Psychological Assessment_, _30_(5), 645-655. http://dx.doi.org/10.1037/pas0000510
+-   **Kmiecik, M. J.**, Rodgers, B. N., Martinez, D. M., Chapman, S. B., &
+    Krawczyk, D. C. (2018). [A method for characterizing semantic and lexical
+    properties of sentence completions in traumatic brain
+    injury.](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury)
+    *Psychological Assessment*, *30*(5), 645-655.
+    <http://dx.doi.org/10.1037/pas0000510>
 
-* Stockdale, L. A., Morrison, R. G., **Kmiecik, M. J.**, Garbarino, J., & Silton, R. L. (2015). [Emotionally anesthetized: media violence induces neural changes during emotional face processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces) _Social Cognitive and Affective Neuroscience_, _10_(10), 1373-1382. doi: 10.1093/scan/nsv025
+-   Stockdale, L. A., Morrison, R. G., **Kmiecik, M. J.**, Garbarino, J., &
+    Silton, R. L. (2015). [Emotionally anesthetized: media violence induces
+    neural changes during emotional face
+    processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces)
+    *Social Cognitive and Affective Neuroscience*, *10*(10), 1373-1382. doi:
+    10.1093/scan/nsv025
 
 <br />
 
 ## Books
 
-* Pongpipat, E. E., Miranda, G. G., **Kmiecik, M. J.** (2019). A Practical Extension of Introductory Statistics in Psychology using R. *Free online textbook written in `bookdown` and `R`.* Read it here: https://rpsystats.com/
+-   Pongpipat, E. E., Miranda, G. G., **Kmiecik, M. J.** (2019). A Practical
+    Extension of Introductory Statistics in Psychology using R. *Free online
+    textbook written in `bookdown` and `R`.* Read it here:
+    <https://rpsystats.com/>
 
 <br />
 
 ## Preprints
 
-* **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Long-Term Pelvic Pain Outcome. _MedRxiv_, 2022.04.01.22272964. doi: https://doi.org/10.1101/2022.04.01.22272964 <span class="label label-primary"><a href ="https://github.com/mkmiecik14/mmh" target="_blank" style="color: #FFFFFF">GitHub Repo</a></span> <span class="label label-success"><a href ="https://osf.io/27ky9/?view_only=90108c59ca8a4431800492a5686b7ef2" target="_blank" style="color: #FFFFFF">OSF Project</a></span>
+-   **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022).
+    Multimodal Hypersensitivity Derived from Quantitative Sensory Testing
+    Predicts Long-Term Pelvic Pain Outcome. *MedRxiv*, 2022.04.01.22272964. doi:
+    <https://doi.org/10.1101/2022.04.01.22272964>
+    [<a href ="https://github.com/mkmiecik14/mmh" target="_blank" style="color: #FFFFFF">GitHub
+    Repo</a>]{.label .label-primary}
+    [<a href ="https://osf.io/27ky9/?view_only=90108c59ca8a4431800492a5686b7ef2" target="_blank" style="color: #FFFFFF">OSF
+    Project</a>]{.label .label-success}
 
-* **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. _MedRxiv_, 2020.12.03.20242032. doi: https://doi.org/10.1101/2020.12.03.20242032
+-   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. *MedRxiv*,
+    2020.12.03.20242032. doi: <https://doi.org/10.1101/2020.12.03.20242032>
 
 <br />
 
 ## Dissertation
 
-* **Kmiecik, M. J.** (2019). [The Time Course of Meaning Construction with Varying Expectations](https://hdl.handle.net/10735.1/9357).
+-   **Kmiecik, M. J.** (2019). [The Time Course of Meaning Construction with
+    Varying Expectations](https://hdl.handle.net/10735.1/9357).
 
 <br />
 
 # Conference Participation
+
 <hr />
 
 ## Papers
 
-* Kmiecik, M. & Morrison, R.G. (2013). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N. Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive Science Society. Austin, TX: Cognitive Science Society.
+-   Kmiecik, M. & Morrison, R.G. (2013). [Semantic Distance Modulates the N400
+    Event-Related Potential in Verbal Analogical
+    Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N.
+    Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive
+    Science Society. Austin, TX: Cognitive Science Society.
 
 <br />
 
 ## Talks
 
-* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Sept. 2021). 	Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Flash talk 	presented at The University of Chicago Postdoctoral Symposium.
+-   Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (Sept. 2021). Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Flash talk
+    presented at The University of Chicago Postdoctoral Symposium.
 
-* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk presented at the International Association for the Study of Pain (IASP) Neuropathic Pain SIG (NeuPSIG) webinar series. Link to talk [here](https://www.pathlms.com/iasp/courses/30608/video_presentations/223042).
+-   Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk
+    presented at the International Association for the Study of Pain (IASP)
+    Neuropathic Pain SIG (NeuPSIG) webinar series. Link to talk
+    [here](https://www.pathlms.com/iasp/courses/30608/video_presentations/223042).
 
-* Kmiecik, M. J. (November, 2019). Effective Presentations of Quantitative Information: A Study in Edward 	Tufte. Talk presented at the inaugural [UT Dallas BrainHack](https://brainhack-dallas.github.io/mini-brainhack-utd/), Dallas, TX.
+-   Kmiecik, M. J. (November, 2019). Effective Presentations of Quantitative
+    Information: A Study in Edward Tufte. Talk presented at the inaugural [UT
+    Dallas BrainHack](https://brainhack-dallas.github.io/mini-brainhack-utd/),
+    Dallas, TX.
 
-* Kmiecik, M. J., Nagele, M., Sharma, R., Vaughn, A. Thakur, P., & Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk presented at the Brain Performance Institute's Inaugural TBI Research Showcase. Dallas, TX.
+-   Kmiecik, M. J., Nagele, M., Sharma, R., Vaughn, A. Thakur, P., &
+    Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and
+    Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk
+    presented at the Brain Performance Institute's Inaugural TBI Research
+    Showcase. Dallas, TX.
 
-* Kmiecik, M. J. & Krawczyk, D. C. (2017, October). Reasoning With Complex Relational Structures. Talk given at the UT Dallas School of Behavioral and Brain Sciences Cognition and Neuroscience program annual Fall retreat. Dallas, TX.
+-   Kmiecik, M. J. & Krawczyk, D. C. (2017, October). Reasoning With Complex
+    Relational Structures. Talk given at the UT Dallas School of Behavioral and
+    Brain Sciences Cognition and Neuroscience program annual Fall retreat.
+    Dallas, TX.
 
-* Kmiecik, M. & Morrison, R.G. (2013, August). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) Paper presented at the 35th Annual Conference of the Cognitive Science Society, Berlin, Germany.
+-   Kmiecik, M. & Morrison, R.G. (2013, August). [Semantic Distance Modulates
+    the N400 Event-Related Potential in Verbal Analogical
+    Reasoning.](http://ecommons.luc.edu/ulurpa/1/) Paper presented at the 35th
+    Annual Conference of the Cognitive Science Society, Berlin, Germany.
 
 <br />
 
 ## Workshops
 
-* Dutcher, A., Kmiecik, M.J., & Beaton, D. (2016, April). Analyzing multi-block data: A tutorial of Multiple Factor Analysis in R. Workshop presented at the Society for Applied Multivariate Research, Dallas, Texas. (*[MFA Workshop Slides](https://www.researchgate.net/publication/301200852_Analyzing_Multi-Block_Data_A_Tutorial_of_Multiple_Factor_Analysis_in_R)* / *[MFA Workshop R Code](https://www.researchgate.net/publication/301201126_FinalCode)* )
+-   Dutcher, A., Kmiecik, M.J., & Beaton, D. (2016, April). Analyzing
+    multi-block data: A tutorial of Multiple Factor Analysis in R. Workshop
+    presented at the Society for Applied Multivariate Research, Dallas, Texas.
+    ([*MFA Workshop
+    Slides*](https://www.researchgate.net/publication/301200852_Analyzing_Multi-Block_Data_A_Tutorial_of_Multiple_Factor_Analysis_in_R)
+    / [*MFA Workshop R
+    Code*](https://www.researchgate.net/publication/301201126_FinalCode) )
 
 <br />
 
 ## Poster Presentations
 
-* Kmiecik, M. J., Tu, F. F., Darnell, S., Harber, K., Hellman, K. M. (2022, Nov.). Early cortical mechanisms of visual discomfort in premenarchal adolescents. Poster to be presented at the Society for Neuroscience Annual Meeting, San Diego, California.
+-   Kmiecik, M. J., Tu, F. F., Darnell, S., Harber, K., Hellman, K. M. (2022,
+    Nov.). Early cortical mechanisms of visual discomfort in premenarchal
+    adolescents. Poster to be presented at the Society for Neuroscience Annual
+    Meeting, San Diego, California.
 
-* Kmiecik, M. J., Tu, F. F., Clauw, D. J., Hellman, K. M. (2022, Sept.). Multimodal Hypersensitivity Predicts Pelvic Pain Outcome 4 Years Later. Poster to be presented at the International Association for the Study of Pain (IASP) World Congress on Pain, Toronto, Canada.
+-   Kmiecik, M. J., Tu, F. F., Clauw, D. J., Hellman, K. M. (2022, Sept.).
+    [Multimodal Hypersensitivity Predicts Pelvic Pain Outcome 4 Years Later](https://www.researchgate.net/publication/363650653_Multimodal_Hypersensitivity_Predicts_Pelvic_Pain_Outcome_4_Years_Later).
+    Poster presented at the International Association for the Study of
+    Pain (IASP) World Congress on Pain, Toronto, Canada.
 
-* Darnell, S., Tu, F. F., Harber, K., Sain, C., Kmiecik, M. J., Hellman, K. M. (2022, Sept.). Menstrual, Sensory, and Psychological Factors Predict New Onset Chronic Pelvic Pain. Poster to be presented at the International Association for the Study of Pain (IASP) World Congress on Pain, Toronto, Canada.
+-   Darnell, S., Tu, F. F., Harber, K., Sain, C., Kmiecik, M. J., Hellman, K. M.
+    (2022, Sept.). Menstrual, Sensory, and Psychological Factors Predict New
+    Onset Chronic Pelvic Pain. Poster to be presented at the International
+    Association for the Study of Pain (IASP) World Congress on Pain, Toronto,
+    Canada.
 
-* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2022, March). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster presented at the Chicago Chapter of the Society for Neuroscience annual meeting, Chicago, IL.
+-   Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (2022, March). Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster presented
+    at the Chicago Chapter of the Society for Neuroscience annual meeting,
+    Chicago, IL.
 
-* Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2021, Oct.). [Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain.](https://www.researchgate.net/publication/355493213_Cortical_Mechanisms_of_Visual_Hypersensitivity_in_Women_at_Risk_for_Chronic_Pelvic_Pain) Poster presented at the 24th annual scientific meeting of the International Pelvic Pain Society (IPPS), Baltimore, MD.
+-   Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (2021, Oct.). [Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic
+    Pain.](https://www.researchgate.net/publication/355493213_Cortical_Mechanisms_of_Visual_Hypersensitivity_in_Women_at_Risk_for_Chronic_Pelvic_Pain)
+    Poster presented at the 24th annual scientific meeting of the International
+    Pelvic Pain Society (IPPS), Baltimore, MD.
 
-* Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, May). [The Time Course of Meaning Construction with Varying Expectations](https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations). Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
+-   Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020,
+    May). [The Time Course of Meaning Construction with Varying
+    Expectations](https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations).
+    Poster presented virtually at the Cognitive Neuroscience Society's annual
+    conference, Boston, MA.
 
-* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, May). [The Nuances of Norepinephrine: Salivary Alpha Amylase’s Role as a Biomarker in tDCS - Directed Judgment & Decision Making.](https://www.researchgate.net/publication/343193718_The_Nuances_of_Norepinephrine_Investigating_the_Role_of_Salivary_Alpha_Amylase_on_tDCS_-_Modulated_Decision_Making) Poster presented virtually at the Cognitive Neuroscience Society’s annual conference, Boston, MA.
+-   Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C.
+    (2020, May). [The Nuances of Norepinephrine: Salivary Alpha Amylase's Role
+    as a Biomarker in tDCS - Directed Judgment & Decision
+    Making.](https://www.researchgate.net/publication/343193718_The_Nuances_of_Norepinephrine_Investigating_the_Role_of_Salivary_Alpha_Amylase_on_tDCS_-_Modulated_Decision_Making)
+    Poster presented virtually at the Cognitive Neuroscience Society's annual
+    conference, Boston, MA.
 
-* Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, March). The Time Course of Meaning Construction with Varying Expectations. Poster was to be presented at the Society for Neuroscience Chicago Chapter annual meeting, Chicago, IL. * Cancelled due to COVID-19
+-   Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020,
+    March). The Time Course of Meaning Construction with Varying Expectations.
+    Poster was to be presented at the Society for Neuroscience Chicago Chapter
+    annual meeting, Chicago, IL. \* Cancelled due to COVID-19
 
-* Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C. (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster to be presented at the Society for Personality and Social Psychology’s annual conference, New Orleans, LA.
+-   Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C.
+    (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha
+    Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster to be
+    presented at the Society for Personality and Social Psychology's annual
+    conference, New Orleans, LA.
 
-* Nagele, M., Kmiecik, M. J., Chang, Z., Martinez, D., Juarez, M., Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C. (2019, August). [Using the Virtual Multiple Errands Task (VMET) to Assess Executive Functioning in Traumatic Brain Injury.](https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury) Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
+-   Nagele, M., Kmiecik, M. J., Chang, Z., Martinez, D., Juarez, M.,
+    Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C.
+    (2019, August). [Using the Virtual Multiple Errands Task (VMET) to Assess
+    Executive Functioning in Traumatic Brain
+    Injury.](https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury)
+    Poster presented at the Military Health System Research Symposium annual
+    meeting, Kissimmee, FL.
 
-* Chang, Z., Kmiecik, M. J., Martinez, D., Nagele, M., Lundie, M., Cole, R., Kim, L., Khachaturyan, M., Balloun, B., Juarez, M., Didehbani, N., Clover, M., Rule, G., Scott, G., & Krawczyk, D. C. (2019, August). Using a Virtual-Reality Based Rehabilitation Program to Enhance Daily Functioning in Veterans Surviving Traumatic Brain Injury. Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
+-   Chang, Z., Kmiecik, M. J., Martinez, D., Nagele, M., Lundie, M., Cole, R.,
+    Kim, L., Khachaturyan, M., Balloun, B., Juarez, M., Didehbani, N., Clover,
+    M., Rule, G., Scott, G., & Krawczyk, D. C. (2019, August). Using a
+    Virtual-Reality Based Rehabilitation Program to Enhance Daily Functioning in
+    Veterans Surviving Traumatic Brain Injury. Poster presented at the Military
+    Health System Research Symposium annual meeting, Kissimmee, FL.
 
-* Nagele, M. M., Kmiecik, M. J., & Krawczyk, D. C. (2019, April). Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster presented at UT Dallas School of Behavioral and Brain Sciences Psychological Sciences annual meeting, Dallas, TX.
+-   Nagele, M. M., Kmiecik, M. J., & Krawczyk, D. C. (2019, April).
+    Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster
+    presented at UT Dallas School of Behavioral and Brain Sciences Psychological
+    Sciences annual meeting, Dallas, TX.
 
-* Kmiecik, M. J., Martin A. D., Kim, L. M., Perez, R., Martinez, D. M., Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of Reasoning Ability and Relational Cueing in Solving Relational Match-to-Sample Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems). Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
+-   Kmiecik, M. J., Martin A. D., Kim, L. M., Perez, R., Martinez, D. M.,
+    Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of
+    Reasoning Ability and Relational Cueing in Solving Relational
+    Match-to-Sample
+    Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems).
+    Poster presented at the Cognitive Neuroscience Society annual meeting, San
+    Francisco, CA.
 
-* Kim, L. M., Kmiecik, M. J., Martinez, D. M., Martin A. D., & Krawczyk, D. C. (2019, March). [The Similar Situations Task: Measuring Differing Levels of Reasoning Using Scene Analogies](https://www.researchgate.net/publication/332058003_The_Similar_Situations_Task_Measuring_Differing_Levels_of_Reasoning_Using_Scene_Analogies). Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
+-   Kim, L. M., Kmiecik, M. J., Martinez, D. M., Martin A. D., & Krawczyk, D. C.
+    (2019, March). [The Similar Situations Task: Measuring Differing Levels of
+    Reasoning Using Scene
+    Analogies](https://www.researchgate.net/publication/332058003_The_Similar_Situations_Task_Measuring_Differing_Levels_of_Reasoning_Using_Scene_Analogies).
+    Poster presented at the Cognitive Neuroscience Society annual meeting, San
+    Francisco, CA.
 
-* Kais, L.A., Lee, C., Kmiecik, M.J., Silton, R.L. (2018, February). The Influence of Affect on Interference 	Processing in Blocked and Mixed Presentations of a Stroop Color-Word Task. Poster presented at the annual meeting of the International Neuropsychological Society: Washington, D.C.
+-   Kais, L.A., Lee, C., Kmiecik, M.J., Silton, R.L. (2018, February). The
+    Influence of Affect on Interference Processing in Blocked and Mixed
+    Presentations of a Stroop Color-Word Task. Poster presented at the annual
+    meeting of the International Neuropsychological Society: Washington, D.C.
 
-* Kmiecik, M. J., Perez, R., Dandu, H., Krawczyk, D. C. (2017, August). [Reasoning with Complex Relational 	Structures.](https://www.researchgate.net/publication/318969662_Reasoning_With_Complex_Relational_Structures) Poster presented at the Fourth International Conference on Analogical Reasoning, Paris, France.
+-   Kmiecik, M. J., Perez, R., Dandu, H., Krawczyk, D. C. (2017, August).
+    [Reasoning with Complex Relational
+    Structures.](https://www.researchgate.net/publication/318969662_Reasoning_With_Complex_Relational_Structures)
+    Poster presented at the Fourth International Conference on Analogical
+    Reasoning, Paris, France.
 
-* Martinez, D. M., Kmiecik, M. J., Kamat, P. S., Schauer, G. F., Krawczyk, D. C. (2017, August). Aspects of 	Cognition and Clinical Symptomology in Analogical Reasoning. Poster presented at the Fourth International Conference on Analogical Reasoning, Paris, France.
+-   Martinez, D. M., Kmiecik, M. J., Kamat, P. S., Schauer, G. F.,
+    Krawczyk, D. C. (2017, August). Aspects of Cognition and Clinical
+    Symptomology in Analogical Reasoning. Poster presented at the Fourth
+    International Conference on Analogical Reasoning, Paris, France.
 
-* Kmiecik, M.J., Martinez, D., Young, L.R., Krawczyk, D.C. (2016, November). [Functional and Structural Neural Patterns in Mild-Moderate Chronic-Phase Traumatic Brain Injury.](https://www.researchgate.net/publication/309457305_Functional_and_Structural_Neural_Patterns_in_Mild-Moderate_Chronic-Phase_Traumatic_Brain_Injury) Archives of Physical Medicine and Rehabilitation, 97(10), e55. doi: 10.1016/j.apmr.2016.08.167
+-   Kmiecik, M.J., Martinez, D., Young, L.R., Krawczyk, D.C. (2016, November).
+    [Functional and Structural Neural Patterns in Mild-Moderate Chronic-Phase
+    Traumatic Brain
+    Injury.](https://www.researchgate.net/publication/309457305_Functional_and_Structural_Neural_Patterns_in_Mild-Moderate_Chronic-Phase_Traumatic_Brain_Injury)
+    Archives of Physical Medicine and Rehabilitation, 97(10), e55. doi:
+    10.1016/j.apmr.2016.08.167
 
-* Martinez, D., Kmiecik, M.J., Chapman, S., Krawczyk, D.C. (2016, November). [Observing Changes in Cognition, Mood, and White Matter in Chronic TBI Using Multiple Factor Analysis After Cognitive Intervention.](https://www.researchgate.net/publication/308601754_Observing_Changes_in_Cognition_Mood_and_White_Matter_in_Chronic_TBI_Using_Multiple_Factor_Analysis_After_Cognitive_Intervention) Archives of Physical Medicine and Rehabilitation, 97(10), e75. doi: 10.1016/j.apmr.2016.08.229
+-   Martinez, D., Kmiecik, M.J., Chapman, S., Krawczyk, D.C. (2016, November).
+    [Observing Changes in Cognition, Mood, and White Matter in Chronic TBI Using
+    Multiple Factor Analysis After Cognitive
+    Intervention.](https://www.researchgate.net/publication/308601754_Observing_Changes_in_Cognition_Mood_and_White_Matter_in_Chronic_TBI_Using_Multiple_Factor_Analysis_After_Cognitive_Intervention)
+    Archives of Physical Medicine and Rehabilitation, 97(10), e75. doi:
+    10.1016/j.apmr.2016.08.229
 
-* Kmiecik, M.J., Schauer, G.F., Martinez, D., & Krawczyk, D.C. (2016, April). [The Similar Situations Task: An Assessment of Analogical Reasoning in Healthy and Clinical Populations.](https://www.researchgate.net/publication/299782139_The_Similar_Situations_Task_An_Assessment_of_Analogical_Reasoning_in_Healthy_and_Clinical_Populations) Poster presented at the Cognitive Neuroscience Society annual meeting, New York, NY.
+-   Kmiecik, M.J., Schauer, G.F., Martinez, D., & Krawczyk, D.C. (2016, April).
+    [The Similar Situations Task: An Assessment of Analogical Reasoning in
+    Healthy and Clinical
+    Populations.](https://www.researchgate.net/publication/299782139_The_Similar_Situations_Task_An_Assessment_of_Analogical_Reasoning_in_Healthy_and_Clinical_Populations)
+    Poster presented at the Cognitive Neuroscience Society annual meeting, New
+    York, NY.
 
-* Kmiecik, M. J., Chapman, S., & Krawczyk, D., (2015). Executive Functioning in Traumatic Brain Injury: A Detailed Investigation of the Hayling Test. Archives of Physical Medicine and Rehabilitation, 96(10), e97-e98. doi: 10.1016/j.apmr.2015.08.326
+-   Kmiecik, M. J., Chapman, S., & Krawczyk, D., (2015). Executive Functioning
+    in Traumatic Brain Injury: A Detailed Investigation of the Hayling Test.
+    Archives of Physical Medicine and Rehabilitation, 96(10), e97-e98. doi:
+    10.1016/j.apmr.2015.08.326
 
-* Stockdale, L., Morrison, R. G., Kmiecik, M., Palumbo, R., Garbarino, J., & Silton, R. L. (September, 2014). Negative valence systems distinctly influence bottom-up and top-down attentional processes. Paper presented at the Society for Psychophysiological Research, Atlanta, GA.
+-   Stockdale, L., Morrison, R. G., Kmiecik, M., Palumbo, R., Garbarino, J., &
+    Silton, R. L. (September, 2014). Negative valence systems distinctly
+    influence bottom-up and top-down attentional processes. Paper presented at
+    the Society for Psychophysiological Research, Atlanta, GA.
 
-* Palumbo, R. T., Stockdale, L., Kmiecik, M. J., Silton, R. L., Morrison, R. G. (2014, July). The effect of short-term exposure to film violence on emotional facial processing. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+-   Palumbo, R. T., Stockdale, L., Kmiecik, M. J., Silton, R. L.,
+    Morrison, R. G. (2014, July). The effect of short-term exposure to film
+    violence on emotional facial processing. Poster presented at the 36th annual
+    meeting of the Cognitive Science Society, Quebec City, Canada.
 
-* Brisson, R., Kmiecik, M.J., & Morrison, R. G. (2014, July). The effect of semantic and relational similarity on the N400 event-related potential in verbal analogical reasoning. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+-   Brisson, R., Kmiecik, M.J., & Morrison, R. G. (2014, July). The effect of
+    semantic and relational similarity on the N400 event-related potential in
+    verbal analogical reasoning. Poster presented at the 36th annual meeting of
+    the Cognitive Science Society, Quebec City, Canada.
 
-* Irwin, J.L., Jones, L.L., Kmiecik, M.J., Unsworth, N., & Morrison, R. G. (2014, July). Attention to detail predicts better verbal analogy performance. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+-   Irwin, J.L., Jones, L.L., Kmiecik, M.J., Unsworth, N., & Morrison, R. G.
+    (2014, July). Attention to detail predicts better verbal analogy
+    performance. Poster presented at the 36th annual meeting of the Cognitive
+    Science Society, Quebec City, Canada.
 
-* Jones, L.L., Irwin, J.L., Kmiecik, M.J., Unsworth, N., & Morrison, R. G. (2014, July). Working memory and interference control in verbal analogy. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+-   Jones, L.L., Irwin, J.L., Kmiecik, M.J., Unsworth, N., & Morrison, R. G.
+    (2014, July). Working memory and interference control in verbal analogy.
+    Poster presented at the 36th annual meeting of the Cognitive Science
+    Society, Quebec City, Canada.
 
-* Morrison, R. G., Kmiecik, M.J., Irwin, J.L., Unsworth, N., Jones, L.L. (2014, July). Working memory and crystallized knowledge in visual analogy. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
+-   Morrison, R. G., Kmiecik, M.J., Irwin, J.L., Unsworth, N., Jones, L.L.
+    (2014, July). Working memory and crystallized knowledge in visual analogy.
+    Poster presented at the 36th annual meeting of the Cognitive Science
+    Society, Quebec City, Canada.
 
-* Brisson, R.J., Kmiecik, M.J., Sweis, A.S. & Morrison, R.G. (2014, April). The Effect of Semantic and Relational Similarity on the N400 in Verbal Analogical Reasoning. Poster presented at the Cognitive Neuroscience Society annual meeting, Boston, MA.
+-   Brisson, R.J., Kmiecik, M.J., Sweis, A.S. & Morrison, R.G. (2014, April).
+    The Effect of Semantic and Relational Similarity on the N400 in Verbal
+    Analogical Reasoning. Poster presented at the Cognitive Neuroscience Society
+    annual meeting, Boston, MA.
 
-* Stockdale, L., Palumbo, R., Kmiecik, M., Silton, R.L. & Morrison, R.G. (2014, April). The Effects of Media Violence on the Neural Correlates of Emotional Facial Processing: An ERP Investigation. Poster presented at the Cognitive Neuroscience Society annual meeting, Boston, MA.
+-   Stockdale, L., Palumbo, R., Kmiecik, M., Silton, R.L. & Morrison, R.G.
+    (2014, April). The Effects of Media Violence on the Neural Correlates of
+    Emotional Facial Processing: An ERP Investigation. Poster presented at the
+    Cognitive Neuroscience Society annual meeting, Boston, MA.
 
-* Kmiecik, M.J., Brisson, R.J., & Morrison, R.G. (2013, April). Semantic distance in verbal analogical reasoning modulates the N400 event-related potential. Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
+-   Kmiecik, M.J., Brisson, R.J., & Morrison, R.G. (2013, April). Semantic
+    distance in verbal analogical reasoning modulates the N400 event-related
+    potential. Poster presented at the Cognitive Neuroscience Society annual
+    meeting, San Francisco, CA.
 
-* Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, April). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Cognitive Neuroscience Society annual meeting, Chicago, IL.
+-   Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, April). When analogy is
+    like priming: The N400 in verbal analogical reasoning. Poster presented at
+    the Cognitive Neuroscience Society annual meeting, Chicago, IL.
 
-* Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, March). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Society for Neuroscience Chicago Chapter 2012 annual meeting, Chicago, IL.
+-   Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, March). When analogy is
+    like priming: The N400 in verbal analogical reasoning. Poster presented at
+    the Society for Neuroscience Chicago Chapter 2012 annual meeting, Chicago,
+    IL.
 
 <br />
 
@@ -352,17 +575,27 @@ kable(conf_org) %>%
 <br />
 
 # Invited Talks
+
 <hr >
 
-* __Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain__ (March 2021) Neuroscience Seminar, Loyola University Chicago
+-   **Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for
+    Chronic Pelvic Pain** (March 2021) Neuroscience Seminar, Loyola University
+    Chicago
 
-* __Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology__ (April 2020) Department of Obstetrics and Gynecology Grand Rounds, Evanston Hospital
+-   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
+    Brain Injury and Electrophysiology** (April 2020) Department of Obstetrics
+    and Gynecology Grand Rounds, Evanston Hospital
 
-* __Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology__ (March 2020) Neuroscience Seminar, Loyola University Chicago
+-   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
+    Brain Injury and Electrophysiology** (March 2020) Neuroscience Seminar,
+    Loyola University Chicago
 
-* __Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology__ (December 2019) Frontiers of BrainHealth Lecture Series, The University of Texas at Dallas
+-   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
+    Brain Injury and Electrophysiology** (December 2019) Frontiers of
+    BrainHealth Lecture Series, The University of Texas at Dallas
 
-* __Steps Toward Graduate School__ (October 2016) Loyola Neuroscience Society, Loyola University Chicago
+-   **Steps Toward Graduate School** (October 2016) Loyola Neuroscience Society,
+    Loyola University Chicago
 
 <br >
 
@@ -381,8 +614,8 @@ inv_talks <-
   )
 ```
 
-
 # Grants & Fellowships
+
 <hr />
 
 ```{r grants}
@@ -406,40 +639,43 @@ kable(grants) %>%
 
 ```
 
-
 <br />
 
 # Academic Awards & Honors
+
 <hr />
 
 ```{r awards}
 awards <- 
   data.frame(
-    Year = c('2014', '2013', '2013', '2013', '2010-2013'),
+    Year = c("2022", "2014", "2013", "2013", "2013", "2010-2013"),
     Award = c(
-      'People’s Choice Poster Award',
-      'First Place Libraries Undergraduate Research Paper Award',
-      'Department of Psychology Research Award',
-      'Department of Psychology Honors Award',
-      'Dean’s List'
+      "Best Poster Award",
+      "People’s Choice Poster Award",
+      "First Place Libraries Undergraduate Research Paper Award",
+      "Department of Psychology Research Award",
+      "Department of Psychology Honors Award",
+      "Dean’s List"
       ),
     Institution = c(
-      'Cognitive Neuroscience Society',
-      'Loyola University Chicago',
-      'Loyola University Chicago',
-      'Loyola University Chicago',
-      'Loyola University Chicago'
+      "IASP Abdominal and Pelvic Pain SIG",
+      "Cognitive Neuroscience Society",
+      "Loyola University Chicago",
+      "Loyola University Chicago",
+      "Loyola University Chicago",
+      "Loyola University Chicago"
       )
     )
 
 kable(awards) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 
 ```
 
 <br />
 
 # Academic Service
+
 <hr >
 
 ## Paper Reviews
@@ -448,22 +684,19 @@ kable(awards) %>%
 # Paper reviews data frame
 paper_reviews <- 
   data.frame(
-    Year = c(2019, 2019, 2020, 2020, 2021, 2021, 2022),
+    Year = c(2022, 2021, 2020, 2019),
     Journal = 
       c(
-      "Cognition and Emotion", 
-      "Applied Cognitive Psychology", 
-      "Neuropsychologia",
-      "JINS",
-      "Pain Medicine",
-      "Applied Cognitive Psychology",
-      "Pain Medicine"
+      "Pain Medicine; Journal of Cognitive Psychology",
+      "Pain Medicine; Applied Cognitive Psychology",
+      "Neuropsychologia; JINS",
+      "Cognition and Emotion; Applied Cognitive Psychology"
       )
      )
 
 # Paper Reviews Table
 kable(paper_reviews) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 ```
 
 ## Committee Involvement
@@ -513,6 +746,7 @@ kable(memberships) %>%
 <br >
 
 # Teaching Experience
+
 <hr />
 
 ## Professor of Record
@@ -520,8 +754,8 @@ kable(memberships) %>%
 ```{r prof}
 prof_of_rec <- 
   data.frame(
-    Year = c(2020, 2021, 2022),
-    Semester = c("Fall", "Fall", "Spring"),
+    Year = c(2022, 2021, 2019),
+    Semester = c("Spring", "Fall", "Fall"),
     Class = c(
       "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)",
       "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)",
@@ -537,7 +771,6 @@ prof_of_rec <-
 kable(prof_of_rec) %>%
   kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
 ```
-
 
 ## Teaching Assistant
 
@@ -574,46 +807,55 @@ kable(teaching) %>%
 ```{r guest}
 guest <- 
   data.frame(
-    Year = c(2018, 2018, 2018, 2022, 2022),
-    Semester = c('Fall', 'Fall', 'Fall', "Spring", "Spring"),
-    Topic = c(
+    Year = rev(c(2018, 2018, 2018, 2022, 2022)),
+    Semester = rev(c("Fall", "Fall", "Fall", "Spring", "Spring")),
+    Topic = rev(
+      c(
       "Language", 
       "Short-term & Working Memory", 
       "Analogical Reasoning",
       "Introduction to R",
       "Data Visualization Principles"
+      )
       ),
-    Class = c(
+    Class = rev(
+      c(
       "Cognitive Neuroscience", 
       "Cognitive Neuroscience", 
       "Reasoning",
       "Advanced Experimental Lab in Psychology",
       "Advanced Experimental Lab in Psychology"
+      )
       ),
-    Professor = c(
+    Professor = rev(
+      c(
       "Dr. Bart Rypma", 
       "Dr. Bart Rypma", 
       "Dr. Daniel C. Krawczyk",
       "Professor Mina Kim",
       "Professor Mina Kim"
+      )
       ),
-    Institution = c(
-      'The University of Texas at Dallas',
-      'The University of Texas at Dallas',
-      'The University of Texas at Dallas',
+    Institution = rev(
+      c(
+      "The University of Texas at Dallas",
+      "The University of Texas at Dallas",
+      "The University of Texas at Dallas",
       "Loyola University Chicago",
       "Loyola University Chicago"
+      )
       )
     )
 
 kable(guest) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
 
 ```
 
 <br />
 
 # Internships
+
 <hr />
 
 ```{r intern}
@@ -631,6 +873,7 @@ kable(intern) %>%
 <br />
 
 # Training and Certifications
+
 <hr />
 
 ```{r training}
@@ -656,44 +899,44 @@ kable(training) %>%
 <br />
 
 # Sports Writing
+
 <hr />
 
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/07/19/chicago-blackhawks-scoring-density-analysis-2018-2019-season/" class="postLink" target="_blank"> Chicago Blackhawks: Scoring Density Analysis for the 2018-2019 Season</a></h3>
+<h3><a href="https://blackhawkup.com/2019/07/19/chicago-blackhawks-scoring-density-analysis-2018-2019-season/" class="postLink" target="_blank">
+Chicago Blackhawks: Scoring Density Analysis for the 2018-2019 Season</a></h3>
 
-<span class="far fa-clock"></span> July 19th, 2019
-<span class="label label-info">Hockey Analytics</span>
-<span class="label label-default">R</span>
-
-<br />
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/06/27/chicago-blackhawks-efficient-offensive-machine/" class="postLink" target="_blank"> Chicago Blackhawks: An Efficient Offensive Machine</a></h3>
-
-<span class="far fa-clock"></span> June 27th, 2019
-<span class="label label-info">Hockey Analytics</span>
-<span class="label label-default">R</span>
+July 19th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label
+.label-default}
 
 <br />
 
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/05/14/q-colliton-first-67-games-blackhawks-head-coach/" class="postLink" target="_blank"> Coach Q vs. Jeremy Colliton: First 67 Games As Blackhawks’ Head Coach</a></h3>
+<h3><a href="https://blackhawkup.com/2019/06/27/chicago-blackhawks-efficient-offensive-machine/" class="postLink" target="_blank">
+Chicago Blackhawks: An Efficient Offensive Machine</a></h3>
 
-<span class="far fa-clock"></span> May 15th, 2019
-<span class="label label-info">Hockey Analytics</span>
-<span class="label label-default">R</span>
-
-<br />
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank"> Chicago Blackhawks: analyzing Patrick Kane’s career scoring tendencies</a></h3>
-
-<span class="far fa-clock"></span> April 9th, 2019
-<span class="label label-info">Hockey Analytics</span>
-<span class="label label-default">R</span>
+June 27th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label
+.label-default}
 
 <br />
 
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://blackhawkup.com/2019/04/18/blackhawks-player-grades-patrick-kane/" class="postLink" target="_blank"> Chicago Blackhawks 2018-19 Player Grades: Patrick Kane</a></h3>
+<h3><a href="https://blackhawkup.com/2019/05/14/q-colliton-first-67-games-blackhawks-head-coach/" class="postLink" target="_blank">
+Coach Q vs. Jeremy Colliton: First 67 Games As Blackhawks' Head Coach</a></h3>
 
-<span class="far fa-clock"></span> April 19th, 2019
-<span class="label label-info">Hockey Analytics</span>
-<span class="label label-default">R</span>
+May 15th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label .label-default}
+
+<br />
+
+<h3><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank">
+Chicago Blackhawks: analyzing Patrick Kane's career scoring tendencies</a></h3>
+
+April 9th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label
+.label-default}
+
+<br />
+
+<h3><a href="https://blackhawkup.com/2019/04/18/blackhawks-player-grades-patrick-kane/" class="postLink" target="_blank">
+Chicago Blackhawks 2018-19 Player Grades: Patrick Kane</a></h3>
+
+April 19th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label
+.label-default}
 
 <br />
