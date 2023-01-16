@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: docs
+  render: 
+    - "*.qmd"
+    - "!README.md"
+
+website:
+  title: "Matthew J. Kmiecik, PhD"
+  google-analytics: G-Q8PCYXLBH5
+  navbar: 
+    pinned: true
+    background: primary
+    foreground: light
+    search: true
+    right:
+      - text: "Home"
+        icon: house-door
+        file: index.qmd
+      - text: "CV"
+        icon: mortarboard-fill
+        file: cv.qmd
+      - text: "My Blogs"
+        icon: send-fill
+        menu:
+          - file: theblueline.qmd
+          - file: academicblog.qmd 
+
+format:
+  html:
+    include-in-header: icons.html
+    include-after-body: footer.html
+    theme: flatly
+    highlight-style: textmate
+    css: styles.css
+      
+  
