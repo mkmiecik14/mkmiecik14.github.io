@@ -244,8 +244,6 @@ reactable(
 
 # Publications
 
-<hr />
-
 ## Papers
 
 -   Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (2022).
@@ -336,8 +334,6 @@ reactable(
 <br />
 
 # Conference Participation
-
-<hr />
 
 ## Papers
 
@@ -614,8 +610,6 @@ kable(conf_org) %>%
 
 # Invited Talks
 
-<hr >
-
 -   **Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for
     Chronic Pelvic Pain** (March 2021) Neuroscience Seminar, Loyola University
     Chicago
@@ -654,8 +648,6 @@ inv_talks <-
 
 # Grants & Fellowships
 
-<hr />
-
 ```{r grants}
 grants <- 
   data.frame(
@@ -680,8 +672,6 @@ kable(grants) %>%
 <br />
 
 # Academic Awards & Honors
-
-<hr />
 
 ```{r awards}
 awards <- 
@@ -713,8 +703,6 @@ kable(awards) %>%
 <br />
 
 # Academic Service
-
-<hr >
 
 ## Paper Reviews
 
@@ -784,8 +772,6 @@ kable(memberships) %>%
 <br >
 
 # Teaching Experience
-
-<hr />
 
 ## Professor of Record
 
@@ -902,8 +888,6 @@ kable(guest) %>%
 
 # Internships
 
-<hr />
-
 ```{r intern}
 intern <- data.frame(Year = c(2016),
                      Month = c('Summer'),
@@ -919,8 +903,6 @@ kable(intern) %>%
 <br />
 
 # Training and Certifications
-
-<hr />
 
 ```{r training}
 training <- 
@@ -945,8 +927,6 @@ kable(training) %>%
 <br />
 
 # Sports Writing
-
-<hr />
 
 <h3><a href="https://blackhawkup.com/2019/07/19/chicago-blackhawks-scoring-density-analysis-2018-2019-season/" class="postLink" target="_blank">
 Chicago Blackhawks: Scoring Density Analysis for the 2018-2019 Season</a></h3>
