@@ -62,7 +62,7 @@ education <-
   as_tibble(
     rbind(
       cbind(
-        logo = c("23andMe-logo.png"),
+        logo = c("23andMe-omni.png"),
         inst = c("23andMe"),
         focus = c("Parkinson's Disease"),
         degree = c("Postdoctoral Fellowship"),
@@ -70,7 +70,7 @@ education <-
         ),
       # northshore
       cbind(
-        c("northshore.jpg"),
+        c("ns-omni.png"),
         c("NorthShore University HealthSystem"),
         c("Pain Research"),
         c("Postdoctoral Research Fellowship"),
@@ -78,7 +78,7 @@ education <-
         ),
       # UTD
       cbind(
-        c("utdlogo.jpg"),
+        c("utd-omni.png"),
         c("The Univeristy of Texas at Dallas"),
         c("Human Reasoning, Traumatic Brain Injury"),
         c("PhD Cognition and Neuroscience"),
@@ -86,7 +86,7 @@ education <-
         ),
       # LUC
       cbind(
-        c("luc-shield.png"),
+        c("luc-omni.png"),
         c("Loyola University Chicago"),
         c("Analogical Reasoning, EEG"),
         position = c("BS Psychology: Natural Sciences"),
@@ -104,8 +104,8 @@ reactable(
       logo = colDef(
         name = "",
         cell = function(value){
-          image <- img(src = paste0("images/", value), style = "height: 75px;")
-          tagList(div(style = "display: inline-block; width: 45px;", image))
+          image <- img(src = paste0("images/", value), style = "height: 75px;") # orign 75px
+          tagList(div(style = "display: inline-block; width: 75px;", image)) # orig 45px
           },
         width = 150, 
         align = "left"
@@ -145,7 +145,7 @@ prof_pos <-
     rbind(
       # 23andMe
       cbind(
-        logo = c("23andMe-logo.png"), 
+        logo = c("23andMe-omni.png"), 
         pos = c("Postdoctoral Fellow"),
         dep = c("Research"),
         inst = c("23andMe"),
@@ -153,7 +153,7 @@ prof_pos <-
         ),
       # shirley ryan
       cbind(
-        c("sra-logo.png"),
+        c("sra-omni.png"),
         c("Visiting Scholar"),
         c("Center for Bionic Medicine"),
         c("Shirley Ryan AbilityLab"),
@@ -161,7 +161,7 @@ prof_pos <-
       ),
       # u of c
       cbind(
-        c("uofc-shield.png"),
+        c("uchicago-omni.png"),
         c("Clincian Researcher"),
         c("Department of Ob/Gyn"),
         c("The University of Chicago Pritzker School of Medicine"),
@@ -169,7 +169,7 @@ prof_pos <-
       ),
       # northshore
       cbind(
-        c("northshore.jpg"), 
+        c("ns-omni.png"), 
         c("Postdoctoral Research Fellowship"),
         c("Department of Ob/Gyn"),
         c("NorthShore Univeristy HealthSystem"),
@@ -177,7 +177,7 @@ prof_pos <-
         ),
       # luc teaching
       cbind(
-        c("luc-shield.png"),
+        c("luc-omni.png"),
         c("Part-Time Faculty"),
         c("Department of Psychology"),
         c("Loyola University Chicago"),
@@ -185,7 +185,7 @@ prof_pos <-
       ),
       # UTD 
       cbind(
-        c("utdlogo.jpg"),
+        c("utd-omni.png"),
         c("Graduate Research and Teaching Assistant"),
         c("School of Behavioral and Brain Sciences"),
         c("The University of Texas at Dallas"),
@@ -193,7 +193,7 @@ prof_pos <-
         ),
       # LUC
       cbind(
-        c("luc-shield.png"),
+        c("luc-omni.png"),
         c("Laboratory Manager"),
         c("Department of Psychology"),
         c("Loyola Univeristy Chicago"),
@@ -587,23 +587,37 @@ reactable(
 ## Conference Organization
 
 ```{r conf-org}
-# links in html tables:
-# https://stackoverflow.com/questions/35078430/including-links-within-rmarkdown-tables-pdf
-
-conf_org_urls <- "https://brainhack-dallas.github.io/mini-brainhack-utd/"
+# conference organization dataframe
 conf_org <- 
-  data.frame(
-  Year = c("2021-22", "2019"),
-  Role = c("Fundraising Chair", "Organizer"),
-  Conference = 
-    c(
-      "Chicago Society for Neuroscience",
-      paste0("[BrainHack Dallas](", conf_org_urls, ")", " @ UT Dallas")
-    )
-  )
+  as_tibble(
+    rbind(
+      cbind(
+        year = "2021-2023",
+        role = "Fundraising Coordinator",
+        conf = "Chicago Society for Neuroscience"
+      ),
+      cbind(
+        year = "2019",
+        role = "Organizer",
+        conf = "BrainHack Dallas"
+        )
+      )
+    ) %>%
+  select(role, conf, year)
 
-kable(conf_org) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+# conf org table
+reactable(
+  conf_org,
+  columns = list(
+    role = colDef(name = "Role"),
+    conf = colDef(name = "Conference"),
+    year = colDef(name = "Dates", width = 150)
+  ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  striped = TRUE,
+  highlight = TRUE,
+  style = list(fontSize = "0.9rem")
+)
 ```
 
 <br />
@@ -631,42 +645,70 @@ kable(conf_org) %>%
 
 <br >
 
-```{r, eval = FALSE}
-inv_talks <-
-  data.frame(
-    Date = c("Oct. 2016", "Dec. 2019", "Mar. 2020"),
-    `Talk Title` = c(
-      "Steps Toward Graduate School", 
-      "Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology", 
-      "Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology"
-      ),
-    `Forum/Location` = c(
-      "Loyola Neuroscience Society, Loyola University Chicago",
-      "Frontiers of BrainHealth Lecture Series, The University of Texas at Dallas",)
-  )
-```
-
 # Grants & Fellowships
 
 ```{r grants}
-grants <- 
-  data.frame(
-  Year = c('2019','2017', '2015', '2013', '2013', '2012', '2011'),
-  Award = c(
-    'Friends of BrainHealth Distinguished New Scientist Award',
-    'Dianne Cash Pre-Doctoral Fellowship',
-    'Friends of BrainHealth Distinguished New Scientist Award',
-    'European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award',
-    'Loyola University Chicago Mulcahy Research Scholarship',
-    'Loyola University Chicago Provost Research Fellowship',
-    'Loyola University Chicago Provost Research Fellowship'
+grants <-
+  as_tibble(
+    rbind(
+      cbind(
+        award = "Friends of BrainHealth Distinguished New Scientist Award",
+        amount = "$20,000",
+        date = "2019"
+      ),
+      cbind(
+        award = "Dianne Cash Pre-Doctoral Fellowship",
+        amount = "$2,500",
+        date = "2017"
+      ),
+      cbind(
+        award = "Friends of BrainHealth Distinguished New Scientist Award",
+        amount = "$20,000",
+        date = "2015"
+      ),
+      cbind(
+        award = "European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award",
+        amount = "€500",
+        date = "2013"
+      ),
+      cbind(
+        award = "Loyola University Chicago Mulcahy Research Scholarship",
+        amount = "$1,000",
+        date = "2013"
+      ),
+      cbind(
+        award = "Loyola University Chicago Provost Research Fellowship",
+        amount = "$1,000",
+        date = "2012"
+      ),
+      cbind(
+        award = "Loyola University Chicago Provost Research Fellowship",
+        amount = "$1,000",
+        date = "2011"
+      )
+      )
+    )
+
+reactable(
+  grants,
+  columns = list(
+    award = colDef(
+      name = "Award/Amount",
+      cell = function(value, index){
+          amount <- grants$amount[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), amount)
+          )
+          }
+        ),
+    amount = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
     ),
-  Amount = c('$20,000', '$2,500', '$20,000', '€500', '$1,000', '$1,000', '$1,000')
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
   )
-
-kable(grants) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
-
 ```
 
 <br />
@@ -674,29 +716,62 @@ kable(grants) %>%
 # Academic Awards & Honors
 
 ```{r awards}
-awards <- 
-  data.frame(
-    Year = c("2022", "2014", "2013", "2013", "2013", "2010-2013"),
-    Award = c(
-      "Best Poster Award",
-      "People’s Choice Poster Award",
-      "First Place Libraries Undergraduate Research Paper Award",
-      "Department of Psychology Research Award",
-      "Department of Psychology Honors Award",
-      "Dean’s List"
+awards<-
+  as_tibble(
+    rbind(
+      cbind(
+        award = "Best Poster Award",
+        inst = "IASP Abdominal and Pelvic Pain SIG",
+        date = "2022"
       ),
-    Institution = c(
-      "IASP Abdominal and Pelvic Pain SIG",
-      "Cognitive Neuroscience Society",
-      "Loyola University Chicago",
-      "Loyola University Chicago",
-      "Loyola University Chicago",
-      "Loyola University Chicago"
+      cbind(
+        award = "People’s Choice Poster Award",
+        inst = "Cognitive Neuroscience Society",
+        date = "2014"
+      ),
+      cbind(
+        award = "First Place Libraries Undergraduate Research Paper Award",
+        inst = "Loyola University Chicago",
+        date = "2013"
+      ),
+      cbind(
+        award = "Department of Psychology Research Award",
+        inst = "Loyola University Chicago",
+        date = "2013"
+      ),
+      cbind(
+        award = "Department of Psychology Honors Award",
+        inst = "Loyola University Chicago",
+        date = "2013"
+      ),
+      cbind(
+        award = "Dean’s List",
+        inst = "Loyola University Chicago",
+        date = "2010-2013"
       )
     )
+  )
 
-kable(awards) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+reactable(
+  awards,
+  columns = list(
+    award = colDef(
+      name = "Award/Institution",
+      cell = function(value, index){
+          inst <- awards$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
+  )
 
 ```
 
@@ -708,65 +783,79 @@ kable(awards) %>%
 
 ```{r, paper-reviews}
 # Paper reviews data frame
-paper_reviews <- 
-  data.frame(
-    Year = c(2022, 2021, 2020, 2019),
-    Journal = 
-      c(
-      "Pain Medicine; Journal of Cognitive Psychology",
-      "Pain Medicine; Applied Cognitive Psychology",
-      "Neuropsychologia; JINS",
-      "Cognition and Emotion; Applied Cognitive Psychology"
+paper_reviews <-
+  as_tibble(
+    rbind(
+      cbind(
+        journal = "Pain Medicine; Journal of Cognitive Psychology",
+        date = "2022"
+      ),
+      cbind(
+        journal = "Pain Medicine; Applied Cognitive Psychology",
+        date = "2021"
+      ),
+      cbind(
+        journal = "Neuropsychologia; JINS",
+        date = "2020"
+      ),
+      cbind(
+        journal = "Cognition and Emotion; Applied Cognitive Psychology",
+        date = "2019"
       )
-     )
+    )
+  )
 
-# Paper Reviews Table
-kable(paper_reviews) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+reactable(
+  paper_reviews,
+  columns = list(
+    journal = colDef(name = "Journal"),
+    date = colDef(name = "Date", width = 75)
+  ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
+)
 ```
 
 ## Committee Involvement
 
 ```{r committee}
-committee <- 
-  data.frame(
-    Year = c('2018 - 2019', '2018 - 2019'),
-    Position = c(
-      'Graduate Student Ambassador',
-      'Center-wide RA/Internship Facilitator'
+committee <-
+  as_tibble(
+    rbind(
+      cbind(
+        pos = "Graduate Student Ambassador",
+        inst = "Center for BrainHealth at The University of Texas at Dallas",
+        date = "2018-2019"
       ),
-    Institution = c(
-      'Center for BrainHealth at The University of Texas at Dallas', 
-      'Center for BrainHealth at The University of Texas at Dallas'
-      ),
-    check.names = FALSE
-    )
-
-kable(committee) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
-
-```
-
-## Memberships
-
-```{r memberships}
-memberships <- 
-  data.frame(
-    Year = c(
-      "2021", 
-      "2021",
-      "2021"
-      ),
-    Organization = c(
-      "International Association for the Study of Pain (IASP)",
-      "American Academy of Neurology (AAN)",
-      "Skype a Scientist"
+      cbind(
+        pos = "Center-wide RA/Internship Facilitator",
+        inst = "Center for BrainHealth at The University of Texas at Dallas",
+        date = "2018-2019"
       )
+    )
   )
 
-kable(memberships) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
-
+reactable(
+  committee,
+  columns = list(
+    pos = colDef(
+      name = "Position/Institution",
+      cell = function(value, index){
+          inst <- committee$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
+  )
 ```
 
 <br >
@@ -776,112 +865,231 @@ kable(memberships) %>%
 ## Professor of Record
 
 ```{r prof}
-prof_of_rec <- 
-  data.frame(
-    Year = c(2022, 2021, 2019),
-    Semester = c("Spring", "Fall", "Fall"),
-    Class = c(
-      "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)",
-      "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)",
-      "Behavioral and Cognitive Neuroscience (PSYC 382, BIOL 284)"
+prof_of_rec <-
+  as_tibble(
+    rbind(
+      cbind(
+        class = "Behavioral and Cognitive Neuroscience",
+        num = "PSYC 382, BIOL 284",
+        inst = "Loyola University Chicago",
+        sem = "Spring",
+        date = "2022"
       ),
-    Institution = c(
-      "Loyola University Chicago", 
-      "Loyola University Chicago",
-      "Loyola University Chicago"
+      cbind(
+        class = "Behavioral and Cognitive Neuroscience",
+        num = "PSYC 382, BIOL 284",
+        inst = "Loyola University Chicago",
+        sem = "Fall",
+        date = "2021"
+      ),
+      cbind(
+        class = "Behavioral and Cognitive Neuroscience",
+        num = "PSYC 382, BIOL 284",
+        inst = "Loyola University Chicago",
+        sem = "Fall",
+        date = "2020"
       )
+    )
   )
 
-kable(prof_of_rec) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
+reactable(
+  prof_of_rec,
+  columns = list(
+    class = colDef(
+      name = "Course/Institution",
+      width = 400,
+      cell = function(value, index){
+          num <- prof_of_rec$num[index]
+          inst <- prof_of_rec$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), num),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    sem = colDef(name = "Semester"),
+    num = colDef(show = FALSE),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
+  )
 ```
 
 ## Teaching Assistant
 
 ```{r teaching}
-teaching <- data.frame(Year     = c(2018, 2017, 2017, 2016, 2016, 2015),
-                       Semester = c('Spring', 'Fall','Spring',
-                                    'Summer','Spring','Fall'),
-                       Class = c('Experimental Projects',
-                                 'Experimental Projects',
-                                 'Experimental Projects',
-                                 'Cognitive Psychology',
-                                 'Experimental Projects',
-                                 'Research & Evaluation Methods'),
-                       Professor = c('Dr. Linda Drew',
-                                     'Dr. Linda Drew',
-                                     'Dr. Jessica Lockhart',
-                                     'Dr. Vanessa Miller',
-                                     'Dr. Gail Tillman',
-                                     'Dr. Gail Tillman'),
-                       Institution = c('The University of Texas at Dallas',
-                                       'The University of Texas at Dallas',
-                                       'The University of Texas at Dallas',
-                                       'The University of Texas at Dallas',
-                                       'The University of Texas at Dallas',
-                                       'The University of Texas at Dallas'))
+teach_assist <-
+  as_tibble(
+    rbind(
+      cbind(
+        class = "Experimental Projects",
+        prof = "Dr. Linda Drew",
+        inst = "The University of Texas at Dallas",
+        sem = "Spring",
+        date = "2018"
+      ),
+      cbind(
+        class = "Experimental Projects",
+        prof = "Dr. Linda Drew",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2017"
+      ),
+      cbind(
+        class = "Experimental Projects",
+        prof = "Dr. Jessica Lockhart",
+        inst = "The University of Texas at Dallas",
+        sem = "Spring",
+        date = "2017"
+      ),
+      cbind(
+        class = "Cognitive Psychology",
+        prof = "Dr. Vanessa Miller",
+        inst = "The University of Texas at Dallas",
+        sem = "Summer",
+        date = "2016"
+      ),
+      cbind(
+        class = "Experimental Projects",
+        prof = "Dr. Gail Tillman",
+        inst = "The University of Texas at Dallas",
+        sem = "Spring",
+        date = "2016"
+      ),
+      cbind(
+        class = "Research & Evaluation Methods",
+        prof = "Dr. Gail Tillman",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2015"
+      )
+    )
+  )
 
-kable(teaching) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
-
+reactable(
+  teach_assist,
+  columns = list(
+    class = colDef(
+      name = "Course/Prof./Institution",
+      width = 400,
+      cell = function(value, index){
+          prof <- teach_assist$prof[index]
+          inst <- teach_assist$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), prof),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    sem = colDef(name = "Semester"),
+    prof = colDef(show = FALSE),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
+  )
 ```
 
 ## Guest Lectures
 
 ```{r guest}
-guest <- 
-  data.frame(
-    Year = rev(c(2018, 2018, 2018, 2022, 2022, 2022, 2022)),
-    Semester = rev(c("Fall", "Fall", "Fall", "Spring", "Spring", "Fall", "Fall")),
-    Topic = rev(
-      c(
-      "Language", 
-      "Short-term & Working Memory", 
-      "Analogical Reasoning",
-      "Introduction to R",
-      "Data Visualization Principles",
-      "Introduction to R",
-      "Data Visualization Principles"
-      )
+guest_lectures <-
+  as_tibble(
+    rbind(
+      cbind(
+        topic = "Data Visualization Principles",
+        class = "Advanced Experimental Lab in Psychology",
+        prof = "Professor Mina Kim",
+        inst = "Loyola University Chicago",
+        sem = "Fall",
+        date = "2022"
       ),
-    Class = rev(
-      c(
-      "Cognitive Neuroscience", 
-      "Cognitive Neuroscience", 
-      "Reasoning",
-      "Advanced Experimental Lab in Psychology",
-      "Advanced Experimental Lab in Psychology",
-      "Advanced Experimental Lab in Psychology",
-      "Advanced Experimental Lab in Psychology"
-      )
+      cbind(
+        topic = "Introduction to R",
+        class = "Advanced Experimental Lab in Psychology",
+        prof = "Professor Mina Kim",
+        inst = "Loyola University Chicago",
+        sem = "Fall",
+        date = "2022"
       ),
-    Professor = rev(
-      c(
-      "Dr. Bart Rypma", 
-      "Dr. Bart Rypma", 
-      "Dr. Daniel C. Krawczyk",
-      "Professor Mina Kim",
-      "Professor Mina Kim",
-      "Professor Mina Kim",
-      "Professor Mina Kim"
-      )
+      cbind(
+        topic = "Data Visualization Principles",
+        class = "Advanced Experimental Lab in Psychology",
+        prof = "Professor Mina Kim",
+        inst = "Loyola University Chicago",
+        sem = "Spring",
+        date = "2022"
       ),
-    Institution = rev(
-      c(
-      "The University of Texas at Dallas",
-      "The University of Texas at Dallas",
-      "The University of Texas at Dallas",
-      "Loyola University Chicago",
-      "Loyola University Chicago",
-      "Loyola University Chicago",
-      "Loyola University Chicago"
-      )
+      cbind(
+        topic = "Introduction to R",
+        class = "Advanced Experimental Lab in Psychology",
+        prof = "Professor Mina Kim",
+        inst = "Loyola University Chicago",
+        sem = "Spring",
+        date = "2022"
+      ),
+      cbind(
+        topic = "Analogical Reasonng",
+        class = "Reasoning",
+        prof = "Daniel C. Krawczyk, PhD",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2018"
+      ),
+      cbind(
+        topic = "Short-term & Working Memory",
+        class = "Cognitive Neuroscience",
+        prof = "Bart Rypma, PhD",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2018"
+      ),
+      cbind(
+        topic = "Language",
+        class = "Cognitive Neuroscience",
+        prof = "Bart Rypma, PhD",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2018"
       )
     )
+  )
 
-kable(guest) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
-
+reactable(
+  guest_lectures,
+  columns = list(
+    topic = colDef(
+      name = "Topic/Course/Prof./Institution",
+      width = 400,
+      cell = function(value, index){
+          class <- guest_lectures$class[index]
+          prof <- guest_lectures$prof[index]
+          inst <- guest_lectures$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), class),
+            div(style = list(fontSize = "0.75rem"), prof),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    sem = colDef(name = "Semester"),
+    class = colDef(show = FALSE),
+    prof = colDef(show = FALSE),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
+  )
 ```
 
 <br />
@@ -889,15 +1097,44 @@ kable(guest) %>%
 # Internships
 
 ```{r intern}
-intern <- data.frame(Year = c(2016),
-                     Month = c('Summer'),
-                     Internship = c('Neuroscience: Internet of Things and Wearable Technologies'),
-                     Department = c('Venture Development Center'),
-                     Institution = c('The University of Texas at Dallas'))
+intern <-
+  as_tibble(
+    rbind(
+      cbind(
+        intern = "Neuroscience: Internet of Things and Wearable Technologies",
+        dept = "Venture Development Center",
+        inst = "The University of Texas at Dallas",
+        term = "Summer",
+        date = "2016"
+      )
+    )
+  )
 
-kable(intern) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
-
+reactable(
+  intern,
+  columns = list(
+    intern = colDef(
+      name = "Internship/Dept./Institution",
+      width = 400,
+      cell = function(value, index){
+          dept <- intern$dept[index]
+          inst <- intern$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), dept),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    term = colDef(name = "Term"),
+    dept = colDef(show = FALSE),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
+  )
 ```
 
 <br />
@@ -905,23 +1142,43 @@ kable(intern) %>%
 # Training and Certifications
 
 ```{r training}
-training <- 
-  data.frame(
-    Year = c(2016, 2016),
-    Month = c('November','May'),
-    `Training/Certifications` = c(
-      'The 22nd EEGLAB Workshop',
-      'Graduate Teaching Certificate'
+training_certs <-
+  as_tibble(
+    rbind(
+      cbind(
+        train_cert = "The 22nd EEGLAB Workshop",
+        inst = "University of California San Diego",
+        date = "2016"
       ),
-    Institution = c(
-      'University of California San Diego', 
-      'The University of Texas at Dallas'),
-      check.names = F
+      cbind(
+        train_cert = "Graduate Teaching Certificate",
+        inst = "The University of Texas at Dallas",
+        date = "2016"
+      )
     )
+  )
 
-kable(training) %>%
-  kable_styling(bootstrap_options = c('striped', 'hover', 'responsive'))
-
+reactable(
+  training_certs,
+  columns = list(
+    train_cert = colDef(
+      name = "Training/Certification",
+      width = 400,
+      cell = function(value, index){
+          inst <- training_certs$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE
+  )
 ```
 
 <br />
@@ -930,39 +1187,38 @@ kable(training) %>%
 
 <h3><a href="https://blackhawkup.com/2019/07/19/chicago-blackhawks-scoring-density-analysis-2018-2019-season/" class="postLink" target="_blank">
 Chicago Blackhawks: Scoring Density Analysis for the 2018-2019 Season</a></h3>
-
-July 19th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label
-.label-default}
+<span class="far fa-clock"></span> 19 July 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>
 
 <br />
 
 <h3><a href="https://blackhawkup.com/2019/06/27/chicago-blackhawks-efficient-offensive-machine/" class="postLink" target="_blank">
 Chicago Blackhawks: An Efficient Offensive Machine</a></h3>
-
-June 27th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label
-.label-default}
+<span class="far fa-clock"></span> 27 June 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>
 
 <br />
 
 <h3><a href="https://blackhawkup.com/2019/05/14/q-colliton-first-67-games-blackhawks-head-coach/" class="postLink" target="_blank">
 Coach Q vs. Jeremy Colliton: First 67 Games As Blackhawks' Head Coach</a></h3>
-
-May 15th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label .label-default}
-
-<br />
-
-<h3><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank">
-Chicago Blackhawks: analyzing Patrick Kane's career scoring tendencies</a></h3>
-
-April 9th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label
-.label-default}
+<span class="far fa-clock"></span> 15 May 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>
 
 <br />
 
 <h3><a href="https://blackhawkup.com/2019/04/18/blackhawks-player-grades-patrick-kane/" class="postLink" target="_blank">
 Chicago Blackhawks 2018-19 Player Grades: Patrick Kane</a></h3>
-
-April 19th, 2019 [Hockey Analytics]{.label .label-info} [R]{.label
-.label-default}
+<span class="far fa-clock"></span> 19 April 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>
 
 <br />
+
+<h3><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank">
+Chicago Blackhawks: analyzing Patrick Kane's career scoring tendencies</a></h3>
+<span class="far fa-clock"></span> 9 April 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>

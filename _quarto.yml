@@ -1,19 +1,24 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: "."
   render: 
     - "*.qmd"
     - "!README.md"
+    - "post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.qmd"
+    - "!post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.qmd"
+    - "!post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.qmd"
+    - "!post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.qmd"
+    - "!post-My-Reads.qmd"
 
 website:
   title: "Matthew J. Kmiecik, PhD"
   google-analytics: G-Q8PCYXLBH5
   navbar: 
     pinned: true
-    background: primary
-    foreground: light
+    #background: primary
+    #foreground: light
     search: true
-    right:
+    left:
       - text: "Home"
         icon: house-door
         file: index.qmd
@@ -24,14 +29,30 @@ website:
         icon: send-fill
         menu:
           - file: theblueline.qmd
-          - file: academicblog.qmd 
+          - file: academicblog.qmd
+    right:
+      - icon: envelope-fill
+        href: mailto:mkmiecik14@gmail.com
+      - icon: twitter
+        href: https://twitter.com/mattkmiecik14
+      - icon: linkedin
+        href: https://www.linkedin.com/in/matthew-kmiecik-776603b0/
+      - icon: github
+        href: https://github.com/mkmiecik14
+      - text: "{{< ai google-scholar >}}"
+        href: https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en
+      - text: "{{< ai researchgate >}}"
+        href: https://www.researchgate.net/profile/Matthew-Kmiecik
 
 format:
   html:
     include-in-header: icons.html
     include-after-body: footer.html
-    theme: flatly
-    highlight-style: textmate
-    css: styles.css
+    theme:
+      light: [flatly, styles.scss]
+      dark: darkly
+    highlight-style: a11y
+    email-obfuscation: javascript
+    #css: styles.css
       
   

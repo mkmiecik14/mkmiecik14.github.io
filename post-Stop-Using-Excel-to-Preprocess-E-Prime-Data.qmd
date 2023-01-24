@@ -1,0 +1,314 @@
+---
+title: "Stop Using Excel to Preprocess E-Prime Data"
+author: "Matt Kmiecik"
+date: "18 March 2020 UPDATE (original post: 15 May 2017)"
+output: 
+ html_document:
+    highlight: zenburn
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  comment = ">", 
+  message = FALSE,
+  warning = FALSE
+  )
+```
+
+<div class="alert alert-dismissible alert-info">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>UPDATE!</strong> I've updated this post to showcase some changes to my general pipeline.
+</div>
+
+Excel is a great tool for processing data. Whether it's calculating a quick average, standard deviation, or t-test, Excel is fast and simple to learn and use. In fact, most of my colleagues use Excel to preprocess their data from experiments programmed in E-Prime, a software tool for running psychological experiments. However, preprocessing your E-Prime data in Excel will:
+
+1. limit the statistical methods used to analyze your data
+2. become burdensome with large samples ( > 20 participants)
+3. create large workbooks that are slow and susceptible to crashes
+4. create roadbumps down the line when reviewer #2 asks for a new analysis (I swear, it's always reviewer #2)
+
+I'll demonstrate a different method on how to preprocess your E-Prime data with R and the R package dplyr (Wickham & Francois, 2016) using a small data set from a real experiment of mine. This method is much faster, efficient, and saves soooooo much time when it comes to reviewer #2's requests.
+
+Just a few notes about the experiment: participants completed a task that required them to reason about items on the screen and press #1 or #2 on the keyboard. There were 3 conditions randomly distributed over 4 blocks with 24 trials per block (8 trials per condition). I was interested in the participants' accuracy and reaction time for correct solutions across the conditions and blocks. Therefore, each participant has only 1 E-Prime file.
+
+<br />
+
+## Step 1 - Merging E-DataAid Files
+<hr >
+
+E-Prime spat out an E-DataAid file (*.edat2) for every participant upon completion of the experiment. Let's first concatenate these files row-wise (on top of each other) so that we end up with one big file that has each participant's data. This is done using  E-Prime's E-Merge software.
+
+<br />
+
+### Concatenating with E-Merge
+
+1. Open E-Merge and navigate to the directory where all the E-DataAid files are stored using the Folder Tree
+2. Select all the E-DataAid files and click Merge...
+3. Choose the appropriate option and click Next >:
+    A) Standard Merge if all your files are in one directory (**option chosen in this tutorial**)
+    B) Recursive Merge if all your files are stored in folders within folders
+4. Name your file and save it as a *.emrg2 file (the default)
+
+As long as your E-DataAids are consistent with each other, they should seamlessly merge. Next, we have to convert this to a format R and other programs can read using E-DataAid:
+
+<br />
+
+### Converting Merged E-DataAid
+1. Double click on the \*.emrg2 file that you just created
+2. Go to File > Export
+3. Ensure the "Export to:" option is: StatView and SPSS
+4. **Ensure that the Unicode box at the bottom is unchecked**
+5. Click OK and name/save the file as a \*.txt (the default)
+
+Now these data are in one central file and prepared for R. Next, let's import into R:
+
+<br />
+
+## Step 2 - Importing into R
+<hr >
+
+1. Open R or RStudio and **ensure your working directory is set to where you saved your text file (.txt) from above.**
+2. Load the `tidyverse`. For more information about the tidyverse click [here](https://www.tidyverse.org/).
+
+```{r pkgs}
+library(tidyverse)
+```
+
+3. Import the file into R and save it as a variable:
+
+```{r import, eval=FALSE}
+eData <- read_delim(
+  'data.txt',   # The name of your *.txt file from above
+  delim = '\t', # These data are tab separated
+  ) 
+```
+
+> HINT! `read_delim()` has several arguments, so be sure to check them out using `?read_delim()`. One really useful one is `guess_max=` which will search the first _n_ rows of the data to gather the column type. For really long experiments, this option should be set to the number of rows generated for a single participant, that way it can scan at least an entire participant's data file before "guessing" the column type. 
+
+For the purposes of this tutorial, these data are available on this website's [GitHub repository](https://github.com/mkmiecik14/mkmiecik14.github.io) and can be downloaded into R like this:
+
+```{r import2}
+library(httr) # To retrive data from github repo
+link <- "https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/data.txt"
+
+# from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request
+data <- GET(link)
+eData <- read_delim(content(data, "raw"), delim = "\t")
+dim(eData)
+```
+
+As we can see, this dataframe has `r dim(eData)[1]` rows and `r dim(eData)[2]` columns. Each row is a trial from a participant and each column is a measure/information from your E-prime experiment. E-prime gives us way too much information, so I like to clean this up and only include the essentials (*Note: These variable names will vary based on your experiment*):
+
+```{r cleanup}
+eData_simple <- 
+  eData %>%                  # original data
+  select(
+    ss = Subject,            # subject
+    cond = probType,         # condition
+    acc = stimulus.ACC,      # accuracy
+    rt = stimulus.RT         # reaction time
+    )
+
+# Let's take a look
+head(eData_simple); tail(eData_simple)
+```
+
+> TIP! The `select()` function allows you to rename the column names on the fly. Pretty sweet if you ask me!
+
+I've printed the top and bottom 6 rows of this dataframe. As you can see, the first participant's ID is 413, while the last participant's ID is 416. Each trial is a row and has a problem type (either p, a, or s), an accuracy (1 for correct, 0 for incorrect), as well as an associated reaction time (RT) measure in milliseconds. Now, I forgot to program the block each trial appeared in my E-Prime experiment, but I can add it like this:
+
+```{r addBlock}
+# Adding block
+eData_simple <- 
+  eData_simple %>% 
+  group_by(ss) %>% 
+  mutate(block = rep(c(1:4), each = 24)) %>% # 24 trials/block
+  ungroup()
+           
+# Let's take a look
+head(eData_simple); tail(eData_simple)
+```
+
+Now these data are in a great format to summarize using the `dplyr` package included in the `tidyverse`.
+
+<br >
+
+## Step 3 - Summarize with dplyr
+<hr >
+
+Let's calculate the mean accuracy for condition x block (3 x 4 repeated-measures factorial design). But first, let's group based on our factors, which are 1) the subjects, 2) the conditions, and 3) the blocks.
+
+```{r group}
+acc <- 
+  eData_simple %>% 
+  group_by(ss, cond, block) %>%
+  summarise(
+    m = mean(acc),    # mean
+    n = n()           # number of trials
+    ) %>%               
+  ungroup()           # generally a good idea to ungroup when finished
+
+print(acc) # prints to screen
+```
+
+Now to look at task-wide performance, we group by condition and block and repeat:
+
+```{r}
+acc_sum <-
+  acc %>%
+  group_by(cond, block) %>%
+  summarise(
+    M = mean(m),       # mean
+    SD = sd(m),        # standard deviation
+    N = n(),           # number of observations
+    sem = SD/sqrt(N)   # standard error of the mean
+    ) %>%
+  ungroup()            # generally a good idea to regroup
+```
+
+> TIP! `summarise()` can compute variables defined within `summarise()`. See above for how this works for the standard error of the mean (sem).
+
+These are the summary results:
+
+```{r}
+print(acc_sum) # prints to screen
+```
+
+Now what about that pesky reviewer #2? Let's say reviewer #2 asks for a new analysis that, instead of looking at reaction time, asks for the results with reaction time for only correct solutions? If you preprocessed your data in Excel, you would probably have to re-compute all these values in each sheet and then re-do the analyses. But this is simple in R and is only one additional line of code:
+
+```{r reviewer2}
+corRT <-  
+  eData_simple %>%
+  filter(acc == 1) %>%  # filters out inaccurate trials
+  group_by(ss, cond, block) %>%
+  summarise(
+    m = mean(rt),       # mean
+    n = n()             # number of trials
+    ) %>%
+  ungroup()             # generally a good idea to ungroup when finished
+
+print(corRT)            # prints to screen
+```
+
+For completeness, here's how to compute the task-wide correct RT performance:
+
+```{r}
+corRT_sum <-
+  corRT %>%
+  group_by(cond, block) %>%
+  summarise(
+    M = mean(m),     # mean 
+    SD = sd(m),      # standard devation
+    N = n(),         # number of observations
+    sem = SD/sqrt(N) # standard error of the mean
+    ) %>%
+  ungroup()
+
+print(corRT_sum)     # prints to screen
+```
+
+To summarize, the entire R script to process these data is quite concise and can accommodate *many* more participants with ease.
+
+After programming your experiment with the E-Prime beast, dragging undergraduate participants through your study, and wrangling the data into one place, why not make your life easier? Ditch the Excel templates. You'll thank me when reviewer #2 comes around!
+
+<br >
+
+## Plotting
+<hr >
+
+Processing E-Prime data this way puts it in a great format for plotting with `ggplot2` — another package in the `tidyverse`.
+
+I like to plot the raw data underneath the summary data, so here is an example plot for correct reaction times:
+
+```{r}
+# Correct RT plot
+pj <- position_jitter(width = .1)
+ggplot(corRT_sum, aes(block, M, group = cond, color = cond)) +
+  geom_point(data = corRT, aes(y = m), position = pj, shape = 1, alpha = 1/2) +
+  geom_point() +
+  geom_errorbar(aes(ymin = M-sem, ymax = M+sem), width = .1) +
+  geom_line() +
+  scale_y_continuous(limits = c(0, 12000)) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(x = "Block", y = "Mean Correct RT (ms)", caption = "SEM error bars.") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+And here's an example of how I could inspect RT curves per condition and block for all participants (trial-wise). A great way to detect outliers:
+
+```{r}
+bnwidth <- 1 # in seconds
+ggplot(eData_simple, aes(rt/1000)) +
+  geom_histogram(binwidth = bnwidth) +
+  labs(
+    x = "RT (seconds)", 
+    y = "Frequency", 
+    caption = paste("Binwidth = ", bnwidth, "sec.")
+    ) +
+  theme_minimal() +
+  facet_grid(cond~block)
+```
+
+Comparisons across conditions are faciltiated using a density plot:
+
+```{r}
+ggplot(eData_simple, aes(rt/1000, group = cond, color = cond)) +
+  geom_density() +
+  labs(x = "RT (seconds)", y = "Density") +
+  scale_color_brewer(palette = "Dark2") +
+  theme_minimal() +
+  facet_wrap(~block)
+```
+
+Good luck with wrangling the e-prime beast and I hope you enjoyed this (updated) tutorial!
+
+<br >
+
+## Acknowledgments
+<hr >
+
+This tutorial was inspired by Dr. Jahn's amazing [blog](http://andysbrainblog.blogspot.com/) that helped me and I'm sure hundreds of other graduate students stumble through the crazy world that is fMRI analysis. Andy's Brain Blog is the best!
+
+<br >
+
+## References
+<hr >
+
+Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” _Journal of Open Source Software_, **4**(43), 1686. doi: [10.21105/joss.01686](https://joss.theoj.org/papers/10.21105/joss.01686). 
+
+<br >
+
+<!-- disqus START -->
+
+<div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = 'https://mattkmiecik.com/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'post-Stop-Using-Excel-to-Preprocess-E-Prime-Data'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mattkmiecik.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<!-- disqus END -->
+
+

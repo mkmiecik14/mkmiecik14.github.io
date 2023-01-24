@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Matt Kmiecik">
+<meta name="dcterms.date" content="2017-06-12">
+
+<title>Matthew J. Kmiecik, PhD - Using Xbox Controllers and Sending EEG Triggers with E-Prime</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Q8PCYXLBH5"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
+</script>
+<!-- Website Icons -->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<script defer="" src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="academicons-1.8.0/css/academicons.css">
+<link rel="stylesheet" href="font-awesome-animation.min.css">
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Matthew J. Kmiecik, PhD</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"><i class="bi bi-house-door" role="img">
+</i> 
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./cv.html"><i class="bi bi-mortarboard-fill" role="img">
+</i> 
+ <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-my-blogs" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-send-fill" role="img">
+</i> 
+ <span class="menu-text">My Blogs</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-my-blogs">    
+        <li>
+    <a class="dropdown-item" href="./theblueline.html">
+ <span class="dropdown-text">The Blue Line</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./academicblog.html">
+ <span class="dropdown-text">Academic Blog</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Using Xbox Controllers and Sending EEG Triggers with E-Prime</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Matt Kmiecik </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 12, 2017</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<hr>
+<p>I just spent an entire week wrangling the E-Prime beast and I’ve lived to tell the tale. I was able to successfully integrate an Xbox controller to accept participant responses as well as communicate these to an EEG system as triggers. This wouldn’t have been possible without the help of benevolent bloggers and discussions on E-Prime’s Google group, so thank you all! I’ll point out these information sources along the way.</p>
+<p>I’ve programmed a simple experiment that checks the passing of triggers to a local EEG system that is available for download on <a href="https://github.com/mkmiecik14/mkmiecik14.github.io/tree/master/data">this website’s github repo/data/</a>. Click <a href="mkmiecik14.github.io/data/triggerTutorialExperiment.es2">here</a> to download the experiment file titled <strong>triggerTutorialExperiment.es2</strong>.</p>
+<p>My general software/hardware specifications:</p>
+<ol type="1">
+<li>E-Prime 2.0 Standard (2.0.10.356)</li>
+<li>PC: Windows 8.1 Pro (2GB RAM, 32-bit OS)</li>
+<li>EEG: ANT neuro <a href="https://www.ant-neuro.com/products/eego-mylab">eego mylab</a> EEG amplifier</li>
+</ol>
+</section>
+<section id="xbox-controller-with-e-prime" class="level1">
+<h1>Xbox Controller with E-Prime</h1>
+<hr>
+<ol type="1">
+<li><p>Plug the Xbox controller into a USB drive on the same computer that will be running your E-prime experiment. If this is the first time plugging it in, allow Windows to install the necessary drivers.</p></li>
+<li><p>Download a program that will allow you to map the buttons on the Xbox controller to keyboard keystrokes. I recommend the program <a href="http://joytokey.net/en/">JoyToKey</a>. Once downloaded, open JoyToKey with the Xbox controller still plugged in and modify or create a new profile. In the right pane, click on the button that you would like to assign a keyboard keystroke to and then click “Edit button assignment”. If you are unsure which controller buttons correspond to the numberic buttons (e.g., Button 1), then type “joy.cpl” into the Windows search bar (see <a href="https://www.howtogeek.com/241421/how-to-calibrate-your-gaming-controller-in-windows-10/">here</a>) and then click “Properties”. The buttons on this window will light up when pressed, indicating the numneric button assignments.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/joy2key1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><em>I am pressing the A button in this screenshot.</em></figcaption><p></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>Assign the necessary buttons to specific keystrokes in JoyToKey by clicking the “Edit button assignment” and then simply pressing the intended keystroke on the keyboard. Click OK to save the assignment. For this experiment, I assigned A (Button 1) to Numpad1 and B (Button 2) to Numpad2.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/joy2key2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><em>Assigning numberpad #1 to the A button.</em></figcaption><p></p>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>To get E-Prime to recognize controller button presses requires adding a Joystick device. To do this, double click on Experiment (filename.es2) or Edit &gt; Experiment. Click on Devices &gt; Add… &gt; select Joystick. Double click on Joystick in the Devices tab to edit its properties to Emulate Device: Keyboard. See <a href="https://support.pstnet.com/hc/en-us/articles/229355467-NEW-FEATURE-Joystick-Device-17152-">here</a> for documentation and sample inline code for joystick functions.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/eprimeJoystick.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><em>Joystick configuration in E-prime.</em></figcaption><p></p>
+</figure>
+</div>
+<p>E-Prime will now recognize the button presses on the controller as keystrokes. This allows experiments to be programmed as usual, as long as the controller buttons are mapped to appropriate keystrokes (thank you <a href="https://groups.google.com/forum/#!topic/e-prime/-Kdb0qG83-0">Ben</a> for the idea). You can even emulate the controller as a mouse (see <a href="https://www.pstnet.com/support/kb.asp?TopicID=1249">here</a>). To do this, edit the joystick properties (see step 4 above) to “Show Cursor: yes: and include the following inline code at the beginning of your experiment:</p>
+<pre class="vbs"><code>Joystick.AttachToMouseCursor = True</code></pre>
+</section>
+<section id="eeg-triggers" class="level1">
+<h1>EEG Triggers</h1>
+<hr>
+<p>It is crucial for those studying event-related potentials (ERPs) that the stimulus computer communicates time-locked onsets and responses from E-prime to the EEG recording. There are several ways this can occur, but the one I will be demonstrating is using a parallel port communication from the E-prime stimulus computer to the amplifier (<em>Note:</em> this will differ from system to system). Triggers are then embedded into the recorded EEG signal and read into the recording software as events. Let’s use a simple experiment to demonstrate sending triggers for the appearance of stimulus events, as well as participant responses. The experiment is available for download <a href="mkmiecik14.github.io/data/triggerTutorialExperiment.es2">here</a>.</p>
+<p>In this experiment participants are presented with a fixation cross and then prompted to press either “1” or “2”. Participants receive feedback regarding the accuracy and reaction time of their response across 10 trials. Here is an image of the experiment structure:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/expStructure.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><em>E-Prime experiment structure.</em></figcaption><p></p>
+</figure>
+</div>
+<p>Several methods of passing triggers will be demonstrated, including global variables, List Attributes, onset/offset signaling, and WritePort commands.</p>
+<section id="determining-the-parallel-port" class="level2">
+<h2 class="anchored" data-anchor-id="determining-the-parallel-port">Determining the parallel port</h2>
+<p>PST provides very good instructions for determining the port address that will be used to pass your triggers that depend on your requirements (see <a href="https://www.pstnet.com/eprimelegFAQ.cfm#12">here</a>). I’ll briefly demonstrate with the parallel port on my PC.</p>
+<p>Navigate to your PCs Control Panel &gt; Hardware and Sound &gt; Device Manager &gt; Ports (COM &amp; LPT) &gt; Printer Port (LPT) &gt; right click and select Properties &gt; Resources tab. The address on my computer is 0378, and that translates to &amp;H378. I will use this parallel port address in E-Prime to send triggers to the EEG computer.</p>
+</section>
+<section id="onsetoffset-signaling" class="level2">
+<h2 class="anchored" data-anchor-id="onsetoffset-signaling">Onset/Offset signaling</h2>
+<p>This type of signaling is the most appropriate to trigger the onset of an event (e.g., fixation cross or stimulus). I’ll demonstrate these using the Onset/Offset inline codes mixed with List Attributes. First, let’s take a look at “triggerList”:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> ID </th>
+   <th style="text-align:left;"> Nested </th>
+   <th style="text-align:left;"> Procedure </th>
+   <th style="text-align:right;"> Press </th>
+   <th style="text-align:right;"> stimTrig </th>
+   <th style="text-align:right;"> fixationTrig </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 5 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 7 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 9 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 11 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> triggerProc </td>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:right;"> 22 </td>
+   <td style="text-align:right;"> 9 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>In this experiment, 9 will denote the onset of a fixation cross (fixationTrig), 11 will denote the onset of the “Press 1” condition stimulus, and 22 will denote the onset of the “Press 2” condition stimulus. Accuracy will be determined via the “Press” column.</p>
+<p>The basic concept is that a trigger will be passed at the onset of a stimulus, but must be reset to zero to toggle between triggers.</p>
+<p>To pass the fixation crosss trigger (9), the following inline code should be placed before the fixation cross TextDisplay (in this example “fixTrigs”):</p>
+<pre class="vbs"><code>' Triggers for fixation onset
+fixation.OnsetSignalEnabled = True
+fixation.OnsetSignalPort = &amp;H378
+fixation.OnsetSignalData = c.GetAttrib("fixationTrig")
+
+' Triggers for fixation offset
+fixation.OffsetSignalEnabled = True
+fixation.OffsetSignalPort = &amp;H378
+fixation.OffsetSignalData = 0</code></pre>
+<p>To pass the triggers conditional on the correct stimulus comdition (11 or 22), the following inline code should be placed before the stimulus (in this example “stimTrigs”):</p>
+<pre class="vbs"><code>' Triggers for stim onset
+stim.OnsetSignalEnabled = True
+stim.OnsetSignalPort = &amp;H378
+stim.OnsetSignalData = c.GetAttrib("stimTrig")
+
+' Triggers for stim offset
+stim.OffsetSignalEnabled = True
+stim.OffsetSignalPort = &amp;H378
+stim.OffsetSignalData = 0</code></pre>
+</section>
+<section id="using-writeport" class="level2">
+<h2 class="anchored" data-anchor-id="using-writeport">Using WritePort</h2>
+<p>Passing triggers for participant responses conditional on their accuracy is a little tricky. In other words, I want to pass a trigger, say with a value of “1”, if the participant gets the trial correct, and “2” if he or she answers incorrectly. Additionally, I do not want the response to terminate the trial due to potential EEG artifacts from the screen changing so close to the response.</p>
+<p>Thanks go to David McFarlane for a solution to this issue (see <a href="https://groups.google.com/forum/#!topic/e-prime/z8PQMH1cf70">here</a>). To satisfy the above needs of my experiment, I need to set the following properties of my stim TextDisplay:</p>
+<ul>
+<li>Duration: 3000ms (I’m limiting participants to 3 seconds)</li>
+<li>Input Device: Keyboard</li>
+<li>PreRelease: (same as duration) – this is very important (see <a href="https://groups.google.com/forum/#!topic/e-prime/z8PQMH1cf70">here</a>)</li>
+<li>Correct: [Press] – will automatically determine accuracy</li>
+<li>Time Limit: (same as duration)</li>
+<li>End Action: (none) – this will not terminate the stimulus</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/stim.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><em>stim TextDisplay configuration.</em></figcaption><p></p>
+</figure>
+</div>
+<p>The basic concept for this is that as soon as “stim” is presented on screen, we must program E-Prime to constantly look for a response. If one is detected, send triggers as soon as possible given the trial accuracy (i.e., 1 = correct, 2 = incorrect).</p>
+<p>To do this I slightly modified David McFarlane’s script and placed it as an inline code following stim called “respTrigs”:</p>
+<pre class="vbs"><code>Do While stim.InputMasks.IsPending()
+  Sleep 2 ' Will check every 2ms
+Loop
+
+If Len(stim.RESP) &gt; 0 Then
+  
+  If stim.Acc = 1 Then
+  
+    Debug.Print "Got it right!"
+    WritePort &amp;H378, cor ' Signals correct
+  
+  Else
+    
+    Debug.Print "Got it wrong!"
+    WritePort &amp;H378, icor ' Signals incorrect
+    
+  End If
+  
+Else
+
+  Debug.Print "No Response!"
+  WritePort &amp;H378, nrp ' Signals no response
+  
+End If
+
+Sleep 10 'Takes a break before resetting port
+
+' Reserts port
+WritePort &amp;H378, 0</code></pre>
+<p>Alternatively, if there are no events that require triggers following “stim”, “Sleep 10” could be removed and “WritePort &amp;H378, 0” could be placed as the first line of code in the “fixTrigs” inline code.</p>
+<p>The variables cor, icor, and nrp were set as <a href="https://www.pstnet.com/support/kb.asp?TopicID=3844">global variables</a> to be easily modified and stay consitent across the experiment:</p>
+<pre class="vbs"><code>Dim cor   As Integer
+Dim icor  As Integer
+Dim nrp   As Integer</code></pre>
+<p>And then defined at the beginning of the experiment in the inline code “defTrigs”:</p>
+<pre class="vbs"><code>cor   = 1
+icor  = 2
+nrp   = 3</code></pre>
+</section>
+</section>
+<section id="timing-considerations" class="level1">
+<h1>Timing Considerations</h1>
+<hr>
+<p>As a disclaimer, I have not had the chance to test the timing of the triggers and responses from the Xbox controller. This was my first time programming the use of a game controller as well as triggers using the InputMasks.IsPending() method.</p>
+<p>Please comment or shoot me an email (mkmiecik14@gmail.com) if you have any input regarding the approaches outlined above, especially in regards to timing accuracy tests.</p>
+<!-- disqus START -->
+<div id="disqus_thread">
+
+</div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = 'https://mattkmiecik.com/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html';  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = 'post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://mattkmiecik.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>
+Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<!-- disqus END -->
+
+
+</section>
+
+</main> <!-- /main -->
+</div> <!-- articleBandContent -->
+ <!-- pageContent -->
+ <!-- forPagesWithTOC -->
+
+<footer class="footer">
+  <div class="container">
+    <span>© 2023 Matthew J. Kmiecik. All rights reserved.</span>
+  </div>
+</footer>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+ <!-- /content -->
+
+
+
+</body></html>
