@@ -1,8 +1,5 @@
 ---
 title: ""
-format: 
-  html:
-    css: styles.css
 listing: 
   contents: posts
   sort: "date desc"
@@ -17,7 +14,7 @@ title-block-banner: true
 
 <!-- profile picture -->
 <div style="text-align: center;">
-  <img src="images/matt-casual-1080-1080.jpeg" class="prof-pic">
+  <img src="images/matt-casual-1080-1080.jpeg" class="prof-pic" style="width: 250px; height: 250px; border-radius: 50%; padding-top: 10px;">
 </div>
 
 <!-- about me -->
