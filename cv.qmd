@@ -23,9 +23,8 @@ options(knitr.table.format = "html") # For the html tables
 ```
 
 <!-- profile picture -->
-
 <div style="text-align: center;">
-  <img src="images/matt-casual-1080-1080.jpeg" class="prof-pic">
+  <img src="images/matt-casual-1080-1080.jpeg" class="prof-pic" style="width: 250px; height: 250px; border-radius: 50%; padding-top: 10px;">
 </div>
 
 <h1 style="text-align:center">Matthew J. Kmiecik, PhD</h1>

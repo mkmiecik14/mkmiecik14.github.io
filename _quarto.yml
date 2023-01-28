@@ -60,6 +60,5 @@ format:
       dark: darkly
     highlight-style: a11y
     email-obfuscation: javascript
-    css: styles.css
       
   
