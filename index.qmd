@@ -1,200 +1,26 @@
 ---
 title: ""
+listing: 
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: cloud
+  sort-ui: false
+  filter-ui: false
+  image-placeholder: "./images/me.jpg"
+page-layout: full
+title-block-banner: true
 ---
 
 <!-- profile picture -->
-
 <div style="text-align: center;">
   <img src="images/matt-casual-1080-1080.jpeg" class="prof-pic">
 </div>
 
-<!-- social icons bar START-->
-
-::: {.social-icons style="font-size: 1.5rem;"}
-<ul>
-
-<li><a href="mailto:mkmiecik14@gmail.com"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-</ul>
-:::
-
-<!-- social icons bar END-->
-
-<br>
-
+<!-- about me -->
 <h2><i class="fas fa-user-circle" aria-hidden="true"></i> About Me</h2>
 
-I'm a cognitive neuroscientist doing a (second) postdoc at 23andMe researching genotypic and phenotypic markers of Parkinson's Disease. In my first postdoc, I studied how individuals' sensitivity across multiple sensory modalities predicted their long-term pelvic pain. In graduate school, I studied volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury, and human
-reasoning. My undergraduate work utilized EEG to understand the neural correlates and timecourse of analogical reasoning. In my spare time I enjoy reading, exercising, crossword puzzles, and the endless pursuit of new hobbies. [Click here for my
-CV.](https://mattkmiecik.com/cv.html)
+I'm a cognitive neuroscientist doing a (second) postdoc at 23andMe researching genotypic and phenotypic markers of Parkinson's Disease. In my first postdoc, I studied how individuals' sensitivity across multiple sensory modalities predicted their long-term pelvic pain. In graduate school, I studied volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury, and human reasoning. My undergraduate work utilized EEG to understand the neural correlates and timecourse of analogical reasoning. In my spare time I enjoy reading, exercising, crossword puzzles, and the endless pursuit of new hobbies.
 
-<br>
-
-<!-- MY BLOGS -->
-
-<h2><span class="far fa-paper-plane" aria-hidden="true"></span> My Blogs</h2> 
-
-<h3><span class="far fa-newspaper" aria-hidden="true"></span><a href="academicblog.html"> Academic Blog</a></h3>
-
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-<span class="badge rounded-pill bg-success">E-Prime</span>
-<span class="badge rounded-pill bg-danger">EEG</span>
-<span class="badge rounded-pill bg-warning">Paper Review</span>
-<span class="badge rounded-pill bg-light">Shiny</span>
-
-
-As a cognitive neuroscientist, my projects are a blend of cognitive psychology, computer science, statistics, neuroimaging, and neuroscience principles. This blog serves mainly as resource to myself (so I can refer to how I did something), but also aims to teach others.
-
-<h3><span class="far fa-newspaper" aria-hidden="true"></span><a href="theblueline.html"> The Blue Line</a></h3> 
-
-<span class="badge rounded-pill bg-info">Hockey Analytics</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-
-I love the sport of hockey. In my spare time, I like to apply some of the statistical techniques that I've learned in my classes and research projects to hockey data. This hockey analytics blog serves to help hone my data science skills, teach R, and (hopefully) provide new insights to this amazing sport.
-
-<br>
-
-<!-- Blog Posts -->
-
-<h2><span class="far fa-file-alt" aria-hidden="true"></span> Blog Posts</h2> 
-
-<!-- Blackhawks PCA -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="postLink"> Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis</a></h3>
-
-<span class="far fa-clock"></span> March 7, 2019
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-info">Hockey Analytics</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-
-A collaboration post about using PCA to explore NHL data.
-
-<!-- My Reads -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-My-Reads.html" class="postLink"> My Reads</a></h3>
-
-<span class="far fa-clock"></span> January 3, 2019
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-
-A weekly updated tracker of my reading progress to motivate me to read more. Also, includes some of my favorite reads.
-
-<!-- Boot Perm Shiny Dashboard -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/" class="postLink"> Bootstrapping and Permutation Testing: A Shiny Dashboard</a></h3>
-
-<span class="far fa-clock"></span> September 2, 2018
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-<span class="badge rounded-pill bg-light">Shiny</span>
-
-A Shiny dashboard visualizing the differences between bootstrapping and permutation testing.
-
-<!-- A Method for Characterizing Semantic and Lexical... post -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="postLink"> A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a></h3>
-
-<span class="far fa-clock"></span> July 22, 2018
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-warning">Paper Review</span>
-
-A blog post about a paper we published last summer. Topics: traumatic brain injury, cognition, and neuropsychology.
-
-<!-- Boot Perm Shiny App -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="https://mattkmiecik.com/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="postLink"> Bootstrapping and Permutation Testing: A Shiny App</a></h3>
-
-<span class="far fa-clock"></span> June 7, 2018
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-<span class="badge rounded-pill bg-light">Shiny</span>
-
-A Shiny application visualizing the differences between bootstrapping and permutation testing.
-
-<!-- 2018 March Madness -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="postLink"> Simulating 2018 NCAA March Madness Tournament Performance in R</a></h3>
-
-<span class="far fa-clock"></span> March 20, 2018
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-
-When a bunch of grad students get together to simulate college basketball tournament performance using R.
-
-<!-- Multi-level Model NHL -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="postLink"> Multilevel Modeling in R with NHL Power Play Data</a></h3>
-
-<span class="far fa-clock"></span> February 11, 2018
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-info">Hockey Analytics</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-
-A collaboration post about multilevel modeling in R using professional hockey data from the NHL.
-
-<!-- Lit Review -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Writing-a-Literature-Review.html" class="postLink"> Writing a Literature Review</a></h3>
-
-<span class="far fa-clock"></span> September 25, 2017
-<span class="badge rounded-pill bg-primary">Academic</span>
-
-A post about writing my first literature review. Things that worked/did not work for me.
-
-<!-- Xbox Controllers and Eprime -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="postLink">Using Xbox Controllers and Sending EEG Triggers with E-Prime</a></h3>
-
-<span class="far fa-clock"></span> June 12, 2017
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-<span class="badge rounded-pill bg-success">E-Prime</span>
-<span class="badge rounded-pill bg-danger">EEG</span>
-
-A post about interfacing E-Prime 2.0 with an Xbox controller and passing stimulus/response triggers.
-
-<!-- ggplot2 histogram logo fail -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-ggplot2-Histogram-Logo-Fail.html" class="postLink"> ggplot2 Histogram Logo Fail</a></h3>
-
-<span class="far fa-clock"></span> May 15, 2017
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-
-A (probably) pointless post about forcing spaces in ggplot2 histograms.
-
-<!-- Stop Using Excel to Preprocess E-Prime Data -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="postLink"> Stop Using Excel to Preprocess E-Prime Data</a></h3>
-
-<span class="far fa-clock"></span> May 15, 2017
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-<span class="badge rounded-pill bg-success">E-Prime</span>
-
-A post demonstrating an efficient data pipeline for E-prime users.
-
-<!-- The Last Decade NHLs Best and Worst Power Play Teams -->
-
-<h3><span class="far fa-sticky-note" aria-hidden="true"></span><a href="post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="postLink"> The Last Decade: NHL’s Best and Worst Power Play Teams</a></h3>
-
-<span class="far fa-clock"></span> May 15, 2017
-<span class="badge rounded-pill bg-primary">Academic</span>
-<span class="badge rounded-pill bg-info">Hockey Analytics</span>
-<span class="badge rounded-pill bg-secondary">R</span>
-
-A hockey analytics post about 5 vs. 4 NHL powerplays from 2007-2017.
-
-<!-- disqus comment counter LEAVE HERE AT BOTTOM OF INDEX -->
-<script id="dsq-count-scr" src="//mattkmiecik.disqus.com/count.js" async></script>
+<!-- about me -->
+<h2><i class="far fa-sticky-note" aria-hidden="true"></i> Blog Posts</h2>

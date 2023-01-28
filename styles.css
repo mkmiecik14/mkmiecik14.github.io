@@ -1,78 +1,9 @@
-/*-- scss:defaults --*/
-
-/*-- scss:rules --*/
-
-/* Insert sytle here */
-
-/*
-Flatly theme colors:
-#E74C3C = red;
-#F39C12 = yellow;
-#3498DB = light blue;
-#18BC9C = sea green;
-#2C3E50 = dark blue;
-*/
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
-  /*background-color: #2C3E50;*/
-  text-align: center;
-  /*color: white;*/
-}
-
-
-/* About Me */
+/* Profile Picture */
 .prof-pic{
   text-align: center;
   padding-top: 10px;
   width: 250px;
   height: 250px;
   border-radius: 50%;
-}
-
-.social-icons ul {
-  width: 100%;
-  text-align: center;
-  padding-right: 25px;
-  padding-top: 10px;
-}
-
-.social-icons ul li {
-  display: inline-block;
-}
-
-.social-icons ul li a i {
-  font-size: 25px;
-} 
-
-.cv-image {
-  display: block;
-  max-width:230px;
-  max-height:95px;
-  width: auto;
-  height: auto;
-}
-
-.schoollogo{
-  float: none;
-  display: inline-block;
-  vertical-align: middle;
 }
 

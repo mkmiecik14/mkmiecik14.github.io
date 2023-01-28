@@ -30,30 +30,6 @@ options(knitr.table.format = "html") # For the html tables
 
 <h1 style="text-align:center">Matthew J. Kmiecik, PhD</h1>
 
-<!-- social icons bar START-->
-
-::: {.social-icons style="font-size: 1.5rem;"}
-<ul>
-
-<li><a href="mailto:mkmiecik14@gmail.com"><i class="fas fa-envelope fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://twitter.com/mattkmiecik14"><i class="fab fa-twitter fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/"><i class="fab fa-linkedin-in fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://github.com/mkmiecik14"><i class="fab fa-github fa-fw faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-<li><a href="https://www.researchgate.net/profile/Matthew_Kmiecik"><i class="ai ai-researchgate fa-fw ai-3x faa-horizontal animated-hover" aria-hidden="true" style="color:#2C3E50"></i></a></li>
-
-</ul>
-:::
-<!-- social icons bar END-->
-
-
-<!-- EDUCATION SECTION START-->
-
 # Education
 
 ```{r}
@@ -131,7 +107,8 @@ reactable(
       inst = colDef(show = FALSE)
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
-  fullWidth = TRUE
+  fullWidth = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 <br>
@@ -236,7 +213,8 @@ reactable(
       inst = colDef(show = FALSE)
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
-  fullWidth = TRUE
+  fullWidth = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 
@@ -249,34 +227,24 @@ reactable(
 -   Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (2022).
     Differential effects of semantic distance, distractor salience, and
     relations in verbal analogy. *Psychonomic Bulletin & Review, 29*,
-    1480--1491. <https://doi.org/10.3758/s13423-022-02062-8>
-    [<a href ="https://osf.io/cd7b9/" target="_blank" style="color: #FFFFFF">OSF
-    Project</a>]{.label .label-success}
+    1480--1491. <https://doi.org/10.3758/s13423-022-02062-8> 
 
 -   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
     Harte, S. E., Hellman, K. M. (2022). Cortical Mechanisms of Visual
     Hypersensitivity in Women at Risk for Chronic Pelvic Pain. *PAIN, 163*(6),
     1035-1048. doi:
     [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx)
-    [<a href ="https://github.com/mkmiecik14/ssvep" target="_blank" style="color: #FFFFFF">GitHub
-    Repo</a>]{.label .label-primary}
-    [<a href ="https://osf.io/yrzac/?view_only51231254dc96-c4999832ea0c8056374fa" target="_blank" style="color: #FFFFFF">OSF
-    Project</a>]{.label .label-success}
 
 -   **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing
     Levels of Relational Complexity: Perceptual, Analogical, and System
     Mappings. *Journal of Cognitive Neuroscience*, *33*(3), 357-376.
     <https://doi.org/10.1162/jocn_a_01618>
-    [<a href ="https://github.com/mkmiecik14/fractal-rmts" target="_blank" style="color: #FFFFFF">GitHub
-    Repo</a>]{.label .label-primary}
 
 -   Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**,
     Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N.
     (2019). Executive Function Training in Chronic Traumatic Brain Injury
     Patients: Study Protocol. *TRIALS. 20*:435
     <https://doi.org/10.21203/rs.2.273/v1>
-    [<a href ="https://rdcu.be/bKxw4" target="_blank" style="color: #FFFFFF">PDF</a>]{.label
-    .label-default}
 
 -   **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time
     course of semantic and relational processing during verbal analogical
@@ -284,18 +252,15 @@ reactable(
     <https://doi.org/10.1016/j.bandc.2018.11.012>
 
 -   **Kmiecik, M. J.**, Rodgers, B. N., Martinez, D. M., Chapman, S. B., &
-    Krawczyk, D. C. (2018). [A method for characterizing semantic and lexical
+    Krawczyk, D. C. (2018). A method for characterizing semantic and lexical
     properties of sentence completions in traumatic brain
-    injury.](https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury)
-    *Psychological Assessment*, *30*(5), 645-655.
-    <http://dx.doi.org/10.1037/pas0000510>
+    injury. *Psychological Assessment*, *30*(5), 645-655. <http://dx.doi.org/10.1037/pas0000510>
 
 -   Stockdale, L. A., Morrison, R. G., **Kmiecik, M. J.**, Garbarino, J., &
-    Silton, R. L. (2015). [Emotionally anesthetized: media violence induces
+    Silton, R. L. (2015). Emotionally anesthetized: media violence induces
     neural changes during emotional face
-    processing.](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces)
-    *Social Cognitive and Affective Neuroscience*, *10*(10), 1373-1382. doi:
-    10.1093/scan/nsv025
+    processing. *Social Cognitive and Affective Neuroscience*, *10*(10), 1373-1382. doi:
+    [10.1093/scan/nsv025](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces)
 
 <br />
 
@@ -616,7 +581,8 @@ reactable(
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   striped = TRUE,
   highlight = TRUE,
-  style = list(fontSize = "0.9rem")
+  style = list(fontSize = "0.9rem"),
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
 )
 ```
 
@@ -707,7 +673,8 @@ reactable(
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 
@@ -770,7 +737,8 @@ reactable(
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 
 ```
@@ -813,7 +781,8 @@ reactable(
   ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
 )
 ```
 
@@ -854,7 +823,8 @@ reactable(
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 
@@ -915,7 +885,8 @@ reactable(
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 
@@ -993,7 +964,8 @@ reactable(
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 
@@ -1088,7 +1060,8 @@ reactable(
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 
@@ -1133,7 +1106,8 @@ reactable(
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 
@@ -1177,7 +1151,8 @@ reactable(
     ),
   defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
   highlight = TRUE,
-  striped = TRUE
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
 

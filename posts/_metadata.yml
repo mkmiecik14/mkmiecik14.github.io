@@ -1,0 +1,14 @@
+# options apply to all posts in this folder
+
+# twitter card
+twitter-card:
+  image: "./thumbnail.png"
+# freeze computational output
+freeze: true
+# toc format
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    smooth-scroll: true

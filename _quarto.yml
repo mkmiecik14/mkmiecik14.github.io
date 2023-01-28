@@ -4,19 +4,28 @@ project:
   render: 
     - "*.qmd"
     - "!README.md"
-    - "post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.qmd"
-    - "!post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.qmd"
-    - "!post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.qmd"
-    - "!post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.qmd"
-    - "!post-My-Reads.qmd"
 
 website:
   title: "Matthew J. Kmiecik, PhD"
+  description: "A blog about R, statistics, data viz, and academic musings."
+  favicon: "./images/matt-casual-1080-1080.jpeg"
+  twitter-card:
+    creator: "@mattkmiecik14"
+  open-graph: true
   google-analytics: G-Q8PCYXLBH5
+  comments:
+    giscus:
+      repo: mkmiecik14/mkmiecik14.github.io
+      repo-id: "MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg=="
+      category: Announcements
+      category-id: "DIC_kwDOBZzsfM4CT2c5"
+      mapping: pathname
+      reactions-enabled: true
+      loading: lazy
+      input-position: top
+      theme: light
   navbar: 
     pinned: true
-    #background: primary
-    #foreground: light
     search: true
     left:
       - text: "Home"
@@ -25,11 +34,6 @@ website:
       - text: "CV"
         icon: mortarboard-fill
         file: cv.qmd
-      - text: "My Blogs"
-        icon: send-fill
-        menu:
-          - file: theblueline.qmd
-          - file: academicblog.qmd
     right:
       - icon: envelope-fill
         href: mailto:mkmiecik14@gmail.com
@@ -43,16 +47,19 @@ website:
         href: https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en
       - text: "{{< ai researchgate >}}"
         href: https://www.researchgate.net/profile/Matthew-Kmiecik
+      # - icon: rss
+      #   href: index.xml
+  page-footer: 
+    center: "Copyright 2017-2023, Matthew J. Kmiecik, PhD"
+    background: primary
 
 format:
   html:
-    include-in-header: icons.html
-    include-after-body: footer.html
     theme:
-      light: [flatly, styles.scss]
+      light: flatly
       dark: darkly
     highlight-style: a11y
     email-obfuscation: javascript
-    #css: styles.css
+    css: styles.css
       
   
