@@ -1,0 +1,1199 @@
+---
+title: ""
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    smooth-scroll: true
+---
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+library(knitr); library(kableExtra); library(reactable); library(tidyverse)
+library(htmltools)
+
+# suppresses warnings globally
+knitr::opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE, 
+  echo = FALSE, 
+  cache = FALSE
+  )
+options(knitr.table.format = "html") # For the html tables
+```
+
+<!-- profile picture -->
+
+<div style="text-align: center;">
+  <img src="images/matt-casual-1080-1080.jpeg" class="prof-pic">
+</div>
+
+<h1 style="text-align:center">Matthew J. Kmiecik, PhD</h1>
+
+# Education
+
+```{r}
+# education dataframe
+education <-
+  as_tibble(
+    rbind(
+      cbind(
+        logo = c("23andMe-omni.png"),
+        inst = c("23andMe"),
+        focus = c("Parkinson's Disease"),
+        degree = c("Postdoctoral Fellowship"),
+        date = c("2022-present")
+        ),
+      # northshore
+      cbind(
+        c("ns-omni.png"),
+        c("NorthShore University HealthSystem"),
+        c("Pain Research"),
+        c("Postdoctoral Research Fellowship"),
+        c("2020-2022")
+        ),
+      # UTD
+      cbind(
+        c("utd-omni.png"),
+        c("The Univeristy of Texas at Dallas"),
+        c("Human Reasoning, Traumatic Brain Injury"),
+        c("PhD Cognition and Neuroscience"),
+        c("2014-2019")
+        ),
+      # LUC
+      cbind(
+        c("luc-omni.png"),
+        c("Loyola University Chicago"),
+        c("Analogical Reasoning, EEG"),
+        position = c("BS Psychology: Natural Sciences"),
+        date = c("2009-2013")
+        )
+      )
+    )
+
+# education table
+reactable(
+  education,
+  columns = 
+    list(
+      # LOGO
+      logo = colDef(
+        name = "",
+        cell = function(value){
+          image <- img(src = paste0("images/", value), style = "height: 75px;") # orign 75px
+          tagList(div(style = "display: inline-block; width: 75px;", image)) # orig 45px
+          },
+        width = 150, 
+        align = "left"
+      ),
+      # DEGREE
+      degree = colDef(
+        name = "Degree/Focus/Institution",
+        cell = function(value, index) {
+          focus <- education$focus[index]
+          inst <- education$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), focus),
+            div(style = list(fontSize = "0.75rem"), inst)
+            )
+          }
+        ),
+      # DATE
+      date = colDef(name = "Dates", width = 150),
+      # FOCUS
+      focus = colDef(show = FALSE),
+      # INSTITUTION
+      inst = colDef(show = FALSE)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  fullWidth = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+<br>
+
+# Professional Positions
+
+```{r}
+# prof positions dataframe
+prof_pos <-
+  as_tibble(
+    rbind(
+      # 23andMe
+      cbind(
+        logo = c("23andMe-omni.png"), 
+        pos = c("Postdoctoral Fellow"),
+        dep = c("Research"),
+        inst = c("23andMe"),
+        date = c("2022-present")
+        ),
+      # shirley ryan
+      cbind(
+        c("sra-omni.png"),
+        c("Visiting Scholar"),
+        c("Center for Bionic Medicine"),
+        c("Shirley Ryan AbilityLab"),
+        c("2021-2022")
+      ),
+      # u of c
+      cbind(
+        c("uchicago-omni.png"),
+        c("Clincian Researcher"),
+        c("Department of Ob/Gyn"),
+        c("The University of Chicago Pritzker School of Medicine"),
+        c("2020-2022")
+      ),
+      # northshore
+      cbind(
+        c("ns-omni.png"), 
+        c("Postdoctoral Research Fellowship"),
+        c("Department of Ob/Gyn"),
+        c("NorthShore Univeristy HealthSystem"),
+        c("2020-2022")
+        ),
+      # luc teaching
+      cbind(
+        c("luc-omni.png"),
+        c("Part-Time Faculty"),
+        c("Department of Psychology"),
+        c("Loyola University Chicago"),
+        c("2020-2022")
+      ),
+      # UTD 
+      cbind(
+        c("utd-omni.png"),
+        c("Graduate Research and Teaching Assistant"),
+        c("School of Behavioral and Brain Sciences"),
+        c("The University of Texas at Dallas"),
+        c("2014-2019")
+        ),
+      # LUC
+      cbind(
+        c("luc-omni.png"),
+        c("Laboratory Manager"),
+        c("Department of Psychology"),
+        c("Loyola Univeristy Chicago"),
+        c("2013-2014")
+        )
+      )
+    )
+
+# prof position table
+reactable(
+  prof_pos,
+  columns = 
+    list(
+      # LOGO
+      logo = colDef(
+        cell = function(value){
+          image <- img(src = paste0("images/", value), style = "height: 75px;")
+          tagList(div(style = "display: inline-block; width: 45px;", image))
+          },
+        name = "Institution", width = 150, align = "left"
+      ),
+      # POSITION
+      pos = colDef(
+        name = "Position/Department/Institution",
+        cell = function(value, index){
+          dep <- prof_pos$dep[index]
+          inst <- prof_pos$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), dep),
+            div(style = list(fontSize = "0.75rem"), inst)
+            )
+        }
+        ),
+      # DATE
+      date = colDef(name = "Dates", width = 150),
+      # DEP
+      dep = colDef(show = FALSE),
+      # INST
+      inst = colDef(show = FALSE)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  fullWidth = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+
+<br>
+
+# Publications
+
+## Papers
+
+-   Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (2022).
+    Differential effects of semantic distance, distractor salience, and
+    relations in verbal analogy. *Psychonomic Bulletin & Review, 29*,
+    1480--1491. <https://doi.org/10.3758/s13423-022-02062-8> 
+
+-   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., Hellman, K. M. (2022). Cortical Mechanisms of Visual
+    Hypersensitivity in Women at Risk for Chronic Pelvic Pain. *PAIN, 163*(6),
+    1035-1048. doi:
+    [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx)
+
+-   **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing
+    Levels of Relational Complexity: Perceptual, Analogical, and System
+    Mappings. *Journal of Cognitive Neuroscience*, *33*(3), 357-376.
+    <https://doi.org/10.1162/jocn_a_01618>
+
+-   Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**,
+    Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N.
+    (2019). Executive Function Training in Chronic Traumatic Brain Injury
+    Patients: Study Protocol. *TRIALS. 20*:435
+    <https://doi.org/10.21203/rs.2.273/v1>
+
+-   **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time
+    course of semantic and relational processing during verbal analogical
+    reasoning. *Brain and Cognition*, *129*, 25-34.
+    <https://doi.org/10.1016/j.bandc.2018.11.012>
+
+-   **Kmiecik, M. J.**, Rodgers, B. N., Martinez, D. M., Chapman, S. B., &
+    Krawczyk, D. C. (2018). A method for characterizing semantic and lexical
+    properties of sentence completions in traumatic brain
+    injury. *Psychological Assessment*, *30*(5), 645-655. <http://dx.doi.org/10.1037/pas0000510>
+
+-   Stockdale, L. A., Morrison, R. G., **Kmiecik, M. J.**, Garbarino, J., &
+    Silton, R. L. (2015). Emotionally anesthetized: media violence induces
+    neural changes during emotional face
+    processing. *Social Cognitive and Affective Neuroscience*, *10*(10), 1373-1382. doi:
+    [10.1093/scan/nsv025](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces)
+
+<br />
+
+## Books
+
+-   Pongpipat, E. E., Miranda, G. G., **Kmiecik, M. J.** (2019). A Practical
+    Extension of Introductory Statistics in Psychology using R. *Free online
+    textbook written in `bookdown` and `R`.* Read it here:
+    <https://rpsystats.com/>
+
+<br />
+
+## Preprints
+
+-   **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022).
+    Multimodal Hypersensitivity Derived from Quantitative Sensory Testing
+    Predicts Long-Term Pelvic Pain Outcome. *MedRxiv*, 2022.04.01.22272964. doi:
+    <https://doi.org/10.1101/2022.04.01.22272964>
+    [<a href ="https://github.com/mkmiecik14/mmh" target="_blank" style="color: #FFFFFF">GitHub
+    Repo</a>]{.label .label-primary}
+    [<a href ="https://osf.io/27ky9/?view_only=90108c59ca8a4431800492a5686b7ef2" target="_blank" style="color: #FFFFFF">OSF
+    Project</a>]{.label .label-success}
+
+-   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. *MedRxiv*,
+    2020.12.03.20242032. doi: <https://doi.org/10.1101/2020.12.03.20242032>
+
+<br />
+
+## Dissertation
+
+-   **Kmiecik, M. J.** (2019). [The Time Course of Meaning Construction with
+    Varying Expectations](https://hdl.handle.net/10735.1/9357).
+
+<br />
+
+# Conference Participation
+
+## Papers
+
+-   Kmiecik, M. & Morrison, R.G. (2013). [Semantic Distance Modulates the N400
+    Event-Related Potential in Verbal Analogical
+    Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N.
+    Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive
+    Science Society. Austin, TX: Cognitive Science Society.
+
+<br />
+
+## Talks
+
+-   Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (Sept. 2021). Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Flash talk
+    presented at The University of Chicago Postdoctoral Symposium.
+
+-   Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk
+    presented at the International Association for the Study of Pain (IASP)
+    Neuropathic Pain SIG (NeuPSIG) webinar series. Link to talk
+    [here](https://www.pathlms.com/iasp/courses/30608/video_presentations/223042).
+
+-   Kmiecik, M. J. (November, 2019). Effective Presentations of Quantitative
+    Information: A Study in Edward Tufte. Talk presented at the inaugural [UT
+    Dallas BrainHack](https://brainhack-dallas.github.io/mini-brainhack-utd/),
+    Dallas, TX.
+
+-   Kmiecik, M. J., Nagele, M., Sharma, R., Vaughn, A. Thakur, P., &
+    Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and
+    Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk
+    presented at the Brain Performance Institute's Inaugural TBI Research
+    Showcase. Dallas, TX.
+
+-   Kmiecik, M. J. & Krawczyk, D. C. (2017, October). Reasoning With Complex
+    Relational Structures. Talk given at the UT Dallas School of Behavioral and
+    Brain Sciences Cognition and Neuroscience program annual Fall retreat.
+    Dallas, TX.
+
+-   Kmiecik, M. & Morrison, R.G. (2013, August). [Semantic Distance Modulates
+    the N400 Event-Related Potential in Verbal Analogical
+    Reasoning.](http://ecommons.luc.edu/ulurpa/1/) Paper presented at the 35th
+    Annual Conference of the Cognitive Science Society, Berlin, Germany.
+
+<br />
+
+## Workshops
+
+-   Dutcher, A., Kmiecik, M.J., & Beaton, D. (2016, April). Analyzing
+    multi-block data: A tutorial of Multiple Factor Analysis in R. Workshop
+    presented at the Society for Applied Multivariate Research, Dallas, Texas.
+    ([*MFA Workshop
+    Slides*](https://www.researchgate.net/publication/301200852_Analyzing_Multi-Block_Data_A_Tutorial_of_Multiple_Factor_Analysis_in_R)
+    / [*MFA Workshop R
+    Code*](https://www.researchgate.net/publication/301201126_FinalCode) )
+
+<br />
+
+## Poster Presentations
+
+-   Kmiecik, M. J., Tu, F. F., Darnell, S., Harber, K., Hellman, K. M. (2022,
+    Nov.). [Early cortical mechanisms of visual discomfort in premenarchal
+    adolescents](https://www.researchgate.net/publication/365540248_Early_Cortical_Mechanisms_of_Visual_Discomfort_in_Premenarchal_Adolescents).
+    Poster presented at the Society for Neuroscience Annual Meeting, San Diego,
+    California.
+
+-   Kmiecik, M. J., Tu, F. F., Clauw, D. J., Hellman, K. M. (2022, Sept.).
+    [Multimodal Hypersensitivity Predicts Pelvic Pain Outcome 4 Years
+    Later](https://www.researchgate.net/publication/363650653_Multimodal_Hypersensitivity_Predicts_Pelvic_Pain_Outcome_4_Years_Later).
+    Poster presented at the International Association for the Study of Pain
+    (IASP) World Congress on Pain, Toronto, Canada.
+
+-   Darnell, S., Tu, F. F., Harber, K., Sain, C., Kmiecik, M. J., Hellman, K. M.
+    (2022, Sept.). Menstrual, Sensory, and Psychological Factors Predict New
+    Onset Chronic Pelvic Pain. Poster to be presented at the International
+    Association for the Study of Pain (IASP) World Congress on Pain, Toronto,
+    Canada.
+
+-   Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (2022, March). Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster presented
+    at the Chicago Chapter of the Society for Neuroscience annual meeting,
+    Chicago, IL.
+
+-   Kmiecik, M. J., Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
+    Harte, S. E., & Hellman, K. M. (2021, Oct.). [Cortical Mechanisms of Visual
+    Hypersensitivity in Women At Risk for Chronic Pelvic
+    Pain.](https://www.researchgate.net/publication/355493213_Cortical_Mechanisms_of_Visual_Hypersensitivity_in_Women_at_Risk_for_Chronic_Pelvic_Pain)
+    Poster presented at the 24th annual scientific meeting of the International
+    Pelvic Pain Society (IPPS), Baltimore, MD.
+
+-   Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020,
+    May). [The Time Course of Meaning Construction with Varying
+    Expectations](https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations).
+    Poster presented virtually at the Cognitive Neuroscience Society's annual
+    conference, Boston, MA.
+
+-   Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C.
+    (2020, May). [The Nuances of Norepinephrine: Salivary Alpha Amylase's Role
+    as a Biomarker in tDCS - Directed Judgment & Decision
+    Making.](https://www.researchgate.net/publication/343193718_The_Nuances_of_Norepinephrine_Investigating_the_Role_of_Salivary_Alpha_Amylase_on_tDCS_-_Modulated_Decision_Making)
+    Poster presented virtually at the Cognitive Neuroscience Society's annual
+    conference, Boston, MA.
+
+-   Kmiecik, M. J., Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020,
+    March). The Time Course of Meaning Construction with Varying Expectations.
+    Poster was to be presented at the Society for Neuroscience Chicago Chapter
+    annual meeting, Chicago, IL. \* Cancelled due to COVID-19
+
+-   Kim, L. M., Lundie, M. J., Kmiecik, M. J., Dasara, H., & Krawczyk, D. C.
+    (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha
+    Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster to be
+    presented at the Society for Personality and Social Psychology's annual
+    conference, New Orleans, LA.
+
+-   Nagele, M., Kmiecik, M. J., Chang, Z., Martinez, D., Juarez, M.,
+    Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C.
+    (2019, August). [Using the Virtual Multiple Errands Task (VMET) to Assess
+    Executive Functioning in Traumatic Brain
+    Injury.](https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury)
+    Poster presented at the Military Health System Research Symposium annual
+    meeting, Kissimmee, FL.
+
+-   Chang, Z., Kmiecik, M. J., Martinez, D., Nagele, M., Lundie, M., Cole, R.,
+    Kim, L., Khachaturyan, M., Balloun, B., Juarez, M., Didehbani, N., Clover,
+    M., Rule, G., Scott, G., & Krawczyk, D. C. (2019, August). Using a
+    Virtual-Reality Based Rehabilitation Program to Enhance Daily Functioning in
+    Veterans Surviving Traumatic Brain Injury. Poster presented at the Military
+    Health System Research Symposium annual meeting, Kissimmee, FL.
+
+-   Nagele, M. M., Kmiecik, M. J., & Krawczyk, D. C. (2019, April).
+    Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster
+    presented at UT Dallas School of Behavioral and Brain Sciences Psychological
+    Sciences annual meeting, Dallas, TX.
+
+-   Kmiecik, M. J., Martin A. D., Kim, L. M., Perez, R., Martinez, D. M.,
+    Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of
+    Reasoning Ability and Relational Cueing in Solving Relational
+    Match-to-Sample
+    Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems).
+    Poster presented at the Cognitive Neuroscience Society annual meeting, San
+    Francisco, CA.
+
+-   Kim, L. M., Kmiecik, M. J., Martinez, D. M., Martin A. D., & Krawczyk, D. C.
+    (2019, March). [The Similar Situations Task: Measuring Differing Levels of
+    Reasoning Using Scene
+    Analogies](https://www.researchgate.net/publication/332058003_The_Similar_Situations_Task_Measuring_Differing_Levels_of_Reasoning_Using_Scene_Analogies).
+    Poster presented at the Cognitive Neuroscience Society annual meeting, San
+    Francisco, CA.
+
+-   Kais, L.A., Lee, C., Kmiecik, M.J., Silton, R.L. (2018, February). The
+    Influence of Affect on Interference Processing in Blocked and Mixed
+    Presentations of a Stroop Color-Word Task. Poster presented at the annual
+    meeting of the International Neuropsychological Society: Washington, D.C.
+
+-   Kmiecik, M. J., Perez, R., Dandu, H., Krawczyk, D. C. (2017, August).
+    [Reasoning with Complex Relational
+    Structures.](https://www.researchgate.net/publication/318969662_Reasoning_With_Complex_Relational_Structures)
+    Poster presented at the Fourth International Conference on Analogical
+    Reasoning, Paris, France.
+
+-   Martinez, D. M., Kmiecik, M. J., Kamat, P. S., Schauer, G. F.,
+    Krawczyk, D. C. (2017, August). Aspects of Cognition and Clinical
+    Symptomology in Analogical Reasoning. Poster presented at the Fourth
+    International Conference on Analogical Reasoning, Paris, France.
+
+-   Kmiecik, M.J., Martinez, D., Young, L.R., Krawczyk, D.C. (2016, November).
+    [Functional and Structural Neural Patterns in Mild-Moderate Chronic-Phase
+    Traumatic Brain
+    Injury.](https://www.researchgate.net/publication/309457305_Functional_and_Structural_Neural_Patterns_in_Mild-Moderate_Chronic-Phase_Traumatic_Brain_Injury)
+    Archives of Physical Medicine and Rehabilitation, 97(10), e55. doi:
+    10.1016/j.apmr.2016.08.167
+
+-   Martinez, D., Kmiecik, M.J., Chapman, S., Krawczyk, D.C. (2016, November).
+    [Observing Changes in Cognition, Mood, and White Matter in Chronic TBI Using
+    Multiple Factor Analysis After Cognitive
+    Intervention.](https://www.researchgate.net/publication/308601754_Observing_Changes_in_Cognition_Mood_and_White_Matter_in_Chronic_TBI_Using_Multiple_Factor_Analysis_After_Cognitive_Intervention)
+    Archives of Physical Medicine and Rehabilitation, 97(10), e75. doi:
+    10.1016/j.apmr.2016.08.229
+
+-   Kmiecik, M.J., Schauer, G.F., Martinez, D., & Krawczyk, D.C. (2016, April).
+    [The Similar Situations Task: An Assessment of Analogical Reasoning in
+    Healthy and Clinical
+    Populations.](https://www.researchgate.net/publication/299782139_The_Similar_Situations_Task_An_Assessment_of_Analogical_Reasoning_in_Healthy_and_Clinical_Populations)
+    Poster presented at the Cognitive Neuroscience Society annual meeting, New
+    York, NY.
+
+-   Kmiecik, M. J., Chapman, S., & Krawczyk, D., (2015). Executive Functioning
+    in Traumatic Brain Injury: A Detailed Investigation of the Hayling Test.
+    Archives of Physical Medicine and Rehabilitation, 96(10), e97-e98. doi:
+    10.1016/j.apmr.2015.08.326
+
+-   Stockdale, L., Morrison, R. G., Kmiecik, M., Palumbo, R., Garbarino, J., &
+    Silton, R. L. (September, 2014). Negative valence systems distinctly
+    influence bottom-up and top-down attentional processes. Paper presented at
+    the Society for Psychophysiological Research, Atlanta, GA.
+
+-   Palumbo, R. T., Stockdale, L., Kmiecik, M. J., Silton, R. L.,
+    Morrison, R. G. (2014, July). The effect of short-term exposure to film
+    violence on emotional facial processing. Poster presented at the 36th annual
+    meeting of the Cognitive Science Society, Quebec City, Canada.
+
+-   Brisson, R., Kmiecik, M.J., & Morrison, R. G. (2014, July). The effect of
+    semantic and relational similarity on the N400 event-related potential in
+    verbal analogical reasoning. Poster presented at the 36th annual meeting of
+    the Cognitive Science Society, Quebec City, Canada.
+
+-   Irwin, J.L., Jones, L.L., Kmiecik, M.J., Unsworth, N., & Morrison, R. G.
+    (2014, July). Attention to detail predicts better verbal analogy
+    performance. Poster presented at the 36th annual meeting of the Cognitive
+    Science Society, Quebec City, Canada.
+
+-   Jones, L.L., Irwin, J.L., Kmiecik, M.J., Unsworth, N., & Morrison, R. G.
+    (2014, July). Working memory and interference control in verbal analogy.
+    Poster presented at the 36th annual meeting of the Cognitive Science
+    Society, Quebec City, Canada.
+
+-   Morrison, R. G., Kmiecik, M.J., Irwin, J.L., Unsworth, N., Jones, L.L.
+    (2014, July). Working memory and crystallized knowledge in visual analogy.
+    Poster presented at the 36th annual meeting of the Cognitive Science
+    Society, Quebec City, Canada.
+
+-   Brisson, R.J., Kmiecik, M.J., Sweis, A.S. & Morrison, R.G. (2014, April).
+    The Effect of Semantic and Relational Similarity on the N400 in Verbal
+    Analogical Reasoning. Poster presented at the Cognitive Neuroscience Society
+    annual meeting, Boston, MA.
+
+-   Stockdale, L., Palumbo, R., Kmiecik, M., Silton, R.L. & Morrison, R.G.
+    (2014, April). The Effects of Media Violence on the Neural Correlates of
+    Emotional Facial Processing: An ERP Investigation. Poster presented at the
+    Cognitive Neuroscience Society annual meeting, Boston, MA.
+
+-   Kmiecik, M.J., Brisson, R.J., & Morrison, R.G. (2013, April). Semantic
+    distance in verbal analogical reasoning modulates the N400 event-related
+    potential. Poster presented at the Cognitive Neuroscience Society annual
+    meeting, San Francisco, CA.
+
+-   Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, April). When analogy is
+    like priming: The N400 in verbal analogical reasoning. Poster presented at
+    the Cognitive Neuroscience Society annual meeting, Chicago, IL.
+
+-   Morrison, R.G., Kmiecik, M. & Bharani, K.L. (2012, March). When analogy is
+    like priming: The N400 in verbal analogical reasoning. Poster presented at
+    the Society for Neuroscience Chicago Chapter 2012 annual meeting, Chicago,
+    IL.
+
+<br />
+
+## Conference Organization
+
+```{r conf-org}
+# conference organization dataframe
+conf_org <- 
+  as_tibble(
+    rbind(
+      cbind(
+        year = "2021-2023",
+        role = "Fundraising Coordinator",
+        conf = "Chicago Society for Neuroscience"
+      ),
+      cbind(
+        year = "2019",
+        role = "Organizer",
+        conf = "BrainHack Dallas"
+        )
+      )
+    ) %>%
+  select(role, conf, year)
+
+# conf org table
+reactable(
+  conf_org,
+  columns = list(
+    role = colDef(name = "Role"),
+    conf = colDef(name = "Conference"),
+    year = colDef(name = "Dates", width = 150)
+  ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  striped = TRUE,
+  highlight = TRUE,
+  style = list(fontSize = "0.9rem"),
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+)
+```
+
+<br />
+
+# Invited Talks
+
+-   **Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for
+    Chronic Pelvic Pain** (March 2021) Neuroscience Seminar, Loyola University
+    Chicago
+
+-   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
+    Brain Injury and Electrophysiology** (April 2020) Department of Obstetrics
+    and Gynecology Grand Rounds, Evanston Hospital
+
+-   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
+    Brain Injury and Electrophysiology** (March 2020) Neuroscience Seminar,
+    Loyola University Chicago
+
+-   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
+    Brain Injury and Electrophysiology** (December 2019) Frontiers of
+    BrainHealth Lecture Series, The University of Texas at Dallas
+
+-   **Steps Toward Graduate School** (October 2016) Loyola Neuroscience Society,
+    Loyola University Chicago
+
+<br >
+
+# Grants & Fellowships
+
+```{r grants}
+grants <-
+  as_tibble(
+    rbind(
+      cbind(
+        award = "Friends of BrainHealth Distinguished New Scientist Award",
+        amount = "$20,000",
+        date = "2019"
+      ),
+      cbind(
+        award = "Dianne Cash Pre-Doctoral Fellowship",
+        amount = "$2,500",
+        date = "2017"
+      ),
+      cbind(
+        award = "Friends of BrainHealth Distinguished New Scientist Award",
+        amount = "$20,000",
+        date = "2015"
+      ),
+      cbind(
+        award = "European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award",
+        amount = "€500",
+        date = "2013"
+      ),
+      cbind(
+        award = "Loyola University Chicago Mulcahy Research Scholarship",
+        amount = "$1,000",
+        date = "2013"
+      ),
+      cbind(
+        award = "Loyola University Chicago Provost Research Fellowship",
+        amount = "$1,000",
+        date = "2012"
+      ),
+      cbind(
+        award = "Loyola University Chicago Provost Research Fellowship",
+        amount = "$1,000",
+        date = "2011"
+      )
+      )
+    )
+
+reactable(
+  grants,
+  columns = list(
+    award = colDef(
+      name = "Award/Amount",
+      cell = function(value, index){
+          amount <- grants$amount[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), amount)
+          )
+          }
+        ),
+    amount = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+
+<br />
+
+# Academic Awards & Honors
+
+```{r awards}
+awards<-
+  as_tibble(
+    rbind(
+      cbind(
+        award = "Best Poster Award",
+        inst = "IASP Abdominal and Pelvic Pain SIG",
+        date = "2022"
+      ),
+      cbind(
+        award = "People’s Choice Poster Award",
+        inst = "Cognitive Neuroscience Society",
+        date = "2014"
+      ),
+      cbind(
+        award = "First Place Libraries Undergraduate Research Paper Award",
+        inst = "Loyola University Chicago",
+        date = "2013"
+      ),
+      cbind(
+        award = "Department of Psychology Research Award",
+        inst = "Loyola University Chicago",
+        date = "2013"
+      ),
+      cbind(
+        award = "Department of Psychology Honors Award",
+        inst = "Loyola University Chicago",
+        date = "2013"
+      ),
+      cbind(
+        award = "Dean’s List",
+        inst = "Loyola University Chicago",
+        date = "2010-2013"
+      )
+    )
+  )
+
+reactable(
+  awards,
+  columns = list(
+    award = colDef(
+      name = "Award/Institution",
+      cell = function(value, index){
+          inst <- awards$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+
+```
+
+<br />
+
+# Academic Service
+
+## Paper Reviews
+
+```{r, paper-reviews}
+# Paper reviews data frame
+paper_reviews <-
+  as_tibble(
+    rbind(
+      cbind(
+        journal = "Pain Medicine; Journal of Cognitive Psychology",
+        date = "2022"
+      ),
+      cbind(
+        journal = "Pain Medicine; Applied Cognitive Psychology",
+        date = "2021"
+      ),
+      cbind(
+        journal = "Neuropsychologia; JINS",
+        date = "2020"
+      ),
+      cbind(
+        journal = "Cognition and Emotion; Applied Cognitive Psychology",
+        date = "2019"
+      )
+    )
+  )
+
+reactable(
+  paper_reviews,
+  columns = list(
+    journal = colDef(name = "Journal"),
+    date = colDef(name = "Date", width = 75)
+  ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+)
+```
+
+## Committee Involvement
+
+```{r committee}
+committee <-
+  as_tibble(
+    rbind(
+      cbind(
+        pos = "Graduate Student Ambassador",
+        inst = "Center for BrainHealth at The University of Texas at Dallas",
+        date = "2018-2019"
+      ),
+      cbind(
+        pos = "Center-wide RA/Internship Facilitator",
+        inst = "Center for BrainHealth at The University of Texas at Dallas",
+        date = "2018-2019"
+      )
+    )
+  )
+
+reactable(
+  committee,
+  columns = list(
+    pos = colDef(
+      name = "Position/Institution",
+      cell = function(value, index){
+          inst <- committee$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+
+<br >
+
+# Teaching Experience
+
+## Professor of Record
+
+```{r prof}
+prof_of_rec <-
+  as_tibble(
+    rbind(
+      cbind(
+        class = "Behavioral and Cognitive Neuroscience",
+        num = "PSYC 382, BIOL 284",
+        inst = "Loyola University Chicago",
+        sem = "Spring",
+        date = "2022"
+      ),
+      cbind(
+        class = "Behavioral and Cognitive Neuroscience",
+        num = "PSYC 382, BIOL 284",
+        inst = "Loyola University Chicago",
+        sem = "Fall",
+        date = "2021"
+      ),
+      cbind(
+        class = "Behavioral and Cognitive Neuroscience",
+        num = "PSYC 382, BIOL 284",
+        inst = "Loyola University Chicago",
+        sem = "Fall",
+        date = "2020"
+      )
+    )
+  )
+
+reactable(
+  prof_of_rec,
+  columns = list(
+    class = colDef(
+      name = "Course/Institution",
+      width = 400,
+      cell = function(value, index){
+          num <- prof_of_rec$num[index]
+          inst <- prof_of_rec$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), num),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    sem = colDef(name = "Semester"),
+    num = colDef(show = FALSE),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+
+## Teaching Assistant
+
+```{r teaching}
+teach_assist <-
+  as_tibble(
+    rbind(
+      cbind(
+        class = "Experimental Projects",
+        prof = "Dr. Linda Drew",
+        inst = "The University of Texas at Dallas",
+        sem = "Spring",
+        date = "2018"
+      ),
+      cbind(
+        class = "Experimental Projects",
+        prof = "Dr. Linda Drew",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2017"
+      ),
+      cbind(
+        class = "Experimental Projects",
+        prof = "Dr. Jessica Lockhart",
+        inst = "The University of Texas at Dallas",
+        sem = "Spring",
+        date = "2017"
+      ),
+      cbind(
+        class = "Cognitive Psychology",
+        prof = "Dr. Vanessa Miller",
+        inst = "The University of Texas at Dallas",
+        sem = "Summer",
+        date = "2016"
+      ),
+      cbind(
+        class = "Experimental Projects",
+        prof = "Dr. Gail Tillman",
+        inst = "The University of Texas at Dallas",
+        sem = "Spring",
+        date = "2016"
+      ),
+      cbind(
+        class = "Research & Evaluation Methods",
+        prof = "Dr. Gail Tillman",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2015"
+      )
+    )
+  )
+
+reactable(
+  teach_assist,
+  columns = list(
+    class = colDef(
+      name = "Course/Prof./Institution",
+      width = 400,
+      cell = function(value, index){
+          prof <- teach_assist$prof[index]
+          inst <- teach_assist$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), prof),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    sem = colDef(name = "Semester"),
+    prof = colDef(show = FALSE),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+
+## Guest Lectures
+
+```{r guest}
+guest_lectures <-
+  as_tibble(
+    rbind(
+      cbind(
+        topic = "Data Visualization Principles",
+        class = "Advanced Experimental Lab in Psychology",
+        prof = "Professor Mina Kim",
+        inst = "Loyola University Chicago",
+        sem = "Fall",
+        date = "2022"
+      ),
+      cbind(
+        topic = "Introduction to R",
+        class = "Advanced Experimental Lab in Psychology",
+        prof = "Professor Mina Kim",
+        inst = "Loyola University Chicago",
+        sem = "Fall",
+        date = "2022"
+      ),
+      cbind(
+        topic = "Data Visualization Principles",
+        class = "Advanced Experimental Lab in Psychology",
+        prof = "Professor Mina Kim",
+        inst = "Loyola University Chicago",
+        sem = "Spring",
+        date = "2022"
+      ),
+      cbind(
+        topic = "Introduction to R",
+        class = "Advanced Experimental Lab in Psychology",
+        prof = "Professor Mina Kim",
+        inst = "Loyola University Chicago",
+        sem = "Spring",
+        date = "2022"
+      ),
+      cbind(
+        topic = "Analogical Reasonng",
+        class = "Reasoning",
+        prof = "Daniel C. Krawczyk, PhD",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2018"
+      ),
+      cbind(
+        topic = "Short-term & Working Memory",
+        class = "Cognitive Neuroscience",
+        prof = "Bart Rypma, PhD",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2018"
+      ),
+      cbind(
+        topic = "Language",
+        class = "Cognitive Neuroscience",
+        prof = "Bart Rypma, PhD",
+        inst = "The University of Texas at Dallas",
+        sem = "Fall",
+        date = "2018"
+      )
+    )
+  )
+
+reactable(
+  guest_lectures,
+  columns = list(
+    topic = colDef(
+      name = "Topic/Course/Prof./Institution",
+      width = 400,
+      cell = function(value, index){
+          class <- guest_lectures$class[index]
+          prof <- guest_lectures$prof[index]
+          inst <- guest_lectures$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), class),
+            div(style = list(fontSize = "0.75rem"), prof),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    sem = colDef(name = "Semester"),
+    class = colDef(show = FALSE),
+    prof = colDef(show = FALSE),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+
+<br />
+
+# Internships
+
+```{r intern}
+intern <-
+  as_tibble(
+    rbind(
+      cbind(
+        intern = "Neuroscience: Internet of Things and Wearable Technologies",
+        dept = "Venture Development Center",
+        inst = "The University of Texas at Dallas",
+        term = "Summer",
+        date = "2016"
+      )
+    )
+  )
+
+reactable(
+  intern,
+  columns = list(
+    intern = colDef(
+      name = "Internship/Dept./Institution",
+      width = 400,
+      cell = function(value, index){
+          dept <- intern$dept[index]
+          inst <- intern$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), dept),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    term = colDef(name = "Term"),
+    dept = colDef(show = FALSE),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+
+<br />
+
+# Training and Certifications
+
+```{r training}
+training_certs <-
+  as_tibble(
+    rbind(
+      cbind(
+        train_cert = "The 22nd EEGLAB Workshop",
+        inst = "University of California San Diego",
+        date = "2016"
+      ),
+      cbind(
+        train_cert = "Graduate Teaching Certificate",
+        inst = "The University of Texas at Dallas",
+        date = "2016"
+      )
+    )
+  )
+
+reactable(
+  training_certs,
+  columns = list(
+    train_cert = colDef(
+      name = "Training/Certification",
+      width = 400,
+      cell = function(value, index){
+          inst <- training_certs$inst[index]
+          div(
+            div(style = list(fontWeight = 600), value),
+            div(style = list(fontSize = "0.75rem"), inst)
+          )
+          }
+        ),
+    inst = colDef(show = FALSE),
+    date = colDef(name = "Date", width = 75)
+    ),
+  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
+  highlight = TRUE,
+  striped = TRUE,
+  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
+  )
+```
+
+<br />
+
+# Sports Writing
+
+<h3><a href="https://blackhawkup.com/2019/07/19/chicago-blackhawks-scoring-density-analysis-2018-2019-season/" class="postLink" target="_blank">
+Chicago Blackhawks: Scoring Density Analysis for the 2018-2019 Season</a></h3>
+<span class="far fa-clock"></span> 19 July 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>
+
+<br />
+
+<h3><a href="https://blackhawkup.com/2019/06/27/chicago-blackhawks-efficient-offensive-machine/" class="postLink" target="_blank">
+Chicago Blackhawks: An Efficient Offensive Machine</a></h3>
+<span class="far fa-clock"></span> 27 June 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>
+
+<br />
+
+<h3><a href="https://blackhawkup.com/2019/05/14/q-colliton-first-67-games-blackhawks-head-coach/" class="postLink" target="_blank">
+Coach Q vs. Jeremy Colliton: First 67 Games As Blackhawks' Head Coach</a></h3>
+<span class="far fa-clock"></span> 15 May 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>
+
+<br />
+
+<h3><a href="https://blackhawkup.com/2019/04/18/blackhawks-player-grades-patrick-kane/" class="postLink" target="_blank">
+Chicago Blackhawks 2018-19 Player Grades: Patrick Kane</a></h3>
+<span class="far fa-clock"></span> 19 April 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>
+
+<br />
+
+<h3><a href="https://blackhawkup.com/2019/04/09/chicago-blackhawks-patrick-kane-scoring/" class="postLink" target="_blank">
+Chicago Blackhawks: analyzing Patrick Kane's career scoring tendencies</a></h3>
+<span class="far fa-clock"></span> 9 April 2019
+<span class="badge rounded-pill bg-info">Hockey Analytics</span>
+<span class="badge rounded-pill bg-secondary">R</span>

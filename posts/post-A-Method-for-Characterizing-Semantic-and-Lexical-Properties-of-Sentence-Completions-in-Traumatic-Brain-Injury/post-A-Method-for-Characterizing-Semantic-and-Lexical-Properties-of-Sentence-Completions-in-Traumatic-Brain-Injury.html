@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Matthew J. Kmiecik">
+<meta name="dcterms.date" content="2018-07-22">
+<meta name="description" content="A (hopefully) accessible summary of my first first-authored paper.">
+
+<title>Matthew J. Kmiecik, PhD - A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../.././images/matt-casual-1080-1080.jpeg" rel="icon" type="image/jpeg">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Q8PCYXLBH5"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Matthew J. Kmiecik, PhD - A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury">
+<meta property="og:description" content="A (hopefully) accessible summary of my first first-authored paper.">
+<meta property="og:image" content="thumbnail.png">
+<meta property="og:site-name" content="Matthew J. Kmiecik, PhD">
+<meta name="twitter:title" content="Matthew J. Kmiecik, PhD - A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury">
+<meta name="twitter:description" content="A (hopefully) accessible summary of my first first-authored paper.">
+<meta name="twitter:image" content="./thumbnail.png">
+<meta name="twitter:creator" content="@mattkmiecik14">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Matthew J. Kmiecik, PhD</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"><i class="bi bi-house-door" role="img">
+</i> 
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../cv.html"><i class="bi bi-mortarboard-fill" role="img">
+</i> 
+ <span class="menu-text">CV</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:mkmiecik14@gmail.com"><i class="bi bi-envelope-fill" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/mattkmiecik14"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/mkmiecik14"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en">
+ <span class="menu-text"><i class="ai  ai-google-scholar" title="" style="color:"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik">
+ <span class="menu-text"><i class="ai  ai-researchgate" title="" style="color:"></i></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#short-and-sweet" id="toc-short-and-sweet" class="nav-link active" data-scroll-target="#short-and-sweet">Short and Sweet</a></li>
+  <li><a href="#long-and-drawn-out" id="toc-long-and-drawn-out" class="nav-link" data-scroll-target="#long-and-drawn-out">Long and Drawn (Out)</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Academic</div>
+    <div class="quarto-category">Paper Review</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    A (hopefully) accessible summary of my first first-authored paper.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Matthew J. Kmiecik </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 22, 2018</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p><br></p>
+<section id="short-and-sweet" class="level1">
+<h1>Short and Sweet</h1>
+<p>Last summer we published a paper in <em>Psychological Assessment</em> that presented methods to better characterize verbal responses on neuropsychological assessments. These methods were applied to a specific cognitive test called the Hayling Sentence Completion Test. We demonstrated that these new methods provide additional insights into the cognitive performance of individuals with mild to moderate traumatic brain injury (TBI). Furthermore, these new measures were related to other cognitive abilities, such as verbal knowledge, processing speed, inhibitory control, working memory, and task switching. These methods can be extended to other assessments that involve word generations and clinical populations that exhibit cognitive impariments.</p>
+<p><strong>To read our paper, see:</strong></p>
+<p><a href="http://dx.doi.org/10.1037/pas0000510">Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., &amp; Krawczyk, D. C. (2018). A method for characterizing semantic and lexical properties of sentence completions in traumatic brain injury. <em>Psychological Assessment, 30</em>(5), 645-655.</a> http://dx.doi.org/10.1037/pas0000510</p>
+<p>You can also read it on <a href="https://www.researchgate.net/publication/317931517_A_Method_for_Characterizing_Semantic_and_Lexical_Properties_of_Sentence_Completions_in_Traumatic_Brain_Injury"><strong>ResearchGate</strong></a>.</p>
+<p><br></p>
+<p><strong>If you are interested in learning more…</strong></p>
+</section>
+<section id="long-and-drawn-out" class="level1">
+<h1>Long and Drawn (Out)</h1>
+<p>Traumatic brain injuries (TBIs) occur when the head receives a harmful blow that results in disruptions to normal brain functioning. Individuals can recover following these injuries; however, some individuals’ symptoms persist long after the injury (&gt; 3 months post-injury) and become chronic TBI.</p>
+<p>Individuals with chronic TBI often report difficulties in completing everyday activities, such as going to the grocery store or holding a job. In terms of what is required cognitively, these tasks are quite complex and require planning, blocking distractions, knowledge, and sustained attention. Neuropscyhologists call these complex cognitive abilities <strong>executive functions</strong> and a large focus of TBI research is understanding how these cognitive functions are impacted and how these deficits affect behavior, such as difficulties in holding a job.</p>
+<p>Despite these self-reported impairments, it is difficult to capture these symptoms in a lab setting. In other words, an individual with TBI may report having difficulties in everyday life, but he or she may perform well on standardized neuropsychological assessments. Are the tests not sensitive enough? Are we measuring the right thing? Is TBI more difficult to assess?</p>
+<p>The difficulties in understanding the effects of TBI is likely a mixture of the above concerns. The paper that this blog post covers addresses a specific concern: the sensitivity of existing tests. We took an existing neuropsychological assessment of executive functioning, called the Hayling Sentence Completion Test (Burgess &amp; Shallice, 1996, 1997), and applied methods from the fields of cognitive science and linguistics to gain further insights about how TBI impacts performance.</p>
+<p>When taking the Hayling Test, individuals are read sentences with the last word missing. In the first section, participants are instructed to complete the sentence with a logical word. In the second section, participants are instructed to complete the sentence with an illogical word. For example:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Section </th>
+   <th style="text-align:left;"> Completion </th>
+   <th style="text-align:left;"> Sentence Stem </th>
+   <th style="text-align:left;"> Correct Completion </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:left;"> Sensible </td>
+   <td style="text-align:left;"> He mailed a letter without a </td>
+   <td style="text-align:left;"> stamp. </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2 </td>
+   <td style="text-align:left;"> Unconnected </td>
+   <td style="text-align:left;"> The captain wanted to stay with the sinking </td>
+   <td style="text-align:left;"> banana. </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Performance on this test is guaged by the time to complete each section (faster is better) and the number of errors committed on section two (fewer errors is better). The frontal lobe is responsible for inhibiting distractions and following task instructions. The thinking behind this test is that those with damage to the frontal lobe will commit more errors on section two.</p>
+<p>One potential source of improvement we saw was to introduce more objective methods in scoring errors, as unclear responses are often given.</p>
+<p>We measured 2 different properties of the words:</p>
+<ol type="1">
+<li><p>How similar the sentence stem (<em>He mailed a letter without a</em>) and the generated word (<em>stamp</em>) were to each other using a technique called <a href="http://lsa.colorado.edu/">Latent Semantic Analysis</a> (LSA; Landauer, Foltz, &amp; Laham, 1998)</p></li>
+<li><p>How frequently the generated words are used in everyday speech (word frequency) using the SUBTLEXus database (Brysbaert &amp; New, 2009)</p></li>
+</ol>
+<p>What we discovered was that these measurements provide additional metrics that can be used to guage performance on the Hayling test. More specifically, other measures of cognitive performance were related to performance on these additional measurements. These additional measures were verbal ability, processing speed, inhibitory control, working memory, and task switching. Taken together, these results suggest that these additional measurements are closely related to high-level cognitive functions and can be used to better understand solving strategies and response patterns in clinical populations.</p>
+<p>Next steps in this line of research include further validating these measurements. Using our new measurements, we are currently conducting a study to compare those with chronic mild/moderate TBI to those without a history of TBI to further understand the effects of TBI on cognitive functioning. Our hope is that these methods can be extended to other linguistically based neuropsychological assessments and other clinical populations that experience cognitive impairments to better understand, diagnose, and formulate treatment plans.</p>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li><p>Brysbaert, M., &amp; New, B. (2009). Moving beyond Kucˇera and Francis: A critical evaluation of current word frequency norms and the introduction of a new and improved word frequency measure for American English. <em>Behavior Research Methods, Instruments and Computer, 41</em>, 977–990. http://dx.doi.org/10.3758/BRM.41.4.977</p></li>
+<li><p>Burgess, P. W., &amp; Shallice, T. (1996). Response suppression, initiation and strategy use following frontal lobe lesions. <em>Neuropsychologia, 34</em>(4), 263-272. 10.1016/0028-3932(95)00104-2</p></li>
+<li><p>Burgess, P. W., &amp; Shallice, T. (1997). <em>The Hayling and Brixton tests</em>. London, England: Pearson.</p></li>
+<li><p>Kmiecik, M. J., Rodgers, B. N., Martinez, D. M., Chapman, S. B., &amp; Krawczyk, D. C. (2018). A method for characterizing semantic and lexical properties of sentence completions in traumatic brain injury. <em>Psychological Assessment, 30</em>(5), 645-655. http://dx.doi.org/10.1037/pas0000510</p></li>
+<li><p>Landauer, T. K., Foltz, P. W., &amp; Laham, D. (1998). An introduction to latent semantic analysis. Discourse Processes, 25, 259–284. http://dx.doi.org/10.1080/01638539809545028</p></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="mkmiecik14/mkmiecik14.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg==" data-category="Announcements" data-category-id="DIC_kwDOBZzsfM4CT2c5" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Copyright 2017-2023, Matthew J. Kmiecik, PhD</div>
+  </div>
+</footer>
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

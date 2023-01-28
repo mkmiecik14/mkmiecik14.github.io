@@ -1,0 +1,65 @@
+project:
+  type: website
+  output-dir: "."
+  render: 
+    - "*.qmd"
+    - "!README.md"
+
+website:
+  title: "Matthew J. Kmiecik, PhD"
+  description: "A blog about R, statistics, data viz, and academic musings."
+  favicon: "./images/matt-casual-1080-1080.jpeg"
+  twitter-card:
+    creator: "@mattkmiecik14"
+  open-graph: true
+  google-analytics: G-Q8PCYXLBH5
+  comments:
+    giscus:
+      repo: mkmiecik14/mkmiecik14.github.io
+      repo-id: "MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg=="
+      category: Announcements
+      category-id: "DIC_kwDOBZzsfM4CT2c5"
+      mapping: pathname
+      reactions-enabled: true
+      loading: lazy
+      input-position: top
+      theme: light
+  navbar: 
+    pinned: true
+    search: true
+    left:
+      - text: "Home"
+        icon: house-door
+        file: index.qmd
+      - text: "CV"
+        icon: mortarboard-fill
+        file: cv.qmd
+    right:
+      - icon: envelope-fill
+        href: mailto:mkmiecik14@gmail.com
+      - icon: twitter
+        href: https://twitter.com/mattkmiecik14
+      - icon: linkedin
+        href: https://www.linkedin.com/in/matthew-kmiecik-776603b0/
+      - icon: github
+        href: https://github.com/mkmiecik14
+      - text: "{{< ai google-scholar >}}"
+        href: https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en
+      - text: "{{< ai researchgate >}}"
+        href: https://www.researchgate.net/profile/Matthew-Kmiecik
+      # - icon: rss
+      #   href: index.xml
+  page-footer: 
+    center: "Copyright 2017-2023, Matthew J. Kmiecik, PhD"
+    background: primary
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    highlight-style: a11y
+    email-obfuscation: javascript
+    css: styles.css
+      
+  

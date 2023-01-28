@@ -2,4 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-post-The-Last-Decade-NHL\342\200\231s-Best-and-Worst-Power-Play-Teams_files
+*.Rproj
+
+/.quarto/
