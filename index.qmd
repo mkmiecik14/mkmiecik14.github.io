@@ -1,5 +1,8 @@
 ---
 title: ""
+format: 
+  html:
+    css: styles.css
 listing: 
   contents: posts
   sort: "date desc"
