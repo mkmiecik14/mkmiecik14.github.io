@@ -13,14 +13,16 @@ title-block-banner: true
 ---
 
 <!-- profile picture -->
-<div style="text-align: center;">
-  <img src="images/matt-casual-1080-1080.jpeg" class="prof-pic" style="width: 250px; height: 250px; border-radius: 50%; padding-top: 10px;">
+<div style="text-align: center; border-radius: 50%">
+  ![](images/matt-casual-circle.jpg){style="border-radius: 50%;" fig-align="center" width="250"}
 </div>
 
 <!-- about me -->
+
 <h2><i class="fas fa-user-circle" aria-hidden="true"></i> About Me</h2>
 
 I'm a cognitive neuroscientist doing a (second) postdoc at 23andMe researching genotypic and phenotypic markers of Parkinson's Disease. In my first postdoc, I studied how individuals' sensitivity across multiple sensory modalities predicted their long-term pelvic pain. In graduate school, I studied volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury, and human reasoning. My undergraduate work utilized EEG to understand the neural correlates and timecourse of analogical reasoning. In my spare time I enjoy reading, exercising, crossword puzzles, and the endless pursuit of new hobbies.
 
 <!-- about me -->
+
 <h2><i class="far fa-sticky-note" aria-hidden="true"></i> Blog Posts</h2>
