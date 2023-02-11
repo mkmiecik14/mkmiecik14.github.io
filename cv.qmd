@@ -39,7 +39,7 @@ education <-
       cbind(
         logo = c("23andMe-omni.png"),
         inst = c("23andMe"),
-        focus = c("Parkinson's Disease"),
+        focus = c("Genetics & Parkinson's Disease"),
         degree = c("Postdoctoral Fellowship"),
         date = c("2022-present")
         ),
@@ -222,6 +222,10 @@ reactable(
 # Publications
 
 ## Papers
+
+- **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., & Hellman, K. M. (in press). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Pelvic Pain Outcome: an Observational Cohort Study. *PAIN*.
+
+- Shlobin, A. E., Tu, F. F., Sain, C. R., **Kmiecik, M. J.**, Kantarovich, D., Singh, L., Wang, C. E., & Hellman, K. M. (in press). Bladder Pain Sensitivity is a Potential Risk Factor for Irritable Bowel Syndrome. *Digestive Diseases and Sciences*.
 
 -   Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (2022).
     Differential effects of semantic distance, distractor salience, and
