@@ -29,24 +29,33 @@ website:
     search: true
     left:
       - text: "Home"
-        icon: house-door
+        icon: house-door-fill
         file: index.qmd
       - text: "CV"
         icon: mortarboard-fill
         file: cv.qmd
+      - text: "Consulting"
+        icon: briefcase-fill
+        file: consulting.qmd
     right:
       - icon: envelope-fill
         href: mailto:mkmiecik14@gmail.com
+        target: _top
       - icon: twitter
         href: https://twitter.com/mattkmiecik14
+        target: _blank
       - icon: linkedin
         href: https://www.linkedin.com/in/matthew-kmiecik-776603b0/
+        target: _blank
       - icon: github
         href: https://github.com/mkmiecik14
+        target: _blank
       - text: "{{< ai google-scholar >}}"
         href: https://scholar.google.com/citations?user=44bK4o8AAAAJ&hl=en
+        target: _blank
       - text: "{{< ai researchgate >}}"
         href: https://www.researchgate.net/profile/Matthew-Kmiecik
+        target: _blank
       # - icon: rss
       #   href: index.xml
   page-footer: 
@@ -60,5 +69,3 @@ format:
       dark: darkly
     highlight-style: a11y
     email-obfuscation: javascript
-      
-  

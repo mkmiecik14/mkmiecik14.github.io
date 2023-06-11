@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -125,7 +96,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Q8PCYXLBH5"></script>
@@ -142,6 +114,7 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="Matthew J. Kmiecik, PhD - Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis">
@@ -166,56 +139,61 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
     <span class="navbar-title">Matthew J. Kmiecik, PhD</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"><i class="bi bi-house-door" role="img">
+    <a class="nav-link" href="../../index.html" rel="" target=""><i class="bi bi-house-door-fill" role="img">
 </i> 
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../cv.html"><i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../cv.html" rel="" target=""><i class="bi bi-mortarboard-fill" role="img">
 </i> 
  <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../consulting.html" rel="" target=""><i class="bi bi-briefcase-fill" role="img">
+</i> 
+ <span class="menu-text">Consulting</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="mailto:mkmiecik14@gmail.com"><i class="bi bi-envelope-fill" role="img">
+    <a class="nav-link" href="mailto:mkmiecik14@gmail.com" rel="" target="_top"><i class="bi bi-envelope-fill" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/mattkmiecik14"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/mattkmiecik14" rel="" target="_blank"><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/" rel="" target="_blank"><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mkmiecik14"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/mkmiecik14" rel="" target="_blank"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en" rel="" target="_blank">
  <span class="menu-text"><i class="ai  ai-google-scholar" title="" style="color:"></i></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik" rel="" target="_blank">
  <span class="menu-text"><i class="ai  ai-researchgate" title="" style="color:"></i></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -223,7 +201,7 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -249,6 +227,7 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
@@ -402,169 +381,171 @@ dbl (26): GP, TOI, CF, CA, C+/-, CF%, CF/60, CA/60, GF, GA, G+/-, GF%, GF/60...
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints data</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">nice_table</span>(hawks_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<table class="table table-striped table-hover table-responsive table-condensed" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:right;"> Season </th>
-   <th style="text-align:right;"> GP </th>
-   <th style="text-align:right;"> TOI </th>
-   <th style="text-align:right;"> CF </th>
-   <th style="text-align:right;"> CA </th>
-   <th style="text-align:right;"> GF </th>
-   <th style="text-align:right;"> GA </th>
-   <th style="text-align:right;"> PENT </th>
-   <th style="text-align:right;"> PEND </th>
-   <th style="text-align:right;"> ShootPerc </th>
-   <th style="text-align:right;"> SavePerc </th>
-  </tr>
- </thead>
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Season</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">GP</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">TOI</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CF</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">GF</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">GA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">PENT</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">PEND</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ShootPerc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SavePerc</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:right;"> 2008 </td>
-   <td style="text-align:right;"> 80 </td>
-   <td style="text-align:right;"> 3423.00 </td>
-   <td style="text-align:right;"> 2600 </td>
-   <td style="text-align:right;"> 2629 </td>
-   <td style="text-align:right;"> 143 </td>
-   <td style="text-align:right;"> 130 </td>
-   <td style="text-align:right;"> 368 </td>
-   <td style="text-align:right;"> 365 </td>
-   <td style="text-align:right;"> 9.04 </td>
-   <td style="text-align:right;"> 91.92 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2009 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 3646.73 </td>
-   <td style="text-align:right;"> 3286 </td>
-   <td style="text-align:right;"> 2655 </td>
-   <td style="text-align:right;"> 146 </td>
-   <td style="text-align:right;"> 124 </td>
-   <td style="text-align:right;"> 335 </td>
-   <td style="text-align:right;"> 368 </td>
-   <td style="text-align:right;"> 7.45 </td>
-   <td style="text-align:right;"> 92.42 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2010 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 3881.33 </td>
-   <td style="text-align:right;"> 3784 </td>
-   <td style="text-align:right;"> 2907 </td>
-   <td style="text-align:right;"> 178 </td>
-   <td style="text-align:right;"> 147 </td>
-   <td style="text-align:right;"> 276 </td>
-   <td style="text-align:right;"> 299 </td>
-   <td style="text-align:right;"> 8.30 </td>
-   <td style="text-align:right;"> 90.53 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2011 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 3955.85 </td>
-   <td style="text-align:right;"> 3704 </td>
-   <td style="text-align:right;"> 3314 </td>
-   <td style="text-align:right;"> 167 </td>
-   <td style="text-align:right;"> 144 </td>
-   <td style="text-align:right;"> 239 </td>
-   <td style="text-align:right;"> 277 </td>
-   <td style="text-align:right;"> 8.06 </td>
-   <td style="text-align:right;"> 92.03 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2012 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 3944.77 </td>
-   <td style="text-align:right;"> 3698 </td>
-   <td style="text-align:right;"> 3290 </td>
-   <td style="text-align:right;"> 166 </td>
-   <td style="text-align:right;"> 164 </td>
-   <td style="text-align:right;"> 270 </td>
-   <td style="text-align:right;"> 287 </td>
-   <td style="text-align:right;"> 8.15 </td>
-   <td style="text-align:right;"> 90.99 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2013 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:right;"> 2300.80 </td>
-   <td style="text-align:right;"> 2103 </td>
-   <td style="text-align:right;"> 1783 </td>
-   <td style="text-align:right;"> 105 </td>
-   <td style="text-align:right;"> 68 </td>
-   <td style="text-align:right;"> 151 </td>
-   <td style="text-align:right;"> 159 </td>
-   <td style="text-align:right;"> 8.97 </td>
-   <td style="text-align:right;"> 92.94 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2014 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 3979.35 </td>
-   <td style="text-align:right;"> 3890 </td>
-   <td style="text-align:right;"> 3129 </td>
-   <td style="text-align:right;"> 182 </td>
-   <td style="text-align:right;"> 149 </td>
-   <td style="text-align:right;"> 244 </td>
-   <td style="text-align:right;"> 231 </td>
-   <td style="text-align:right;"> 8.44 </td>
-   <td style="text-align:right;"> 91.39 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2015 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 3980.10 </td>
-   <td style="text-align:right;"> 4003 </td>
-   <td style="text-align:right;"> 3462 </td>
-   <td style="text-align:right;"> 150 </td>
-   <td style="text-align:right;"> 128 </td>
-   <td style="text-align:right;"> 225 </td>
-   <td style="text-align:right;"> 248 </td>
-   <td style="text-align:right;"> 6.87 </td>
-   <td style="text-align:right;"> 93.54 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2016 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 3985.37 </td>
-   <td style="text-align:right;"> 3680 </td>
-   <td style="text-align:right;"> 3585 </td>
-   <td style="text-align:right;"> 135 </td>
-   <td style="text-align:right;"> 141 </td>
-   <td style="text-align:right;"> 216 </td>
-   <td style="text-align:right;"> 234 </td>
-   <td style="text-align:right;"> 6.81 </td>
-   <td style="text-align:right;"> 92.81 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2017 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 4053.47 </td>
-   <td style="text-align:right;"> 3759 </td>
-   <td style="text-align:right;"> 3692 </td>
-   <td style="text-align:right;"> 164 </td>
-   <td style="text-align:right;"> 136 </td>
-   <td style="text-align:right;"> 206 </td>
-   <td style="text-align:right;"> 222 </td>
-   <td style="text-align:right;"> 8.17 </td>
-   <td style="text-align:right;"> 93.31 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2018 </td>
-   <td style="text-align:right;"> 82 </td>
-   <td style="text-align:right;"> 3940.41 </td>
-   <td style="text-align:right;"> 4199 </td>
-   <td style="text-align:right;"> 3821 </td>
-   <td style="text-align:right;"> 156 </td>
-   <td style="text-align:right;"> 173 </td>
-   <td style="text-align:right;"> 214 </td>
-   <td style="text-align:right;"> 261 </td>
-   <td style="text-align:right;"> 7.08 </td>
-   <td style="text-align:right;"> 91.82 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">3423.00</td>
+<td style="text-align: right;">2600</td>
+<td style="text-align: right;">2629</td>
+<td style="text-align: right;">143</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">368</td>
+<td style="text-align: right;">365</td>
+<td style="text-align: right;">9.04</td>
+<td style="text-align: right;">91.92</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">3646.73</td>
+<td style="text-align: right;">3286</td>
+<td style="text-align: right;">2655</td>
+<td style="text-align: right;">146</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">335</td>
+<td style="text-align: right;">368</td>
+<td style="text-align: right;">7.45</td>
+<td style="text-align: right;">92.42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">3881.33</td>
+<td style="text-align: right;">3784</td>
+<td style="text-align: right;">2907</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: right;">276</td>
+<td style="text-align: right;">299</td>
+<td style="text-align: right;">8.30</td>
+<td style="text-align: right;">90.53</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">3955.85</td>
+<td style="text-align: right;">3704</td>
+<td style="text-align: right;">3314</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">144</td>
+<td style="text-align: right;">239</td>
+<td style="text-align: right;">277</td>
+<td style="text-align: right;">8.06</td>
+<td style="text-align: right;">92.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">3944.77</td>
+<td style="text-align: right;">3698</td>
+<td style="text-align: right;">3290</td>
+<td style="text-align: right;">166</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">270</td>
+<td style="text-align: right;">287</td>
+<td style="text-align: right;">8.15</td>
+<td style="text-align: right;">90.99</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">2300.80</td>
+<td style="text-align: right;">2103</td>
+<td style="text-align: right;">1783</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">151</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: right;">8.97</td>
+<td style="text-align: right;">92.94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">3979.35</td>
+<td style="text-align: right;">3890</td>
+<td style="text-align: right;">3129</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">244</td>
+<td style="text-align: right;">231</td>
+<td style="text-align: right;">8.44</td>
+<td style="text-align: right;">91.39</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">3980.10</td>
+<td style="text-align: right;">4003</td>
+<td style="text-align: right;">3462</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">225</td>
+<td style="text-align: right;">248</td>
+<td style="text-align: right;">6.87</td>
+<td style="text-align: right;">93.54</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">3985.37</td>
+<td style="text-align: right;">3680</td>
+<td style="text-align: right;">3585</td>
+<td style="text-align: right;">135</td>
+<td style="text-align: right;">141</td>
+<td style="text-align: right;">216</td>
+<td style="text-align: right;">234</td>
+<td style="text-align: right;">6.81</td>
+<td style="text-align: right;">92.81</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">4053.47</td>
+<td style="text-align: right;">3759</td>
+<td style="text-align: right;">3692</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">136</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">222</td>
+<td style="text-align: right;">8.17</td>
+<td style="text-align: right;">93.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2018</td>
+<td style="text-align: right;">82</td>
+<td style="text-align: right;">3940.41</td>
+<td style="text-align: right;">4199</td>
+<td style="text-align: right;">3821</td>
+<td style="text-align: right;">156</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">214</td>
+<td style="text-align: right;">261</td>
+<td style="text-align: right;">7.08</td>
+<td style="text-align: right;">91.82</td>
+</tr>
 </tbody>
 </table>
+</div>
+
 
 </div>
 </div>
@@ -697,157 +678,159 @@ dbl (26): GP, TOI, CF, CA, C+/-, CF%, CF/60, CA/60, GF, GA, G+/-, GF%, GF/60...
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(hawks_data_mat, <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">nice_table</span>() <span class="co"># Prints HTML table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-
-<table class="table table-striped table-hover table-responsive table-condensed" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;">   </th>
-   <th style="text-align:right;"> CA </th>
-   <th style="text-align:right;"> CF </th>
-   <th style="text-align:right;"> GA </th>
-   <th style="text-align:right;"> GF </th>
-   <th style="text-align:right;"> PEND </th>
-   <th style="text-align:right;"> PENT </th>
-   <th style="text-align:right;"> SavePerc </th>
-   <th style="text-align:right;"> ShootPerc </th>
-   <th style="text-align:right;"> TOI </th>
-  </tr>
- </thead>
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CF</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">GA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">GF</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">PEND</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">PENT</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">SavePerc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ShootPerc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">TOI</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> 2008 </td>
-   <td style="text-align:right;"> -1.3890 </td>
-   <td style="text-align:right;"> -2.4688 </td>
-   <td style="text-align:right;"> -0.4854 </td>
-   <td style="text-align:right;"> -0.9264 </td>
-   <td style="text-align:right;"> 1.8463 </td>
-   <td style="text-align:right;"> 2.1908 </td>
-   <td style="text-align:right;"> -0.2058 </td>
-   <td style="text-align:right;"> 0.3069 </td>
-   <td style="text-align:right;"> -2.3384 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2009 </td>
-   <td style="text-align:right;"> -1.4910 </td>
-   <td style="text-align:right;"> -0.9281 </td>
-   <td style="text-align:right;"> -1.0362 </td>
-   <td style="text-align:right;"> -0.9636 </td>
-   <td style="text-align:right;"> 1.7270 </td>
-   <td style="text-align:right;"> 1.4019 </td>
-   <td style="text-align:right;"> -0.2954 </td>
-   <td style="text-align:right;"> -0.4589 </td>
-   <td style="text-align:right;"> -1.4947 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2010 </td>
-   <td style="text-align:right;"> -0.8442 </td>
-   <td style="text-align:right;"> 0.3075 </td>
-   <td style="text-align:right;"> 0.3334 </td>
-   <td style="text-align:right;"> 1.1052 </td>
-   <td style="text-align:right;"> 0.3829 </td>
-   <td style="text-align:right;"> 0.2989 </td>
-   <td style="text-align:right;"> -0.3895 </td>
-   <td style="text-align:right;"> -0.1004 </td>
-   <td style="text-align:right;"> -0.0621 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2011 </td>
-   <td style="text-align:right;"> 0.2002 </td>
-   <td style="text-align:right;"> 0.1090 </td>
-   <td style="text-align:right;"> 0.1547 </td>
-   <td style="text-align:right;"> 0.3941 </td>
-   <td style="text-align:right;"> -0.0456 </td>
-   <td style="text-align:right;"> -0.3929 </td>
-   <td style="text-align:right;"> -0.3148 </td>
-   <td style="text-align:right;"> -0.2016 </td>
-   <td style="text-align:right;"> 0.3930 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2012 </td>
-   <td style="text-align:right;"> 0.1387 </td>
-   <td style="text-align:right;"> 0.0941 </td>
-   <td style="text-align:right;"> 1.3457 </td>
-   <td style="text-align:right;"> 0.3294 </td>
-   <td style="text-align:right;"> 0.1492 </td>
-   <td style="text-align:right;"> 0.1867 </td>
-   <td style="text-align:right;"> -0.3666 </td>
-   <td style="text-align:right;"> -0.1637 </td>
-   <td style="text-align:right;"> 0.3253 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2013 </td>
-   <td style="text-align:right;"> -0.4876 </td>
-   <td style="text-align:right;"> -0.1673 </td>
-   <td style="text-align:right;"> -1.5027 </td>
-   <td style="text-align:right;"> 1.1941 </td>
-   <td style="text-align:right;"> -0.1503 </td>
-   <td style="text-align:right;"> -0.0384 </td>
-   <td style="text-align:right;"> 3.0104 </td>
-   <td style="text-align:right;"> 2.8614 </td>
-   <td style="text-align:right;"> 0.2384 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2014 </td>
-   <td style="text-align:right;"> -0.2745 </td>
-   <td style="text-align:right;"> 0.5705 </td>
-   <td style="text-align:right;"> 0.4525 </td>
-   <td style="text-align:right;"> 1.3638 </td>
-   <td style="text-align:right;"> -0.9417 </td>
-   <td style="text-align:right;"> -0.2994 </td>
-   <td style="text-align:right;"> -0.3467 </td>
-   <td style="text-align:right;"> -0.0414 </td>
-   <td style="text-align:right;"> 0.5365 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2015 </td>
-   <td style="text-align:right;"> 0.5801 </td>
-   <td style="text-align:right;"> 0.8509 </td>
-   <td style="text-align:right;"> -0.7981 </td>
-   <td style="text-align:right;"> -0.7050 </td>
-   <td style="text-align:right;"> -0.6105 </td>
-   <td style="text-align:right;"> -0.6546 </td>
-   <td style="text-align:right;"> -0.2396 </td>
-   <td style="text-align:right;"> -0.7035 </td>
-   <td style="text-align:right;"> 0.5411 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2016 </td>
-   <td style="text-align:right;"> 0.8957 </td>
-   <td style="text-align:right;"> 0.0495 </td>
-   <td style="text-align:right;"> -0.0239 </td>
-   <td style="text-align:right;"> -1.6747 </td>
-   <td style="text-align:right;"> -0.8832 </td>
-   <td style="text-align:right;"> -0.8229 </td>
-   <td style="text-align:right;"> -0.2759 </td>
-   <td style="text-align:right;"> -0.7288 </td>
-   <td style="text-align:right;"> 0.5732 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2017 </td>
-   <td style="text-align:right;"> 1.1703 </td>
-   <td style="text-align:right;"> 0.2455 </td>
-   <td style="text-align:right;"> -0.3217 </td>
-   <td style="text-align:right;"> 0.2001 </td>
-   <td style="text-align:right;"> -1.1170 </td>
-   <td style="text-align:right;"> -1.0098 </td>
-   <td style="text-align:right;"> -0.2510 </td>
-   <td style="text-align:right;"> -0.1553 </td>
-   <td style="text-align:right;"> 0.9891 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2018 </td>
-   <td style="text-align:right;"> 1.5014 </td>
-   <td style="text-align:right;"> 1.3372 </td>
-   <td style="text-align:right;"> 1.8817 </td>
-   <td style="text-align:right;"> -0.3171 </td>
-   <td style="text-align:right;"> -0.3573 </td>
-   <td style="text-align:right;"> -0.8603 </td>
-   <td style="text-align:right;"> -0.3252 </td>
-   <td style="text-align:right;"> -0.6149 </td>
-   <td style="text-align:right;"> 0.2987 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">2008</td>
+<td style="text-align: right;">-1.3890</td>
+<td style="text-align: right;">-2.4688</td>
+<td style="text-align: right;">-0.4854</td>
+<td style="text-align: right;">-0.9264</td>
+<td style="text-align: right;">1.8463</td>
+<td style="text-align: right;">2.1908</td>
+<td style="text-align: right;">-0.2058</td>
+<td style="text-align: right;">0.3069</td>
+<td style="text-align: right;">-2.3384</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2009</td>
+<td style="text-align: right;">-1.4910</td>
+<td style="text-align: right;">-0.9281</td>
+<td style="text-align: right;">-1.0362</td>
+<td style="text-align: right;">-0.9636</td>
+<td style="text-align: right;">1.7270</td>
+<td style="text-align: right;">1.4019</td>
+<td style="text-align: right;">-0.2954</td>
+<td style="text-align: right;">-0.4589</td>
+<td style="text-align: right;">-1.4947</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2010</td>
+<td style="text-align: right;">-0.8442</td>
+<td style="text-align: right;">0.3075</td>
+<td style="text-align: right;">0.3334</td>
+<td style="text-align: right;">1.1052</td>
+<td style="text-align: right;">0.3829</td>
+<td style="text-align: right;">0.2989</td>
+<td style="text-align: right;">-0.3895</td>
+<td style="text-align: right;">-0.1004</td>
+<td style="text-align: right;">-0.0621</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2011</td>
+<td style="text-align: right;">0.2002</td>
+<td style="text-align: right;">0.1090</td>
+<td style="text-align: right;">0.1547</td>
+<td style="text-align: right;">0.3941</td>
+<td style="text-align: right;">-0.0456</td>
+<td style="text-align: right;">-0.3929</td>
+<td style="text-align: right;">-0.3148</td>
+<td style="text-align: right;">-0.2016</td>
+<td style="text-align: right;">0.3930</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2012</td>
+<td style="text-align: right;">0.1387</td>
+<td style="text-align: right;">0.0941</td>
+<td style="text-align: right;">1.3457</td>
+<td style="text-align: right;">0.3294</td>
+<td style="text-align: right;">0.1492</td>
+<td style="text-align: right;">0.1867</td>
+<td style="text-align: right;">-0.3666</td>
+<td style="text-align: right;">-0.1637</td>
+<td style="text-align: right;">0.3253</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2013</td>
+<td style="text-align: right;">-0.4876</td>
+<td style="text-align: right;">-0.1673</td>
+<td style="text-align: right;">-1.5027</td>
+<td style="text-align: right;">1.1941</td>
+<td style="text-align: right;">-0.1503</td>
+<td style="text-align: right;">-0.0384</td>
+<td style="text-align: right;">3.0104</td>
+<td style="text-align: right;">2.8614</td>
+<td style="text-align: right;">0.2384</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2014</td>
+<td style="text-align: right;">-0.2745</td>
+<td style="text-align: right;">0.5705</td>
+<td style="text-align: right;">0.4525</td>
+<td style="text-align: right;">1.3638</td>
+<td style="text-align: right;">-0.9417</td>
+<td style="text-align: right;">-0.2994</td>
+<td style="text-align: right;">-0.3467</td>
+<td style="text-align: right;">-0.0414</td>
+<td style="text-align: right;">0.5365</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2015</td>
+<td style="text-align: right;">0.5801</td>
+<td style="text-align: right;">0.8509</td>
+<td style="text-align: right;">-0.7981</td>
+<td style="text-align: right;">-0.7050</td>
+<td style="text-align: right;">-0.6105</td>
+<td style="text-align: right;">-0.6546</td>
+<td style="text-align: right;">-0.2396</td>
+<td style="text-align: right;">-0.7035</td>
+<td style="text-align: right;">0.5411</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2016</td>
+<td style="text-align: right;">0.8957</td>
+<td style="text-align: right;">0.0495</td>
+<td style="text-align: right;">-0.0239</td>
+<td style="text-align: right;">-1.6747</td>
+<td style="text-align: right;">-0.8832</td>
+<td style="text-align: right;">-0.8229</td>
+<td style="text-align: right;">-0.2759</td>
+<td style="text-align: right;">-0.7288</td>
+<td style="text-align: right;">0.5732</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2017</td>
+<td style="text-align: right;">1.1703</td>
+<td style="text-align: right;">0.2455</td>
+<td style="text-align: right;">-0.3217</td>
+<td style="text-align: right;">0.2001</td>
+<td style="text-align: right;">-1.1170</td>
+<td style="text-align: right;">-1.0098</td>
+<td style="text-align: right;">-0.2510</td>
+<td style="text-align: right;">-0.1553</td>
+<td style="text-align: right;">0.9891</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2018</td>
+<td style="text-align: right;">1.5014</td>
+<td style="text-align: right;">1.3372</td>
+<td style="text-align: right;">1.8817</td>
+<td style="text-align: right;">-0.3171</td>
+<td style="text-align: right;">-0.3573</td>
+<td style="text-align: right;">-0.8603</td>
+<td style="text-align: right;">-0.3252</td>
+<td style="text-align: right;">-0.6149</td>
+<td style="text-align: right;">0.2987</td>
+</tr>
 </tbody>
 </table>
+</div>
+
 
 </div>
 </div>
@@ -1460,9 +1443,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1578,6 +1575,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -2363,7 +2446,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">Copyright 2017-2023, Matthew J. Kmiecik, PhD</div>
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Copyright 2017-2023, Matthew J. Kmiecik, PhD</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
 

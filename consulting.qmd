@@ -1,0 +1,29 @@
+---
+title: "Consulting"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    smooth-scroll: true
+---
+
+I am available to consult on data science and programming projects. Please email me [mkmiecik14@gmail.com](mailto:mkmiecik14@gmail.com) to schedule a consultation.
+
+Consulting areas:
+
+* R/RStudio coach
+* Statistics
+* Data visualization
+* Data wrangling and cleaning
+* Data analysis pipelines
+* Git/GitHub
+* Website development
+* APIs
+* Shiny Apps
+* Sports analytics
+* MATLAB
+* EEG/fMRI processing
+* E-Prime
+* Academic writing
+* Blogging

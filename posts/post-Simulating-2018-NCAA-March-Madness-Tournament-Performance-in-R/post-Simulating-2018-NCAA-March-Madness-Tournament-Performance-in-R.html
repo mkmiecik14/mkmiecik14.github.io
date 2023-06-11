@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -125,7 +96,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Q8PCYXLBH5"></script>
@@ -142,6 +114,7 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <meta property="og:title" content="Matthew J. Kmiecik, PhD - Simulating 2018 NCAA March Madness Tournament Performance in R">
@@ -166,56 +139,61 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
     <span class="navbar-title">Matthew J. Kmiecik, PhD</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"><i class="bi bi-house-door" role="img">
+    <a class="nav-link" href="../../index.html" rel="" target=""><i class="bi bi-house-door-fill" role="img">
 </i> 
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../cv.html"><i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../cv.html" rel="" target=""><i class="bi bi-mortarboard-fill" role="img">
 </i> 
  <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../consulting.html" rel="" target=""><i class="bi bi-briefcase-fill" role="img">
+</i> 
+ <span class="menu-text">Consulting</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="mailto:mkmiecik14@gmail.com"><i class="bi bi-envelope-fill" role="img">
+    <a class="nav-link" href="mailto:mkmiecik14@gmail.com" rel="" target="_top"><i class="bi bi-envelope-fill" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/mattkmiecik14"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/mattkmiecik14" rel="" target="_blank"><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/" rel="" target="_blank"><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mkmiecik14"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/mkmiecik14" rel="" target="_blank"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en">
+    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en" rel="" target="_blank">
  <span class="menu-text"><i class="ai  ai-google-scholar" title="" style="color:"></i></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik" rel="" target="_blank">
  <span class="menu-text"><i class="ai  ai-researchgate" title="" style="color:"></i></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -223,7 +201,7 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -250,6 +228,7 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
@@ -309,98 +288,100 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <p>This method (that Nick actually invented) relies on the seed of each team in the tournament. The idea is to assign a range of numbers to each seed with the ranges of lower seeds (e.g., #1, #2, #3, …) containing greater numbers than the ranges of higher seeds (e.g., …, #14, #15, #16). Just like this:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-
-<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:right;"> Seed </th>
-   <th style="text-align:right;"> Lower.Bound </th>
-   <th style="text-align:right;"> Upper.Bound </th>
-  </tr>
- </thead>
+<div class="table-responsive">
+<table class="table table-striped table-hover table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Seed</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Lower.Bound</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Upper.Bound</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 160 </td>
-   <td style="text-align:right;"> 320 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 150 </td>
-   <td style="text-align:right;"> 310 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 140 </td>
-   <td style="text-align:right;"> 300 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 130 </td>
-   <td style="text-align:right;"> 290 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 120 </td>
-   <td style="text-align:right;"> 280 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 110 </td>
-   <td style="text-align:right;"> 270 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 100 </td>
-   <td style="text-align:right;"> 260 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 90 </td>
-   <td style="text-align:right;"> 250 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 80 </td>
-   <td style="text-align:right;"> 240 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 70 </td>
-   <td style="text-align:right;"> 230 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> 60 </td>
-   <td style="text-align:right;"> 220 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> 50 </td>
-   <td style="text-align:right;"> 210 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 40 </td>
-   <td style="text-align:right;"> 200 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 30 </td>
-   <td style="text-align:right;"> 190 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 180 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 170 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">320</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">310</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">300</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">290</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">280</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">270</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">260</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">250</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">240</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">230</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">220</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">210</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">190</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">180</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">170</td>
+</tr>
 </tbody>
 </table>
+</div>
+
 
 </div>
 </div>
@@ -547,9 +528,6 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(i) # Uncomment to see progress</span></span>
 <span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center">
-
-</div>
 </section>
 <section id="data-viz" class="level2">
 <h2 class="anchored" data-anchor-id="data-viz">Data Viz</h2>
@@ -669,397 +647,400 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <p>So here’s what the computer drew for me (winners of each round):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; "><table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> round </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> region </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> winner </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> seed </th>
-  </tr>
- </thead>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">round</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">region</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">winner</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">seed</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Virginia </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Cincinnati </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Tennessee </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Arizona </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Kentucky </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Loyola Chicago </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Nevada </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Creighton </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Villanova </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Purdue </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Texas Tech </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Wichita State </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> West Virginia </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> St. Bona </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Arkansas </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Virginia Tech </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Xavier </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> North Carolina </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Michigan </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Gonzaga </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Ohio State </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> San Diego State </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Texas A&amp;M </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Missouri </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Kansas </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Duke </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Michigan State </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Auburn </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Clemson </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Syracuse </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Rhode Island </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Seton Hall </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Virginia </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Nevada </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Tennessee </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Arizona </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Villanova </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Purdue </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> St. Bona </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Wichita State </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Xavier </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> North Carolina </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Michigan </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Gonzaga </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Seton Hall </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Duke </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Michigan State </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Clemson </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Arizona </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Tennessee </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Villanova </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Purdue </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Xavier </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> North Carolina </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Clemson </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Duke </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 4 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Tennessee </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 4 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Villanova </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 4 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Xavier </td>
-   <td style="text-align:right;"> 1 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 4 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Duke </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Tennessee </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Duke </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 6 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Tennessee </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Virginia</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Cincinnati</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Arizona</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Kentucky</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Loyola Chicago</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Nevada</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Creighton</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Villanova</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Purdue</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Texas Tech</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Wichita State</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">West Virginia</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">St. Bona</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Arkansas</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Virginia Tech</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Xavier</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">North Carolina</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Michigan</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Gonzaga</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Ohio State</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">San Diego State</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Texas A&amp;M</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Missouri</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Kansas</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Duke</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Michigan State</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Auburn</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Clemson</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Syracuse</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Rhode Island</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Seton Hall</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Virginia</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Nevada</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Arizona</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Villanova</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Purdue</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">St. Bona</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Wichita State</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Xavier</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">North Carolina</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Michigan</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Gonzaga</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Seton Hall</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Duke</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Michigan State</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Clemson</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Arizona</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Villanova</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Purdue</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Xavier</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">North Carolina</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Clemson</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Duke</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Villanova</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Xavier</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Duke</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Duke</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: right;">3</td>
+</tr>
 </tbody>
-</table></div>
+</table>
+</div>
+</div>
 
 </div>
 </div>
@@ -1190,98 +1171,100 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <p>That correspond to seed like this:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-
-<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:right;"> seed </th>
-   <th style="text-align:right;"> lowNum </th>
-   <th style="text-align:right;"> highNum </th>
-  </tr>
- </thead>
+<div class="table-responsive">
+<table class="table table-striped table-hover table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">seed</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">lowNum</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">highNum</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4673 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3947 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3036 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2714 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1351 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 1216 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1080 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 76 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 9925 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8921 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8785 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8650 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 7287 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 6965 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 6054 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5328 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4673</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3947</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3036</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2714</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1351</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1216</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1080</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9925</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8921</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8785</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8650</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7287</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6965</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6054</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5328</td>
+</tr>
 </tbody>
 </table>
+</div>
+
 
 </div>
 </div>
@@ -1426,9 +1409,6 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(i) # Uncomment to see progress</span></span>
 <span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center">
-
-</div>
 </section>
 <section id="data-viz-1" class="level4">
 <h4 class="anchored" data-anchor-id="data-viz-1">Data Viz</h4>
@@ -1556,98 +1536,100 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <p>That correspond to seed like this:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-
-<table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:right;"> seed </th>
-   <th style="text-align:right;"> lowNum </th>
-   <th style="text-align:right;"> highNum </th>
-  </tr>
- </thead>
+<div class="table-responsive">
+<table class="table table-striped table-hover table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">seed</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">lowNum</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">highNum</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 4678 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 3966 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 3077 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 2639 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 1444 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 1182 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 1116 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 10000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8885 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8819 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8557 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 7363 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 6924 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 6035 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 5323 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4678</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3966</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3077</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2639</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1444</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1182</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1116</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8885</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8819</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8557</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7363</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6924</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6035</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5323</td>
+</tr>
 </tbody>
 </table>
+</div>
+
 
 </div>
 </div>
@@ -1793,9 +1775,6 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <span id="cb22-116"><a href="#cb22-116" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(i) # Uncomment to see progress</span></span>
 <span id="cb22-117"><a href="#cb22-117" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center">
-
-</div>
 </section>
 <section id="data-viz-2" class="level4">
 <h4 class="anchored" data-anchor-id="data-viz-2">Data Viz</h4>
@@ -1936,336 +1915,339 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <p>The historical proportions data looks like this:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; "><table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed1 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed2 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed3 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed4 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed5 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed6 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed7 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed8 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed9 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed10 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed11 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed12 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed13 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed14 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed15 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Seed16 </th>
-  </tr>
- </thead>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed1</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed2</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed3</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed4</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed5</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed6</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed7</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed8</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed9</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed10</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed11</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed12</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed13</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed14</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed15</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Seed16</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.534 </td>
-   <td style="text-align:right;"> 0.600 </td>
-   <td style="text-align:right;"> 0.699 </td>
-   <td style="text-align:right;"> 0.840 </td>
-   <td style="text-align:right;"> 0.688 </td>
-   <td style="text-align:right;"> 0.857 </td>
-   <td style="text-align:right;"> 0.800 </td>
-   <td style="text-align:right;"> 0.905 </td>
-   <td style="text-align:right;"> 0.857 </td>
-   <td style="text-align:right;"> 0.571 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 1.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 0.466 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.629 </td>
-   <td style="text-align:right;"> 0.444 </td>
-   <td style="text-align:right;"> 0.200 </td>
-   <td style="text-align:right;"> 0.722 </td>
-   <td style="text-align:right;"> 0.710 </td>
-   <td style="text-align:right;"> 0.444 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.607 </td>
-   <td style="text-align:right;"> 0.867 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.939 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 0.400 </td>
-   <td style="text-align:right;"> 0.371 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.625 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.553 </td>
-   <td style="text-align:right;"> 0.588 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.692 </td>
-   <td style="text-align:right;"> 0.706 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.841 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 0.301 </td>
-   <td style="text-align:right;"> 0.556 </td>
-   <td style="text-align:right;"> 0.375 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.565 </td>
-   <td style="text-align:right;"> 0.333 </td>
-   <td style="text-align:right;"> 0.333 </td>
-   <td style="text-align:right;"> 0.364 </td>
-   <td style="text-align:right;"> 0.666 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.692 </td>
-   <td style="text-align:right;"> 0.809 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 0.160 </td>
-   <td style="text-align:right;"> 0.800 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.435 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.250 </td>
-   <td style="text-align:right;"> 0.333 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.671 </td>
-   <td style="text-align:right;"> 0.800 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 0.313 </td>
-   <td style="text-align:right;"> 0.278 </td>
-   <td style="text-align:right;"> 0.447 </td>
-   <td style="text-align:right;"> 0.667 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.625 </td>
-   <td style="text-align:right;"> 0.333 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.600 </td>
-   <td style="text-align:right;"> 0.638 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.875 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 0.143 </td>
-   <td style="text-align:right;"> 0.290 </td>
-   <td style="text-align:right;"> 0.412 </td>
-   <td style="text-align:right;"> 0.667 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.375 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.609 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.660 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 0.200 </td>
-   <td style="text-align:right;"> 0.556 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.636 </td>
-   <td style="text-align:right;"> 0.750 </td>
-   <td style="text-align:right;"> 0.750 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.532 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 0.095 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.333 </td>
-   <td style="text-align:right;"> 0.666 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.468 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 0.143 </td>
-   <td style="text-align:right;"> 0.393 </td>
-   <td style="text-align:right;"> 0.308 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.400 </td>
-   <td style="text-align:right;"> 0.391 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.333 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:right;"> 0.429 </td>
-   <td style="text-align:right;"> 0.133 </td>
-   <td style="text-align:right;"> 0.294 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.362 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.667 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.308 </td>
-   <td style="text-align:right;"> 0.329 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 1.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.727 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 13 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.191 </td>
-   <td style="text-align:right;"> 0.200 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.273 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 14 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.159 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.125 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 15 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.061 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.333 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.500 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-  <tr>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.000 </td>
-   <td style="text-align:right;"> 0.5 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.534</td>
+<td style="text-align: right;">0.600</td>
+<td style="text-align: right;">0.699</td>
+<td style="text-align: right;">0.840</td>
+<td style="text-align: right;">0.688</td>
+<td style="text-align: right;">0.857</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.905</td>
+<td style="text-align: right;">0.857</td>
+<td style="text-align: right;">0.571</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.466</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.629</td>
+<td style="text-align: right;">0.444</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.722</td>
+<td style="text-align: right;">0.710</td>
+<td style="text-align: right;">0.444</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.607</td>
+<td style="text-align: right;">0.867</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.939</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.400</td>
+<td style="text-align: right;">0.371</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.553</td>
+<td style="text-align: right;">0.588</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.692</td>
+<td style="text-align: right;">0.706</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.841</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.301</td>
+<td style="text-align: right;">0.556</td>
+<td style="text-align: right;">0.375</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.565</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.364</td>
+<td style="text-align: right;">0.666</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.692</td>
+<td style="text-align: right;">0.809</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.160</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.435</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.250</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.671</td>
+<td style="text-align: right;">0.800</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.313</td>
+<td style="text-align: right;">0.278</td>
+<td style="text-align: right;">0.447</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.625</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.600</td>
+<td style="text-align: right;">0.638</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.875</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.143</td>
+<td style="text-align: right;">0.290</td>
+<td style="text-align: right;">0.412</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.375</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.609</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.660</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.556</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.636</td>
+<td style="text-align: right;">0.750</td>
+<td style="text-align: right;">0.750</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.532</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.095</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.666</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.468</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.143</td>
+<td style="text-align: right;">0.393</td>
+<td style="text-align: right;">0.308</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.400</td>
+<td style="text-align: right;">0.391</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.429</td>
+<td style="text-align: right;">0.133</td>
+<td style="text-align: right;">0.294</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.362</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.667</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.308</td>
+<td style="text-align: right;">0.329</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.727</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.191</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.273</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.159</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.125</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.061</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.5</td>
+</tr>
 </tbody>
-</table></div>
+</table>
+</div>
+</div>
 
 </div>
 </div>
@@ -2289,277 +2271,280 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <p><code>Round1Data</code> looks like this:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-
-<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; "><table class="table table-striped table-hover table-responsive" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">   </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Region </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Team1 </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Team2 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Team1Seed </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Team2Seed </th>
-  </tr>
- </thead>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;"></th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Region</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Team1</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Team2</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Team1Seed</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Team2Seed</th>
+</tr>
+</thead>
 <tbody>
-  <tr>
-   <td style="text-align:left;"> 1 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Virginia </td>
-   <td style="text-align:left;"> UMBC </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Creighton </td>
-   <td style="text-align:left;"> Kansas State </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 3 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Kentucky </td>
-   <td style="text-align:left;"> Davidson </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 4 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Arizona </td>
-   <td style="text-align:left;"> Buffalo </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 5 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Miami </td>
-   <td style="text-align:left;"> Loyola Chicago </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 6 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Tennessee </td>
-   <td style="text-align:left;"> Wright State </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 14 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 7 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Nevada </td>
-   <td style="text-align:left;"> Texas </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 8 </td>
-   <td style="text-align:left;"> South </td>
-   <td style="text-align:left;"> Cincinnati </td>
-   <td style="text-align:left;"> Georgia State </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 15 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 25 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Xavier </td>
-   <td style="text-align:left;"> Play in 4 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 26 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Missouri </td>
-   <td style="text-align:left;"> Florida State </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 27 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Ohio State </td>
-   <td style="text-align:left;"> South Dakota State </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 28 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Gonzaga </td>
-   <td style="text-align:left;"> UNC Greensboro </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 29 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Houston </td>
-   <td style="text-align:left;"> San Diego State </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 30 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Michigan </td>
-   <td style="text-align:left;"> Montana </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 14 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 31 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> Texas A&amp;M </td>
-   <td style="text-align:left;"> Providence </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 32 </td>
-   <td style="text-align:left;"> West </td>
-   <td style="text-align:left;"> North Carolina </td>
-   <td style="text-align:left;"> Lipscomb </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 15 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 9 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Villanova </td>
-   <td style="text-align:left;"> Play in 1 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 10 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Virginia Tech </td>
-   <td style="text-align:left;"> Alabama </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 11 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> West Virginia </td>
-   <td style="text-align:left;"> Murray State </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 12 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Wichita State </td>
-   <td style="text-align:left;"> Marshall </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 13 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Florida </td>
-   <td style="text-align:left;"> Play in 2 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 14 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Texas Tech </td>
-   <td style="text-align:left;"> SF Austin </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 14 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 15 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Arkansas </td>
-   <td style="text-align:left;"> Butler </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 16 </td>
-   <td style="text-align:left;"> East </td>
-   <td style="text-align:left;"> Purdue </td>
-   <td style="text-align:left;"> CS Fullerton </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 15 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 17 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Kansas </td>
-   <td style="text-align:left;"> Penn </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 16 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 18 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Seton Hall </td>
-   <td style="text-align:left;"> NC State </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 19 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Clemson </td>
-   <td style="text-align:left;"> New Mexico State </td>
-   <td style="text-align:right;"> 5 </td>
-   <td style="text-align:right;"> 12 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 20 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Auburn </td>
-   <td style="text-align:left;"> Charleston </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 13 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 21 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> TCU </td>
-   <td style="text-align:left;"> Play in 3 </td>
-   <td style="text-align:right;"> 6 </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 22 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Michigan State </td>
-   <td style="text-align:left;"> Bucknell </td>
-   <td style="text-align:right;"> 3 </td>
-   <td style="text-align:right;"> 14 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 23 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Rhode Island </td>
-   <td style="text-align:left;"> Oklahoma </td>
-   <td style="text-align:right;"> 7 </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> 24 </td>
-   <td style="text-align:left;"> Midwest </td>
-   <td style="text-align:left;"> Duke </td>
-   <td style="text-align:left;"> Iona </td>
-   <td style="text-align:right;"> 2 </td>
-   <td style="text-align:right;"> 15 </td>
-  </tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Virginia</td>
+<td style="text-align: left;">UMBC</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Creighton</td>
+<td style="text-align: left;">Kansas State</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Kentucky</td>
+<td style="text-align: left;">Davidson</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Arizona</td>
+<td style="text-align: left;">Buffalo</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Miami</td>
+<td style="text-align: left;">Loyola Chicago</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Tennessee</td>
+<td style="text-align: left;">Wright State</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Nevada</td>
+<td style="text-align: left;">Texas</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: left;">Cincinnati</td>
+<td style="text-align: left;">Georgia State</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Xavier</td>
+<td style="text-align: left;">Play in 4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Missouri</td>
+<td style="text-align: left;">Florida State</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">27</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Ohio State</td>
+<td style="text-align: left;">South Dakota State</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Gonzaga</td>
+<td style="text-align: left;">UNC Greensboro</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Houston</td>
+<td style="text-align: left;">San Diego State</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Michigan</td>
+<td style="text-align: left;">Montana</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">31</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">Texas A&amp;M</td>
+<td style="text-align: left;">Providence</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: left;">North Carolina</td>
+<td style="text-align: left;">Lipscomb</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Villanova</td>
+<td style="text-align: left;">Play in 1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Virginia Tech</td>
+<td style="text-align: left;">Alabama</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">West Virginia</td>
+<td style="text-align: left;">Murray State</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Wichita State</td>
+<td style="text-align: left;">Marshall</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Florida</td>
+<td style="text-align: left;">Play in 2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Texas Tech</td>
+<td style="text-align: left;">SF Austin</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Arkansas</td>
+<td style="text-align: left;">Butler</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">East</td>
+<td style="text-align: left;">Purdue</td>
+<td style="text-align: left;">CS Fullerton</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Kansas</td>
+<td style="text-align: left;">Penn</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Seton Hall</td>
+<td style="text-align: left;">NC State</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Clemson</td>
+<td style="text-align: left;">New Mexico State</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Auburn</td>
+<td style="text-align: left;">Charleston</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">21</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">TCU</td>
+<td style="text-align: left;">Play in 3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Michigan State</td>
+<td style="text-align: left;">Bucknell</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Rhode Island</td>
+<td style="text-align: left;">Oklahoma</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">Midwest</td>
+<td style="text-align: left;">Duke</td>
+<td style="text-align: left;">Iona</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">15</td>
+</tr>
 </tbody>
-</table></div>
+</table>
+</div>
+</div>
 
 </div>
 </div>
@@ -3094,9 +3079,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -3161,6 +3160,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -3205,7 +3290,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-      <div class="nav-footer-center">Copyright 2017-2023, Matthew J. Kmiecik, PhD</div>
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">Copyright 2017-2023, Matthew J. Kmiecik, PhD</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
 
