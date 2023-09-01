@@ -223,9 +223,9 @@ reactable(
 
 ## Papers
 
-- **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., & Hellman, K. M. (in press). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Pelvic Pain Outcome: an Observational Cohort Study. *PAIN*. <http://dx.doi.org/10.1097/j.pain.0000000000002909>
+- **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., & Hellman, K. M. (2023). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Pelvic Pain Outcome: an Observational Cohort Study. *PAIN*, *164*(9), 270-283. <http://dx.doi.org/10.1097/j.pain.0000000000002909>
 
-- Shlobin, A. E., Tu, F. F., Sain, C. R., **Kmiecik, M. J.**, Kantarovich, D., Singh, L., Wang, C. E., & Hellman, K. M. (in press). Bladder Pain Sensitivity is a Potential Risk Factor for Irritable Bowel Syndrome. *Digestive Diseases and Sciences*. <https://doi.org/10.1007/s10620-023-07868-7>
+- Shlobin, A. E., Tu, F. F., Sain, C. R., **Kmiecik, M. J.**, Kantarovich, D., Singh, L., Wang, C. E., & Hellman, K. M. (2023). Bladder Pain Sensitivity is a Potential Risk Factor for Irritable Bowel Syndrome. *Digestive Diseases and Sciences*, *68*, 3092–3102. <https://doi.org/10.1007/s10620-023-07868-7>
 
 -   Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (2022).
     Differential effects of semantic distance, distractor salience, and
@@ -366,7 +366,7 @@ reactable(
 
 - Roth, G. E., Silton, R. L., Tu, F. F., Bohnert, A. M., Walker, L. S., Kmiecik, M. J., & Hellman, K. M. (September 2023). Somatic symptoms are associated with psychological symptoms, visceral pain sensitivity, and observations of parental pain behavior in premenarchal adolescents. Poster to be presented at the Society for Research in Psychopathology, St. Louis, MO, USA.
 
-- Kmiecik, M. J., Coker, D., Heilbron, K., Aslibekyan, S., Shelton, J. F., Cannon, P., Norcliffe-Kaufmann, L. (August 2023). The natural history of Parkinson’s disease in LRRK2 G2019S carriers. Poster to be presented at the International Congress of Parkinson’s Disease and Movement Disorders, Copenhagen, Denmark.
+- Kmiecik, M. J., Coker, D., Heilbron, K., Aslibekyan, S., Shelton, J. F., Cannon, P., Norcliffe-Kaufmann, L. (August 2023). The natural history of Parkinson’s disease in LRRK2 G2019S carriers. Poster presented at the International Congress of Parkinson’s Disease and Movement Disorders, Copenhagen, Denmark. *Movement Disorders*, *38*(S1), S455–521. <https://doi.org/10.1002/mds.29543>
 
 -   Kmiecik, M. J., Tu, F. F., Darnell, S., Harber, K., Hellman, K. M. (2022,
     Nov.). [Early cortical mechanisms of visual discomfort in premenarchal
@@ -690,9 +690,14 @@ reactable(
 # Academic Awards & Honors
 
 ```{r awards}
-awards<-
+awards <-
   as_tibble(
     rbind(
+      cbind(
+        award = "High Impact Abstract in Clinical Science",
+        inst = "International Congress of Parkinson’s Disease and Movement Disorders",
+        date = "2023"
+      ),
       cbind(
         award = "Best Poster Award",
         inst = "IASP Abdominal and Pelvic Pain SIG",
