@@ -278,6 +278,9 @@ reactable(
 
 ## Preprints
 
+-   **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Schloetter, M., Rowbotham, H. M., Cannon, P., Shelton, J. F., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2023).
+    Genetic Analysis and Natural History of Parkinson’s Disease Due to the LRRK2 G2019S Variant. *MedRxiv*, 2023.10.26.23297636. doi:
+    <https://doi.org/10.1101/2023.10.26.23297636>
 -   **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022).
     Multimodal Hypersensitivity Derived from Quantitative Sensory Testing
     Predicts Long-Term Pelvic Pain Outcome. *MedRxiv*, 2022.04.01.22272964. doi:
@@ -364,7 +367,9 @@ reactable(
 
 ## Poster Presentations
 
-- Roth, G. E., Silton, R. L., Tu, F. F., Bohnert, A. M., Walker, L. S., Kmiecik, M. J., & Hellman, K. M. (September 2023). Somatic symptoms are associated with psychological symptoms, visceral pain sensitivity, and observations of parental pain behavior in premenarchal adolescents. Poster to be presented at the Society for Research in Psychopathology, St. Louis, MO, USA.
+- Tu, P. L., Kmiecik, M. J., Burns, M., Adornetti, J., Onyeise, D., Crowley, S. J., Bohnert, A. M. (April 2024). Geocoded Urban Neighborhood Contexts, Discrimination Experiences, and Adolescent Sleep Health. Poster to be presented at the Society for Research on Adolescence annual meeting, Chicago, IL, USA.
+
+- Roth, G. E., Silton, R. L., Tu, F. F., Bohnert, A. M., Walker, L. S., Kmiecik, M. J., & Hellman, K. M. (September 2023). Somatic symptoms are associated with psychological symptoms, visceral pain sensitivity, and observations of parental pain behavior in premenarchal adolescents. Poster presented at the Society for Research in Psychopathology, St. Louis, MO, USA.
 
 - Kmiecik, M. J., Coker, D., Heilbron, K., Aslibekyan, S., Shelton, J. F., Cannon, P., Norcliffe-Kaufmann, L. (August 2023). The natural history of Parkinson’s disease in LRRK2 G2019S carriers. Poster presented at the International Congress of Parkinson’s Disease and Movement Disorders, Copenhagen, Denmark. *Movement Disorders*, *38*(S1), S455–521. <https://doi.org/10.1002/mds.29543>
 
@@ -596,6 +601,8 @@ reactable(
 <br />
 
 # Invited Talks
+
+-   **Parkinson's Disease: Ancestry and the Microbiome** (November 2023) American Parkinson's Disease Association: Virginia Chapter
 
 -   **Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for
     Chronic Pelvic Pain** (March 2021) Neuroscience Seminar, Loyola University
