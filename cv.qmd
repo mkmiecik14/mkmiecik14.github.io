@@ -278,17 +278,17 @@ reactable(
 
 ## Preprints
 
--   **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Schloetter, M., Rowbotham, H. M., Cannon, P., Shelton, J. F., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2023).
-    Genetic Analysis and Natural History of Parkinson’s Disease Due to the LRRK2 G2019S Variant. *MedRxiv*, 2023.10.26.23297636. doi:
-    <https://doi.org/10.1101/2023.10.26.23297636>
+- Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., Holmes, M., Walk, S., Houser, M., Norcliffe-Kaufmann, L. (2024) Oral and gut microbiome profiles in early Parkinson’s disease. *Research Square*. doi: <https://doi.org/10.21203/rs.3.rs-3750719/v1>
+
+-   **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Schloetter, M., Rowbotham, H. M., Cannon, P., Shelton, J. F., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2023). Genetic Analysis and Natural History of Parkinson’s Disease Due to the LRRK2 G2019S Variant. *MedRxiv*, 2023.10.26.23297636. doi: <https://doi.org/10.1101/2023.10.26.23297636>
+
 -   **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022).
     Multimodal Hypersensitivity Derived from Quantitative Sensory Testing
     Predicts Long-Term Pelvic Pain Outcome. *MedRxiv*, 2022.04.01.22272964. doi:
     <https://doi.org/10.1101/2022.04.01.22272964>
     [<a href ="https://github.com/mkmiecik14/mmh" target="_blank" style="color: #FFFFFF">GitHub
     Repo</a>]{.label .label-primary}
-    [<a href ="https://osf.io/27ky9/?view_only=90108c59ca8a4431800492a5686b7ef2" target="_blank" style="color: #FFFFFF">OSF
-    Project</a>]{.label .label-success}
+    [<a href ="https://osf.io/27ky9/?view_only=90108c59ca8a4431800492a5686b7ef2" target="_blank" style="color: #FFFFFF">OSF Project</a>]{.label .label-success}
 
 -   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
     Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual
@@ -358,18 +358,16 @@ reactable(
 -   Dutcher, A., Kmiecik, M.J., & Beaton, D. (2016, April). Analyzing
     multi-block data: A tutorial of Multiple Factor Analysis in R. Workshop
     presented at the Society for Applied Multivariate Research, Dallas, Texas.
-    ([*MFA Workshop
-    Slides*](https://www.researchgate.net/publication/301200852_Analyzing_Multi-Block_Data_A_Tutorial_of_Multiple_Factor_Analysis_in_R)
-    / [*MFA Workshop R
-    Code*](https://www.researchgate.net/publication/301201126_FinalCode) )
+    ([*MFA Workshop Slides*](https://www.researchgate.net/publication/301200852_Analyzing_Multi-Block_Data_A_Tutorial_of_Multiple_Factor_Analysis_in_R)
+    / [*MFA Workshop R Code*](https://www.researchgate.net/publication/301201126_FinalCode) )
 
 <br />
 
 ## Poster Presentations
 
-- Tu, P. L., Kmiecik, M. J., Burns, M., Adornetti, J., Onyeise, D., Crowley, S. J., Bohnert, A. M. (April 2024). Geocoded Urban Neighborhood Contexts, Discrimination Experiences, and Adolescent Sleep Health. Poster to be presented at the Society for Research on Adolescence annual meeting, Chicago, IL, USA.
+- Kmiecik, M. J., Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Schloetter, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (April, 2024). Genetic Analysis and Natural History of LRRK2 G2019S Parkinson’s Disease. Poster to be presented at the American Academy of Neurology annual meeting, Denver, CO.
 
-- Roth, G. E., Silton, R. L., Tu, F. F., Bohnert, A. M., Walker, L. S., Kmiecik, M. J., & Hellman, K. M. (September 2023). Somatic symptoms are associated with psychological symptoms, visceral pain sensitivity, and observations of parental pain behavior in premenarchal adolescents. Poster presented at the Society for Research in Psychopathology, St. Louis, MO, USA.
+- Tu, P. L., Kmiecik, M. J., Burns, M., Adornetti, J., Onyeise, D., Crowley, S. J., Bohnert, A. M. (April 2024). Geocoded Urban Neighborhood Contexts, Discrimination Experiences, and Adolescent Sleep Health. Poster to be presented at the Society for Research on Adolescence annual meeting, Chicago, IL, USA.
 
 - Kmiecik, M. J., Coker, D., Heilbron, K., Aslibekyan, S., Shelton, J. F., Cannon, P., Norcliffe-Kaufmann, L. (August 2023). The natural history of Parkinson’s disease in LRRK2 G2019S carriers. Poster presented at the International Congress of Parkinson’s Disease and Movement Disorders, Copenhagen, Denmark. *Movement Disorders*, *38*(S1), S455–521. <https://doi.org/10.1002/mds.29543>
 
