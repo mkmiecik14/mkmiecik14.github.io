@@ -223,7 +223,7 @@ reactable(
 
 ## Papers
 
-- **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Wetzel, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (in press). Genetic analysis and natural history of Parkinson’s disease due to the LRRK2 G2019S variant. _Brain_. 
+- **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Wetzel, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2024). Genetic analysis and natural history of Parkinson’s disease due to the LRRK2 G2019S variant. _Brain_, _147_(6), 1996–2008. <https://doi.org/10.1093/brain/awae073>
 
 - **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., & Hellman, K. M. (2023). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Pelvic Pain Outcome: an Observational Cohort Study. *PAIN*, *164*(9), 270-283. <http://dx.doi.org/10.1097/j.pain.0000000000002909>
 
@@ -372,6 +372,8 @@ reactable(
 <br />
 
 ## Poster Presentations
+
+- **Kmiecik, M. J.**, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M., Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (Sept. 2024).  LRRK2 and GBA Founder Mutations and their Interactions in Parkinson’s Disease. Poster to be presented at the International Congress of Parkinson’s Disease and Movement Disorders, Philadelphia, PA.
 
 - **Kmiecik, M. J.**, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M. Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (May, 2024). A comparison of Parkinson’s disease symptom profiles in LRRK2 G2019S and GBA N370S single and dual carriers. Poster presented at the Planning for Prevention of Parkinson's: A Trial Design Forum, Boston, MA.
 
