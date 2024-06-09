@@ -4,7 +4,7 @@
     "href": "consulting.html",
     "title": "Consulting",
     "section": "",
-    "text": "I am available to consult on data science and programming projects. Please email me mkmiecik14 at gmail dot com to schedule a consultation.\nConsulting areas:\n\nR/RStudio coach\nStatistics\nData visualization\nData wrangling and cleaning\nData analysis pipelines\nGit/GitHub\nWebsite development\nAPIs\nShiny Apps\nSports analytics\nMATLAB\nEEG/fMRI processing\nE-Prime\nAcademic writing\nBlogging"
+    "text": "Welcome to MJK Consulting! I help clients with their data science needs, including data wrangling, statistical modeling, data visualization, and writing. Feel free to book an appointment for a free quote:"
   },
   {
     "objectID": "cv.html#papers",
@@ -376,5 +376,12 @@
     "title": "\nMatthew J. Kmiecik, PhD\n",
     "section": "Reports",
     "text": "Reports\n\nKmiecik, M. J. (2024). Fox Insight Survey Timeline. Zenodo. https://doi.org/10.5281/zenodo.10999653"
+  },
+  {
+    "objectID": "consulting.html#areas-of-expertise",
+    "href": "consulting.html#areas-of-expertise",
+    "title": "Consulting",
+    "section": "Areas of expertise",
+    "text": "Areas of expertise\n\nR/RStudio coach\nStatistics\n\nLinear modeling (analysis of variance, linear mixed models, logistic regression)\nPrincipal component analyses\nSurvival modeling (Kaplan-Meier estimation, Cox Proportional Hazards, Accelerated Failure Time modeling)\n\nData visualization\nData wrangling and cleaning\nData analysis pipelines\nGit/GitHub\nWebsite development\nAPIs\nShiny Apps\nSports analytics\nMATLAB\nEEG/fMRI processing\nExperimental Design/E-Prime\nAcademic writing\nBlogging"
   }
 ]

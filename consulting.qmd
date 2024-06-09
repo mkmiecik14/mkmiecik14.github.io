@@ -8,12 +8,33 @@ format:
     smooth-scroll: true
 ---
 
-I am available to consult on data science and programming projects. Please email me [mkmiecik14@gmail.com](mailto:mkmiecik14@gmail.com) to schedule a consultation.
+Welcome to MJK Consulting! I help clients with their data science needs, including data wrangling, statistical modeling, data visualization, and writing. **Feel free to book an appointment for a free quote:**
 
-Consulting areas:
+<!-- Google Calendar Appointment Scheduling begin -->
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+<script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3DtXDElK8ki2DFP0NsiTzyDO6wqhfuM1Hcalmnr5yycvv2wmXZUB_usIrYNNFIUAvi26joEdnO?gv=true',
+      color: '#039BE5',
+      label: 'Book an appointment',
+      target,
+    });
+  });
+})();
+</script>
+<!-- end Google Calendar Appointment Scheduling -->
+
+## Areas of expertise
 
 * R/RStudio coach
 * Statistics
+  - Linear modeling (analysis of variance, linear mixed models, logistic regression)
+  - Principal component analyses
+  - Survival modeling (Kaplan-Meier estimation, Cox Proportional Hazards, Accelerated Failure Time modeling)
 * Data visualization
 * Data wrangling and cleaning
 * Data analysis pipelines
@@ -24,6 +45,6 @@ Consulting areas:
 * Sports analytics
 * MATLAB
 * EEG/fMRI processing
-* E-Prime
+* Experimental Design/E-Prime
 * Academic writing
 * Blogging
