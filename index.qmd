@@ -23,7 +23,9 @@ title-block-banner: true
 
 I'm a neuroscientist researching genetic forms of Parkinson's Disease at 23andMe.  In my first postdoc, I studied multimodal hypersensitivity and pelvic pain. In graduate school, I studied volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury, and human reasoning. My undergraduate work utilized EEG to understand the neural correlates of analogical reasoning. In my spare time I enjoy reading, golfing, and the endless pursuit of new hobbies.
 
+<!-- 
 <p align="center"><iframe src="https://mattkmiecik.substack.com/embed" width="480" height="320" style="border:0px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe></p>
+-->
 
 <!-- about me -->
 
