@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -86,7 +86,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -95,6 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -110,17 +117,43 @@ gtag('js', new Date());
 gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 </script>
 <style>html{ scroll-behavior: smooth; }</style>
-
 <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <meta property="og:title" content="Matthew J. Kmiecik, PhD - Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis">
 <meta property="og:description" content="Two grad students get over zealous with PCA and NHL data.">
 <meta property="og:image" content="./thumbnail.png">
-<meta property="og:site-name" content="Matthew J. Kmiecik, PhD">
+<meta property="og:site_name" content="Matthew J. Kmiecik, PhD">
 <meta name="twitter:title" content="Matthew J. Kmiecik, PhD - Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis">
 <meta name="twitter:description" content="Two grad students get over zealous with PCA and NHL data.">
 <meta name="twitter:image" content="./thumbnail.png">
@@ -132,9 +165,9 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Matthew J. Kmiecik, PhD</span>
     </a>
@@ -146,62 +179,62 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target=""><i class="bi bi-house-door-fill" role="img">
+    <a class="nav-link" href="../../index.html"> <i class="bi bi-house-door-fill" role="img">
 </i> 
- <span class="menu-text">Home</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../cv.html" rel="" target=""><i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../cv.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
- <span class="menu-text">CV</span></a>
+<span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../consulting.html" rel="" target=""><i class="bi bi-briefcase-fill" role="img">
+    <a class="nav-link" href="../../consulting.html"> <i class="bi bi-briefcase-fill" role="img">
 </i> 
- <span class="menu-text">Consulting</span></a>
+<span class="menu-text">Consulting</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="mailto:mkmiecik14@gmail.com" rel="" target="_top"><i class="bi bi-envelope-fill" role="img">
+    <a class="nav-link" href="mailto:mkmiecik14@gmail.com" target="_top"> <i class="bi bi-envelope-fill" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/mattkmiecik14" rel="" target="_blank"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/mattkmiecik14" target="_blank"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/" rel="" target="_blank"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/" target="_blank"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mkmiecik14" rel="" target="_blank"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/mkmiecik14" target="_blank"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en" rel="" target="_blank">
- <span class="menu-text"><i class="ai  ai-google-scholar" title="" style="color:"></i></span></a>
+    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en" target="_blank"> 
+<span class="menu-text"><i class="ai  ai-google-scholar" title="" style="color:"></i></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik" rel="" target="_blank">
- <span class="menu-text"><i class="ai  ai-researchgate" title="" style="color:"></i></span></a>
+    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik" target="_blank"> 
+<span class="menu-text"><i class="ai  ai-researchgate" title="" style="color:"></i></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -227,7 +260,7 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
@@ -271,7 +304,9 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
   </div>
   
 
+
 </header>
+
 
 <p><br></p>
 <p>In this post we explore 11 seasons (2007 - 2018) of team summary data from the Chicago Blackhawks of the National Hockey League (NHL). Our question was, “Are there any summary measures, such as goals scored or save percentage, that predict playoff performance or championship wins?”</p>
@@ -382,7 +417,7 @@ dbl (26): GP, TOI, CF, CA, C+/-, CF%, CF/60, CA/60, GF, GA, G+/-, GF%, GF/60...
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">nice_table</span>(hawks_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">Season</th>
@@ -608,7 +643,7 @@ dbl (26): GP, TOI, CF, CA, C+/-, CF%, CF/60, CA/60, GF, GA, G+/-, GF%, GF/60...
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -648,7 +683,7 @@ dbl (26): GP, TOI, CF, CA, C+/-, CF%, CF/60, CA/60, GF, GA, G+/-, GF%, GF/60...
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -679,7 +714,7 @@ dbl (26): GP, TOI, CF, CA, C+/-, CF%, CF/60, CA/60, GF, GA, G+/-, GF%, GF/60...
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(hawks_data_mat, <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">nice_table</span>() <span class="co"># Prints HTML table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -877,7 +912,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -926,7 +961,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -953,7 +988,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -990,7 +1025,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1020,7 +1055,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1053,7 +1088,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1078,7 +1113,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1182,7 +1217,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1257,7 +1292,7 @@ I = \Sigma\lambda = \Sigma\Delta^2
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1344,6 +1379,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -1410,13 +1472,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1546,10 +1610,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1559,8 +1640,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1572,7 +1662,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1616,6 +1829,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1641,6 +1855,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1701,7 +1941,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 <script src="https://giscus.app/client.js" data-repo="mkmiecik14/mkmiecik14.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg==" data-category="Announcements" data-category-id="DIC_kwDOBZzsfM4CT2c5" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="light"><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb27" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Exploring 11 Years of Chicago Blackhawk's Data using Principal Components Analysis"</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Matthew J. Kmiecik &amp; Ekarin E. Pongpipat"</span></span>
@@ -1725,19 +1967,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=F}</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">fig.align =</span> <span class="st">'center'</span>)</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.table.format =</span> <span class="st">'html'</span>) <span class="co"># For the html tables</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="in">options(knitr.table.format = 'html') # For the html tables</span></span>
 <span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>In this post we explore 11 seasons (2007 - 2018) of team summary data from the Chicago Blackhawks of the National Hockey League (NHL). Our question was, "Are there any summary measures, such as goals scored or save percentage, that predict playoff performance or championship wins?"</span>
 <span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>We explore these data using a variety of techniques, such as:</span>
 <span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>**Z-scores across time**</span>
 <span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -1745,7 +1987,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Finding #1b: 2012-2013 was characterized by elevated save and shooting percentage </span>
 <span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>**Correlations**</span>
 <span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a></span>
@@ -1753,7 +1995,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Finding #2b: Through time, Blackhawks had more time on ice (likely more overtime play) and decreased their penalties served and taken. Perhaps decreased penalties are related to changes in rules and league-wide game play style</span>
 <span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>**Principal Components Analysis (PCA)**</span>
 <span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a></span>
@@ -1761,58 +2003,58 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Finding #3b: Component 2 was dominated by the 2012-2013 season that was characterized by excellent defense and great offense. This season was the Blackhawk's Presidents' Trophy winning season, a Stanley Cup winning season, a shortened lockout season, as well as setting franchise records for win streaks</span>
 <span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a><span class="fu"># Setup</span></span>
 <span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>Here are the packages that we'll use for these analyses and functions to style the output/plots.</span>
 <span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=FALSE, message=FALSE}</span></span>
-<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages ----</span></span>
-<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)    <span class="co"># For data manipulation, plotting, etc. </span></span>
-<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)         <span class="co"># To import data on github</span></span>
-<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TExPosition)  <span class="co"># PCA tools</span></span>
-<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)      <span class="co"># Plotting tool for ggplot2</span></span>
-<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)   <span class="co"># HTML table tools</span></span>
-<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer) <span class="co"># Nice plotting colors</span></span>
-<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)    <span class="co"># Plotting tools</span></span>
+<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a><span class="in"># Packages ----</span></span>
+<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)    # For data manipulation, plotting, etc. </span></span>
+<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a><span class="in">library(httr)         # To import data on github</span></span>
+<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a><span class="in">library(TExPosition)  # PCA tools</span></span>
+<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggrepel)      # Plotting tool for ggplot2</span></span>
+<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a><span class="in">library(kableExtra)   # HTML table tools</span></span>
+<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a><span class="in">library(RColorBrewer) # Nice plotting colors</span></span>
+<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a><span class="in">library(gridExtra)    # Plotting tools</span></span>
 <span id="cb27-75"><a href="#cb27-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Custom functions ----</span></span>
-<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a><span class="co"># nice_table() simplifies the printing of HTML tables using kable</span></span>
-<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a>nice_table <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(x) <span class="sc">%&gt;%</span></span>
-<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">'striped'</span>, <span class="st">'hover'</span>, <span class="st">'responsive'</span>, <span class="st">'condensed'</span>))</span>
-<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a><span class="in"># Custom functions ----</span></span>
+<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a><span class="in"># nice_table() simplifies the printing of HTML tables using kable</span></span>
+<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a><span class="in">nice_table &lt;- function(x){</span></span>
+<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a><span class="in">  kable(x) %&gt;%</span></span>
+<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a><span class="in">    kable_styling(bootstrap_options = c('striped', 'hover', 'responsive', 'condensed'))</span></span>
+<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a><span class="in">  </span></span>
+<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
 <span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Color palettes ----</span></span>
-<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a>rdgy <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">11</span>, <span class="at">name =</span> <span class="st">"RdGy"</span>) <span class="co"># display.brewer.pal(11, "RdGy")</span></span>
+<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a><span class="in"># Color palettes ----</span></span>
+<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a><span class="in">rdgy &lt;- brewer.pal(n = 11, name = "RdGy") # display.brewer.pal(11, "RdGy")</span></span>
 <span id="cb27-87"><a href="#cb27-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot2 finishings</span></span>
-<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a>pca_furnish <span class="ot">&lt;-</span> <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a><span class="in"># ggplot2 finishings</span></span>
+<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a><span class="in">pca_furnish &lt;- theme_classic() +</span></span>
+<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a><span class="in">  theme(axis.title = element_blank(),</span></span>
+<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a><span class="in">        axis.ticks = element_blank(),</span></span>
+<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a><span class="in">        axis.line = element_blank()</span></span>
+<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a><span class="in">        )</span></span>
 <span id="cb27-94"><a href="#cb27-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-95"><a href="#cb27-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-96"><a href="#cb27-96" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-96"><a href="#cb27-96" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-97"><a href="#cb27-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-98"><a href="#cb27-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Import</span></span>
 <span id="cb27-99"><a href="#cb27-99" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-100"><a href="#cb27-100" aria-hidden="true" tabindex="-1"></a>Let's first prepare the data for analysis. These data were downloaded from <span class="co">[</span><span class="ot">Corsica's</span><span class="co">](http://corsica.hockey/)</span> team stats tool. We've prepared these data for you and are available for import into R like this:</span>
 <span id="cb27-101"><a href="#cb27-101" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-102"><a href="#cb27-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r import}</span></span>
-<span id="cb27-103"><a href="#cb27-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Link to raw data on Github</span></span>
-<span id="cb27-104"><a href="#cb27-104" aria-hidden="true" tabindex="-1"></a>link <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/nhl-team-data-corsica.csv"</span></span>
+<span id="cb27-103"><a href="#cb27-103" aria-hidden="true" tabindex="-1"></a><span class="in"># Link to raw data on Github</span></span>
+<span id="cb27-104"><a href="#cb27-104" aria-hidden="true" tabindex="-1"></a><span class="in">link &lt;- "https://raw.githubusercontent.com/mkmiecik14/mkmiecik14.github.io/master/data/nhl-team-data-corsica.csv"</span></span>
 <span id="cb27-105"><a href="#cb27-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-106"><a href="#cb27-106" aria-hidden="true" tabindex="-1"></a><span class="co"># from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request</span></span>
-<span id="cb27-107"><a href="#cb27-107" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">GET</span>(link)</span>
-<span id="cb27-108"><a href="#cb27-108" aria-hidden="true" tabindex="-1"></a>nhl_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">content</span>(data, <span class="st">"raw"</span>))</span>
+<span id="cb27-106"><a href="#cb27-106" aria-hidden="true" tabindex="-1"></a><span class="in"># from https://stackoverflow.com/questions/60714074/download-csv-file-from-github-using-httr-get-request</span></span>
+<span id="cb27-107"><a href="#cb27-107" aria-hidden="true" tabindex="-1"></a><span class="in">data &lt;- GET(link)</span></span>
+<span id="cb27-108"><a href="#cb27-108" aria-hidden="true" tabindex="-1"></a><span class="in">nhl_data &lt;- read_csv(content(data, "raw"))</span></span>
 <span id="cb27-109"><a href="#cb27-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-110"><a href="#cb27-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-111"><a href="#cb27-111" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-111"><a href="#cb27-111" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-112"><a href="#cb27-112" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-113"><a href="#cb27-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Preparation</span></span>
 <span id="cb27-114"><a href="#cb27-114" aria-hidden="true" tabindex="-1"></a></span>
@@ -1862,7 +2104,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-162"><a href="#cb27-162" aria-hidden="true" tabindex="-1"></a>                       )</span>
 <span id="cb27-163"><a href="#cb27-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-164"><a href="#cb27-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-165"><a href="#cb27-165" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-165"><a href="#cb27-165" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-166"><a href="#cb27-166" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-167"><a href="#cb27-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## Z-Scores</span></span>
 <span id="cb27-168"><a href="#cb27-168" aria-hidden="true" tabindex="-1"></a></span>
@@ -1910,7 +2152,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-214"><a href="#cb27-214" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-215"><a href="#cb27-215" aria-hidden="true" tabindex="-1"></a>Additionally, the Blackhawk's 2007-2008 season seemed their worst season with the team recording statistically the least amount of time on ice (TOI), the most penalty minutes served (PENT), and the lowest Corsi For (CF) compared to the following decade of play. The 2007-2008 season was a tumultuous time for the Hawks, including a change in ownership and the later hire of Coach Joel Quennevill (see <span class="co">[</span><span class="ot">NYT article</span><span class="co">](https://www.nytimes.com/2015/06/05/sports/hockey/when-ownership-changed-to-rocky-wirtz-in-2007-so-did-the-blackhawks.html)</span>). It is likely that the change in ownership, hiring of Coach Q, and the acquisition of Jonathon Towes and Patrick Kane that led to the drastic improvement of team stats in the years following.</span>
 <span id="cb27-216"><a href="#cb27-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-217"><a href="#cb27-217" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-217"><a href="#cb27-217" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-218"><a href="#cb27-218" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-219"><a href="#cb27-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## Correlations</span></span>
 <span id="cb27-220"><a href="#cb27-220" aria-hidden="true" tabindex="-1"></a></span>
@@ -1945,7 +2187,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-251"><a href="#cb27-251" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-252"><a href="#cb27-252" aria-hidden="true" tabindex="-1"></a>An interesting section that sticks out in the heatmap is the negative relationships between penalties, both served and drawn, and corsi, both for and against. This suggests that as the Hawks improved at drawing penalties, as well worsened at taking penalties, the amount of shots taken at the net decreased. This also came with a decrease in shots let up by the Hawks. My only explanation for this could be that as teams are on the powerplay, they become more selective with their shots, thus decreasing Corsi For and Corsi Against. This sort of aligns with our <span class="co">[</span><span class="ot">previous post</span><span class="co">](https://mattkmiecik.com/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html)</span> that determined a decrease in NHL powerplay goals in the last decade. How is decline relates to Corsi is yet to be determined.</span>
 <span id="cb27-253"><a href="#cb27-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-254"><a href="#cb27-254" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-254"><a href="#cb27-254" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-255"><a href="#cb27-255" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-256"><a href="#cb27-256" aria-hidden="true" tabindex="-1"></a><span class="fu"># Principal Components Analysis (PCA)</span></span>
 <span id="cb27-257"><a href="#cb27-257" aria-hidden="true" tabindex="-1"></a></span>
@@ -1957,11 +2199,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-263"><a href="#cb27-263" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-264"><a href="#cb27-264" aria-hidden="true" tabindex="-1"></a>We go over the very basics of PCA below. There is much more to this technique than we present, so we recommend the interested reader the following papers on this statistical technique:</span>
 <span id="cb27-265"><a href="#cb27-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-266"><a href="#cb27-266" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Abdi, H., &amp; Williams, L.J. (2010). <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf"</span> <span class="er">target</span><span class="ot">=</span><span class="st">"_blank"</span><span class="kw">&gt;</span>Principal component analysis<span class="kw">&lt;/a&gt;</span>. _Wiley Interdisciplinary Reviews: Computational Statistics_, 2, 433-459.</span>
+<span id="cb27-266"><a href="#cb27-266" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Abdi, H., &amp; Williams, L.J. (2010). &lt;a href="https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf" target="_blank"&gt;Principal component analysis&lt;/a&gt;. _Wiley Interdisciplinary Reviews: Computational Statistics_, 2, 433-459.</span>
 <span id="cb27-267"><a href="#cb27-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-268"><a href="#cb27-268" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Abdi, H. (2007). <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf"</span> <span class="er">target</span><span class="ot">=</span><span class="st">"_blank"</span><span class="kw">&gt;</span>Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)<span class="kw">&lt;/a&gt;</span>. In N.J. Salkind (Ed.): _Encyclopedia of Measurement and Statistics_. Thousand Oaks (CA): Sage. pp. 907-912.</span>
+<span id="cb27-268"><a href="#cb27-268" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Abdi, H. (2007). &lt;a href="https://www.utdallas.edu/~herve/Abdi-SVD2007-pretty.pdf" target="_blank"&gt;Singular Value Decomposition (SVD) and Generalized Singular Value Decomposition (GSVD)&lt;/a&gt;. In N.J. Salkind (Ed.): _Encyclopedia of Measurement and Statistics_. Thousand Oaks (CA): Sage. pp. 907-912.</span>
 <span id="cb27-269"><a href="#cb27-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-270"><a href="#cb27-270" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-270"><a href="#cb27-270" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-271"><a href="#cb27-271" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-272"><a href="#cb27-272" aria-hidden="true" tabindex="-1"></a>We first need to preprocess our data such that each column (i.e., measurement) has a mean of 0 and a standard deviation of 1. In other words, each column should be in z-score format. We've already done this above when exploring these data.</span>
 <span id="cb27-273"><a href="#cb27-273" aria-hidden="true" tabindex="-1"></a></span>
@@ -1979,11 +2221,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-287"><a href="#cb27-287" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-288"><a href="#cb27-288" aria-hidden="true" tabindex="-1"></a>Next we'll decompose this matrix using a singular value decomposition (SVD), the mathematical procedure at the heart of PCA. A SVD will decompose (break apart) our original matrix (X) into 3 separate matrices (U, $\Delta$, V). The original data matrix can be reconstructed via matrix multiplication/linear algebra of these 3 matrices:</span>
 <span id="cb27-289"><a href="#cb27-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-290"><a href="#cb27-290" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">style</span><span class="ot">=</span><span class="st">"font-size: 14pt"</span><span class="kw">&gt;</span></span>
+<span id="cb27-290"><a href="#cb27-290" aria-hidden="true" tabindex="-1"></a>&lt;font style="font-size: 14pt"&gt;</span>
 <span id="cb27-291"><a href="#cb27-291" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb27-292"><a href="#cb27-292" aria-hidden="true" tabindex="-1"></a>X = U \Delta V^T</span>
 <span id="cb27-293"><a href="#cb27-293" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-294"><a href="#cb27-294" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/font&gt;</span></span>
+<span id="cb27-294"><a href="#cb27-294" aria-hidden="true" tabindex="-1"></a>&lt;/font&gt;</span>
 <span id="cb27-295"><a href="#cb27-295" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-296"><a href="#cb27-296" aria-hidden="true" tabindex="-1"></a>Briefly, U contains information about the rows (e.g., years), V contains information about the columns (e.g., measures), and $\Delta$ is a diagonal matrix of "weights" called singular values that are the square root of the eigenvalues ($\lambda$).</span>
 <span id="cb27-297"><a href="#cb27-297" aria-hidden="true" tabindex="-1"></a></span>
@@ -1993,7 +2235,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-303"><a href="#cb27-303" aria-hidden="true" tabindex="-1"></a>hawks_data_svd <span class="ot">&lt;-</span> <span class="fu">svd</span>(hawks_data_mat) <span class="co"># singular value decomposition (SVD)</span></span>
 <span id="cb27-304"><a href="#cb27-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-305"><a href="#cb27-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-306"><a href="#cb27-306" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-306"><a href="#cb27-306" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-307"><a href="#cb27-307" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-308"><a href="#cb27-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eigen Values</span></span>
 <span id="cb27-309"><a href="#cb27-309" aria-hidden="true" tabindex="-1"></a></span>
@@ -2005,11 +2247,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-315"><a href="#cb27-315" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-316"><a href="#cb27-316" aria-hidden="true" tabindex="-1"></a>To do this, let's first square the singular values ($\Delta$) and sum them together. This is called __inertia__.</span>
 <span id="cb27-317"><a href="#cb27-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-318"><a href="#cb27-318" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">style</span><span class="ot">=</span><span class="st">"font-size: 14pt"</span><span class="kw">&gt;</span></span>
+<span id="cb27-318"><a href="#cb27-318" aria-hidden="true" tabindex="-1"></a>&lt;font style="font-size: 14pt"&gt;</span>
 <span id="cb27-319"><a href="#cb27-319" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb27-320"><a href="#cb27-320" aria-hidden="true" tabindex="-1"></a>I = \Sigma\lambda = \Sigma\Delta^2</span>
 <span id="cb27-321"><a href="#cb27-321" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-322"><a href="#cb27-322" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/font&gt;</span></span>
+<span id="cb27-322"><a href="#cb27-322" aria-hidden="true" tabindex="-1"></a>&lt;/font&gt;</span>
 <span id="cb27-323"><a href="#cb27-323" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-326"><a href="#cb27-326" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb27-327"><a href="#cb27-327" aria-hidden="true" tabindex="-1"></a>inertia <span class="ot">&lt;-</span> <span class="fu">sum</span>(hawks_data_svd<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span>) <span class="co"># Calculates inertia</span></span>
@@ -2038,7 +2280,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-352"><a href="#cb27-352" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-353"><a href="#cb27-353" aria-hidden="true" tabindex="-1"></a>As we can see from the scree plot, the first 3 components comprise <span class="in">`r round(sum(scree$perc_explained[1:3]), 2)`</span>% of the total variance, suggesting that these first three components are important to understanding the structure of the data set. The remaining components explain only <span class="in">`r round(sum(scree$perc_explained[4:9]), 2)`</span>% of the variability and may perhaps be noise.</span>
 <span id="cb27-354"><a href="#cb27-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-355"><a href="#cb27-355" aria-hidden="true" tabindex="-1"></a>Is there any way to statistically show that these components are important? One method is permutation testing. If you are unfamiliar with permutation testing, we recommend checking out our Shiny dashboard <span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://mattkmiecik.shinyapps.io/boot-perm-dash/"</span> <span class="er">target</span><span class="ot">=</span><span class="st">"_blank"</span><span class="kw">&gt;</span>here<span class="kw">&lt;/a&gt;</span>.</span>
+<span id="cb27-355"><a href="#cb27-355" aria-hidden="true" tabindex="-1"></a>Is there any way to statistically show that these components are important? One method is permutation testing. If you are unfamiliar with permutation testing, we recommend checking out our Shiny dashboard &lt;a href="https://mattkmiecik.shinyapps.io/boot-perm-dash/" target="_blank"&gt;here&lt;/a&gt;.</span>
 <span id="cb27-356"><a href="#cb27-356" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-357"><a href="#cb27-357" aria-hidden="true" tabindex="-1"></a>Briefly, to perform permutation testing we will scramble the information down the columns, thus breaking the relationship between the years and their measures. Then, we will re-compute the SVD for the new scrambled data matrix. We will repeat these steps 2,000 times, forming a null distribution of eigenvalues from which to compare our originally observed eigenvalues.</span>
 <span id="cb27-358"><a href="#cb27-358" aria-hidden="true" tabindex="-1"></a></span>
@@ -2060,28 +2302,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-376"><a href="#cb27-376" aria-hidden="true" tabindex="-1"></a>Now let's visualize these results against the observed values. We'll determine that a component is significant if its original observed eigenvalue is greater than 95% of the values derived from the null distribution (i.e., permutation testing).</span>
 <span id="cb27-377"><a href="#cb27-377" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-378"><a href="#cb27-378" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning=F}</span></span>
-<span id="cb27-379"><a href="#cb27-379" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts to long format for plotting</span></span>
-<span id="cb27-380"><a href="#cb27-380" aria-hidden="true" tabindex="-1"></a>perm_res_long <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(perm_res) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-381"><a href="#cb27-381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(comps, eigen) <span class="sc">%&gt;%</span></span>
-<span id="cb27-382"><a href="#cb27-382" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comps =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"V"</span>, <span class="st">""</span>, comps)))</span>
+<span id="cb27-379"><a href="#cb27-379" aria-hidden="true" tabindex="-1"></a><span class="in"># Converts to long format for plotting</span></span>
+<span id="cb27-380"><a href="#cb27-380" aria-hidden="true" tabindex="-1"></a><span class="in">perm_res_long &lt;- as_tibble(perm_res) %&gt;% </span></span>
+<span id="cb27-381"><a href="#cb27-381" aria-hidden="true" tabindex="-1"></a><span class="in">  gather(comps, eigen) %&gt;%</span></span>
+<span id="cb27-382"><a href="#cb27-382" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(comps = as.numeric(gsub("V", "", comps)))</span></span>
 <span id="cb27-383"><a href="#cb27-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-384"><a href="#cb27-384" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots permutation results</span></span>
-<span id="cb27-385"><a href="#cb27-385" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(perm_res_long, <span class="fu">aes</span>(eigen)) <span class="sc">+</span></span>
-<span id="cb27-386"><a href="#cb27-386" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb27-387"><a href="#cb27-387" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">data =</span> scree, </span>
-<span id="cb27-388"><a href="#cb27-388" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">xintercept =</span> eigs), </span>
-<span id="cb27-389"><a href="#cb27-389" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> rdgy[<span class="dv">3</span>], </span>
-<span id="cb27-390"><a href="#cb27-390" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="dv">2</span></span>
-<span id="cb27-391"><a href="#cb27-391" aria-hidden="true" tabindex="-1"></a>             ) <span class="sc">+</span></span>
-<span id="cb27-392"><a href="#cb27-392" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">800</span>)) <span class="sc">+</span></span>
-<span id="cb27-393"><a href="#cb27-393" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">minor_breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb27-394"><a href="#cb27-394" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">minor_breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb27-395"><a href="#cb27-395" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"</span><span class="sc">\n</span><span class="st"> Eigenvalue"</span>, </span>
-<span id="cb27-396"><a href="#cb27-396" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency </span><span class="sc">\n</span><span class="st">"</span>, </span>
-<span id="cb27-397"><a href="#cb27-397" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st"> Note: Originally observed eigenvalues denoted by red dashed line."</span></span>
-<span id="cb27-398"><a href="#cb27-398" aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span></span>
-<span id="cb27-399"><a href="#cb27-399" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>comps) <span class="sc">+</span></span>
-<span id="cb27-400"><a href="#cb27-400" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb27-384"><a href="#cb27-384" aria-hidden="true" tabindex="-1"></a><span class="in"># Plots permutation results</span></span>
+<span id="cb27-385"><a href="#cb27-385" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot(perm_res_long, aes(eigen)) +</span></span>
+<span id="cb27-386"><a href="#cb27-386" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_histogram(binwidth = 1) +</span></span>
+<span id="cb27-387"><a href="#cb27-387" aria-hidden="true" tabindex="-1"></a><span class="in">  geom_vline(data = scree, </span></span>
+<span id="cb27-388"><a href="#cb27-388" aria-hidden="true" tabindex="-1"></a><span class="in">             aes(xintercept = eigs), </span></span>
+<span id="cb27-389"><a href="#cb27-389" aria-hidden="true" tabindex="-1"></a><span class="in">             color = rdgy[3], </span></span>
+<span id="cb27-390"><a href="#cb27-390" aria-hidden="true" tabindex="-1"></a><span class="in">             linetype = 2</span></span>
+<span id="cb27-391"><a href="#cb27-391" aria-hidden="true" tabindex="-1"></a><span class="in">             ) +</span></span>
+<span id="cb27-392"><a href="#cb27-392" aria-hidden="true" tabindex="-1"></a><span class="in">  coord_cartesian(ylim = c(0, 800)) +</span></span>
+<span id="cb27-393"><a href="#cb27-393" aria-hidden="true" tabindex="-1"></a><span class="in">  scale_y_continuous(minor_breaks = NULL) +</span></span>
+<span id="cb27-394"><a href="#cb27-394" aria-hidden="true" tabindex="-1"></a><span class="in">  scale_x_continuous(minor_breaks = NULL) +</span></span>
+<span id="cb27-395"><a href="#cb27-395" aria-hidden="true" tabindex="-1"></a><span class="in">  labs(x = "\n Eigenvalue", </span></span>
+<span id="cb27-396"><a href="#cb27-396" aria-hidden="true" tabindex="-1"></a><span class="in">       y = "Frequency \n", </span></span>
+<span id="cb27-397"><a href="#cb27-397" aria-hidden="true" tabindex="-1"></a><span class="in">       caption = "\n Note: Originally observed eigenvalues denoted by red dashed line."</span></span>
+<span id="cb27-398"><a href="#cb27-398" aria-hidden="true" tabindex="-1"></a><span class="in">       ) +</span></span>
+<span id="cb27-399"><a href="#cb27-399" aria-hidden="true" tabindex="-1"></a><span class="in">  facet_wrap(~comps) +</span></span>
+<span id="cb27-400"><a href="#cb27-400" aria-hidden="true" tabindex="-1"></a><span class="in">  theme_minimal()</span></span>
 <span id="cb27-401"><a href="#cb27-401" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-402"><a href="#cb27-402" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-403"><a href="#cb27-403" aria-hidden="true" tabindex="-1"></a>It looks like the only components that have a shot at being greater than 95% of the null distribution are components 1 and 2. Let's see if this is the case:</span>
@@ -2110,11 +2352,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-428"><a href="#cb27-428" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-429"><a href="#cb27-429" aria-hidden="true" tabindex="-1"></a>Now that we know what components may be more important than others, let's take a look at what we can learn from examining factor scores for the rows (years) and the columns (measures).</span>
 <span id="cb27-430"><a href="#cb27-430" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-431"><a href="#cb27-431" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-431"><a href="#cb27-431" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-432"><a href="#cb27-432" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-433"><a href="#cb27-433" aria-hidden="true" tabindex="-1"></a><span class="fu">### Row-wise Factor Scores</span></span>
 <span id="cb27-434"><a href="#cb27-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-435"><a href="#cb27-435" aria-hidden="true" tabindex="-1"></a>We can explore how the years are seen through the components by first scaling (multiplying) the U matrix by the singular values. <span class="kw">&lt;font</span> <span class="er">style</span><span class="ot">=</span><span class="st">"font-size: 14pt"</span><span class="kw">&gt;</span> $$F_{years} = U\Delta$$ <span class="kw">&lt;/font&gt;</span> The <span class="in">`%*%`</span> operator performs matrix algebra:</span>
+<span id="cb27-435"><a href="#cb27-435" aria-hidden="true" tabindex="-1"></a>We can explore how the years are seen through the components by first scaling (multiplying) the U matrix by the singular values. &lt;font style="font-size: 14pt"&gt; $$F_{years} = U\Delta$$ &lt;/font&gt; The <span class="in">`%*%`</span> operator performs matrix algebra:</span>
 <span id="cb27-436"><a href="#cb27-436" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-439"><a href="#cb27-439" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb27-440"><a href="#cb27-440" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> hawks_data_svd<span class="sc">$</span>u <span class="sc">%*%</span> <span class="fu">diag</span>(hawks_data_svd<span class="sc">$</span>d)  <span class="co"># scaling years data</span></span>
@@ -2172,11 +2414,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-496"><a href="#cb27-496" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-497"><a href="#cb27-497" aria-hidden="true" tabindex="-1"></a>One pattern of results that emerges, somewhat unexpectedly, is that the 2007-2008 and 2017-2018 seasons are contrasted on principal component 1 (x-axis). In both seasons, the Hawks missed the playoffs (did not qualify); however, the 2018 season is more similar to the seasons in which the Hawks made the playoffs. These results also highlight the 2015 Stanley Cup winning season, which is surrounded by seasons with early first round playoff exits. This may be indicative of an average regular season in 2015 (in respect to the Hawks), but an exceptional post season performance.</span>
 <span id="cb27-498"><a href="#cb27-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-499"><a href="#cb27-499" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-499"><a href="#cb27-499" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-500"><a href="#cb27-500" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-501"><a href="#cb27-501" aria-hidden="true" tabindex="-1"></a><span class="fu">## Column-wise Factor Scores</span></span>
 <span id="cb27-502"><a href="#cb27-502" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-503"><a href="#cb27-503" aria-hidden="true" tabindex="-1"></a>Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let's scale the V matrix by the singular values to obtain the factor scores. <span class="kw">&lt;font</span> <span class="er">style</span><span class="ot">=</span><span class="st">"font-size: 14pt"</span><span class="kw">&gt;</span>$$F_{metric} = V\Delta$$<span class="kw">&lt;/font&gt;</span> Again, the <span class="in">`%*%`</span> operator performs matrix algebra:</span>
+<span id="cb27-503"><a href="#cb27-503" aria-hidden="true" tabindex="-1"></a>Through the PCA, we are also able to examine the factor scores from the team metrics/stats (i.e., columns). Let's scale the V matrix by the singular values to obtain the factor scores. &lt;font style="font-size: 14pt"&gt;$$F_{metric} = V\Delta$$&lt;/font&gt; Again, the <span class="in">`%*%`</span> operator performs matrix algebra:</span>
 <span id="cb27-504"><a href="#cb27-504" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-507"><a href="#cb27-507" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb27-508"><a href="#cb27-508" aria-hidden="true" tabindex="-1"></a>metric <span class="ot">&lt;-</span> hawks_data_svd<span class="sc">$</span>v <span class="sc">%*%</span> <span class="fu">diag</span>(hawks_data_svd<span class="sc">$</span>d) <span class="co"># scaling years data</span></span>
@@ -2206,7 +2448,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-534"><a href="#cb27-534" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-535"><a href="#cb27-535" aria-hidden="true" tabindex="-1"></a>Additionally, the second component is dominated by Shooting Percentage, Save Percentage, and Goals For -- and contrasted by GA. It makes sense that increases in Shooting Percentage would be related to increases in Goals For, which would also be related to decreases in Goals Against.</span>
 <span id="cb27-536"><a href="#cb27-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-537"><a href="#cb27-537" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-537"><a href="#cb27-537" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-538"><a href="#cb27-538" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-539"><a href="#cb27-539" aria-hidden="true" tabindex="-1"></a><span class="fu">## Factor Score Comparisons</span></span>
 <span id="cb27-540"><a href="#cb27-540" aria-hidden="true" tabindex="-1"></a></span>
@@ -2229,15 +2471,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-559"><a href="#cb27-559" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Cluster 2: the 2011-2018 seasons are well described by elevated Corsi (both For and Against), Goals Against (GA), and time on ice (TOI)</span>
 <span id="cb27-560"><a href="#cb27-560" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Cluster 3: the 2012-2013 season was characterized by a high powered offense (elevated Shooting % and Goals For) and excellent defense (high Save % and low Goals Against)</span>
 <span id="cb27-561"><a href="#cb27-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-562"><a href="#cb27-562" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-562"><a href="#cb27-562" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-563"><a href="#cb27-563" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-564"><a href="#cb27-564" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contributions</span></span>
 <span id="cb27-565"><a href="#cb27-565" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-566"><a href="#cb27-566" aria-hidden="true" tabindex="-1"></a>We can also take a look at how much each season (row) or metric (column) contributes to each component. To calculate the contribution of each component, we square each factor score and divide it by the sum of squared factor, which is also the eigenvalue.</span>
 <span id="cb27-567"><a href="#cb27-567" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-568"><a href="#cb27-568" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;font</span> <span class="er">style</span><span class="ot">=</span><span class="st">"font-size: 14pt"</span><span class="kw">&gt;</span></span>
+<span id="cb27-568"><a href="#cb27-568" aria-hidden="true" tabindex="-1"></a>&lt;font style="font-size: 14pt"&gt;</span>
 <span id="cb27-569"><a href="#cb27-569" aria-hidden="true" tabindex="-1"></a>$$contribution = \frac{f^2}{\Sigma f^2} = \frac{f^2}{\lambda}$$</span>
-<span id="cb27-570"><a href="#cb27-570" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/font&gt;</span></span>
+<span id="cb27-570"><a href="#cb27-570" aria-hidden="true" tabindex="-1"></a>&lt;/font&gt;</span>
 <span id="cb27-571"><a href="#cb27-571" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-572"><a href="#cb27-572" aria-hidden="true" tabindex="-1"></a>Here is a function that will compute the contributions:</span>
 <span id="cb27-573"><a href="#cb27-573" aria-hidden="true" tabindex="-1"></a></span>
@@ -2262,23 +2504,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-594"><a href="#cb27-594" aria-hidden="true" tabindex="-1"></a>Now let's apply the above function to calculate the contributions of the years (rows):</span>
 <span id="cb27-595"><a href="#cb27-595" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-596"><a href="#cb27-596" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, warning = F, message = F}</span></span>
-<span id="cb27-597"><a href="#cb27-597" aria-hidden="true" tabindex="-1"></a><span class="co"># calculates the contribution of each row (e.g., season) ----</span></span>
-<span id="cb27-598"><a href="#cb27-598" aria-hidden="true" tabindex="-1"></a>contributions_years <span class="ot">&lt;-</span> <span class="fu">apply</span>(years, <span class="dv">2</span>, contribution)</span>
+<span id="cb27-597"><a href="#cb27-597" aria-hidden="true" tabindex="-1"></a><span class="in"># calculates the contribution of each row (e.g., season) ----</span></span>
+<span id="cb27-598"><a href="#cb27-598" aria-hidden="true" tabindex="-1"></a><span class="in">contributions_years &lt;- apply(years, 2, contribution)</span></span>
 <span id="cb27-599"><a href="#cb27-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-600"><a href="#cb27-600" aria-hidden="true" tabindex="-1"></a><span class="co"># add column names</span></span>
-<span id="cb27-601"><a href="#cb27-601" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(contributions_years) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Component_"</span>,<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(contributions_years))</span>
+<span id="cb27-600"><a href="#cb27-600" aria-hidden="true" tabindex="-1"></a><span class="in"># add column names</span></span>
+<span id="cb27-601"><a href="#cb27-601" aria-hidden="true" tabindex="-1"></a><span class="in">colnames(contributions_years) &lt;- paste0("Component_",1:ncol(contributions_years))</span></span>
 <span id="cb27-602"><a href="#cb27-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-603"><a href="#cb27-603" aria-hidden="true" tabindex="-1"></a><span class="co"># converts contributions to long format ----</span></span>
-<span id="cb27-604"><a href="#cb27-604" aria-hidden="true" tabindex="-1"></a>contributions_years_long <span class="ot">&lt;-</span> contributions_years <span class="sc">%&gt;%</span> </span>
-<span id="cb27-605"><a href="#cb27-605" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span>                                   </span>
-<span id="cb27-606"><a href="#cb27-606" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Season =</span> <span class="fu">rownames</span>(years)) <span class="sc">%&gt;%</span>              <span class="co"># add Seasons </span></span>
-<span id="cb27-607"><a href="#cb27-607" aria-hidden="true" tabindex="-1"></a>  reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="at">value.name =</span> <span class="st">"Contributions"</span>) <span class="sc">%&gt;%</span>  <span class="co"># ensure values are called contributions</span></span>
-<span id="cb27-608"><a href="#cb27-608" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(variable) <span class="sc">%&gt;%</span></span>
-<span id="cb27-609"><a href="#cb27-609" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Contributes =</span> <span class="fu">ifelse</span>(<span class="fu">abs</span>(Contributions) <span class="sc">&gt;</span> <span class="fu">abs</span>(<span class="fu">mean</span>(Contributions)), </span>
-<span id="cb27-610"><a href="#cb27-610" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Yes"</span>, </span>
-<span id="cb27-611"><a href="#cb27-611" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"No"</span>)</span>
-<span id="cb27-612"><a href="#cb27-612" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span></span>
-<span id="cb27-613"><a href="#cb27-613" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb27-603"><a href="#cb27-603" aria-hidden="true" tabindex="-1"></a><span class="in"># converts contributions to long format ----</span></span>
+<span id="cb27-604"><a href="#cb27-604" aria-hidden="true" tabindex="-1"></a><span class="in">contributions_years_long &lt;- contributions_years %&gt;% </span></span>
+<span id="cb27-605"><a href="#cb27-605" aria-hidden="true" tabindex="-1"></a><span class="in">  as_tibble() %&gt;%                                   </span></span>
+<span id="cb27-606"><a href="#cb27-606" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(Season = rownames(years)) %&gt;%              # add Seasons </span></span>
+<span id="cb27-607"><a href="#cb27-607" aria-hidden="true" tabindex="-1"></a><span class="in">  reshape2::melt(value.name = "Contributions") %&gt;%  # ensure values are called contributions</span></span>
+<span id="cb27-608"><a href="#cb27-608" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(variable) %&gt;%</span></span>
+<span id="cb27-609"><a href="#cb27-609" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(Contributes = ifelse(abs(Contributions) &gt; abs(mean(Contributions)), </span></span>
+<span id="cb27-610"><a href="#cb27-610" aria-hidden="true" tabindex="-1"></a><span class="in">                              "Yes", </span></span>
+<span id="cb27-611"><a href="#cb27-611" aria-hidden="true" tabindex="-1"></a><span class="in">                              "No")</span></span>
+<span id="cb27-612"><a href="#cb27-612" aria-hidden="true" tabindex="-1"></a><span class="in">         ) %&gt;%</span></span>
+<span id="cb27-613"><a href="#cb27-613" aria-hidden="true" tabindex="-1"></a><span class="in">  ungroup()</span></span>
 <span id="cb27-614"><a href="#cb27-614" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-615"><a href="#cb27-615" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-616"><a href="#cb27-616" aria-hidden="true" tabindex="-1"></a>Now let's plot these contributions. Any years that have contributions greater than the mean are said to contribute to the variability on that component:</span>
@@ -2338,22 +2580,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-672"><a href="#cb27-672" aria-hidden="true" tabindex="-1"></a>Now let's repeat this procedure for the metrics (columns):</span>
 <span id="cb27-673"><a href="#cb27-673" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-674"><a href="#cb27-674" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, message = F}</span></span>
-<span id="cb27-675"><a href="#cb27-675" aria-hidden="true" tabindex="-1"></a><span class="co"># calculates the contribution of each row (e.g., metric)</span></span>
-<span id="cb27-676"><a href="#cb27-676" aria-hidden="true" tabindex="-1"></a>contributions_metric <span class="ot">&lt;-</span> <span class="fu">apply</span>(metric, <span class="dv">2</span>, contribution)</span>
+<span id="cb27-675"><a href="#cb27-675" aria-hidden="true" tabindex="-1"></a><span class="in"># calculates the contribution of each row (e.g., metric)</span></span>
+<span id="cb27-676"><a href="#cb27-676" aria-hidden="true" tabindex="-1"></a><span class="in">contributions_metric &lt;- apply(metric, 2, contribution)</span></span>
 <span id="cb27-677"><a href="#cb27-677" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-678"><a href="#cb27-678" aria-hidden="true" tabindex="-1"></a><span class="co"># add column names</span></span>
-<span id="cb27-679"><a href="#cb27-679" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(contributions_metric) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Component_"</span>,<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(metric)) </span>
+<span id="cb27-678"><a href="#cb27-678" aria-hidden="true" tabindex="-1"></a><span class="in"># add column names</span></span>
+<span id="cb27-679"><a href="#cb27-679" aria-hidden="true" tabindex="-1"></a><span class="in">colnames(contributions_metric) &lt;- paste0("Component_",1:ncol(metric)) </span></span>
 <span id="cb27-680"><a href="#cb27-680" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-681"><a href="#cb27-681" aria-hidden="true" tabindex="-1"></a><span class="co"># converts contributions to long format</span></span>
-<span id="cb27-682"><a href="#cb27-682" aria-hidden="true" tabindex="-1"></a>contributions_metric_long <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(contributions_metric) <span class="sc">%&gt;%</span></span>
-<span id="cb27-683"><a href="#cb27-683" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Metric =</span> <span class="fu">rownames</span>(contributions_metric)) <span class="sc">%&gt;%</span></span>
-<span id="cb27-684"><a href="#cb27-684" aria-hidden="true" tabindex="-1"></a>  reshape2<span class="sc">::</span><span class="fu">melt</span>(<span class="at">value.name =</span> <span class="st">"Contributions"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-685"><a href="#cb27-685" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(variable) <span class="sc">%&gt;%</span></span>
-<span id="cb27-686"><a href="#cb27-686" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Contributes =</span> <span class="fu">ifelse</span>(<span class="fu">abs</span>(Contributions) <span class="sc">&gt;</span> <span class="fu">abs</span>(<span class="fu">mean</span>(Contributions)), </span>
-<span id="cb27-687"><a href="#cb27-687" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Yes"</span>, </span>
-<span id="cb27-688"><a href="#cb27-688" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"No"</span>)</span>
-<span id="cb27-689"><a href="#cb27-689" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span></span>
-<span id="cb27-690"><a href="#cb27-690" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb27-681"><a href="#cb27-681" aria-hidden="true" tabindex="-1"></a><span class="in"># converts contributions to long format</span></span>
+<span id="cb27-682"><a href="#cb27-682" aria-hidden="true" tabindex="-1"></a><span class="in">contributions_metric_long &lt;- as_tibble(contributions_metric) %&gt;%</span></span>
+<span id="cb27-683"><a href="#cb27-683" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(Metric = rownames(contributions_metric)) %&gt;%</span></span>
+<span id="cb27-684"><a href="#cb27-684" aria-hidden="true" tabindex="-1"></a><span class="in">  reshape2::melt(value.name = "Contributions") %&gt;%</span></span>
+<span id="cb27-685"><a href="#cb27-685" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(variable) %&gt;%</span></span>
+<span id="cb27-686"><a href="#cb27-686" aria-hidden="true" tabindex="-1"></a><span class="in">  mutate(Contributes = ifelse(abs(Contributions) &gt; abs(mean(Contributions)), </span></span>
+<span id="cb27-687"><a href="#cb27-687" aria-hidden="true" tabindex="-1"></a><span class="in">                              "Yes", </span></span>
+<span id="cb27-688"><a href="#cb27-688" aria-hidden="true" tabindex="-1"></a><span class="in">                              "No")</span></span>
+<span id="cb27-689"><a href="#cb27-689" aria-hidden="true" tabindex="-1"></a><span class="in">         ) %&gt;%</span></span>
+<span id="cb27-690"><a href="#cb27-690" aria-hidden="true" tabindex="-1"></a><span class="in">  ungroup()</span></span>
 <span id="cb27-691"><a href="#cb27-691" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb27-692"><a href="#cb27-692" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-693"><a href="#cb27-693" aria-hidden="true" tabindex="-1"></a>And here are the contribution plots for the metrics on components 1 and 2:</span>
@@ -2420,7 +2662,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-756"><a href="#cb27-756" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Season 2013 is associated with Goals For (GF), Save Percentage (SavePerc), and Shooting Percentage (ShootPerc) and contribute negatively to component 2. </span>
 <span id="cb27-757"><a href="#cb27-757" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>On the other hand, Goals Against (GA) contributes positively to component 2.  </span>
 <span id="cb27-758"><a href="#cb27-758" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-759"><a href="#cb27-759" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-759"><a href="#cb27-759" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-760"><a href="#cb27-760" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-761"><a href="#cb27-761" aria-hidden="true" tabindex="-1"></a><span class="fu"># Summary</span></span>
 <span id="cb27-762"><a href="#cb27-762" aria-hidden="true" tabindex="-1"></a></span>
@@ -2436,7 +2678,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb27-772"><a href="#cb27-772" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-773"><a href="#cb27-773" aria-hidden="true" tabindex="-1"></a>Future directions include logistic regression approaches that utilize factor scores from this PCA to understand relationships between regular season stats and playoff performance.</span>
 <span id="cb27-774"><a href="#cb27-774" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-775"><a href="#cb27-775" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;br</span> <span class="kw">&gt;</span></span>
+<span id="cb27-775"><a href="#cb27-775" aria-hidden="true" tabindex="-1"></a>&lt;br &gt;</span>
 <span id="cb27-776"><a href="#cb27-776" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-777"><a href="#cb27-777" aria-hidden="true" tabindex="-1"></a><span class="fu"># Exercise</span></span>
 <span id="cb27-778"><a href="#cb27-778" aria-hidden="true" tabindex="-1"></a></span>
@@ -2449,12 +2691,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2017-2023, Matthew J. Kmiecik, PhD</div>
+    <div class="nav-footer-center">
+<p>Copyright 2024, Matthew J. Kmiecik, PhD</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 
