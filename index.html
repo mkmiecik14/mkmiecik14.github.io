@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -51,7 +51,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -60,6 +66,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -107,12 +114,39 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <meta property="og:title" content="Matthew J. Kmiecik, PhD -">
-<meta property="og:description" content="">
+<meta property="og:description" content="A blog about R, statistics, data viz, and academic musings.">
 <meta property="og:image" content="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/thumbnail.png">
-<meta property="og:site-name" content="Matthew J. Kmiecik, PhD">
+<meta property="og:site_name" content="Matthew J. Kmiecik, PhD">
 <meta name="twitter:title" content="Matthew J. Kmiecik, PhD -">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="A blog about R, statistics, data viz, and academic musings.">
 <meta name="twitter:image" content="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/thumbnail.png">
 <meta name="twitter:creator" content="@mattkmiecik14">
 <meta name="twitter:card" content="summary_large_image">
@@ -121,10 +155,10 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Matthew J. Kmiecik, PhD</span>
     </a>
@@ -136,55 +170,55 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page"><i class="bi bi-house-door-fill" role="img">
+    <a class="nav-link active" href="./index.html" aria-current="page"> <i class="bi bi-house-door-fill" role="img">
 </i> 
- <span class="menu-text">Home</span></a>
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cv.html" rel="" target=""><i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="./cv.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
- <span class="menu-text">CV</span></a>
+<span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./consulting.html" rel="" target=""><i class="bi bi-briefcase-fill" role="img">
+    <a class="nav-link" href="./consulting.html"> <i class="bi bi-briefcase-fill" role="img">
 </i> 
- <span class="menu-text">Consulting</span></a>
+<span class="menu-text">Consulting</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="mailto:mkmiecik14@gmail.com" rel="" target="_top"><i class="bi bi-envelope-fill" role="img">
+    <a class="nav-link" href="mailto:mkmiecik14@gmail.com" target="_top"> <i class="bi bi-envelope-fill" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/mattkmiecik14" rel="" target="_blank"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/mattkmiecik14" target="_blank"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/" rel="" target="_blank"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/matthew-kmiecik-776603b0/" target="_blank"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/mkmiecik14" rel="" target="_blank"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/mkmiecik14" target="_blank"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en" rel="" target="_blank">
- <span class="menu-text"><i class="ai  ai-google-scholar" title="" style="color:"></i></span></a>
+    <a class="nav-link" href="https://scholar.google.com/citations?user=44bK4o8AAAAJ&amp;hl=en" target="_blank"> 
+<span class="menu-text"><i class="ai  ai-google-scholar" title="" style="color:"></i></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik" rel="" target="_blank">
- <span class="menu-text"><i class="ai  ai-researchgate" title="" style="color:"></i></span></a>
+    <a class="nav-link" href="https://www.researchgate.net/profile/Matthew-Kmiecik" target="_blank"> 
+<span class="menu-text"><i class="ai  ai-researchgate" title="" style="color:"></i></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -200,11 +234,12 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 
 
 
+
 <!-- profile picture -->
 <div style="text-align: center; border-radius: 50%">
-<div class="quarto-figure quarto-figure-center" style="border-radius: 50%;">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/matt-casual-circle.jpg" class="img-fluid figure-img" width="250"></p>
+<p><img src="images/matt-casual-circle.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="border-radius: 50%;" width="250"></p>
 </figure>
 </div>
 </div>
@@ -212,7 +247,11 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <h2 class="anchored">
 <i class="fas fa-user-circle" aria-hidden="true"></i> About Me
 </h2>
-<p>I’m a cognitive neuroscientist doing a (second) postdoc at 23andMe researching genotypic and phenotypic markers of Parkinson’s Disease. In my first postdoc, I studied how individuals’ sensitivity across multiple sensory modalities predicted their long-term pelvic pain. In graduate school, I studied volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury, and human reasoning. My undergraduate work utilized EEG to understand the neural correlates and timecourse of analogical reasoning. In my spare time I enjoy reading, exercising, crossword puzzles, and the endless pursuit of new hobbies.</p>
+<p>I’m a neuroscientist researching genetic forms of Parkinson’s Disease at 23andMe. In my first postdoc, I studied multimodal hypersensitivity and pelvic pain. In graduate school, I studied volitional control of semantic processing, executive dysfunction in chronic-phase traumatic brain injury, and human reasoning. My undergraduate work utilized EEG to understand the neural correlates of analogical reasoning. In my spare time I enjoy reading, golfing, and the endless pursuit of new hobbies.</p>
+<p align="center">
+<iframe src="https://mattkmiecik.substack.com/embed" width="480" height="320" style="border:0px solid #EEE; background:white;" frameborder="0" scrolling="no">
+</iframe>
+</p>
 <!-- about me -->
 <h2 class="anchored">
 <i class="far fa-sticky-note" aria-hidden="true"></i> Blog Posts
@@ -223,19 +262,19 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Academic,R,E-Prime" data-listing-date-sort="1584514800000" data-listing-file-modified-sort="1703357577919" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
+<div class="quarto-post image-right" data-index="0" data-categories="Academic,R,E-Prime" data-listing-date-sort="1584514800000" data-listing-file-modified-sort="1728755770287" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1933">
 <div class="thumbnail">
-<p><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html"> <img src="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/thumbnail.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external"></a></p><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">
+<p><img src="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html">
 <h3 class="no-anchor listing-title">
-Stop Using Excel to Preprocess E-Prime Data
+<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">Stop Using Excel to Preprocess E-Prime Data</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -247,14 +286,12 @@ R
 E-Prime
 </div>
 </div>
-<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html">
 <div class="listing-description">
-<p>A walk-through of how to process E-Prime output with R.</p>
+<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">A walk-through of how to process E-Prime output with R.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html">
+<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">
 <div class="listing-date">
 Mar 18, 2020
 </div>
@@ -264,19 +301,19 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Academic,R,Reading,Plotly" data-listing-date-sort="1577347200000" data-listing-file-modified-sort="1703357577900" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
+<div class="quarto-post image-right" data-index="1" data-categories="Academic,R,Reading,Plotly" data-listing-date-sort="1577347200000" data-listing-file-modified-sort="1728755770269" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1638">
 <div class="thumbnail">
-<p><a href="./posts/post-My-Reads/post-My-Reads.html"> <img src="./posts/post-My-Reads/thumbnail.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external"></a></p><a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">
+<p><img src="./posts/post-My-Reads/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-My-Reads/post-My-Reads.html">
 <h3 class="no-anchor listing-title">
-My Reads
+<a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">My Reads</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -291,14 +328,12 @@ Reading
 Plotly
 </div>
 </div>
-<a href="./posts/post-My-Reads/post-My-Reads.html">
 <div class="listing-description">
-<p>The results of a 1-year reading experiment.</p>
+<a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">The results of a 1-year reading experiment.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-My-Reads/post-My-Reads.html">
+<a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">
 <div class="listing-date">
 Dec 26, 2019
 </div>
@@ -308,19 +343,19 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1551945600000" data-listing-file-modified-sort="1703357577884" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31">
+<div class="quarto-post image-right" data-index="2" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1551945600000" data-listing-file-modified-sort="1728755770249" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31" data-listing-word-count-sort="6003">
 <div class="thumbnail">
-<p><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html"> <img src="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/thumbnail.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external"></a></p><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">
+<p><img src="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html">
 <h3 class="no-anchor listing-title">
-Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis
+<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -332,14 +367,12 @@ Hockey Analytics
 R
 </div>
 </div>
-<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html">
 <div class="listing-description">
-<p>Two grad students get over zealous with PCA and NHL data.</p>
+<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">Two grad students get over zealous with PCA and NHL data.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html">
+<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">
 <div class="listing-date">
 Mar 7, 2019
 </div>
@@ -349,19 +382,19 @@ Matthew J. Kmiecik &amp; Ekarin E. Pongpipat
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Academic,Paper Review" data-listing-date-sort="1532242800000" data-listing-file-modified-sort="1703357577880" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
+<div class="quarto-post image-right" data-index="3" data-categories="Academic,Paper Review" data-listing-date-sort="1532242800000" data-listing-file-modified-sort="1728755770243" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="993">
 <div class="thumbnail">
-<p><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html"> <img src="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/thumbnail.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external"></a></p><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">
+<p><img src="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html">
 <h3 class="no-anchor listing-title">
-A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury
+<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -370,14 +403,12 @@ Academic
 Paper Review
 </div>
 </div>
-<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html">
 <div class="listing-description">
-<p>A (hopefully) accessible summary of my first first-authored paper.</p>
+<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">A (hopefully) accessible summary of my first first-authored paper.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html">
+<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">
 <div class="listing-date">
 Jul 22, 2018
 </div>
@@ -387,19 +418,19 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Academic,Shiny,R" data-listing-date-sort="1528354800000" data-listing-file-modified-sort="1703357577883" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4">
+<div class="quarto-post image-right" data-index="4" data-categories="Academic,Shiny,R" data-listing-date-sort="1528354800000" data-listing-file-modified-sort="1728755770248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="722">
 <div class="thumbnail">
-<p><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html"> <img src="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/thumbnail.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external"></a></p><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">
+<p><img src="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html">
 <h3 class="no-anchor listing-title">
-Bootstrapping and Permutation Testing: A Shiny App
+<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">Bootstrapping and Permutation Testing: A Shiny App</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -411,14 +442,12 @@ Shiny
 R
 </div>
 </div>
-<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html">
 <div class="listing-description">
-<p>Using Shiny to help understand the difference between bootstrapping and permutation testing.</p>
+<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">Using Shiny to help understand the difference between bootstrapping and permutation testing.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html">
+<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">
 <div class="listing-date">
 Jun 7, 2018
 </div>
@@ -428,19 +457,19 @@ Matthew J. Kmiecik &amp; Ekarin E. Pongpipat
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Academic,R,March Madness" data-listing-date-sort="1521529200000" data-listing-file-modified-sort="1703357577904" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="60">
+<div class="quarto-post image-right" data-index="5" data-categories="Academic,R,March Madness" data-listing-date-sort="1521529200000" data-listing-file-modified-sort="1728755770274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="60" data-listing-word-count-sort="11969">
 <div class="thumbnail">
-<p><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html"> <img src="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/thumbnail.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external"></a></p><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">
+<p><img src="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html">
 <h3 class="no-anchor listing-title">
-Simulating 2018 NCAA March Madness Tournament Performance in R
+<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">Simulating 2018 NCAA March Madness Tournament Performance in R</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -452,14 +481,12 @@ R
 March Madness
 </div>
 </div>
-<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html">
 <div class="listing-description">
-<p>A bunch of grad students compete to design the best March Madness algorithm.</p>
+<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">A bunch of grad students compete to design the best March Madness algorithm.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html">
+<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">
 <div class="listing-date">
 Mar 20, 2018
 </div>
@@ -469,19 +496,19 @@ Nick Ray, David Hoagey, Linh Lazarus, Ekarin Pongpipat, &amp; Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1518336000000" data-listing-file-modified-sort="1703357577890" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22">
+<div class="quarto-post image-right" data-index="6" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1518336000000" data-listing-file-modified-sort="1728755770257" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4284">
 <div class="thumbnail">
-<p><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html"> <img src="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/thumbnail.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external"></a></p><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">
+<p><img src="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">
 <h3 class="no-anchor listing-title">
-Multilevel Modeling in R with NHL Power Play Data
+<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">Multilevel Modeling in R with NHL Power Play Data</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -493,14 +520,12 @@ Hockey Analytics
 R
 </div>
 </div>
-<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">
 <div class="listing-description">
-<p>A walkthrough of sequential multilevel modeling in R using NHL data.</p>
+<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">A walkthrough of sequential multilevel modeling in R using NHL data.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html">
+<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">
 <div class="listing-date">
 Feb 11, 2018
 </div>
@@ -510,19 +535,19 @@ Ekarin Pongpipat &amp; Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Academic,Writing" data-listing-date-sort="1506322800000" data-listing-file-modified-sort="1703357577933" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
+<div class="quarto-post image-right" data-index="7" data-categories="Academic,Writing" data-listing-date-sort="1506322800000" data-listing-file-modified-sort="1728755770301" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1626">
 <div class="thumbnail">
-<p><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html"> <img src="./images/me.jpg" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external"></a></p><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">
+<p class="card-img-top"><img src="./images/me.jpg"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html">
 <h3 class="no-anchor listing-title">
-Writing a Literature Review
+<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">Writing a Literature Review</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -531,14 +556,12 @@ Academic
 Writing
 </div>
 </div>
-<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html">
 <div class="listing-description">
-<p>Tips on writing a literature review.</p>
+<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">Tips on writing a literature review.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html">
+<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">
 <div class="listing-date">
 Sep 25, 2017
 </div>
@@ -548,19 +571,19 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Academic,E-Prime,EEG" data-listing-date-sort="1497250800000" data-listing-file-modified-sort="1703357577932" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
+<div class="quarto-post image-right" data-index="8" data-categories="Academic,E-Prime,EEG" data-listing-date-sort="1497250800000" data-listing-file-modified-sort="1728755770300" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1473">
 <div class="thumbnail">
-<p><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html"> <img src="./images/me.jpg" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external"></a></p><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">
+<p class="card-img-top"><img src="images/joy2key1.png"  class="thumbnail-image card-img"/></p>
+</a><p><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html">
 <h3 class="no-anchor listing-title">
-Using Xbox Controllers and Sending EEG Triggers with E-Prime
+<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">Using Xbox Controllers and Sending EEG Triggers with E-Prime</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -572,14 +595,12 @@ E-Prime
 EEG
 </div>
 </div>
-<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html">
 <div class="listing-description">
-<p>A how-to article for EEG enthusiasts.</p>
+<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">A how-to article for EEG enthusiasts.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html">
+<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">
 <div class="listing-date">
 Jun 12, 2017
 </div>
@@ -589,19 +610,19 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1494831600000" data-listing-file-modified-sort="1703357577922" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
+<div class="quarto-post image-right" data-index="9" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1494831600000" data-listing-file-modified-sort="1728755770291" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1724">
 <div class="thumbnail">
-<p><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html"> <img src="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/thumbnail.png" class="thumbnail-image"> </a></p>
+<p><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external"></a></p><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">
+<p><img src="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/thumbnail.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html">
 <h3 class="no-anchor listing-title">
-The Last Decade: NHL’s Best and Worst Power Play Teams
+<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">The Last Decade: NHL’s Best and Worst Power Play Teams</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
 Academic
@@ -613,14 +634,12 @@ Hockey Analytics
 R
 </div>
 </div>
-<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html">
 <div class="listing-description">
-<p>My initial (although incorrect) attempt at modeling NHL power play data.</p>
+<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">My initial (although incorrect) attempt at modeling NHL power play data.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html">
+<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">
 <div class="listing-date">
 May 15, 2017
 </div>
@@ -676,6 +695,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -744,13 +790,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -829,10 +877,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -842,8 +907,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -855,7 +929,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -899,6 +1096,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -924,6 +1122,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -985,18 +1209,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="mkmiecik14/mkmiecik14.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg==" data-category="Announcements" data-category-id="DIC_kwDOBZzsfM4CT2c5" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
 </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="light">
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center">Copyright 2017-2023, Matthew J. Kmiecik, PhD</div>
+    <div class="nav-footer-center">
+<p>Copyright 2017-2023, Matthew J. Kmiecik, PhD</p>
+</div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 
