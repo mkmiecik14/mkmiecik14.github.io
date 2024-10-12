@@ -25,6 +25,7 @@ website:
       input-position: top
       theme: light
   navbar: 
+    background: primary
     pinned: true
     search: true
     left:
