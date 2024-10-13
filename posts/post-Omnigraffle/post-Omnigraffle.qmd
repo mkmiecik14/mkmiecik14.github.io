@@ -1,0 +1,18 @@
+---
+title: "Using Omnigraffle for publication ready figures"
+author: "Matthew J. Kmiecik"
+date: "17 September 2024"
+description: "Blogpost explaining my framework for producing publication-ready figures."
+image: "omnigraffle-ui.png"
+categories:
+  - ggplot2
+  - Software
+  - Tools
+  - R
+  - dataviz
+  - publishing
+  - science
+  - Omnigraffle
+---
+
+<div class="substack-post-embed"><p lang="en">Using Omnigraffle for publication ready figures by Matt Kmiecik</p><p></p><a data-post-link href="https://mattkmiecik.substack.com/p/using-omnigraffle-for-publication">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>
