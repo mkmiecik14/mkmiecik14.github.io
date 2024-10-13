@@ -1,0 +1,16 @@
+---
+title: "My favorite figures (to date)"
+author: "Matthew J. Kmiecik"
+date: "01 October 2024"
+description: "Blogpost that tells the stories behind the design decisions of my favorite figures."
+image: "figure-5.png"
+categories:
+  - ggplot2
+  - R
+  - dataviz
+  - publishing
+  - science
+  - Omnigraffle
+---
+
+<div class="substack-post-embed"><p lang="en">My favorite figures (to date) by Matt Kmiecik</p><p></p><a data-post-link href="https://mattkmiecik.substack.com/p/my-favorite-figures-to-date">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>
