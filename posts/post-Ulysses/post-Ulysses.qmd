@@ -1,0 +1,13 @@
+---
+title: "I started this Substack just so that I could use Ulysses"
+author: "Matthew J. Kmiecik"
+date: "03 September 2024"
+description: "Blogpost on the Ulysses writing software."
+image: "ulysses-ui.png"
+categories:
+  - Writing
+  - Software
+  - Tools
+---
+
+<div class="substack-post-embed"><p lang="en">I started this Substack just so that I could use Ulysses by Matt Kmiecik</p><p></p><a data-post-link href="https://mattkmiecik.substack.com/p/i-started-this-substack-just-so-that">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>
