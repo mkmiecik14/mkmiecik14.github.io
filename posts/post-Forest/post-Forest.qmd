@@ -1,0 +1,13 @@
+---
+title: "Seeing the forest for the trees"
+author: "Matthew J. Kmiecik"
+date: "15 October 2024"
+description: "How I use the Forest iOS app to block distractions."
+image: "forest.JPG"
+categories:
+  - Focus
+  - Productivity
+  - Writing
+---
+
+<div class="substack-post-embed"><p lang="en">Seeing the forest for the trees by Matt Kmiecik</p><p>Blocking distractions using the Forest iOS app</p><a data-post-link href="https://mattkmiecik.substack.com/p/seeing-the-forest-for-the-trees">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>
