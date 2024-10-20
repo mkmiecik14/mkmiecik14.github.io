@@ -3,7 +3,7 @@ title: "Seeing the forest for the trees"
 author: "Matthew J. Kmiecik"
 date: "15 October 2024"
 description: "How I use the Forest iOS app to block distractions."
-image: "forest.JPG"
+image: "forest.png"
 categories:
   - Focus
   - Productivity
