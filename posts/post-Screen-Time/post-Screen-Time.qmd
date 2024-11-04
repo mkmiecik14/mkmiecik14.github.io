@@ -1,0 +1,13 @@
+---
+title: "Screen Time"
+author: "Matthew J. Kmiecik"
+date: "29 October 2024"
+description: "How I used principles from psychology to help increase productivity."
+image: "painting-1.png"
+categories:
+  - Focus
+  - Productivity
+  - iOS
+---
+
+<div class="substack-post-embed"><p lang="en">Screen time by Matt Kmiecik</p><p></p><a data-post-link href="https://mattkmiecik.substack.com/p/screen-time">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>
