@@ -40,8 +40,8 @@ education <-
         logo = c("23andMe-omni.png"),
         inst = c("23andMe"),
         focus = c("Genetics & Parkinson's Disease"),
-        degree = c("Postdoctoral Fellowship"),
-        date = c("2022-present")
+        degree = c("Postdoctoral Research Fellowship"),
+        date = c("2022-2024")
         ),
       # northshore
       cbind(
@@ -119,13 +119,21 @@ reactable(
 prof_pos <-
   as_tibble(
     rbind(
-      # 23andMe
+      # 23andMe scientist I
+      cbind(
+        logo = c("23andMe-omni.png"), 
+        pos = c("Scientist I"),
+        dep = c("Research"),
+        inst = c("23andMe"),
+        date = c("2024-present")
+        ),
+      # 23andMe postdoc
       cbind(
         logo = c("23andMe-omni.png"), 
         pos = c("Postdoctoral Fellow"),
         dep = c("Research"),
         inst = c("23andMe"),
-        date = c("2022-present")
+        date = c("2022-2024")
         ),
       # shirley ryan
       cbind(
@@ -222,6 +230,8 @@ reactable(
 # Publications
 
 ## Papers
+
+- Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., 23andMe Research Team, Tung, J., Holmes, M. V., Walk, S. T., Houser, M. C., & Norcliffe-Kaufmann, L. (2024). Oral and gut microbiome profiles in people with early idiopathic Parkinson’s disease. _Communications Medicine, 4_(209). <https://doi.org/10.1038/s43856-024-00630-8>
 
 - **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Wetzel, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2024). Genetic analysis and natural history of Parkinson’s disease due to the LRRK2 G2019S variant. _Brain_, _147_(6), 1996–2008. <https://doi.org/10.1093/brain/awae073>
 
@@ -373,7 +383,7 @@ reactable(
 
 ## Poster Presentations
 
-- **Kmiecik, M. J.**, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M., Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (Sept. 2024).  LRRK2 and GBA Founder Mutations and their Interactions in Parkinson’s Disease. Poster to be presented at the International Congress of Parkinson’s Disease and Movement Disorders, Philadelphia, PA.
+- **Kmiecik, M. J.**, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M., Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (Sept. 2024). LRRK2 and GBA Founder Mutations and their Interactions in Parkinson’s Disease. Genetics and Metabolic Diseases. _Movement Disorders, 39_: S740-S808. <https://doi.org/10.1002/mds.29955>
 
 - **Kmiecik, M. J.**, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M. Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (May, 2024). A comparison of Parkinson’s disease symptom profiles in LRRK2 G2019S and GBA N370S single and dual carriers. Poster presented at the Planning for Prevention of Parkinson's: A Trial Design Forum, Boston, MA.
 
@@ -615,6 +625,8 @@ reactable(
 <br />
 
 # Invited Talks
+
+- **LRRK2 and GBA Parkinson's** (August 2024) University of Rochester Medical Center VALOR-PD Seminar
 
 - **Genetic analysis and natural history of LRRK2 G2019S Parkinson's disease** (April 2024) The Michael J. Fox Foundation Data Consortium
 
