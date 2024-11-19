@@ -231,6 +231,8 @@ reactable(
 
 ## Papers
 
+- Reina, E. M., Hellman, K. M., **Kmiecik, M. J.**, Terkildsen, M. F., & Tu, F. F. (in press). Associations between menstrual pain and sexual function: the role of visceral hypersensitivity on developing sexual pain. _The Journal of Sexual Medicine_. <https://doi.org/10.1093/jsxmed/qdae149>
+
 - Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., 23andMe Research Team, Tung, J., Holmes, M. V., Walk, S. T., Houser, M. C., & Norcliffe-Kaufmann, L. (2024). Oral and gut microbiome profiles in people with early idiopathic Parkinson’s disease. _Communications Medicine, 4_(209). <https://doi.org/10.1038/s43856-024-00630-8>
 
 - **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Wetzel, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2024). Genetic analysis and natural history of Parkinson’s disease due to the LRRK2 G2019S variant. _Brain_, _147_(6), 1996–2008. <https://doi.org/10.1093/brain/awae073>
@@ -289,6 +291,8 @@ reactable(
 <br />
 
 ## Preprints
+
+- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S., & Norcliffe-Kaufmann, L. (2024). Monogenic Parkinson’s Disease and the Impact of APOE E4: A Case-Control Study. _medRxiv_, 2024.11.15.24317402. doi: <https://doi.org/10.1101/2024.11.15.24317402>
 
 - Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., Holmes, M., Walk, S., Houser, M., Norcliffe-Kaufmann, L. (2024) Oral and gut microbiome profiles in early Parkinson’s disease. *Research Square*. doi: <https://doi.org/10.21203/rs.3.rs-3750719/v1>
 
@@ -797,45 +801,6 @@ reactable(
 <br />
 
 # Academic Service
-
-## Paper Reviews
-
-```{r, paper-reviews}
-# Paper reviews data frame
-paper_reviews <-
-  as_tibble(
-    rbind(
-      cbind(
-        journal = "Pain Medicine; Journal of Cognitive Psychology",
-        date = "2022"
-      ),
-      cbind(
-        journal = "Pain Medicine; Applied Cognitive Psychology",
-        date = "2021"
-      ),
-      cbind(
-        journal = "Neuropsychologia; JINS",
-        date = "2020"
-      ),
-      cbind(
-        journal = "Cognition and Emotion; Applied Cognitive Psychology",
-        date = "2019"
-      )
-    )
-  )
-
-reactable(
-  paper_reviews,
-  columns = list(
-    journal = colDef(name = "Journal"),
-    date = colDef(name = "Date", width = 75)
-  ),
-  defaultColDef = colDef(vAlign = "center", headerVAlign = "bottom"),
-  highlight = TRUE,
-  striped = TRUE,
-  theme = reactableTheme(backgroundColor = "transparent") # for dark mode
-)
-```
 
 ## Committee Involvement
 
