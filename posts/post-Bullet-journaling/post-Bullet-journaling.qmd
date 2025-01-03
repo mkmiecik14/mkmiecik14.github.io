@@ -1,0 +1,16 @@
+---
+title: "Bullet journaling for perfectionists"
+author: "Matthew J. Kmiecik"
+date: "10 December 2024"
+description: "4 tips that helped me get started."
+image: "red-dots.png"
+categories:
+  - Productivity
+  - Life hacks
+  - Bullet journaling
+  - Journaling
+  - Notebooks
+  - Writing
+---
+
+<div class="substack-post-embed"><p lang="en">Bullet journaling for perfectionists by Matt Kmiecik</p><p>4 things that helped me get started</p><a data-post-link href="https://mattkmiecik.substack.com/p/bullet-journaling-for-perfectionists">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

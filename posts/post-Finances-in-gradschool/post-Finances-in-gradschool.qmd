@@ -1,0 +1,15 @@
+---
+title: "Finances in gradschool"
+author: "Matthew J. Kmiecik"
+date: "12 November 2024"
+description: "What I would have done differently if I were to enter graduate school tomorrow."
+image: "painting-2.png"
+categories:
+  - Finance
+  - Financial Literacy
+  - Graduate school
+  - Budgeting
+  - Investing
+---
+
+<div class="substack-post-embed"><p lang="en">Finances in gradschool by Matt Kmiecik</p><p>A thought experiment in time travel</p><a data-post-link href="https://mattkmiecik.substack.com/p/finances-in-gradschool">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

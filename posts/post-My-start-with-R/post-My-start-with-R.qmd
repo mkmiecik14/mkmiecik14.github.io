@@ -1,0 +1,15 @@
+---
+title: "My start with R"
+author: "Matthew J. Kmiecik"
+date: "26 November 2024"
+description: "The programming language that made me a better scientist."
+image: "painting-4.png"
+categories:
+  - R
+  - Statistics
+  - Programming
+  - Science
+  - Learning
+---
+
+<div class="substack-post-embed"><p lang="en">My start with R by Matt Kmiecik</p><p>The programming language that made me a better scientist </p><a data-post-link href="https://mattkmiecik.substack.com/p/my-start-with-r">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

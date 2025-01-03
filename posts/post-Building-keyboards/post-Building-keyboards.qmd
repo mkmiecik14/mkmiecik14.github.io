@@ -1,0 +1,15 @@
+---
+title: "Building keyboards"
+author: "Matthew J. Kmiecik"
+date: "24 December 2024"
+description: "A brief meditation about this fascinating hobby."
+image: "keyboard.png"
+categories:
+  - Hobbyist
+  - Keyboards
+  - Creamy pops
+  - Mechanical keyboard
+  - Technology
+---
+
+<div class="substack-post-embed"><p lang="en">Building keyboards by Matt Kmiecik</p><p></p><a data-post-link href="https://mattkmiecik.substack.com/p/building-keyboards">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

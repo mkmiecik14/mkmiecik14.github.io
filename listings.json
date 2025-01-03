@@ -2,6 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/post-Building-keyboards/post-Building-keyboards.html",
+      "/posts/post-Bullet-journaling/post-Bullet-journaling.html",
+      "/posts/post-My-start-with-R/post-My-start-with-R.html",
+      "/posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html",
       "/posts/post-Screen-Time/post-Screen-Time.html",
       "/posts/post-Forest/post-Forest.html",
       "/posts/post-Favorite-Figures/post-Favorite-Figures.html",
@@ -16,6 +20,7 @@
       "/posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html",
       "/posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html",
       "/posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html",
+      "/posts/post-ggplot2-Histogram-Logo-Fail/post-ggplot2-Histogram-Logo-Fail.html",
       "/posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html"
     ]
   }
