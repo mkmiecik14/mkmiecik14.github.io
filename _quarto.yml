@@ -35,6 +35,9 @@ website:
       - text: "CV"
         icon: mortarboard-fill
         file: cv.qmd
+      - text: "Blog"
+        icon: pencil-fill
+        file: blog.qmd
       - text: "Consulting"
         icon: briefcase-fill
         file: consulting.qmd
