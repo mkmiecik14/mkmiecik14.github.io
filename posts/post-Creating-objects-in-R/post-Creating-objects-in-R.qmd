@@ -1,0 +1,15 @@
+---
+title: "Creating objects in R"
+author: "Matthew J. Kmiecik"
+date: "14 January 2025"
+description: "What variable assignment says about my growth in programming."
+image: "r-objects.png"
+categories:
+  - R
+  - Programming
+  - Statistics
+  - Data science
+  - Variables
+---
+
+<div class="substack-post-embed"><p lang="en">Creating objects in R by Matt Kmiecik</p><p>What variable assignment says about my growth in programming</p><a data-post-link href="https://mattkmiecik.substack.com/p/creating-objects-in-r">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

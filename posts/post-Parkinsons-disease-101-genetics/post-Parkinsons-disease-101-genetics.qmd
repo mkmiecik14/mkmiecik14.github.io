@@ -1,0 +1,14 @@
+---
+title: "Parkinson's Disease 101: Genetics"
+author: "Matthew J. Kmiecik"
+date: "09 April 2025"
+description: "Learn and donate to a great cause!"
+image: "parkinsons-101-genetics.jpg"
+categories:
+  - Parkinson's Disease
+  - Parkinsons Foundation
+  - Genetics
+  - Science
+---
+
+<div class="substack-post-embed"><p lang="en">Parkinson's Disease 101: Genetics by Matt Kmiecik</p><p>Learn and donate to a great cause!</p><a data-post-link href="https://mattkmiecik.substack.com/p/parkinsons-disease-101-genetics">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

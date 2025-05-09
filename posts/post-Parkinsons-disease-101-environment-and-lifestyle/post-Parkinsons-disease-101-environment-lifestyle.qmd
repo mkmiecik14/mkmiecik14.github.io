@@ -1,0 +1,20 @@
+---
+title: "Parkinson's Disease 101: Environment and Lifestyle"
+author: "Matthew J. Kmiecik"
+date: "06 May 2025"
+description: "Learn and donate to a great cause!"
+image: "parkinsons-101-environment.jpg"
+categories:
+  - Parkinson's Disease
+  - Parkinsons Foundation
+  - Genetics
+  - Environment
+  - Lifestyle
+  - Pesticides
+  - Traumatic brain injury
+  - Caffeine
+  - Smoking
+  - Science
+---
+
+<div class="substack-post-embed"><p lang="en">Parkinson's Disease 101: Environment and Lifestyle by Matt Kmiecik</p><p>Learn and donate to a great cause!</p><a data-post-link href="https://mattkmiecik.substack.com/p/parkinsons-disease-101-environment">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

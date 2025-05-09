@@ -1,0 +1,13 @@
+---
+title: "My first foray into chess - part II"
+author: "Matthew J. Kmiecik"
+date: "11 February 2025"
+description: "A humbling experience to say the least."
+image: "chess-part-II.jpg"
+categories:
+  - Chess
+  - Club
+  - Hobby
+---
+
+<div class="substack-post-embed"><p lang="en">My first foray into chess - part II by Matt Kmiecik</p><p>A humbling experience to say the least</p><a data-post-link href="https://mattkmiecik.substack.com/p/my-first-foray-into-chess-part-ii">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

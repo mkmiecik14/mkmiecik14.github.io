@@ -1,0 +1,14 @@
+---
+title: "Named vectors in R"
+author: "Matthew J. Kmiecik"
+date: "11 March 2025"
+description: "A powerful tool for plotting colors."
+image: "named-vectors-in-R-p1.png"
+categories:
+  - R
+  - vector
+  - data visualization
+  - ggplot2
+---
+
+<div class="substack-post-embed"><p lang="en">Named vectors in R by Matt Kmiecik</p><p>A powerful tool for plotting colors</p><a data-post-link href="https://mattkmiecik.substack.com/p/named-vectors-in-r">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>

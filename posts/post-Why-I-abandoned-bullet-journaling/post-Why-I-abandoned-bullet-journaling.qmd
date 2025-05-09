@@ -1,0 +1,17 @@
+---
+title: "Why I abandoned bullet journaling"
+author: "Matthew J. Kmiecik"
+date: "25 February 2025"
+description: "Don't underestimate the power of a good to-do list."
+image: "painting-5.png"
+categories:
+  - Bullet journaling
+  - Google Sheets
+  - Productivity
+  - Life Hack
+  - Academia
+  - Industry
+  - Science
+---
+
+<div class="substack-post-embed"><p lang="en">Why I abandoned bullet journaling by Matt Kmiecik</p><p>Don't underestimate the power of a good to-do list</p><a data-post-link href="https://mattkmiecik.substack.com/p/why-i-abandoned-bullet-journaling">Read on Substack</a></div><script async src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>
