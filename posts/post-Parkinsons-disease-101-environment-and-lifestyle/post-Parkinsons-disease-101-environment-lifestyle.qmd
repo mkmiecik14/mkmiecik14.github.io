@@ -1,12 +1,12 @@
 ---
 title: "Parkinson's Disease 101: Environment and Lifestyle"
 author: "Matthew J. Kmiecik"
-date: "06 May 2025"
+date: "2025-05-06"
 description: "Learn and donate to a great cause!"
 image: "parkinsons-101-environment.jpg"
 categories:
   - Parkinson's Disease
-  - Parkinsons Foundation
+  - Parkinson's Foundation
   - Genetics
   - Environment
   - Lifestyle

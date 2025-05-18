@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Matthew J. Kmiecik">
-<meta name="dcterms.date" content="2025-05-06">
-<meta name="description" content="Learn and donate to a great cause!">
+<meta name="dcterms.date" content="2025-05-20">
+<meta name="description" content="Who knew such a small setting could make such a big improvement">
 
-<title>Parkinson’s Disease 101: Environment and Lifestyle – Matthew J. Kmiecik, PhD</title>
+<title>Labeling facets in ggplot2 – Matthew J. Kmiecik, PhD</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -85,12 +119,11 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <style>html{ scroll-behavior: smooth; }</style>
 
 
-<meta property="og:title" content="Parkinson’s Disease 101: Environment and Lifestyle – Matthew J. Kmiecik, PhD">
-<meta property="og:description" content="Learn and donate to a great cause!">
-<meta property="og:image" content="parkinsons-101-environment.jpg">
+<meta property="og:title" content="Labeling facets in ggplot2 – Matthew J. Kmiecik, PhD">
+<meta property="og:description" content="Who knew such a small setting could make such a big improvement">
 <meta property="og:site_name" content="Matthew J. Kmiecik, PhD">
-<meta name="twitter:title" content="Parkinson’s Disease 101: Environment and Lifestyle – Matthew J. Kmiecik, PhD">
-<meta name="twitter:description" content="Learn and donate to a great cause!">
+<meta name="twitter:title" content="Labeling facets in ggplot2 – Matthew J. Kmiecik, PhD">
+<meta name="twitter:description" content="Who knew such a small setting could make such a big improvement">
 <meta name="twitter:image" content="./thumbnail.png">
 <meta name="twitter:creator" content="@mattkmiecik14">
 <meta name="twitter:card" content="summary_large_image">
@@ -175,7 +208,14 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#a-quick-note-about-data-viz" id="toc-a-quick-note-about-data-viz" class="nav-link active" data-scroll-target="#a-quick-note-about-data-viz">A quick note about data viz</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -186,24 +226,17 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Parkinson’s Disease 101: Environment and Lifestyle</h1>
+<h1 class="title">Labeling facets in ggplot2</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Parkinson’s Disease</div>
-    <div class="quarto-category">Parkinson’s Foundation</div>
-    <div class="quarto-category">Genetics</div>
-    <div class="quarto-category">Environment</div>
-    <div class="quarto-category">Lifestyle</div>
-    <div class="quarto-category">Pesticides</div>
-    <div class="quarto-category">Traumatic brain injury</div>
-    <div class="quarto-category">Caffeine</div>
-    <div class="quarto-category">Smoking</div>
-    <div class="quarto-category">Science</div>
+    <div class="quarto-category">ChatGPT</div>
+    <div class="quarto-category">ggplot2</div>
+    <div class="quarto-category">data viz</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Learn and donate to a great cause!
+    Who knew such a small setting could make such a big improvement
   </div>
 </div>
 
@@ -220,7 +253,7 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 6, 2025</p>
+      <p class="date">May 20, 2025</p>
     </div>
   </div>
   
@@ -232,18 +265,108 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 </header>
 
 
-<div class="substack-post-embed">
-<p lang="en">
-Parkinson’s Disease 101: Environment and Lifestyle by Matt Kmiecik
-</p>
-<p>
-Learn and donate to a great cause!
-</p>
-<a data-post-link="" href="https://mattkmiecik.substack.com/p/parkinsons-disease-101-environment">Read on Substack</a>
+<p>In a <a href="https://mattkmiecik.substack.com/p/named-vectors-in-r">previous post</a>, I wrote about how using ChatGPT for R suggestions has taught me some really cool tips and tricks.</p>
+<p>Here’s another post about one of these cool tips that I recently learned; one that I probably should have known long before the advent of ChatGPT! That is, using the <code>labeller = ...</code> argument in <code>ggplot2</code>’s facet functions: <code>facet_wrap()</code> and <code>facet_grid()</code>.</p>
+<p>Let’s get started with an example use case and see how this simple argument will help others (and yourself) with interpreting facetted figures.</p>
+<p>Let’s start off with a basic plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot constants</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">palette.colors</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>tc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">setosa =</span> cols[<span class="dv">9</span>], <span class="at">versicolor =</span> cols[<span class="dv">2</span>], <span class="at">virginica =</span> cols[<span class="dv">3</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pj <span class="ot">&lt;-</span> <span class="fu">position_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>, <span class="at">height =</span> .<span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Petal.Width, Sepal.Width, <span class="at">color =</span> Species, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">19</span>, <span class="at">position =</span> pj) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> tc) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> tc) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post-labeller_files/figure-html/fig1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<script async="" src="https://substack.com/embedjs/embed.js" charset="utf-8"></script>
+</div>
+</div>
+<p>Let’s say we wanted to break out each species into a separate panel. We can do this using <code>facet_wrap()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species, <span class="at">scales =</span> <span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post-labeller_files/figure-html/fig2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>facet_wrap()</code> nicely labels the facets with the values of the variable. Now this is a great default setting, but when sharing this figure with an audience unfamiliar with the data, they could be left wondering what setosa, versicolor, and virginica are, especially if the redundant legend is removed. Also, data are sometimes not clearly labelled when it comes to categorical variables (e.g., 0, 1).</p>
+<p>To make the labeling explicit in the facets, we can using the <code>labeller</code> argument and set this to <code>label_both</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species, <span class="at">scales =</span> <span class="st">"free_x"</span>, <span class="at">labeller =</span> label_both)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post-labeller_files/figure-html/fig3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now “Species:” appears before each facet label, clearly indicating that these values indicate different species.</p>
+<p>Let’s go through a different use case where the values are less clear.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(mpg, hp)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(vs<span class="sc">~</span>am, <span class="at">scales =</span> <span class="st">"free"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post-labeller_files/figure-html/fig4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here we are plotting the relationship between horsepower (hp) and miles per gallon (mpg) in a dataset of cars. I’ve used <code>facet_grid()</code> to further examine this relationship in the 2x2 factorial representation of “vs” and “am”:</p>
+<pre><code>vs  Engine (0 = V-shaped, 1 = straight)
+am  Transmission (0 = automatic, 1 = manual)</code></pre>
+<p>However, from the default settings of <code>facet_wrap()</code> and <code>facet_grid()</code> we cannot easily discern this. This is where the <code>labeller = ...</code> argument comes in handy. Let’s set <code>facet_grid(..., labeller = label_both)</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">facet_grid</span>(vs<span class="sc">~</span>am, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">labeller =</span> label_both)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="post-labeller_files/figure-html/fig5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we can clearly see that the transmission information (am) is represented by the columns while the engine information (vs) is present on the rows.</p>
+<p>This small setting in <code>ggplot2</code>’s <code>facet_*()</code> functions can make all the difference when quickly plotting data, especially when using <code>facet_grid()</code> where the values of each factor are not clearly discernable.</p>
+<section id="a-quick-note-about-data-viz" class="level2">
+<h2 class="anchored" data-anchor-id="a-quick-note-about-data-viz">A quick note about data viz</h2>
+<p>In these examples, I used the <code>scales = "free"</code> and <code>scales = "free_x"</code> arguments inside my <code>facet_*()</code> functions. This allows the axes to vary, which may distort the relationships when comparing across the facets. I did this mainly for illustrative purposes and would not necessarily recommend when interpreting real data. Exercise caution when freeing your scales!</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>When plotting faceted data using <code>ggplot2</code>, use <code>labeller = label_both</code> to increase readability of your facets, especially when the factors are not clearly labeled. Thanks ChatGPT for the tip!</p>
+<p><br></p>
+<div style="text-align: center;">
+<p><iframe src="https://mattkmiecik.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe></p>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

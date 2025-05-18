@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/post-Labeller/post-labeller.html",
       "/posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html",
       "/posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html",
       "/posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html",
@@ -29,7 +30,6 @@
       "/posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html",
       "/posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html",
       "/posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html",
-      "/posts/post-ggplot2-Histogram-Logo-Fail/post-ggplot2-Histogram-Logo-Fail.html",
       "/posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html"
     ]
   }

@@ -63,7 +63,7 @@ website:
       # - icon: rss
       #   href: index.xml
   page-footer: 
-    center: "Copyright 2024, Matthew J. Kmiecik, PhD"
+    center: "Copyright 2025, Matthew J. Kmiecik, PhD"
     background: primary
 
 format:
