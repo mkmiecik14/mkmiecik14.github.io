@@ -1,0 +1,139 @@
+---
+title: "Scaling variables in R"
+author: "Matthew J. Kmiecik"
+date: "03 June 2025"
+description: "A walkthrough of a tip I recently learned"
+categories:
+  - R
+  - statistics
+execute:
+  warning: false
+  message: false
+editor_options: 
+  chunk_output_type: console
+---
+
+Herein I present a walkthrough of a recent improvement I made to my analyses when scaling (i.e., normalizing) variables. 
+
+Scaling or normalizing variables in R is super convenient by using the `scale(x, center = TRUE, scale = TRUE)` function and default arguments. Here, the variable `x` is mean centered and scaled to unit variance, also called a Z-score.
+
+Let's do this on the `mtcars` dataset variable `hp`:
+
+```{r}
+data(mtcars)
+mtcars$hp_z <- scale(mtcars$hp)
+```
+
+Here's proof that the newly scaled `hp_z` variable was indeed scaled:
+
+```{r}
+library(tidyverse)
+mtcars %>% 
+  summarise(across(contains("hp"), list(mean = mean, sd = sd))) %>%
+  round(2)
+```
+
+As we can see, the _M_=0 and _Standard Deviation(SD)_=1 for `hp_z`.
+
+The `scale()` function, however, does something really useful that I used to ignore for the longest time; it saves the scaling factors as attributes in the column/variable. This is seen in a few ways: 
+
+```{r}
+class(mtcars$hp_z)
+mtcars$hp_z
+```
+
+The attribute for the mean-centering (i.e., the mean) can be accessed like this:
+
+```{r}
+attr(mtcars$hp_z, "scaled:center")
+```
+
+And the attribute for the scaling factor (i.e., the _SD_) can be accessed like this:
+
+```{r}
+attr(mtcars$hp_z, "scaled:scale")
+```
+
+In sum, the output of `scale()` is a `"matrix" "array"` with the centering and scaling factors, if requested, attached as attributes. Notice how they match the _M_ and _SD_ of the original `mtcars$hp` variable above.
+
+## The problem
+
+However, there are a few issues with using `scale()`. The `"matrix" "array"` output is little annoying because it prints differently: 
+
+```{r}
+as_tibble(select(mtcars, mpg, contains("hp")), rownames = "car")
+```
+
+and it does not play nicely with `predict()`:
+
+```{r, error=TRUE}
+mod <- lm(mpg ~ 1 + hp_z, data = mtcars)
+new_data <- data.frame(hp_z = seq(-2, 2, length.out = 100))
+predict(mod, newdata = new_data, type = "response", se.fit = TRUE)
+```
+
+In the past, I would normally strip these features by wrapping the call with `as.numeric()`:
+
+```{r}
+mtcars$hp_zn <- as.numeric(scale(mtcars$hp))
+```
+
+Although this will work, you lose the awesome feature of having access to the centering/scaling attributes.
+
+## The solution
+
+I found a nice elegant solution to this issue via this Stack Overflow [post](https://stackoverflow.com/questions/66534641/getting-persistent-error-when-trying-to-predict-new-data-from-a-glm-in-r).
+
+The `drop()` function will drop the formatting of `scale()` without the loss of attributes:
+
+```{r}
+mtcars$hp_z <- drop(scale(mtcars$hp)) # using drop
+class(mtcars$hp_z)
+as_tibble(select(mtcars, mpg, contains("hp")), rownames = "car")
+```
+
+Using `drop()` no longer causes an issue with `predict()`:
+
+```{r}
+mod <- lm(mpg ~ 1 + hp_z, data = mtcars)
+new_data <- data.frame(hp_z = seq(-2, 2, length.out = 100))
+pred <- predict(mod, newdata = new_data, type = "response", se.fit = TRUE)
+new_data <- cbind(new_data, pred)
+```
+
+```{r}
+# plots
+ggplot(new_data, aes(hp_z, fit)) + 
+  geom_line () +
+  geom_ribbon(aes(ymin = fit-se.fit, ymax = fit+se.fit), alpha = 1/3) +
+  labs(x = "HP (in SD units)", y = "Predicted MPG", caption = "SE shading.") +
+  scale_x_continuous(breaks = seq(-2, 2, .5)) +
+  theme_bw()
+```
+
+But what if we want to represent the x-axis in its original units? No problem! Just use the attributes from the scaled column to convert back to the original unstandardized units:
+
+```{r}
+m <- attr(mtcars$hp_z, "scaled:center")
+sd <- attr(mtcars$hp_z, "scaled:scale")
+new_data$hp_o <- new_data$hp_z * sd + m
+
+# plots
+ggplot(new_data, aes(hp_o, fit)) + 
+  geom_line () +
+  geom_ribbon(aes(ymin = fit-se.fit, ymax = fit+se.fit), alpha = 1/3) +
+  labs(x = "HP (in original units)", y = "Predicted MPG", caption = "SE shading.") +
+  theme_bw()
+```
+
+Thank you `drop()`!
+
+## Summary
+
+When scaling variables in R via `scale()`, be sure to use the `drop()` function to strip away the dimensions of `scale()`'s output. This new variable/column will play nicely with `predict()` and retain the center and scale attributes for later use.
+
+<br >
+
+<div style="text-align: center;">
+  <iframe src="https://mattkmiecik.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+</div>
