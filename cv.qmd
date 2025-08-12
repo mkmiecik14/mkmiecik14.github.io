@@ -231,7 +231,7 @@ reactable(
 
 ## Papers
 
-- Reina, E. M., Hellman, K. M., **Kmiecik, M. J.**, Terkildsen, M. F., & Tu, F. F. (in press). Associations between menstrual pain and sexual function: the role of visceral hypersensitivity on developing sexual pain. _The Journal of Sexual Medicine_. <https://doi.org/10.1093/jsxmed/qdae149>
+- Reina, E. M., Hellman, K. M., **Kmiecik, M. J.**, Terkildsen, M. F., & Tu, F. F. (2025). Associations between menstrual pain and sexual function: the role of visceral hypersensitivity on developing sexual pain. _The Journal of Sexual Medicine_, _22_(1), 98-106. <https://doi.org/10.1093/jsxmed/qdae149>
 
 - Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., 23andMe Research Team, Tung, J., Holmes, M. V., Walk, S. T., Houser, M. C., & Norcliffe-Kaufmann, L. (2024). Oral and gut microbiome profiles in people with early idiopathic Parkinson’s disease. _Communications Medicine, 4_(209). <https://doi.org/10.1038/s43856-024-00630-8>
 
@@ -282,6 +282,8 @@ reactable(
 <br />
 
 ## Books
+
+- **Kmiecik, M. J.**, Iwaki, H., & Daneault, J.-F. (2025). [Open Science Guide for Parkinson's Research](https://mjff-researchcommunity.github.io/open-science-guide/). _Zenodo_. [https://doi.org/10.5281/zenodo.14984669](https://doi.org/10.5281/zenodo.14984669)
 
 -   Pongpipat, E. E., Miranda, G. G., **Kmiecik, M. J.** (2019). A Practical
     Extension of Introductory Statistics in Psychology using R. *Free online
@@ -629,6 +631,8 @@ reactable(
 <br />
 
 # Invited Talks
+
+- **Kmiecik, M. J.**, \& Iwaki, H. (2025, August 12). MJFF Data Community Webinar: Open Science Guide - An Online Book for Transparent and Reproducible Data Science Projects in Parkinson's Disease. _Zenodo_. [https://doi.org/10.5281/zenodo.16813426](https://doi.org/10.5281/zenodo.16813426)
 
 - **LRRK2 and GBA Parkinson's** (August 2024) University of Rochester Medical Center VALOR-PD Seminar
 
