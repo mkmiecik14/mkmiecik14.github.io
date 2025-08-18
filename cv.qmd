@@ -294,6 +294,8 @@ reactable(
 
 ## Preprints
 
+- Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Geurin, T., **Kmiecik, M. J.**, & Norcliffe-Kaufmann, L. (2025). Precision therapy with ampreloxetine for neurogenic orthostatic hypotension in multiple system atrophy (p. 2025.08.12.25332833). _medRxiv_. <https://doi.org/10.1101/2025.08.12.25332833>
+
 - **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S., & Norcliffe-Kaufmann, L. (2024). Monogenic Parkinson’s Disease and the Impact of APOE E4: A Case-Control Study. _medRxiv_, 2024.11.15.24317402. doi: <https://doi.org/10.1101/2024.11.15.24317402>
 
 - Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., Holmes, M., Walk, S., Houser, M., Norcliffe-Kaufmann, L. (2024) Oral and gut microbiome profiles in early Parkinson’s disease. *Research Square*. doi: <https://doi.org/10.21203/rs.3.rs-3750719/v1>
