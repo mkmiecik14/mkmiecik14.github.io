@@ -231,6 +231,8 @@ reactable(
 
 ## Papers
 
+- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Micheletti, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S.,  Norcliffe-Kaufmann, L. (2025). Genetic Modifiers of Parkinson's Disease: A Case–Control Study. _Annals of Clinical and Translational Neurology_. <https://doi.org/10.1002/acn3.70176> 
+
 - Reina, E. M., Hellman, K. M., **Kmiecik, M. J.**, Terkildsen, M. F., & Tu, F. F. (2025). Associations between menstrual pain and sexual function: the role of visceral hypersensitivity on developing sexual pain. _The Journal of Sexual Medicine_, _22_(1), 98-106. <https://doi.org/10.1093/jsxmed/qdae149>
 
 - Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., 23andMe Research Team, Tung, J., Holmes, M. V., Walk, S. T., Houser, M. C., & Norcliffe-Kaufmann, L. (2024). Oral and gut microbiome profiles in people with early idiopathic Parkinson’s disease. _Communications Medicine, 4_(209). <https://doi.org/10.1038/s43856-024-00630-8>
@@ -390,6 +392,8 @@ reactable(
 <br />
 
 ## Poster Presentations
+
+- Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Guerin, T., Kmiecik, M. J., & Norcliffe-Kaufmann, L. (Nov. 2025). Precision Therapy with Ampreloxetine for Neurogenic Orthostatic Hypotension in Multiple System Atrophy. Poster to be presented at the 36th International Symposium on the Autonomic Nervous System, Clearwater Beach, FL.
 
 - **Kmiecik, M. J.**, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M., Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (Sept. 2024). LRRK2 and GBA Founder Mutations and their Interactions in Parkinson’s Disease. Genetics and Metabolic Diseases. _Movement Disorders, 39_: S740-S808. <https://doi.org/10.1002/mds.29955>
 

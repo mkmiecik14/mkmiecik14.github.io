@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,17 +32,20 @@ ul.task-list li input[type="checkbox"] {
 <link href="././images/matt-casual-1080-1080.jpeg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-c3c2c9e745155556954bc4da23476b10.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-96154317ac42e815f27e622f8868fa45.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b27abff4093d936a9e549839c6fd35d6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-96154317ac42e815f27e622f8868fa45.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -153,7 +156,169 @@ window.Quarto = {
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -229,14 +394,15 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block"></header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-cloud"><div class="category" data-category="Academia"><span class="quarto-category-count category-cloud-1">Academia</span></div><div class="category" data-category="Academic"><span class="quarto-category-count category-cloud-4">Academic</span></div><div class="category" data-category="Budgeting"><span class="quarto-category-count category-cloud-1">Budgeting</span></div><div class="category" data-category="Bullet journaling"><span class="quarto-category-count category-cloud-1">Bullet journaling</span></div><div class="category" data-category="Caffeine"><span class="quarto-category-count category-cloud-1">Caffeine</span></div><div class="category" data-category="ChatGPT"><span class="quarto-category-count category-cloud-1">ChatGPT</span></div><div class="category" data-category="Chess"><span class="quarto-category-count category-cloud-1">Chess</span></div><div class="category" data-category="Club"><span class="quarto-category-count category-cloud-1">Club</span></div><div class="category" data-category="Creamy pops"><span class="quarto-category-count category-cloud-1">Creamy pops</span></div><div class="category" data-category="Data science"><span class="quarto-category-count category-cloud-1">Data science</span></div><div class="category" data-category="E-Prime"><span class="quarto-category-count category-cloud-1">E-Prime</span></div><div class="category" data-category="EEG"><span class="quarto-category-count category-cloud-1">EEG</span></div><div class="category" data-category="Environment"><span class="quarto-category-count category-cloud-1">Environment</span></div><div class="category" data-category="Finance"><span class="quarto-category-count category-cloud-1">Finance</span></div><div class="category" data-category="Financial Literacy"><span class="quarto-category-count category-cloud-1">Financial Literacy</span></div><div class="category" data-category="Focus"><span class="quarto-category-count category-cloud-1">Focus</span></div><div class="category" data-category="Genetics"><span class="quarto-category-count category-cloud-2">Genetics</span></div><div class="category" data-category="Google Sheets"><span class="quarto-category-count category-cloud-1">Google Sheets</span></div><div class="category" data-category="Graduate school"><span class="quarto-category-count category-cloud-1">Graduate school</span></div><div class="category" data-category="Hobby"><span class="quarto-category-count category-cloud-1">Hobby</span></div><div class="category" data-category="Hobbyist"><span class="quarto-category-count category-cloud-1">Hobbyist</span></div><div class="category" data-category="Hockey Analytics"><span class="quarto-category-count category-cloud-1">Hockey Analytics</span></div><div class="category" data-category="Industry"><span class="quarto-category-count category-cloud-1">Industry</span></div><div class="category" data-category="Investing"><span class="quarto-category-count category-cloud-1">Investing</span></div><div class="category" data-category="Journaling"><span class="quarto-category-count category-cloud-1">Journaling</span></div><div class="category" data-category="Keyboards"><span class="quarto-category-count category-cloud-1">Keyboards</span></div><div class="category" data-category="Learning"><span class="quarto-category-count category-cloud-1">Learning</span></div><div class="category" data-category="Life Hack"><span class="quarto-category-count category-cloud-1">Life Hack</span></div><div class="category" data-category="Life hacks"><span class="quarto-category-count category-cloud-1">Life hacks</span></div><div class="category" data-category="Lifestyle"><span class="quarto-category-count category-cloud-1">Lifestyle</span></div><div class="category" data-category="March Madness"><span class="quarto-category-count category-cloud-1">March Madness</span></div><div class="category" data-category="Mechanical keyboard"><span class="quarto-category-count category-cloud-1">Mechanical keyboard</span></div><div class="category" data-category="Notebooks"><span class="quarto-category-count category-cloud-1">Notebooks</span></div><div class="category" data-category="Omnigraffle"><span class="quarto-category-count category-cloud-1">Omnigraffle</span></div><div class="category" data-category="Paper Review"><span class="quarto-category-count category-cloud-1">Paper Review</span></div><div class="category" data-category="Parkinson's Disease"><span class="quarto-category-count category-cloud-2">Parkinson's Disease</span></div><div class="category" data-category="Parkinson's Foundation"><span class="quarto-category-count category-cloud-1">Parkinson's Foundation</span></div><div class="category" data-category="Parkinsons Foundation"><span class="quarto-category-count category-cloud-1">Parkinsons Foundation</span></div><div class="category" data-category="Pesticides"><span class="quarto-category-count category-cloud-1">Pesticides</span></div><div class="category" data-category="Plotly"><span class="quarto-category-count category-cloud-1">Plotly</span></div><div class="category" data-category="Polygenic risk"><span class="quarto-category-count category-cloud-1">Polygenic risk</span></div><div class="category" data-category="Productivity"><span class="quarto-category-count category-cloud-2">Productivity</span></div><div class="category" data-category="Programming"><span class="quarto-category-count category-cloud-1">Programming</span></div><div class="category" data-category="R"><span class="quarto-category-count category-cloud-5">R</span></div><div class="category" data-category="Reading"><span class="quarto-category-count category-cloud-1">Reading</span></div><div class="category" data-category="Science"><span class="quarto-category-count category-cloud-2">Science</span></div><div class="category" data-category="Shiny"><span class="quarto-category-count category-cloud-1">Shiny</span></div><div class="category" data-category="Smoking"><span class="quarto-category-count category-cloud-1">Smoking</span></div><div class="category" data-category="Software"><span class="quarto-category-count category-cloud-1">Software</span></div><div class="category" data-category="Statistics"><span class="quarto-category-count category-cloud-1">Statistics</span></div><div class="category" data-category="Technology"><span class="quarto-category-count category-cloud-1">Technology</span></div><div class="category" data-category="Tools"><span class="quarto-category-count category-cloud-1">Tools</span></div><div class="category" data-category="Traumatic brain injury"><span class="quarto-category-count category-cloud-1">Traumatic brain injury</span></div><div class="category" data-category="Variables"><span class="quarto-category-count category-cloud-1">Variables</span></div><div class="category" data-category="Writing"><span class="quarto-category-count category-cloud-2">Writing</span></div><div class="category" data-category="data visualization"><span class="quarto-category-count category-cloud-1">data visualization</span></div><div class="category" data-category="data viz"><span class="quarto-category-count category-cloud-1">data viz</span></div><div class="category" data-category="dataviz"><span class="quarto-category-count category-cloud-1">dataviz</span></div><div class="category" data-category="ggplot2"><span class="quarto-category-count category-cloud-2">ggplot2</span></div><div class="category" data-category="iOS"><span class="quarto-category-count category-cloud-1">iOS</span></div><div class="category" data-category="publishing"><span class="quarto-category-count category-cloud-1">publishing</span></div><div class="category" data-category="science"><span class="quarto-category-count category-cloud-1">science</span></div><div class="category" data-category="statistics"><span class="quarto-category-count category-cloud-1">statistics</span></div><div class="category" data-category="vector"><span class="quarto-category-count category-cloud-1">vector</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-cloud"><div class="category" data-category="QWNhZGVtaWE="><span class="quarto-category-count category-cloud-1">Academia</span></div><div class="category" data-category="QWNhZGVtaWM="><span class="quarto-category-count category-cloud-4">Academic</span></div><div class="category" data-category="QnVkZ2V0aW5n"><span class="quarto-category-count category-cloud-1">Budgeting</span></div><div class="category" data-category="QnVsbGV0JTIwam91cm5hbGluZw=="><span class="quarto-category-count category-cloud-1">Bullet journaling</span></div><div class="category" data-category="Q2FmZmVpbmU="><span class="quarto-category-count category-cloud-1">Caffeine</span></div><div class="category" data-category="Q2hhdEdQVA=="><span class="quarto-category-count category-cloud-1">ChatGPT</span></div><div class="category" data-category="Q2hlc3M="><span class="quarto-category-count category-cloud-1">Chess</span></div><div class="category" data-category="Q2x1Yg=="><span class="quarto-category-count category-cloud-1">Club</span></div><div class="category" data-category="Q3JlYW15JTIwcG9wcw=="><span class="quarto-category-count category-cloud-1">Creamy pops</span></div><div class="category" data-category="RGF0YSUyMHNjaWVuY2U="><span class="quarto-category-count category-cloud-1">Data science</span></div><div class="category" data-category="ZGF0YSUyMHZpc3VhbGl6YXRpb24="><span class="quarto-category-count category-cloud-1">data visualization</span></div><div class="category" data-category="ZGF0YSUyMHZpeg=="><span class="quarto-category-count category-cloud-1">data viz</span></div><div class="category" data-category="ZGF0YXZpeg=="><span class="quarto-category-count category-cloud-1">dataviz</span></div><div class="category" data-category="RS1QcmltZQ=="><span class="quarto-category-count category-cloud-1">E-Prime</span></div><div class="category" data-category="RUVH"><span class="quarto-category-count category-cloud-1">EEG</span></div><div class="category" data-category="RW52aXJvbm1lbnQ="><span class="quarto-category-count category-cloud-1">Environment</span></div><div class="category" data-category="RmluYW5jZQ=="><span class="quarto-category-count category-cloud-1">Finance</span></div><div class="category" data-category="RmluYW5jaWFsJTIwTGl0ZXJhY3k="><span class="quarto-category-count category-cloud-1">Financial Literacy</span></div><div class="category" data-category="Rm9jdXM="><span class="quarto-category-count category-cloud-1">Focus</span></div><div class="category" data-category="R2VuZXRpY3M="><span class="quarto-category-count category-cloud-2">Genetics</span></div><div class="category" data-category="Z2dwbG90Mg=="><span class="quarto-category-count category-cloud-2">ggplot2</span></div><div class="category" data-category="R29vZ2xlJTIwU2hlZXRz"><span class="quarto-category-count category-cloud-1">Google Sheets</span></div><div class="category" data-category="R3JhZHVhdGUlMjBzY2hvb2w="><span class="quarto-category-count category-cloud-1">Graduate school</span></div><div class="category" data-category="SG9iYnk="><span class="quarto-category-count category-cloud-1">Hobby</span></div><div class="category" data-category="SG9iYnlpc3Q="><span class="quarto-category-count category-cloud-1">Hobbyist</span></div><div class="category" data-category="SG9ja2V5JTIwQW5hbHl0aWNz"><span class="quarto-category-count category-cloud-1">Hockey Analytics</span></div><div class="category" data-category="SW5kdXN0cnk="><span class="quarto-category-count category-cloud-1">Industry</span></div><div class="category" data-category="SW52ZXN0aW5n"><span class="quarto-category-count category-cloud-1">Investing</span></div><div class="category" data-category="aU9T"><span class="quarto-category-count category-cloud-1">iOS</span></div><div class="category" data-category="Sm91cm5hbGluZw=="><span class="quarto-category-count category-cloud-1">Journaling</span></div><div class="category" data-category="S2V5Ym9hcmRz"><span class="quarto-category-count category-cloud-1">Keyboards</span></div><div class="category" data-category="TGVhcm5pbmc="><span class="quarto-category-count category-cloud-1">Learning</span></div><div class="category" data-category="TGlmZSUyMEhhY2s="><span class="quarto-category-count category-cloud-1">Life Hack</span></div><div class="category" data-category="TGlmZSUyMGhhY2tz"><span class="quarto-category-count category-cloud-1">Life hacks</span></div><div class="category" data-category="TGlmZXN0eWxl"><span class="quarto-category-count category-cloud-1">Lifestyle</span></div><div class="category" data-category="TWFyY2glMjBNYWRuZXNz"><span class="quarto-category-count category-cloud-1">March Madness</span></div><div class="category" data-category="TWVjaGFuaWNhbCUyMGtleWJvYXJk"><span class="quarto-category-count category-cloud-1">Mechanical keyboard</span></div><div class="category" data-category="Tm90ZWJvb2tz"><span class="quarto-category-count category-cloud-1">Notebooks</span></div><div class="category" data-category="T21uaWdyYWZmbGU="><span class="quarto-category-count category-cloud-1">Omnigraffle</span></div><div class="category" data-category="UGFwZXIlMjBSZXZpZXc="><span class="quarto-category-count category-cloud-1">Paper Review</span></div><div class="category" data-category="UGFya2luc29uJ3MlMjBEaXNlYXNl"><span class="quarto-category-count category-cloud-2">Parkinson's Disease</span></div><div class="category" data-category="UGFya2luc29uJ3MlMjBGb3VuZGF0aW9u"><span class="quarto-category-count category-cloud-1">Parkinson's Foundation</span></div><div class="category" data-category="UGFya2luc29ucyUyMEZvdW5kYXRpb24="><span class="quarto-category-count category-cloud-1">Parkinsons Foundation</span></div><div class="category" data-category="UGVzdGljaWRlcw=="><span class="quarto-category-count category-cloud-1">Pesticides</span></div><div class="category" data-category="UGxvdGx5"><span class="quarto-category-count category-cloud-1">Plotly</span></div><div class="category" data-category="UG9seWdlbmljJTIwcmlzaw=="><span class="quarto-category-count category-cloud-1">Polygenic risk</span></div><div class="category" data-category="UHJvZHVjdGl2aXR5"><span class="quarto-category-count category-cloud-2">Productivity</span></div><div class="category" data-category="UHJvZ3JhbW1pbmc="><span class="quarto-category-count category-cloud-1">Programming</span></div><div class="category" data-category="cHVibGlzaGluZw=="><span class="quarto-category-count category-cloud-1">publishing</span></div><div class="category" data-category="Ug=="><span class="quarto-category-count category-cloud-5">R</span></div><div class="category" data-category="UmVhZGluZw=="><span class="quarto-category-count category-cloud-1">Reading</span></div><div class="category" data-category="U2NpZW5jZQ=="><span class="quarto-category-count category-cloud-2">Science</span></div><div class="category" data-category="c2NpZW5jZQ=="><span class="quarto-category-count category-cloud-1">science</span></div><div class="category" data-category="U2hpbnk="><span class="quarto-category-count category-cloud-1">Shiny</span></div><div class="category" data-category="U21va2luZw=="><span class="quarto-category-count category-cloud-1">Smoking</span></div><div class="category" data-category="U29mdHdhcmU="><span class="quarto-category-count category-cloud-1">Software</span></div><div class="category" data-category="c3RhdGlzdGljcw=="><span class="quarto-category-count category-cloud-1">statistics</span></div><div class="category" data-category="U3RhdGlzdGljcw=="><span class="quarto-category-count category-cloud-1">Statistics</span></div><div class="category" data-category="VGVjaG5vbG9neQ=="><span class="quarto-category-count category-cloud-1">Technology</span></div><div class="category" data-category="VG9vbHM="><span class="quarto-category-count category-cloud-1">Tools</span></div><div class="category" data-category="VHJhdW1hdGljJTIwYnJhaW4lMjBpbmp1cnk="><span class="quarto-category-count category-cloud-1">Traumatic brain injury</span></div><div class="category" data-category="VmFyaWFibGVz"><span class="quarto-category-count category-cloud-1">Variables</span></div><div class="category" data-category="dmVjdG9y"><span class="quarto-category-count category-cloud-1">vector</span></div><div class="category" data-category="V3JpdGluZw=="><span class="quarto-category-count category-cloud-2">Writing</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+
 
 
 
@@ -267,30 +433,26 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="R,statistics" data-listing-date-sort="1748934000000" data-listing-file-modified-sort="1748932886754" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="545">
-<div class="thumbnail">
-<p><a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external"></a></p><a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external">
+<div class="quarto-post image-right" data-index="0" data-categories="UiUyQ3N0YXRpc3RpY3M=" data-listing-date-sort="1748934000000" data-listing-file-modified-sort="1748932886754" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="545">
+<div class="thumbnail"><a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external">
+
 <p class="card-img-top"><img src="posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R_files/figure-html/unnamed-chunk-11-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external">Scaling variables in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RhdGlzdGljcw=='); return false;">statistics</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('statistics'); return false;">
-statistics
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external">A walkthrough of a tip I recently learned</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external">
+<p>A walkthrough of a tip I recently learned</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Scaling-variables-in-R/post-Scaling-variables-in-R.html" class="no-external">
@@ -303,33 +465,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="ChatGPT,ggplot2,data viz" data-listing-date-sort="1747724400000" data-listing-file-modified-sort="1747603526246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="574">
-<div class="thumbnail">
-<p><a href="./posts/post-Labeller/post-labeller.html" class="no-external"></a></p><a href="./posts/post-Labeller/post-labeller.html" class="no-external">
+<div class="quarto-post image-right" data-index="1" data-categories="Q2hhdEdQVCUyQ2dncGxvdDIlMkNkYXRhJTIwdml6" data-listing-date-sort="1747724400000" data-listing-file-modified-sort="1747603526246" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="574">
+<div class="thumbnail"><a href="./posts/post-Labeller/post-labeller.html" class="no-external">
+
 <p class="card-img-top"><img src="posts/post-Labeller/post-labeller_files/figure-html/fig1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/post-Labeller/post-labeller.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Labeller/post-labeller.html" class="no-external">Labeling facets in ggplot2</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Labeller/post-labeller.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('ChatGPT'); return false;">
-ChatGPT
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2hhdEdQVA=='); return false;">ChatGPT</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">ggplot2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMHZpeg=='); return false;">data viz</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('ggplot2'); return false;">
-ggplot2
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data viz'); return false;">
-data viz
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Labeller/post-labeller.html" class="no-external">Who knew such a small setting could make such a big improvement</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Labeller/post-labeller.html" class="no-external">
+<p>Who knew such a small setting could make such a big improvement</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Labeller/post-labeller.html" class="no-external">
@@ -342,206 +499,188 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Parkinson" s="" disease,parkinson's="" foundation,genetics,environment,lifestyle,pesticides,traumatic="" brain="" injury,caffeine,smoking,science'="" data-listing-date-sort="1746514800000" data-listing-file-modified-sort="1755018390093" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
-
-<div class="thumbnail">
-<a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external">
+<div class="quarto-post image-right" data-index="2" data-categories="UGFya2luc29uJ3MlMjBEaXNlYXNlJTJDUGFya2luc29uJ3MlMjBGb3VuZGF0aW9uJTJDR2VuZXRpY3MlMkNFbnZpcm9ubWVudCUyQ0xpZmVzdHlsZSUyQ1Blc3RpY2lkZXMlMkNUcmF1bWF0aWMlMjBicmFpbiUyMGluanVyeSUyQ0NhZmZlaW5lJTJDU21va2luZyUyQ1NjaWVuY2U=" data-listing-date-sort="1746514800000" data-listing-file-modified-sort="1755018390093" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
+<div class="thumbnail"><a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external">
 
 <img loading="lazy" src="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/parkinsons-101-environment.jpg" class="thumbnail-image">
 
-</a>
-</div>
-
+</a></div>
 <div class="body">
-
-<h3 class="no-anchor listing-title"><a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external">Parkinson's Disease 101: Environment and Lifestyle</a></h3>
-<div class="listing-subtitle"><a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external"></a></div>
-
- 
+<h3 class="no-anchor listing-title">
+<a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external">Parkinson’s Disease 101: Environment and Lifestyle</a>
+</h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('Parkinson's Disease'); return false;">Parkinson's Disease</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFya2luc29uJ3MlMjBEaXNlYXNl'); return false;">Parkinson's Disease</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Parkinson's Foundation'); return false;">Parkinson's Foundation</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFya2luc29uJ3MlMjBGb3VuZGF0aW9u'); return false;">Parkinson's Foundation</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Genetics'); return false;">Genetics</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R2VuZXRpY3M='); return false;">Genetics</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Environment'); return false;">Environment</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RW52aXJvbm1lbnQ='); return false;">Environment</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Lifestyle'); return false;">Lifestyle</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TGlmZXN0eWxl'); return false;">Lifestyle</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Pesticides'); return false;">Pesticides</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGVzdGljaWRlcw=='); return false;">Pesticides</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Traumatic brain injury'); return false;">Traumatic brain injury</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VHJhdW1hdGljJTIwYnJhaW4lMjBpbmp1cnk='); return false;">Traumatic brain injury</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Caffeine'); return false;">Caffeine</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q2FmZmVpbmU='); return false;">Caffeine</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Smoking'); return false;">Smoking</div>
+<div class="listing-category" onclick="window.quartoListingCategory('U21va2luZw=='); return false;">Smoking</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Science'); return false;">Science</div>
-
-</div>
- 
-
-<div class="delink listing-description"><a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external">Learn and donate to a great cause!</a></div>
+<div class="listing-category" onclick="window.quartoListingCategory('U2NpZW5jZQ=='); return false;">Science</div>
 
 </div>
-<div class="metadata"><a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external">
-<div class="listing-date">`May 6, 2025`{=html}</div>
-<div class="listing-author">Matthew J. Kmiecik</div>
-
+<div class="delink listing-description"><a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external">
+<p>Learn and donate to a great cause!</p>
 </a></div>
-
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Parkinson" s="" disease,parkinsons="" foundation,genetics,polygenic="" risk,science'="" data-listing-date-sort="1745305200000" data-listing-file-modified-sort="1746770273861" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
-
-<div class="thumbnail">
-<a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external">
+<div class="metadata">
+<a href="./posts/post-Parkinsons-disease-101-environment-and-lifestyle/post-Parkinsons-disease-101-environment-lifestyle.html" class="no-external">
+<div class="listing-date">
+May 6, 2025
+</div>
+<div class="listing-author">
+Matthew J. Kmiecik
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="UGFya2luc29uJ3MlMjBEaXNlYXNlJTJDUGFya2luc29ucyUyMEZvdW5kYXRpb24lMkNHZW5ldGljcyUyQ1BvbHlnZW5pYyUyMHJpc2slMkNTY2llbmNl" data-listing-date-sort="1745305200000" data-listing-file-modified-sort="1746770273861" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
+<div class="thumbnail"><a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external">
 
 <img loading="lazy" src="./posts/post-Parkinsons-disease-101-polygenic-risk/parkinsons-101-polygenic-risk.jpg" class="thumbnail-image">
 
-</a>
-</div>
-
+</a></div>
 <div class="body">
-
-<h3 class="no-anchor listing-title"><a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external">Parkinson's Disease 101: Polygenic Risk</a></h3>
-<div class="listing-subtitle"><a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external"></a></div>
-
- 
+<h3 class="no-anchor listing-title">
+<a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external">Parkinson’s Disease 101: Polygenic Risk</a>
+</h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('Parkinson's Disease'); return false;">Parkinson's Disease</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFya2luc29uJ3MlMjBEaXNlYXNl'); return false;">Parkinson's Disease</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Parkinsons Foundation'); return false;">Parkinsons Foundation</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFya2luc29ucyUyMEZvdW5kYXRpb24='); return false;">Parkinsons Foundation</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Genetics'); return false;">Genetics</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R2VuZXRpY3M='); return false;">Genetics</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Polygenic risk'); return false;">Polygenic risk</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UG9seWdlbmljJTIwcmlzaw=='); return false;">Polygenic risk</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Science'); return false;">Science</div>
-
-</div>
- 
-
-<div class="delink listing-description"><a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external">Learn and donate to a great cause!</a></div>
+<div class="listing-category" onclick="window.quartoListingCategory('U2NpZW5jZQ=='); return false;">Science</div>
 
 </div>
-<div class="metadata"><a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external">
-<div class="listing-date">`Apr 22, 2025`{=html}</div>
-<div class="listing-author">Matthew J. Kmiecik</div>
-
+<div class="delink listing-description"><a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external">
+<p>Learn and donate to a great cause!</p>
 </a></div>
-
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Parkinson" s="" disease,parkinsons="" foundation,genetics,science'="" data-listing-date-sort="1744182000000" data-listing-file-modified-sort="1746770157825" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22">
-
-<div class="thumbnail">
-<a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external">
+<div class="metadata">
+<a href="./posts/post-Parkinsons-disease-101-polygenic-risk/post-Parkinsons-disease-101-polygenic-risk.html" class="no-external">
+<div class="listing-date">
+Apr 22, 2025
+</div>
+<div class="listing-author">
+Matthew J. Kmiecik
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="UGFya2luc29uJ3MlMjBEaXNlYXNlJTJDUGFya2luc29ucyUyMEZvdW5kYXRpb24lMkNHZW5ldGljcyUyQ1NjaWVuY2U=" data-listing-date-sort="1744182000000" data-listing-file-modified-sort="1746770157825" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22">
+<div class="thumbnail"><a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external">
 
 <img loading="lazy" src="./posts/post-Parkinsons-disease-101-genetics/parkinsons-101-genetics.jpg" class="thumbnail-image">
 
-</a>
-</div>
-
+</a></div>
 <div class="body">
-
-<h3 class="no-anchor listing-title"><a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external">Parkinson's Disease 101: Genetics</a></h3>
-<div class="listing-subtitle"><a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external"></a></div>
-
- 
+<h3 class="no-anchor listing-title">
+<a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external">Parkinson’s Disease 101: Genetics</a>
+</h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('Parkinson's Disease'); return false;">Parkinson's Disease</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFya2luc29uJ3MlMjBEaXNlYXNl'); return false;">Parkinson's Disease</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Parkinsons Foundation'); return false;">Parkinsons Foundation</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFya2luc29ucyUyMEZvdW5kYXRpb24='); return false;">Parkinsons Foundation</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Genetics'); return false;">Genetics</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R2VuZXRpY3M='); return false;">Genetics</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Science'); return false;">Science</div>
-
-</div>
- 
-
-<div class="delink listing-description"><a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external">Learn and donate to a great cause!</a></div>
+<div class="listing-category" onclick="window.quartoListingCategory('U2NpZW5jZQ=='); return false;">Science</div>
 
 </div>
-<div class="metadata"><a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external">
-<div class="listing-date">`Apr 9, 2025`{=html}</div>
-<div class="listing-author">Matthew J. Kmiecik</div>
-
+<div class="delink listing-description"><a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external">
+<p>Learn and donate to a great cause!</p>
 </a></div>
-
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Parkinson" s="" disease,parkinsons="" foundation,genetics,science'="" data-listing-date-sort="1742886000000" data-listing-file-modified-sort="1746770046378" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
-
-<div class="thumbnail">
-<a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external">
+<div class="metadata">
+<a href="./posts/post-Parkinsons-disease-101-genetics/post-Parkinsons-disease-101-genetics.html" class="no-external">
+<div class="listing-date">
+Apr 9, 2025
+</div>
+<div class="listing-author">
+Matthew J. Kmiecik
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="UGFya2luc29uJ3MlMjBEaXNlYXNlJTJDUGFya2luc29ucyUyMEZvdW5kYXRpb24lMkNHZW5ldGljcyUyQ1NjaWVuY2U=" data-listing-date-sort="1742886000000" data-listing-file-modified-sort="1746770046378" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
+<div class="thumbnail"><a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external">
 
 <img loading="lazy" src="./posts/post-Parkinsons-disease-101/parkinsons-101.jpg" class="thumbnail-image">
 
-</a>
-</div>
-
+</a></div>
 <div class="body">
-
-<h3 class="no-anchor listing-title"><a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external">Parkinson's Disease 101</a></h3>
-<div class="listing-subtitle"><a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external"></a></div>
-
- 
+<h3 class="no-anchor listing-title">
+<a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external">Parkinson’s Disease 101</a>
+</h3>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('Parkinson's Disease'); return false;">Parkinson's Disease</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFya2luc29uJ3MlMjBEaXNlYXNl'); return false;">Parkinson's Disease</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Parkinsons Foundation'); return false;">Parkinsons Foundation</div>
+<div class="listing-category" onclick="window.quartoListingCategory('UGFya2luc29ucyUyMEZvdW5kYXRpb24='); return false;">Parkinsons Foundation</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Genetics'); return false;">Genetics</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R2VuZXRpY3M='); return false;">Genetics</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('Science'); return false;">Science</div>
-
-</div>
- 
-
-<div class="delink listing-description"><a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external">Learn and donate to a great cause!</a></div>
+<div class="listing-category" onclick="window.quartoListingCategory('U2NpZW5jZQ=='); return false;">Science</div>
 
 </div>
-<div class="metadata"><a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external">
-<div class="listing-date">`Mar 25, 2025`{=html}</div>
-<div class="listing-author">Matthew J. Kmiecik</div>
+<div class="delink listing-description"><a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external">
+<p>Learn and donate to a great cause!</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/post-Parkinsons-disease-101/post-Parkinsons-disease-101.html" class="no-external">
+<div class="listing-date">
+Mar 25, 2025
+</div>
+<div class="listing-author">
+Matthew J. Kmiecik
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-categories="UiUyQ3ZlY3RvciUyQ2RhdGElMjB2aXN1YWxpemF0aW9uJTJDZ2dwbG90Mg==" data-listing-date-sort="1741676400000" data-listing-file-modified-sort="1746769857152" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
+<div class="thumbnail"><a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Named-vectors-in-R/named-vectors-in-R-p1.png" class="thumbnail-image">
 
 </a></div>
-
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="R,vector,data visualization,ggplot2" data-listing-date-sort="1741676400000" data-listing-file-modified-sort="1746769857152" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="21">
-<div class="thumbnail">
-<p><a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external"></a></p><a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Named-vectors-in-R/named-vectors-in-R-p1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external"></a></p>
-</div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external">Named vectors in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('dmVjdG9y'); return false;">vector</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMHZpc3VhbGl6YXRpb24='); return false;">data visualization</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">ggplot2</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('vector'); return false;">
-vector
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data visualization'); return false;">
-data visualization
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('ggplot2'); return false;">
-ggplot2
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external">A powerful tool for plotting colors.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external">
+<p>A powerful tool for plotting colors.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Named-vectors-in-R/post-Named-vectors-in-R.html" class="no-external">
@@ -554,45 +693,36 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Bullet journaling,Google Sheets,Productivity,Life Hack,Academia,Industry,Science" data-listing-date-sort="1740470400000" data-listing-file-modified-sort="1746769539843" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="25">
-<div class="thumbnail">
-<p><a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external"></a></p><a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Why-I-abandoned-bullet-journaling/painting-5.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="7" data-categories="QnVsbGV0JTIwam91cm5hbGluZyUyQ0dvb2dsZSUyMFNoZWV0cyUyQ1Byb2R1Y3Rpdml0eSUyQ0xpZmUlMjBIYWNrJTJDQWNhZGVtaWElMkNJbmR1c3RyeSUyQ1NjaWVuY2U=" data-listing-date-sort="1740470400000" data-listing-file-modified-sort="1746769539843" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="25">
+<div class="thumbnail"><a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Why-I-abandoned-bullet-journaling/painting-5.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external">Why I abandoned bullet journaling</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Bullet journaling'); return false;">
-Bullet journaling
+
+<div class="listing-category" onclick="window.quartoListingCategory('QnVsbGV0JTIwam91cm5hbGluZw=='); return false;">Bullet journaling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R29vZ2xlJTIwU2hlZXRz'); return false;">Google Sheets</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJvZHVjdGl2aXR5'); return false;">Productivity</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGlmZSUyMEhhY2s='); return false;">Life Hack</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWE='); return false;">Academia</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW5kdXN0cnk='); return false;">Industry</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2NpZW5jZQ=='); return false;">Science</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Google Sheets'); return false;">
-Google Sheets
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Productivity'); return false;">
-Productivity
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Life Hack'); return false;">
-Life Hack
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Academia'); return false;">
-Academia
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Industry'); return false;">
-Industry
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Science'); return false;">
-Science
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external">Don’t underestimate the power of a good to-do list.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external">
+<p>Don’t underestimate the power of a good to-do list.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Why-I-abandoned-bullet-journaling/post-Why-I-abandoned-bullet-journaling.html" class="no-external">
@@ -605,33 +735,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Chess,Club,Hobby" data-listing-date-sort="1739260800000" data-listing-file-modified-sort="1746769333962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="26">
-<div class="thumbnail">
-<p><a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external"></a></p><a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Chess-part-II/chess-part-II.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="8" data-categories="Q2hlc3MlMkNDbHViJTJDSG9iYnk=" data-listing-date-sort="1739260800000" data-listing-file-modified-sort="1746769333962" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="26">
+<div class="thumbnail"><a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Chess-part-II/chess-part-II.jpg" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external">My first foray into chess - part II</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Chess'); return false;">
-Chess
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2hlc3M='); return false;">Chess</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2x1Yg=='); return false;">Club</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SG9iYnk='); return false;">Hobby</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Club'); return false;">
-Club
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Hobby'); return false;">
-Hobby
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external">A humbling experience to say the least.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external">
+<p>A humbling experience to say the least.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Chess-part-II/post-Chess-part-II.html" class="no-external">
@@ -644,33 +769,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="Chess,Club,Hobby" data-listing-date-sort="1738051200000" data-listing-file-modified-sort="1746769184812" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="26">
-<div class="thumbnail">
-<p><a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external"></a></p><a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Chess-part-I/chess-part-I.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="9" data-categories="Q2hlc3MlMkNDbHViJTJDSG9iYnk=" data-listing-date-sort="1738051200000" data-listing-file-modified-sort="1746769184812" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="26">
+<div class="thumbnail"><a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Chess-part-I/chess-part-I.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external">My first foray into chess - part I</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Chess'); return false;">
-Chess
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2hlc3M='); return false;">Chess</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2x1Yg=='); return false;">Club</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SG9iYnk='); return false;">Hobby</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Club'); return false;">
-Club
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Hobby'); return false;">
-Hobby
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external">A humbling experience to say the least.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external">
+<p>A humbling experience to say the least.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Chess-part-I/post-Chess-part-I.html" class="no-external">
@@ -683,39 +803,32 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="R,Programming,Statistics,Data science,Variables" data-listing-date-sort="1736841600000" data-listing-file-modified-sort="1746768978595" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
-<div class="thumbnail">
-<p><a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external"></a></p><a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Creating-objects-in-R/r-objects.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="10" data-categories="UiUyQ1Byb2dyYW1taW5nJTJDU3RhdGlzdGljcyUyQ0RhdGElMjBzY2llbmNlJTJDVmFyaWFibGVz" data-listing-date-sort="1736841600000" data-listing-file-modified-sort="1746768978595" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
+<div class="thumbnail"><a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Creating-objects-in-R/r-objects.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external">Creating objects in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false;">Programming</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljcw=='); return false;">Statistics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMHNjaWVuY2U='); return false;">Data science</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VmFyaWFibGVz'); return false;">Variables</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Programming'); return false;">
-Programming
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
-Statistics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Data science'); return false;">
-Data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Variables'); return false;">
-Variables
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external">What variable assignment says about my growth in programming.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external">
+<p>What variable assignment says about my growth in programming.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Creating-objects-in-R/post-Creating-objects-in-R.html" class="no-external">
@@ -728,39 +841,32 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Hobbyist,Keyboards,Creamy pops,Mechanical keyboard,Technology" data-listing-date-sort="1735027200000" data-listing-file-modified-sort="1735870270359" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail">
-<p><a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external"></a></p><a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Building-keyboards/keyboard.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="11" data-categories="SG9iYnlpc3QlMkNLZXlib2FyZHMlMkNDcmVhbXklMjBwb3BzJTJDTWVjaGFuaWNhbCUyMGtleWJvYXJkJTJDVGVjaG5vbG9neQ==" data-listing-date-sort="1735027200000" data-listing-file-modified-sort="1735870270359" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
+<div class="thumbnail"><a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Building-keyboards/keyboard.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external">Building keyboards</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Hobbyist'); return false;">
-Hobbyist
+
+<div class="listing-category" onclick="window.quartoListingCategory('SG9iYnlpc3Q='); return false;">Hobbyist</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('S2V5Ym9hcmRz'); return false;">Keyboards</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q3JlYW15JTIwcG9wcw=='); return false;">Creamy pops</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWVjaGFuaWNhbCUyMGtleWJvYXJk'); return false;">Mechanical keyboard</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VGVjaG5vbG9neQ=='); return false;">Technology</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Keyboards'); return false;">
-Keyboards
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Creamy pops'); return false;">
-Creamy pops
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Mechanical keyboard'); return false;">
-Mechanical keyboard
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Technology'); return false;">
-Technology
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external">A brief meditation about this fascinating hobby.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external">
+<p>A brief meditation about this fascinating hobby.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Building-keyboards/post-Building-keyboards.html" class="no-external">
@@ -773,42 +879,34 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="Productivity,Life hacks,Bullet journaling,Journaling,Notebooks,Writing" data-listing-date-sort="1733817600000" data-listing-file-modified-sort="1735870017035" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22">
-<div class="thumbnail">
-<p><a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external"></a></p><a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Bullet-journaling/red-dots.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="12" data-categories="UHJvZHVjdGl2aXR5JTJDTGlmZSUyMGhhY2tzJTJDQnVsbGV0JTIwam91cm5hbGluZyUyQ0pvdXJuYWxpbmclMkNOb3RlYm9va3MlMkNXcml0aW5n" data-listing-date-sort="1733817600000" data-listing-file-modified-sort="1735870017035" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="22">
+<div class="thumbnail"><a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Bullet-journaling/red-dots.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external">Bullet journaling for perfectionists</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Productivity'); return false;">
-Productivity
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJvZHVjdGl2aXR5'); return false;">Productivity</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGlmZSUyMGhhY2tz'); return false;">Life hacks</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QnVsbGV0JTIwam91cm5hbGluZw=='); return false;">Bullet journaling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Sm91cm5hbGluZw=='); return false;">Journaling</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Tm90ZWJvb2tz'); return false;">Notebooks</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('V3JpdGluZw=='); return false;">Writing</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Life hacks'); return false;">
-Life hacks
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Bullet journaling'); return false;">
-Bullet journaling
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Journaling'); return false;">
-Journaling
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Notebooks'); return false;">
-Notebooks
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Writing'); return false;">
-Writing
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external">4 tips that helped me get started.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external">
+<p>4 tips that helped me get started.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Bullet-journaling/post-Bullet-journaling.html" class="no-external">
@@ -821,39 +919,32 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="R,Statistics,Programming,Science,Learning" data-listing-date-sort="1732608000000" data-listing-file-modified-sort="1735869692542" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="25">
-<div class="thumbnail">
-<p><a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external"></a></p><a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-My-start-with-R/painting-4.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="13" data-categories="UiUyQ1N0YXRpc3RpY3MlMkNQcm9ncmFtbWluZyUyQ1NjaWVuY2UlMkNMZWFybmluZw==" data-listing-date-sort="1732608000000" data-listing-file-modified-sort="1735869692542" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="25">
+<div class="thumbnail"><a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-My-start-with-R/painting-4.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external">My start with R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljcw=='); return false;">Statistics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJvZ3JhbW1pbmc='); return false;">Programming</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2NpZW5jZQ=='); return false;">Science</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGVhcm5pbmc='); return false;">Learning</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
-Statistics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Programming'); return false;">
-Programming
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Science'); return false;">
-Science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Learning'); return false;">
-Learning
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external">The programming language that made me a better scientist.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external">
+<p>The programming language that made me a better scientist.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-My-start-with-R/post-My-start-with-R.html" class="no-external">
@@ -866,39 +957,32 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="Finance,Financial Literacy,Graduate school,Budgeting,Investing" data-listing-date-sort="1731398400000" data-listing-file-modified-sort="1735867909522" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="20">
-<div class="thumbnail">
-<p><a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external"></a></p><a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Finances-in-gradschool/painting-2.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="14" data-categories="RmluYW5jZSUyQ0ZpbmFuY2lhbCUyMExpdGVyYWN5JTJDR3JhZHVhdGUlMjBzY2hvb2wlMkNCdWRnZXRpbmclMkNJbnZlc3Rpbmc=" data-listing-date-sort="1731398400000" data-listing-file-modified-sort="1735867909522" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="20">
+<div class="thumbnail"><a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Finances-in-gradschool/painting-2.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external">Finances in gradschool</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Finance'); return false;">
-Finance
+
+<div class="listing-category" onclick="window.quartoListingCategory('RmluYW5jZQ=='); return false;">Finance</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RmluYW5jaWFsJTIwTGl0ZXJhY3k='); return false;">Financial Literacy</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R3JhZHVhdGUlMjBzY2hvb2w='); return false;">Graduate school</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QnVkZ2V0aW5n'); return false;">Budgeting</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW52ZXN0aW5n'); return false;">Investing</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Financial Literacy'); return false;">
-Financial Literacy
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Graduate school'); return false;">
-Graduate school
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Budgeting'); return false;">
-Budgeting
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Investing'); return false;">
-Investing
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external">What I would have done differently if I were to enter graduate school tomorrow.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external">
+<p>What I would have done differently if I were to enter graduate school tomorrow.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Finances-in-gradschool/post-Finances-in-gradschool.html" class="no-external">
@@ -911,33 +995,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-categories="Focus,Productivity,iOS" data-listing-date-sort="1730185200000" data-listing-file-modified-sort="1730738751039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
-<div class="thumbnail">
-<p><a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external"></a></p><a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Screen-Time/painting-1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="15" data-categories="Rm9jdXMlMkNQcm9kdWN0aXZpdHklMkNpT1M=" data-listing-date-sort="1730185200000" data-listing-file-modified-sort="1730738751039" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="14">
+<div class="thumbnail"><a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Screen-Time/painting-1.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external">Screen Time</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Focus'); return false;">
-Focus
+
+<div class="listing-category" onclick="window.quartoListingCategory('Rm9jdXM='); return false;">Focus</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJvZHVjdGl2aXR5'); return false;">Productivity</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('aU9T'); return false;">iOS</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Productivity'); return false;">
-Productivity
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('iOS'); return false;">
-iOS
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external">How I used principles from psychology to help increase productivity.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external">
+<p>How I used principles from psychology to help increase productivity.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Screen-Time/post-Screen-Time.html" class="no-external">
@@ -950,33 +1029,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="16" data-categories="Focus,Productivity,Writing" data-listing-date-sort="1728975600000" data-listing-file-modified-sort="1729452153131" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
-<div class="thumbnail">
-<p><a href="./posts/post-Forest/post-Forest.html" class="no-external"></a></p><a href="./posts/post-Forest/post-Forest.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Forest/forest.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Forest/post-Forest.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="16" data-categories="Rm9jdXMlMkNQcm9kdWN0aXZpdHklMkNXcml0aW5n" data-listing-date-sort="1728975600000" data-listing-file-modified-sort="1729452153131" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
+<div class="thumbnail"><a href="./posts/post-Forest/post-Forest.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Forest/forest.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Forest/post-Forest.html" class="no-external">Seeing the forest for the trees</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Forest/post-Forest.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Focus'); return false;">
-Focus
+
+<div class="listing-category" onclick="window.quartoListingCategory('Rm9jdXM='); return false;">Focus</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJvZHVjdGl2aXR5'); return false;">Productivity</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('V3JpdGluZw=='); return false;">Writing</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Productivity'); return false;">
-Productivity
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Writing'); return false;">
-Writing
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Forest/post-Forest.html" class="no-external">How I use the Forest iOS app to block distractions.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Forest/post-Forest.html" class="no-external">
+<p>How I use the Forest iOS app to block distractions.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Forest/post-Forest.html" class="no-external">
@@ -989,42 +1063,34 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="17" data-categories="ggplot2,R,dataviz,publishing,science,Omnigraffle" data-listing-date-sort="1727766000000" data-listing-file-modified-sort="1728854587043" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="17">
-<div class="thumbnail">
-<p><a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external"></a></p><a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Favorite-Figures/figure-5.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="17" data-categories="Z2dwbG90MiUyQ1IlMkNkYXRhdml6JTJDcHVibGlzaGluZyUyQ3NjaWVuY2UlMkNPbW5pZ3JhZmZsZQ==" data-listing-date-sort="1727766000000" data-listing-file-modified-sort="1728854587043" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="17">
+<div class="thumbnail"><a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Favorite-Figures/figure-5.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external">My favorite figures (to date)</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('ggplot2'); return false;">
-ggplot2
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">ggplot2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YXZpeg=='); return false;">dataviz</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHVibGlzaGluZw=='); return false;">publishing</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c2NpZW5jZQ=='); return false;">science</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T21uaWdyYWZmbGU='); return false;">Omnigraffle</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('dataviz'); return false;">
-dataviz
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('publishing'); return false;">
-publishing
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('science'); return false;">
-science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Omnigraffle'); return false;">
-Omnigraffle
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external">Blogpost that tells the stories behind the design decisions of my favorite figures.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external">
+<p>Blogpost that tells the stories behind the design decisions of my favorite figures.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Favorite-Figures/post-Favorite-Figures.html" class="no-external">
@@ -1037,48 +1103,38 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="18" data-categories="ggplot2,Software,Tools,R,dataviz,publishing,science,Omnigraffle" data-listing-date-sort="1726556400000" data-listing-file-modified-sort="1728854075195" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
-<div class="thumbnail">
-<p><a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external"></a></p><a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Omnigraffle/omnigraffle-ui.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="18" data-categories="Z2dwbG90MiUyQ1NvZnR3YXJlJTJDVG9vbHMlMkNSJTJDZGF0YXZpeiUyQ3B1Ymxpc2hpbmclMkNzY2llbmNlJTJDT21uaWdyYWZmbGU=" data-listing-date-sort="1726556400000" data-listing-file-modified-sort="1728854075195" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
+<div class="thumbnail"><a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Omnigraffle/omnigraffle-ui.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external">Using Omnigraffle for publication ready figures</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('ggplot2'); return false;">
-ggplot2
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">ggplot2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U29mdHdhcmU='); return false;">Software</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VG9vbHM='); return false;">Tools</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YXZpeg=='); return false;">dataviz</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cHVibGlzaGluZw=='); return false;">publishing</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c2NpZW5jZQ=='); return false;">science</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T21uaWdyYWZmbGU='); return false;">Omnigraffle</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Software'); return false;">
-Software
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Tools'); return false;">
-Tools
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('dataviz'); return false;">
-dataviz
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('publishing'); return false;">
-publishing
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('science'); return false;">
-science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Omnigraffle'); return false;">
-Omnigraffle
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external">Blogpost explaining my framework for producing publication-ready figures.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external">
+<p>Blogpost explaining my framework for producing publication-ready figures.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Omnigraffle/post-Omnigraffle.html" class="no-external">
@@ -1091,33 +1147,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="19" data-categories="Writing,Software,Tools" data-listing-date-sort="1725346800000" data-listing-file-modified-sort="1728779547206" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
-<div class="thumbnail">
-<p><a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external"></a></p><a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Ulysses/ulysses-ui.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="19" data-categories="V3JpdGluZyUyQ1NvZnR3YXJlJTJDVG9vbHM=" data-listing-date-sort="1725346800000" data-listing-file-modified-sort="1728779547206" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
+<div class="thumbnail"><a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Ulysses/ulysses-ui.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external">I started this Substack just so that I could use Ulysses</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Writing'); return false;">
-Writing
+
+<div class="listing-category" onclick="window.quartoListingCategory('V3JpdGluZw=='); return false;">Writing</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U29mdHdhcmU='); return false;">Software</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VG9vbHM='); return false;">Tools</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Software'); return false;">
-Software
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Tools'); return false;">
-Tools
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external">Blogpost on the Ulysses writing software.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external">
+<p>Blogpost on the Ulysses writing software.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Ulysses/post-Ulysses.html" class="no-external">
@@ -1130,33 +1181,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="20" data-categories="Academic,R,E-Prime" data-listing-date-sort="1584514800000" data-listing-file-modified-sort="1728755770287" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1933">
-<div class="thumbnail">
-<p><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external"></a></p><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="20" data-categories="QWNhZGVtaWMlMkNSJTJDRS1QcmltZQ==" data-listing-date-sort="1584514800000" data-listing-file-modified-sort="1728755770287" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1933">
+<div class="thumbnail"><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/thumbnail.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">Stop Using Excel to Preprocess E-Prime Data</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RS1QcmltZQ=='); return false;">E-Prime</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('E-Prime'); return false;">
-E-Prime
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">A walk-through of how to process E-Prime output with R.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">
+<p>A walk-through of how to process E-Prime output with R.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data/post-Stop-Using-Excel-to-Preprocess-E-Prime-Data.html" class="no-external">
@@ -1169,36 +1215,30 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="21" data-categories="Academic,R,Reading,Plotly" data-listing-date-sort="1577347200000" data-listing-file-modified-sort="1728755770269" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1638">
-<div class="thumbnail">
-<p><a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external"></a></p><a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-My-Reads/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="21" data-categories="QWNhZGVtaWMlMkNSJTJDUmVhZGluZyUyQ1Bsb3RseQ==" data-listing-date-sort="1577347200000" data-listing-file-modified-sort="1728755770269" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1638">
+<div class="thumbnail"><a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-My-Reads/thumbnail.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">My Reads</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVhZGluZw=='); return false;">Reading</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGxvdGx5'); return false;">Plotly</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Reading'); return false;">
-Reading
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Plotly'); return false;">
-Plotly
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">The results of a 1-year reading experiment.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">
+<p>The results of a 1-year reading experiment.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-My-Reads/post-My-Reads.html" class="no-external">
@@ -1211,33 +1251,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="22" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1551945600000" data-listing-file-modified-sort="1728755770249" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31" data-listing-word-count-sort="6003">
-<div class="thumbnail">
-<p><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external"></a></p><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="22" data-categories="QWNhZGVtaWMlMkNIb2NrZXklMjBBbmFseXRpY3MlMkNS" data-listing-date-sort="1551945600000" data-listing-file-modified-sort="1728755770249" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31" data-listing-word-count-sort="6003">
+<div class="thumbnail"><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/thumbnail.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">Exploring 11 Years of Chicago Blackhawk’s Data using Principal Components Analysis</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SG9ja2V5JTIwQW5hbHl0aWNz'); return false;">Hockey Analytics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Hockey Analytics'); return false;">
-Hockey Analytics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">Two grad students get over zealous with PCA and NHL data.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">
+<p>Two grad students get over zealous with PCA and NHL data.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis/post-Exploring-11-Years-of-Chicago-Blackhawks-Data-using-Principal-Components-Analysis.html" class="no-external">
@@ -1250,30 +1285,26 @@ Matthew J. Kmiecik &amp; Ekarin E. Pongpipat
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="23" data-categories="Academic,Paper Review" data-listing-date-sort="1532242800000" data-listing-file-modified-sort="1728755770243" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="993">
-<div class="thumbnail">
-<p><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external"></a></p><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="23" data-categories="QWNhZGVtaWMlMkNQYXBlciUyMFJldmlldw==" data-listing-date-sort="1532242800000" data-listing-file-modified-sort="1728755770243" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="993">
+<div class="thumbnail"><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/thumbnail.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGFwZXIlMjBSZXZpZXc='); return false;">Paper Review</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Paper Review'); return false;">
-Paper Review
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">A (hopefully) accessible summary of my first first-authored paper.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">
+<p>A (hopefully) accessible summary of my first first-authored paper.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury/post-A-Method-for-Characterizing-Semantic-and-Lexical-Properties-of-Sentence-Completions-in-Traumatic-Brain-Injury.html" class="no-external">
@@ -1286,33 +1317,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="24" data-categories="Academic,Shiny,R" data-listing-date-sort="1528354800000" data-listing-file-modified-sort="1728755770248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="722">
-<div class="thumbnail">
-<p><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external"></a></p><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="24" data-categories="QWNhZGVtaWMlMkNTaGlueSUyQ1I=" data-listing-date-sort="1528354800000" data-listing-file-modified-sort="1728755770248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="722">
+<div class="thumbnail"><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">
+
+<img loading="lazy" src="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/thumbnail.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">Bootstrapping and Permutation Testing: A Shiny App</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U2hpbnk='); return false;">Shiny</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Shiny'); return false;">
-Shiny
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">Using Shiny to help understand the difference between bootstrapping and permutation testing.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">
+<p>Using Shiny to help understand the difference between bootstrapping and permutation testing.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Bootstrapping-and-Permutation-Testing-Shiny-App/post-Bootstrapping-and-Permutation-Testing-Shiny-App.html" class="no-external">
@@ -1325,33 +1351,28 @@ Matthew J. Kmiecik &amp; Ekarin E. Pongpipat
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="25" data-categories="Academic,R,March Madness" data-listing-date-sort="1521529200000" data-listing-file-modified-sort="1728755770274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="60" data-listing-word-count-sort="11969">
-<div class="thumbnail">
-<p><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external"></a></p><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">
-<p><img loading="lazy" data-src="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="25" data-categories="QWNhZGVtaWMlMkNSJTJDTWFyY2glMjBNYWRuZXNz" data-listing-date-sort="1521529200000" data-listing-file-modified-sort="1728755770274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="60" data-listing-word-count-sort="11969">
+<div class="thumbnail"><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">
+
+<img loading="lazy" data-src="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/thumbnail.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">Simulating 2018 NCAA March Madness Tournament Performance in R</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFyY2glMjBNYWRuZXNz'); return false;">March Madness</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('March Madness'); return false;">
-March Madness
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">A bunch of grad students compete to design the best March Madness algorithm.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">
+<p>A bunch of grad students compete to design the best March Madness algorithm.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R/post-Simulating-2018-NCAA-March-Madness-Tournament-Performance-in-R.html" class="no-external">
@@ -1364,33 +1385,28 @@ Nick Ray, David Hoagey, Linh Lazarus, Ekarin Pongpipat, &amp; Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="26" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1518336000000" data-listing-file-modified-sort="1728755770257" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4284">
-<div class="thumbnail">
-<p><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external"></a></p><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">
-<p><img loading="lazy" data-src="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="26" data-categories="QWNhZGVtaWMlMkNIb2NrZXklMjBBbmFseXRpY3MlMkNS" data-listing-date-sort="1518336000000" data-listing-file-modified-sort="1728755770257" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="22" data-listing-word-count-sort="4284">
+<div class="thumbnail"><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">
+
+<img loading="lazy" data-src="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/thumbnail.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">Multilevel Modeling in R with NHL Power Play Data</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SG9ja2V5JTIwQW5hbHl0aWNz'); return false;">Hockey Analytics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Hockey Analytics'); return false;">
-Hockey Analytics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">A walkthrough of sequential multilevel modeling in R using NHL data.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">
+<p>A walkthrough of sequential multilevel modeling in R using NHL data.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data/post-Multilevel-Modeling-in-R-with-NHL-Power-Play-Data.html" class="no-external">
@@ -1403,30 +1419,26 @@ Ekarin Pongpipat &amp; Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="27" data-categories="Academic,Writing" data-listing-date-sort="1506322800000" data-listing-file-modified-sort="1728755770301" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1626">
-<div class="thumbnail">
-<p><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external"></a></p><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">
+<div class="quarto-post image-right" data-index="27" data-categories="QWNhZGVtaWMlMkNXcml0aW5n" data-listing-date-sort="1506322800000" data-listing-file-modified-sort="1728755770301" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1626">
+<div class="thumbnail"><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">
+
 <p class="card-img-top"><img data-src="./images/me.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">Writing a Literature Review</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('V3JpdGluZw=='); return false;">Writing</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Writing'); return false;">
-Writing
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">Tips on writing a literature review.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">
+<p>Tips on writing a literature review.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Writing-a-Literature-Review/post-Writing-a-Literature-Review.html" class="no-external">
@@ -1439,33 +1451,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="28" data-categories="Academic,E-Prime,EEG" data-listing-date-sort="1497250800000" data-listing-file-modified-sort="1728755770300" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1473">
-<div class="thumbnail">
-<p><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external"></a></p><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">
+<div class="quarto-post image-right" data-index="28" data-categories="QWNhZGVtaWMlMkNFLVByaW1lJTJDRUVH" data-listing-date-sort="1497250800000" data-listing-file-modified-sort="1728755770300" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1473">
+<div class="thumbnail"><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">
+
 <p class="card-img-top"><img data-src="images/joy2key1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external"></a></p>
-</div>
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">Using Xbox Controllers and Sending EEG Triggers with E-Prime</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RS1QcmltZQ=='); return false;">E-Prime</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RUVH'); return false;">EEG</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('E-Prime'); return false;">
-E-Prime
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('EEG'); return false;">
-EEG
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">A how-to article for EEG enthusiasts.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">
+<p>A how-to article for EEG enthusiasts.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime/post-Using-Xbox-Controllers-and-Sending-EEG-Triggers-with-E-Prime.html" class="no-external">
@@ -1478,33 +1485,28 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="29" data-categories="Academic,Hockey Analytics,R" data-listing-date-sort="1494831600000" data-listing-file-modified-sort="1728755770291" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1724">
-<div class="thumbnail">
-<p><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external"></a></p><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">
-<p><img loading="lazy" data-src="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external"></a></p>
-</div>
+<div class="quarto-post image-right" data-index="29" data-categories="QWNhZGVtaWMlMkNIb2NrZXklMjBBbmFseXRpY3MlMkNS" data-listing-date-sort="1494831600000" data-listing-file-modified-sort="1728755770291" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1724">
+<div class="thumbnail"><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">
+
+<img loading="lazy" data-src="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/thumbnail.png" class="thumbnail-image">
+
+</a></div>
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">The Last Decade: NHL’s Best and Worst Power Play Teams</a>
 </h3>
-<div class="listing-subtitle">
-<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external"></a>
-</div>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Academic'); return false;">
-Academic
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SG9ja2V5JTIwQW5hbHl0aWNz'); return false;">Hockey Analytics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Hockey Analytics'); return false;">
-Hockey Analytics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
-R
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">My initial (although incorrect) attempt at modeling NHL power play data.</a>
-</div>
+<div class="delink listing-description"><a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">
+<p>My initial (although incorrect) attempt at modeling NHL power play data.</p>
+</a></div>
 </div>
 <div class="metadata">
 <a href="./posts/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams/post-The-Last-Decade-NHLs-Best-and-Worst-Power-Play-Teams.html" class="no-external">
@@ -1517,392 +1519,294 @@ Matthew J. Kmiecik
 </a>
 </div>
 </div>
+<div class="quarto-post image-right" data-index="30" data-categories="QWNhZGVtaWMlMkNS" data-listing-date-sort="1494831600000" data-listing-file-modified-sort="1728755770302" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="504">
+<div class="thumbnail"><a href="./posts/post-ggplot2-Histogram-Logo-Fail/post-ggplot2-Histogram-Logo-Fail.html" class="no-external">
+
+<p class="card-img-top"><img data-src="./images/me.jpg"  class="thumbnail-image card-img"/></p>
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/post-ggplot2-Histogram-Logo-Fail/post-ggplot2-Histogram-Logo-Fail.html" class="no-external">ggplot2 Histogram Logo Fail</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWNhZGVtaWM='); return false;">Academic</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
 </div>
-<div class="listing-no-matching d-none">
-No matching items
+<div class="delink listing-description"><a href="./posts/post-ggplot2-Histogram-Logo-Fail/post-ggplot2-Histogram-Logo-Fail.html" class="no-external">
+<p>How to insert spaces in-between histogram bars using ggplot2.</p>
+</a></div>
 </div>
+<div class="metadata">
+<a href="./posts/post-ggplot2-Histogram-Logo-Fail/post-ggplot2-Histogram-Logo-Fail.html" class="no-external">
+<div class="listing-date">
+May 15, 2017
+</div>
+<div class="listing-author">
+Matt Kmiecik
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
 <nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
   <ul class="pagination"></ul>
 </nav>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1910,189 +1814,193 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
-<script src="https://giscus.app/client.js" data-repo="mkmiecik14/mkmiecik14.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg==" data-category="Announcements" data-category-id="DIC_kwDOBZzsfM4CT2c5" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="light">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "mkmiecik14/mkmiecik14.github.io";
+    script.dataset.repoId = "MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg==";
+    script.dataset.category = "Announcements";
+    script.dataset.categoryId = "DIC_kwDOBZzsfM4CT2c5";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

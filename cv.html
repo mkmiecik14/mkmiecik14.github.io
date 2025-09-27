@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -30,17 +30,20 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="././images/matt-casual-1080-1080.jpeg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-c3c2c9e745155556954bc4da23476b10.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b6e6edf6cb1293d7f667c2f39c143ab5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-96154317ac42e815f27e622f8868fa45.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-b27abff4093d936a9e549839c6fd35d6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-96154317ac42e815f27e622f8868fa45.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -92,14 +95,178 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
 
 <meta property="og:title" content="– Matthew J. Kmiecik, PhD">
 <meta property="og:description" content="A blog about R, statistics, data viz, and academic musings.">
+<meta property="og:image" content="images/matt-casual-circle.jpg">
 <meta property="og:site_name" content="Matthew J. Kmiecik, PhD">
 <meta name="twitter:title" content="– Matthew J. Kmiecik, PhD">
 <meta name="twitter:description" content="A blog about R, statistics, data viz, and academic musings.">
+<meta name="twitter:image" content="images/matt-casual-circle.jpg">
 <meta name="twitter:creator" content="@mattkmiecik14">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -225,7 +392,8 @@ gtag('config', 'G-Q8PCYXLBH5', { 'anonymize_ip': true});
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
 
 
 
@@ -245,8 +413,8 @@ Matthew J. Kmiecik, PhD
 <h1>Education</h1>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-de474ddb91c2780219da" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-de474ddb91c2780219da">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"logo":["23andMe-omni.png","ns-omni.png","utd-omni.png","luc-omni.png"],"inst":["23andMe","NorthShore University HealthSystem","The Univeristy of Texas at Dallas","Loyola University Chicago"],"focus":["Genetics & Parkinson's Disease","Pain Research","Human Reasoning, Traumatic Brain Injury","Analogical Reasoning, EEG"],"degree":["Postdoctoral Research Fellowship","Postdoctoral Research Fellowship","PhD Cognition and Neuroscience","BS Psychology: Natural Sciences"],"date":["2022-2024","2020-2022","2014-2019","2009-2013"]},"columns":[{"id":"logo","name":"","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"75px"}},"children":[{"name":"img","attribs":{"src":"images/23andMe-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"75px"}},"children":[{"name":"img","attribs":{"src":"images/ns-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"75px"}},"children":[{"name":"img","attribs":{"src":"images/utd-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"75px"}},"children":[{"name":"img","attribs":{"src":"images/luc-omni.png","style":{"height":"75px"}},"children":[]}]}]}],"width":150,"align":"left"},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"focus","name":"focus","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"degree","name":"Degree/Focus/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Postdoctoral Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Genetics & Parkinson's Disease"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["23andMe"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Postdoctoral Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Pain Research"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["NorthShore University HealthSystem"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["PhD Cognition and Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Human Reasoning, Traumatic Brain Injury"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The Univeristy of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["BS Psychology: Natural Sciences"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Analogical Reasoning, EEG"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]}]},{"id":"date","name":"Dates","type":"character","vAlign":"center","headerVAlign":"bottom","width":150}],"theme":{"backgroundColor":"transparent"},"dataKey":"687e72084373d3356995f430a9963a33"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-7500b707d0dd9bedd5dd" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7500b707d0dd9bedd5dd">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"logo":["23andMe-omni.png","ns-omni.png","utd-omni.png","luc-omni.png"],"inst":["23andMe","NorthShore University HealthSystem","The Univeristy of Texas at Dallas","Loyola University Chicago"],"focus":["Genetics & Parkinson's Disease","Pain Research","Human Reasoning, Traumatic Brain Injury","Analogical Reasoning, EEG"],"degree":["Postdoctoral Research Fellowship","Postdoctoral Research Fellowship","PhD Cognition and Neuroscience","BS Psychology: Natural Sciences"],"date":["2022-2024","2020-2022","2014-2019","2009-2013"]},"columns":[{"id":"logo","name":"","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"75px"}},"children":[{"name":"img","attribs":{"src":"images/23andMe-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"75px"}},"children":[{"name":"img","attribs":{"src":"images/ns-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"75px"}},"children":[{"name":"img","attribs":{"src":"images/utd-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"75px"}},"children":[{"name":"img","attribs":{"src":"images/luc-omni.png","style":{"height":"75px"}},"children":[]}]}]}],"width":150,"align":"left"},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"focus","name":"focus","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"degree","name":"Degree/Focus/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Postdoctoral Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Genetics & Parkinson's Disease"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["23andMe"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Postdoctoral Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Pain Research"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["NorthShore University HealthSystem"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["PhD Cognition and Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Human Reasoning, Traumatic Brain Injury"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The Univeristy of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["BS Psychology: Natural Sciences"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Analogical Reasoning, EEG"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]}]},{"id":"date","name":"Dates","type":"character","vAlign":"center","headerVAlign":"bottom","width":150}],"theme":{"backgroundColor":"transparent"},"dataKey":"687e72084373d3356995f430a9963a33"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -255,8 +423,8 @@ Matthew J. Kmiecik, PhD
 <h1>Professional Positions</h1>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-53172ba41a6391ad4c82" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-53172ba41a6391ad4c82">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"logo":["23andMe-omni.png","23andMe-omni.png","sra-omni.png","uchicago-omni.png","ns-omni.png","luc-omni.png","utd-omni.png","luc-omni.png"],"pos":["Scientist I","Postdoctoral Fellow","Visiting Scholar","Clincian Researcher","Postdoctoral Research Fellowship","Part-Time Faculty","Graduate Research and Teaching Assistant","Laboratory Manager"],"dep":["Research","Research","Center for Bionic Medicine","Department of Ob/Gyn","Department of Ob/Gyn","Department of Psychology","School of Behavioral and Brain Sciences","Department of Psychology"],"inst":["23andMe","23andMe","Shirley Ryan AbilityLab","The University of Chicago Pritzker School of Medicine","NorthShore Univeristy HealthSystem","Loyola University Chicago","The University of Texas at Dallas","Loyola Univeristy Chicago"],"date":["2024-present","2022-2024","2021-2022","2020-2022","2020-2022","2020-2022","2014-2019","2013-2014"]},"columns":[{"id":"logo","name":"Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/23andMe-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/23andMe-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/sra-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/uchicago-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/ns-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/luc-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/utd-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/luc-omni.png","style":{"height":"75px"}},"children":[]}]}]}],"width":150,"align":"left"},{"id":"pos","name":"Position/Department/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Scientist I"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Research"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["23andMe"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Postdoctoral Fellow"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Research"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["23andMe"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Visiting Scholar"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Center for Bionic Medicine"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Shirley Ryan AbilityLab"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Clincian Researcher"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Department of Ob/Gyn"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Chicago Pritzker School of Medicine"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Postdoctoral Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Department of Ob/Gyn"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["NorthShore Univeristy HealthSystem"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Part-Time Faculty"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Department of Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Graduate Research and Teaching Assistant"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["School of Behavioral and Brain Sciences"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Laboratory Manager"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Department of Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola Univeristy Chicago"]}]}]},{"id":"dep","name":"dep","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Dates","type":"character","vAlign":"center","headerVAlign":"bottom","width":150}],"theme":{"backgroundColor":"transparent"},"dataKey":"fdf1e954772d2566b83fe1c2ca0c55b8"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-7c724ed7e98639a93836" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7c724ed7e98639a93836">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"logo":["23andMe-omni.png","23andMe-omni.png","sra-omni.png","uchicago-omni.png","ns-omni.png","luc-omni.png","utd-omni.png","luc-omni.png"],"pos":["Scientist I","Postdoctoral Fellow","Visiting Scholar","Clincian Researcher","Postdoctoral Research Fellowship","Part-Time Faculty","Graduate Research and Teaching Assistant","Laboratory Manager"],"dep":["Research","Research","Center for Bionic Medicine","Department of Ob/Gyn","Department of Ob/Gyn","Department of Psychology","School of Behavioral and Brain Sciences","Department of Psychology"],"inst":["23andMe","23andMe","Shirley Ryan AbilityLab","The University of Chicago Pritzker School of Medicine","NorthShore Univeristy HealthSystem","Loyola University Chicago","The University of Texas at Dallas","Loyola Univeristy Chicago"],"date":["2024-present","2022-2024","2021-2022","2020-2022","2020-2022","2020-2022","2014-2019","2013-2014"]},"columns":[{"id":"logo","name":"Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/23andMe-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/23andMe-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/sra-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/uchicago-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/ns-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/luc-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/utd-omni.png","style":{"height":"75px"}},"children":[]}]}]},{"name":"Fragment","attribs":[],"children":[{"name":"div","attribs":{"style":{"display":"inline-block","width":"45px"}},"children":[{"name":"img","attribs":{"src":"images/luc-omni.png","style":{"height":"75px"}},"children":[]}]}]}],"width":150,"align":"left"},{"id":"pos","name":"Position/Department/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Scientist I"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Research"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["23andMe"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Postdoctoral Fellow"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Research"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["23andMe"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Visiting Scholar"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Center for Bionic Medicine"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Shirley Ryan AbilityLab"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Clincian Researcher"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Department of Ob/Gyn"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Chicago Pritzker School of Medicine"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Postdoctoral Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Department of Ob/Gyn"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["NorthShore Univeristy HealthSystem"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Part-Time Faculty"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Department of Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Graduate Research and Teaching Assistant"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["School of Behavioral and Brain Sciences"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Laboratory Manager"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Department of Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola Univeristy Chicago"]}]}]},{"id":"dep","name":"dep","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Dates","type":"character","vAlign":"center","headerVAlign":"bottom","width":150}],"theme":{"backgroundColor":"transparent"},"dataKey":"fdf1e954772d2566b83fe1c2ca0c55b8"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -266,6 +434,7 @@ Matthew J. Kmiecik, PhD
 <section id="papers" class="level2">
 <h2 class="anchored" data-anchor-id="papers">Papers</h2>
 <ul>
+<li><p><strong>Kmiecik, M. J.</strong>, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Micheletti, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). Genetic Modifiers of Parkinson’s Disease: A Case–Control Study. <em>Annals of Clinical and Translational Neurology</em>. <a href="https://doi.org/10.1002/acn3.70176" class="uri">https://doi.org/10.1002/acn3.70176</a></p></li>
 <li><p>Reina, E. M., Hellman, K. M., <strong>Kmiecik, M. J.</strong>, Terkildsen, M. F., &amp; Tu, F. F. (2025). Associations between menstrual pain and sexual function: the role of visceral hypersensitivity on developing sexual pain. <em>The Journal of Sexual Medicine</em>, <em>22</em>(1), 98-106. <a href="https://doi.org/10.1093/jsxmed/qdae149" class="uri">https://doi.org/10.1093/jsxmed/qdae149</a></p></li>
 <li><p>Stagaman, K., <strong>Kmiecik, M. J.</strong>, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., 23andMe Research Team, Tung, J., Holmes, M. V., Walk, S. T., Houser, M. C., &amp; Norcliffe-Kaufmann, L. (2024). Oral and gut microbiome profiles in people with early idiopathic Parkinson’s disease. <em>Communications Medicine, 4</em>(209). <a href="https://doi.org/10.1038/s43856-024-00630-8" class="uri">https://doi.org/10.1038/s43856-024-00630-8</a></p></li>
 <li><p><strong>Kmiecik, M. J.</strong>, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Wetzel, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2024). Genetic analysis and natural history of Parkinson’s disease due to the LRRK2 G2019S variant. <em>Brain</em>, <em>147</em>(6), 1996–2008. <a href="https://doi.org/10.1093/brain/awae073" class="uri">https://doi.org/10.1093/brain/awae073</a></p></li>
@@ -347,6 +516,7 @@ Matthew J. Kmiecik, PhD
 <section id="poster-presentations" class="level2">
 <h2 class="anchored" data-anchor-id="poster-presentations">Poster Presentations</h2>
 <ul>
+<li><p>Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Guerin, T., Kmiecik, M. J., &amp; Norcliffe-Kaufmann, L. (Nov.&nbsp;2025). Precision Therapy with Ampreloxetine for Neurogenic Orthostatic Hypotension in Multiple System Atrophy. Poster to be presented at the 36th International Symposium on the Autonomic Nervous System, Clearwater Beach, FL.</p></li>
 <li><p><strong>Kmiecik, M. J.</strong>, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M., Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (Sept.&nbsp;2024). LRRK2 and GBA Founder Mutations and their Interactions in Parkinson’s Disease. Genetics and Metabolic Diseases. <em>Movement Disorders, 39</em>: S740-S808. <a href="https://doi.org/10.1002/mds.29955" class="uri">https://doi.org/10.1002/mds.29955</a></p></li>
 <li><p><strong>Kmiecik, M. J.</strong>, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M. Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (May, 2024). A comparison of Parkinson’s disease symptom profiles in LRRK2 G2019S and GBA N370S single and dual carriers. Poster presented at the Planning for Prevention of Parkinson’s: A Trial Design Forum, Boston, MA.</p></li>
 <li><p><strong>Kmiecik, M. J.</strong>, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Schloetter, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (April, 2024). Genetic Analysis and Natural History of LRRK2 G2019S Parkinson’s Disease (P11-3.006). <em>Neurology</em>, <em>102</em>(17_supplement_1, p.&nbsp;184). <a href="https://doi.org/10.1212/WNL.0000000000204390" class="uri">https://doi.org/10.1212/WNL.0000000000204390</a></p></li>
@@ -393,8 +563,8 @@ Matthew J. Kmiecik, PhD
 <h2 class="anchored" data-anchor-id="conference-organization">Conference Organization</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-3a85e94b510c124936e3" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-3a85e94b510c124936e3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"role":["Fundraising Coordinator","Organizer"],"conf":["Chicago Society for Neuroscience","BrainHack Dallas"],"year":["2021-2023","2019"]},"columns":[{"id":"role","name":"Role","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"conf","name":"Conference","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"year","name":"Dates","type":"character","vAlign":"center","headerVAlign":"bottom","width":150}],"highlight":true,"striped":true,"style":{"fontSize":"0.9rem"},"theme":{"backgroundColor":"transparent"},"dataKey":"c8cf4923b3a206ee25bbad7c90e9bd88"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-5a6fa1959547c82c0550" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5a6fa1959547c82c0550">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"role":["Fundraising Coordinator","Organizer"],"conf":["Chicago Society for Neuroscience","BrainHack Dallas"],"year":["2021-2023","2019"]},"columns":[{"id":"role","name":"Role","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"conf","name":"Conference","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"year","name":"Dates","type":"character","vAlign":"center","headerVAlign":"bottom","width":150}],"highlight":true,"striped":true,"style":{"fontSize":"0.9rem"},"theme":{"backgroundColor":"transparent"},"dataKey":"c8cf4923b3a206ee25bbad7c90e9bd88"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -425,8 +595,8 @@ Matthew J. Kmiecik, PhD
 <h1>Grants &amp; Fellowships</h1>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-1acc06199159c7ab641f" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-1acc06199159c7ab641f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"award":["Friends of BrainHealth Distinguished New Scientist Award","Dianne Cash Pre-Doctoral Fellowship","Friends of BrainHealth Distinguished New Scientist Award","European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award","Loyola University Chicago Mulcahy Research Scholarship","Loyola University Chicago Provost Research Fellowship","Loyola University Chicago Provost Research Fellowship"],"amount":["$20,000","$2,500","$20,000","€500","$1,000","$1,000","$1,000"],"date":["2019","2017","2015","2013","2013","2012","2011"]},"columns":[{"id":"award","name":"Award/Amount","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Friends of BrainHealth Distinguished New Scientist Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$20,000"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Dianne Cash Pre-Doctoral Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$2,500"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Friends of BrainHealth Distinguished New Scientist Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$20,000"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["€500"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Loyola University Chicago Mulcahy Research Scholarship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$1,000"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Loyola University Chicago Provost Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$1,000"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Loyola University Chicago Provost Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$1,000"]}]}]},{"id":"amount","name":"amount","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"dc2232ca615853fad2761592e9851ac6"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-cfafe702ad171ec49ac3" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cfafe702ad171ec49ac3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"award":["Friends of BrainHealth Distinguished New Scientist Award","Dianne Cash Pre-Doctoral Fellowship","Friends of BrainHealth Distinguished New Scientist Award","European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award","Loyola University Chicago Mulcahy Research Scholarship","Loyola University Chicago Provost Research Fellowship","Loyola University Chicago Provost Research Fellowship"],"amount":["$20,000","$2,500","$20,000","€500","$1,000","$1,000","$1,000"],"date":["2019","2017","2015","2013","2013","2012","2011"]},"columns":[{"id":"award","name":"Award/Amount","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Friends of BrainHealth Distinguished New Scientist Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$20,000"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Dianne Cash Pre-Doctoral Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$2,500"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Friends of BrainHealth Distinguished New Scientist Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$20,000"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["European Network for the Advancement of Artificial Cognitive Systems Interaction and Robotics Travel Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["€500"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Loyola University Chicago Mulcahy Research Scholarship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$1,000"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Loyola University Chicago Provost Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$1,000"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Loyola University Chicago Provost Research Fellowship"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["$1,000"]}]}]},{"id":"amount","name":"amount","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"dc2232ca615853fad2761592e9851ac6"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -435,8 +605,8 @@ Matthew J. Kmiecik, PhD
 <h1>Academic Awards &amp; Honors</h1>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-b911ccc753e5a84d9ed6" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b911ccc753e5a84d9ed6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"award":["High Impact Abstract in Clinical Science","Best Poster Award","People’s Choice Poster Award","First Place Libraries Undergraduate Research Paper Award","Department of Psychology Research Award","Department of Psychology Honors Award","Dean’s List"],"inst":["International Congress of Parkinson’s Disease and Movement Disorders","IASP Abdominal and Pelvic Pain SIG","Cognitive Neuroscience Society","Loyola University Chicago","Loyola University Chicago","Loyola University Chicago","Loyola University Chicago"],"date":["2023","2022","2014","2013","2013","2013","2010-2013"]},"columns":[{"id":"award","name":"Award/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["High Impact Abstract in Clinical Science"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["International Congress of Parkinson’s Disease and Movement Disorders"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Best Poster Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["IASP Abdominal and Pelvic Pain SIG"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["People’s Choice Poster Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Cognitive Neuroscience Society"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["First Place Libraries Undergraduate Research Paper Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Department of Psychology Research Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Department of Psychology Honors Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Dean’s List"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]}]},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"e7d4ea05bd9e82430f55a7077b7793d2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-9600d255ff1111333b62" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9600d255ff1111333b62">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"award":["High Impact Abstract in Clinical Science","Best Poster Award","People’s Choice Poster Award","First Place Libraries Undergraduate Research Paper Award","Department of Psychology Research Award","Department of Psychology Honors Award","Dean’s List"],"inst":["International Congress of Parkinson’s Disease and Movement Disorders","IASP Abdominal and Pelvic Pain SIG","Cognitive Neuroscience Society","Loyola University Chicago","Loyola University Chicago","Loyola University Chicago","Loyola University Chicago"],"date":["2023","2022","2014","2013","2013","2013","2010-2013"]},"columns":[{"id":"award","name":"Award/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["High Impact Abstract in Clinical Science"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["International Congress of Parkinson’s Disease and Movement Disorders"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Best Poster Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["IASP Abdominal and Pelvic Pain SIG"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["People’s Choice Poster Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Cognitive Neuroscience Society"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["First Place Libraries Undergraduate Research Paper Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Department of Psychology Research Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Department of Psychology Honors Award"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Dean’s List"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]}]},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"e7d4ea05bd9e82430f55a7077b7793d2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -447,8 +617,8 @@ Matthew J. Kmiecik, PhD
 <h2 class="anchored" data-anchor-id="committee-involvement">Committee Involvement</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-63aa6d7d911bbde2ebce" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-63aa6d7d911bbde2ebce">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"pos":["Graduate Student Ambassador","Center-wide RA/Internship Facilitator"],"inst":["Center for BrainHealth at The University of Texas at Dallas","Center for BrainHealth at The University of Texas at Dallas"],"date":["2018-2019","2018-2019"]},"columns":[{"id":"pos","name":"Position/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Graduate Student Ambassador"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Center for BrainHealth at The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Center-wide RA/Internship Facilitator"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Center for BrainHealth at The University of Texas at Dallas"]}]}]},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"86388f0a87e256e417a9a254574b912c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-ac52ffb0ebc9002ed269" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ac52ffb0ebc9002ed269">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"pos":["Graduate Student Ambassador","Center-wide RA/Internship Facilitator"],"inst":["Center for BrainHealth at The University of Texas at Dallas","Center for BrainHealth at The University of Texas at Dallas"],"date":["2018-2019","2018-2019"]},"columns":[{"id":"pos","name":"Position/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Graduate Student Ambassador"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Center for BrainHealth at The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Center-wide RA/Internship Facilitator"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Center for BrainHealth at The University of Texas at Dallas"]}]}]},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"86388f0a87e256e417a9a254574b912c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -460,8 +630,8 @@ Matthew J. Kmiecik, PhD
 <h2 class="anchored" data-anchor-id="professor-of-record">Professor of Record</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-d5b291578c822ed9cb23" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d5b291578c822ed9cb23">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"class":["Behavioral and Cognitive Neuroscience","Behavioral and Cognitive Neuroscience","Behavioral and Cognitive Neuroscience"],"num":["PSYC 382, BIOL 284","PSYC 382, BIOL 284","PSYC 382, BIOL 284"],"inst":["Loyola University Chicago","Loyola University Chicago","Loyola University Chicago"],"sem":["Spring","Fall","Fall"],"date":["2022","2021","2020"]},"columns":[{"id":"class","name":"Course/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Behavioral and Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["PSYC 382, BIOL 284"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Behavioral and Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["PSYC 382, BIOL 284"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Behavioral and Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["PSYC 382, BIOL 284"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]}],"width":400},{"id":"num","name":"num","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"sem","name":"Semester","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"7848bc3be84d1f60d7b2e3adb5db8a0c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-4c7e2967bfce2e2ae701" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4c7e2967bfce2e2ae701">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"class":["Behavioral and Cognitive Neuroscience","Behavioral and Cognitive Neuroscience","Behavioral and Cognitive Neuroscience"],"num":["PSYC 382, BIOL 284","PSYC 382, BIOL 284","PSYC 382, BIOL 284"],"inst":["Loyola University Chicago","Loyola University Chicago","Loyola University Chicago"],"sem":["Spring","Fall","Fall"],"date":["2022","2021","2020"]},"columns":[{"id":"class","name":"Course/Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Behavioral and Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["PSYC 382, BIOL 284"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Behavioral and Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["PSYC 382, BIOL 284"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Behavioral and Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["PSYC 382, BIOL 284"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]}],"width":400},{"id":"num","name":"num","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"sem","name":"Semester","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"7848bc3be84d1f60d7b2e3adb5db8a0c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -469,8 +639,8 @@ Matthew J. Kmiecik, PhD
 <h2 class="anchored" data-anchor-id="teaching-assistant">Teaching Assistant</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-f6f05ef2eca6d09a4bad" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f6f05ef2eca6d09a4bad">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"class":["Experimental Projects","Experimental Projects","Experimental Projects","Cognitive Psychology","Experimental Projects","Research & Evaluation Methods"],"prof":["Dr. Linda Drew","Dr. Linda Drew","Dr. Jessica Lockhart","Dr. Vanessa Miller","Dr. Gail Tillman","Dr. Gail Tillman"],"inst":["The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas"],"sem":["Spring","Fall","Spring","Summer","Spring","Fall"],"date":["2018","2017","2017","2016","2016","2015"]},"columns":[{"id":"class","name":"Course/Prof./Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Experimental Projects"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Linda Drew"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Experimental Projects"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Linda Drew"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Experimental Projects"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Jessica Lockhart"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Cognitive Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Vanessa Miller"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Experimental Projects"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Gail Tillman"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Research & Evaluation Methods"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Gail Tillman"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]}],"width":400},{"id":"prof","name":"prof","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"sem","name":"Semester","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"9c48a39651f2b1726b3aded6fe4aa1b9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-9fd845db341310617c8b" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9fd845db341310617c8b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"class":["Experimental Projects","Experimental Projects","Experimental Projects","Cognitive Psychology","Experimental Projects","Research & Evaluation Methods"],"prof":["Dr. Linda Drew","Dr. Linda Drew","Dr. Jessica Lockhart","Dr. Vanessa Miller","Dr. Gail Tillman","Dr. Gail Tillman"],"inst":["The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas"],"sem":["Spring","Fall","Spring","Summer","Spring","Fall"],"date":["2018","2017","2017","2016","2016","2015"]},"columns":[{"id":"class","name":"Course/Prof./Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Experimental Projects"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Linda Drew"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Experimental Projects"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Linda Drew"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Experimental Projects"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Jessica Lockhart"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Cognitive Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Vanessa Miller"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Experimental Projects"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Gail Tillman"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Research & Evaluation Methods"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Dr. Gail Tillman"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]}],"width":400},{"id":"prof","name":"prof","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"sem","name":"Semester","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"9c48a39651f2b1726b3aded6fe4aa1b9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -478,8 +648,8 @@ Matthew J. Kmiecik, PhD
 <h2 class="anchored" data-anchor-id="guest-lectures">Guest Lectures</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-c9b78940834f474f7f73" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-c9b78940834f474f7f73">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"topic":["Data Visualization Principles","Introduction to R","Data Visualization Principles","Introduction to R","Analogical Reasonng","Short-term & Working Memory","Language"],"class":["Advanced Experimental Lab in Psychology","Advanced Experimental Lab in Psychology","Advanced Experimental Lab in Psychology","Advanced Experimental Lab in Psychology","Reasoning","Cognitive Neuroscience","Cognitive Neuroscience"],"prof":["Professor Mina Kim","Professor Mina Kim","Professor Mina Kim","Professor Mina Kim","Daniel C. Krawczyk, PhD","Bart Rypma, PhD","Bart Rypma, PhD"],"inst":["Loyola University Chicago","Loyola University Chicago","Loyola University Chicago","Loyola University Chicago","The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas"],"sem":["Fall","Fall","Spring","Spring","Fall","Fall","Fall"],"date":["2022","2022","2022","2022","2018","2018","2018"]},"columns":[{"id":"topic","name":"Topic/Course/Prof./Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Data Visualization Principles"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Advanced Experimental Lab in Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Professor Mina Kim"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Introduction to R"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Advanced Experimental Lab in Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Professor Mina Kim"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Data Visualization Principles"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Advanced Experimental Lab in Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Professor Mina Kim"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Introduction to R"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Advanced Experimental Lab in Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Professor Mina Kim"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Analogical Reasonng"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Reasoning"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Daniel C. Krawczyk, PhD"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Short-term & Working Memory"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Bart Rypma, PhD"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Language"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Bart Rypma, PhD"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]}],"width":400},{"id":"class","name":"class","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"prof","name":"prof","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"sem","name":"Semester","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"7774cbe31a46bc53034f014bbeab9e9b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-f96ec4292232e0b7810b" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f96ec4292232e0b7810b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"topic":["Data Visualization Principles","Introduction to R","Data Visualization Principles","Introduction to R","Analogical Reasonng","Short-term & Working Memory","Language"],"class":["Advanced Experimental Lab in Psychology","Advanced Experimental Lab in Psychology","Advanced Experimental Lab in Psychology","Advanced Experimental Lab in Psychology","Reasoning","Cognitive Neuroscience","Cognitive Neuroscience"],"prof":["Professor Mina Kim","Professor Mina Kim","Professor Mina Kim","Professor Mina Kim","Daniel C. Krawczyk, PhD","Bart Rypma, PhD","Bart Rypma, PhD"],"inst":["Loyola University Chicago","Loyola University Chicago","Loyola University Chicago","Loyola University Chicago","The University of Texas at Dallas","The University of Texas at Dallas","The University of Texas at Dallas"],"sem":["Fall","Fall","Spring","Spring","Fall","Fall","Fall"],"date":["2022","2022","2022","2022","2018","2018","2018"]},"columns":[{"id":"topic","name":"Topic/Course/Prof./Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Data Visualization Principles"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Advanced Experimental Lab in Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Professor Mina Kim"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Introduction to R"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Advanced Experimental Lab in Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Professor Mina Kim"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Data Visualization Principles"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Advanced Experimental Lab in Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Professor Mina Kim"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Introduction to R"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Advanced Experimental Lab in Psychology"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Professor Mina Kim"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Loyola University Chicago"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Analogical Reasonng"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Reasoning"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Daniel C. Krawczyk, PhD"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Short-term & Working Memory"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Bart Rypma, PhD"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Language"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Cognitive Neuroscience"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Bart Rypma, PhD"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]}],"width":400},{"id":"class","name":"class","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"prof","name":"prof","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"sem","name":"Semester","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"7774cbe31a46bc53034f014bbeab9e9b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -489,8 +659,8 @@ Matthew J. Kmiecik, PhD
 <h1>Internships</h1>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-ee2d62fd227fc7ed7816" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ee2d62fd227fc7ed7816">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"intern":["Neuroscience: Internet of Things and Wearable Technologies"],"dept":["Venture Development Center"],"inst":["The University of Texas at Dallas"],"term":["Summer"],"date":["2016"]},"columns":[{"id":"intern","name":"Internship/Dept./Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Neuroscience: Internet of Things and Wearable Technologies"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Venture Development Center"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]}],"width":400},{"id":"dept","name":"dept","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"term","name":"Term","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"e5564a49a7a7f56cddac07e264bca2b7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-b74c04ba111637c9e236" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b74c04ba111637c9e236">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"intern":["Neuroscience: Internet of Things and Wearable Technologies"],"dept":["Venture Development Center"],"inst":["The University of Texas at Dallas"],"term":["Summer"],"date":["2016"]},"columns":[{"id":"intern","name":"Internship/Dept./Institution","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Neuroscience: Internet of Things and Wearable Technologies"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["Venture Development Center"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]}],"width":400},{"id":"dept","name":"dept","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"term","name":"Term","type":"character","vAlign":"center","headerVAlign":"bottom"},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"e5564a49a7a7f56cddac07e264bca2b7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -499,8 +669,8 @@ Matthew J. Kmiecik, PhD
 <h1>Training and Certifications</h1>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-37400f30c8904478b0ba" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-37400f30c8904478b0ba">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"train_cert":["The 22nd EEGLAB Workshop","Graduate Teaching Certificate"],"inst":["University of California San Diego","The University of Texas at Dallas"],"date":["2016","2016"]},"columns":[{"id":"train_cert","name":"Training/Certification","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["The 22nd EEGLAB Workshop"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["University of California San Diego"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Graduate Teaching Certificate"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]}],"width":400},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"c6a71d2d07faa03f46f61b2d667e0e84"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-f28a7270b244dc2c4b38" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f28a7270b244dc2c4b38">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"train_cert":["The 22nd EEGLAB Workshop","Graduate Teaching Certificate"],"inst":["University of California San Diego","The University of Texas at Dallas"],"date":["2016","2016"]},"columns":[{"id":"train_cert","name":"Training/Certification","type":"character","vAlign":"center","headerVAlign":"bottom","cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["The 22nd EEGLAB Workshop"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["University of California San Diego"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontWeight":600}},"children":["Graduate Teaching Certificate"]},{"name":"div","attribs":{"style":{"fontSize":"0.75rem"}},"children":["The University of Texas at Dallas"]}]}],"width":400},{"id":"inst","name":"inst","type":"character","vAlign":"center","headerVAlign":"bottom","show":false},{"id":"date","name":"Date","type":"character","vAlign":"center","headerVAlign":"bottom","width":75}],"highlight":true,"striped":true,"theme":{"backgroundColor":"transparent"},"dataKey":"c6a71d2d07faa03f46f61b2d667e0e84"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p><br></p>
@@ -537,383 +707,255 @@ Matthew J. Kmiecik, PhD
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -921,189 +963,193 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
-<script src="https://giscus.app/client.js" data-repo="mkmiecik14/mkmiecik14.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg==" data-category="Announcements" data-category-id="DIC_kwDOBZzsfM4CT2c5" data-mapping="pathname" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <input type="hidden" id="giscus-base-theme" value="light">
 <input type="hidden" id="giscus-alt-theme" value="light">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "mkmiecik14/mkmiecik14.github.io";
+    script.dataset.repoId = "MDEwOlJlcG9zaXRvcnk5NDE3MDIzNg==";
+    script.dataset.category = "Announcements";
+    script.dataset.categoryId = "DIC_kwDOBZzsfM4CT2c5";
+    script.dataset.mapping = "pathname";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
