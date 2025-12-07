@@ -346,6 +346,9 @@ reactable(
 
 ## Talks
 
+- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G., Schneider, R., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D., Tung, J., Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). The Role of Polygenic Background and APOE E4 in Monogenic and Idiopathic Parkinson's Disease. 
+ _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
+
 -   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
     Harte, S. E., & Hellman, K. M. (Sept. 2021). Cortical Mechanisms of Visual
     Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Flash talk
@@ -392,6 +395,11 @@ reactable(
 <br />
 
 ## Poster Presentations
+
+- **Kmiecik, M. J.**,  McIntyre, M., Nguyen, B., Guan, A., Holmes, M., Aslibekyan S. (2025). Interactions between APOE E4 and Idiopathic Parkinson's Disease in Age-related Hearing Loss. _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
+
+- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G., Schneider, R., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D., Tung, J., Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). The Role of Polygenic Background and APOE E4 in Monogenic and Idiopathic Parkinson's Disease. 
+ _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
 
 - Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Guerin, T., Kmiecik, M. J., & Norcliffe-Kaufmann, L. (Nov. 2025). Precision Therapy with Ampreloxetine for Neurogenic Orthostatic Hypotension in Multiple System Atrophy. Poster to be presented at the 36th International Symposium on the Autonomic Nervous System, Clearwater Beach, FL.
 
