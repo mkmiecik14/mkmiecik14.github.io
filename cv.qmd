@@ -646,6 +646,8 @@ reactable(
 
 # Invited Talks
 
+- **Genetic Modifiers of Parkinson’s Disease** (2025, December 2) Neuroscience Seminar, Loyola University Chicago
+
 - **Kmiecik, M. J.**, \& Iwaki, H. (2025, August 12). MJFF Data Community Webinar: Open Science Guide - An Online Book for Transparent and Reproducible Data Science Projects in Parkinson's Disease. _Zenodo_. [https://doi.org/10.5281/zenodo.16813426](https://doi.org/10.5281/zenodo.16813426)
 
 - **LRRK2 and GBA Parkinson's** (August 2024) University of Rochester Medical Center VALOR-PD Seminar
