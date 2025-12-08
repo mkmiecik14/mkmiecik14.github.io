@@ -1156,6 +1156,26 @@ training_certs <-
   as_tibble(
     rbind(
       cbind(
+        train_cert = "Data Collection and Processing with Python",
+        inst = "University of Michigan (Coursera)",
+        date = "2025"
+      ),
+      cbind(
+        train_cert = "Python Functions, Files, and Dictionaries",
+        inst = "University of Michigan (Coursera)",
+        date = "2025"
+      ),
+      cbind(
+        train_cert = "Python Basics",
+        inst = "University of Michigan (Coursera)",
+        date = "2025"
+      ),
+      cbind(
+        train_cert = "Data Analysis with Python",
+        inst = "IBM (Coursera)",
+        date = "2025"
+      ),
+      cbind(
         train_cert = "The 22nd EEGLAB Workshop",
         inst = "University of California San Diego",
         date = "2016"
