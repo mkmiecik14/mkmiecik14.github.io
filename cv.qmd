@@ -231,11 +231,11 @@ reactable(
 
 ## Papers
 
-- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Micheletti, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S.,  Norcliffe-Kaufmann, L. (2025). Genetic Modifiers of Parkinson's Disease: A Case–Control Study. _Annals of Clinical and Translational Neurology_. <https://doi.org/10.1002/acn3.70176> 
+- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Micheletti, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S.,  Norcliffe-Kaufmann, L. (2025). Genetic Modifiers of Parkinson's Disease: A Case–Control Study. _Annals of Clinical and Translational Neurology_, _12_(12), 2482–2494. <https://doi.org/10.1002/acn3.70176> 
 
 - Reina, E. M., Hellman, K. M., **Kmiecik, M. J.**, Terkildsen, M. F., & Tu, F. F. (2025). Associations between menstrual pain and sexual function: the role of visceral hypersensitivity on developing sexual pain. _The Journal of Sexual Medicine_, _22_(1), 98-106. <https://doi.org/10.1093/jsxmed/qdae149>
 
-- Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., 23andMe Research Team, Tung, J., Holmes, M. V., Walk, S. T., Houser, M. C., & Norcliffe-Kaufmann, L. (2024). Oral and gut microbiome profiles in people with early idiopathic Parkinson’s disease. _Communications Medicine, 4_(209). <https://doi.org/10.1038/s43856-024-00630-8>
+- Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., 23andMe Research Team, Tung, J., Holmes, M. V., Walk, S. T., Houser, M. C., & Norcliffe-Kaufmann, L. (2024). Oral and gut microbiome profiles in people with early idiopathic Parkinson’s disease. _Communications Medicine_, _4_(209). <https://doi.org/10.1038/s43856-024-00630-8>
 
 - **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Wetzel, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2024). Genetic analysis and natural history of Parkinson’s disease due to the LRRK2 G2019S variant. _Brain_, _147_(6), 1996–2008. <https://doi.org/10.1093/brain/awae073>
 
@@ -296,6 +296,10 @@ reactable(
 
 ## Preprints
 
+- Kmiecik, M. J., O’Brien, L., Szpyhulsky, M., Iodice, V., Freeman, R., Jordan, J., Biaggioni, I., Kaufmann, H., Vickery, R., Miller, A., Saunders, E., Rushton, E., Valle, L., & Norcliffe-Kaufmann, L. (2026). The burden of neurogenic orthostatic hypotension in patients with multiple system atrophy – a real-world study (p. 2026.04.20.26351214). _medRxiv_. <https://doi.org/10.64898/2026.04.20.26351214>
+
+- Oosterhof, T. H., Mitchell, E., Ascherio, A., Aslibekyan, S., Azoidou, V., Beasley, K., Ben-Shlomo, Y., Bunnik, E., Carroll, C., Chahine, L., Corcos, D., Daalen, J. M. J., Dijk, K. D. van, Dijkstra, B. W., Dommershuijsen, L., Dorsey, R., Evers, L. J. W., Helmich, R. C., Johansson, M., … Darweesh, S. K. L. (2026). Slow-SPEED: Protocol for three randomised trials of remotely delivered exercise to prevent Parkinson’s disease (p. 2026.03.05.26347705). _medRxiv_. <https://doi.org/10.64898/2026.03.05.26347705>
+
 - Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Geurin, T., **Kmiecik, M. J.**, & Norcliffe-Kaufmann, L. (2025). Precision therapy with ampreloxetine for neurogenic orthostatic hypotension in multiple system atrophy (p. 2025.08.12.25332833). _medRxiv_. <https://doi.org/10.1101/2025.08.12.25332833>
 
 - **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S., & Norcliffe-Kaufmann, L. (2024). Monogenic Parkinson’s Disease and the Impact of APOE E4: A Case-Control Study. _medRxiv_, 2024.11.15.24317402. doi: <https://doi.org/10.1101/2024.11.15.24317402>
@@ -321,6 +325,8 @@ reactable(
 
 ## Reports
 
+- **Kmiecik, M. J.** (2026). Fox Insight Parkinson’s Disease Microbiome Survey Data. _Zenodo_. <https://doi.org/10.5281/zenodo.18272390>
+
 - **Kmiecik, M. J.** (2024). Fox Insight Survey Timeline. _Zenodo_. <https://doi.org/10.5281/zenodo.10999653>
 
 <br />
@@ -345,6 +351,8 @@ reactable(
 <br />
 
 ## Talks
+
+- **Kmiecik, M. J.**, Weldon, C. H., Xu, W., Guan, A., McIntyre, M., Schneider, R. B., Auton, A., Aslibekyan, S. (2026). Age-Related Hearing Loss in Parkinson's Disease and APOE E4 Carriers. Abstract presented at the annual AD/PD meeting, Copenhagen, Denmark. 
 
 - **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G., Schneider, R., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D., Tung, J., Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). The Role of Polygenic Background and APOE E4 in Monogenic and Idiopathic Parkinson's Disease. 
  _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
@@ -396,10 +404,21 @@ reactable(
 
 ## Poster Presentations
 
+- **Kmiecik, M. J.**, Weldon, C., Xu, W., Guan, A., McIntyre, M., Schneider, R., Auton, A., & Aslibekyan, S. (2026). Age-Related Hearing Loss in Idiopathic Parkinson’s Disease and APOE E4 Carriers. Poster to be presented at the annual International Congress of Parkinson’s Disease and Movement Disorders meeting, Seoul, Korea.
+
+- **Kmiecik, M. J.**, Norcliffe-Kaufmann, L., Xu, W., Weldon, C., Tran, V., Guan, A., McIntyre, M., & Aslibekyan, S. (2026). The Parkinson’s Impact Project: A Multimodal Longitudinal Study of Disease Development and Progression at the 23andMe Research Institute. Poster to be presented at the annual International Congress of Parkinson’s Disease and Movement Disorders meeting, Seoul, Korea.
+
+- Schneider, R., Oosterhof, T., Prins, E., **Kmiecik, M. J.**, Aslibekyan, S., Hetrick, N., Porto, M., Schmier, K., Dorney, C., Noyce, A., Bloem, B., & Darweesh, S. (2026). Slow-SPEED-US: Initiation of a Remote Exercise Trial in LRRK2 and GBA1 Carriers. Poster to be presented at the annual International Congress of Parkinson’s Disease and Movement Disorders meeting, Seoul, Korea.
+
+- **Kmiecik, M. J.**, Weldon, C. H., Xu, W., Guan, A., McIntyre, Schneider, R. B., Auton, A., Aslibekyan, S. (2026). Age-related hearing loss in Parkinson's disease and APOE E4 carriers. Poster to be presented at the Planning for the Prevention of Parkinson's Disease and Related Synucleinopathies: A trial design forum meeting, Phoenix, Arizona.
+
+- Knapp, K. T., Roth, G. E., **Kmiecik, M. J.**, Sass, S. M., Conley, C. S., & Silton, R. L. (2026). Technology-delivered mindfulness-based intervention improves dimensional psychopathology symptoms in college students with depression. Poster submitted for presentation at the Society for Research in Psychopathology, Columbus, OH.
+
+- Osborne, N. R., Darnell, S. E., **Kmiecik, M. J.**, Rhudy, J. L., Hellman, K. M., & Tu, F. F. (2026). Where is chronic pain-risk bred, in the spine or in the head? An EMG and EEG study of dysmenorrhea. Poster submitted to the International Association for the Study of Pain (IASP) World Congress on Pain, Bangkok, Thailand.
+
 - **Kmiecik, M. J.**,  McIntyre, M., Nguyen, B., Guan, A., Holmes, M., Aslibekyan S. (2025). Interactions between APOE E4 and Idiopathic Parkinson's Disease in Age-related Hearing Loss. _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
 
-- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G., Schneider, R., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D., Tung, J., Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). The Role of Polygenic Background and APOE E4 in Monogenic and Idiopathic Parkinson's Disease. 
- _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
+- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G., Schneider, R., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D., Tung, J., Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). The Role of Polygenic Background and APOE E4 in Monogenic and Idiopathic Parkinson's Disease. _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
 
 - Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Guerin, T., Kmiecik, M. J., & Norcliffe-Kaufmann, L. (Nov. 2025). Precision Therapy with Ampreloxetine for Neurogenic Orthostatic Hypotension in Multiple System Atrophy. Poster to be presented at the 36th International Symposium on the Autonomic Nervous System, Clearwater Beach, FL.
 
@@ -645,6 +664,8 @@ reactable(
 <br />
 
 # Invited Talks
+
+- **Age-Related Hearing Loss in Parkinson's Disease and APOE E4 Carriers.** (March 2026). Radboud University Medical Center, Nijmegen, Netherlands. 
 
 - **Genetic Modifiers of Parkinson’s Disease** (2025, December 2) Neuroscience Seminar, Loyola University Chicago
 
