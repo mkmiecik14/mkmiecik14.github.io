@@ -10,3 +10,5 @@
 /.luarc.json
 
 CLAUDE.md
+
+**/*.quarto_ipynb

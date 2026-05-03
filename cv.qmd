@@ -110,7 +110,7 @@ reactable(
   theme = reactableTheme(backgroundColor = "transparent") # for dark mode
   )
 ```
-<br>
+<br />
 
 # Professional Positions
 
@@ -225,13 +225,13 @@ reactable(
   )
 ```
 
-<br>
+<br />
 
 # Publications
 
 ## Papers
 
-- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Micheletti, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S.,  Norcliffe-Kaufmann, L. (2025). Genetic Modifiers of Parkinson's Disease: A Case–Control Study. _Annals of Clinical and Translational Neurology_, _12_(12), 2482–2494. <https://doi.org/10.1002/acn3.70176> 
+- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Micheletti, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S.,  Norcliffe-Kaufmann, L. (2025). Genetic Modifiers of Parkinson's Disease: A Case–Control Study. _Annals of Clinical and Translational Neurology_, _12_(12), 2482–2494. <https://doi.org/10.1002/acn3.70176>
 
 - Reina, E. M., Hellman, K. M., **Kmiecik, M. J.**, Terkildsen, M. F., & Tu, F. F. (2025). Associations between menstrual pain and sexual function: the role of visceral hypersensitivity on developing sexual pain. _The Journal of Sexual Medicine_, _22_(1), 98-106. <https://doi.org/10.1093/jsxmed/qdae149>
 
@@ -243,43 +243,19 @@ reactable(
 
 - Shlobin, A. E., Tu, F. F., Sain, C. R., **Kmiecik, M. J.**, Kantarovich, D., Singh, L., Wang, C. E., & Hellman, K. M. (2023). Bladder Pain Sensitivity is a Potential Risk Factor for Irritable Bowel Syndrome. *Digestive Diseases and Sciences*, *68*, 3092–3102. <https://doi.org/10.1007/s10620-023-07868-7>
 
--   Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (2022).
-    Differential effects of semantic distance, distractor salience, and
-    relations in verbal analogy. *Psychonomic Bulletin & Review, 29*,
-    1480--1491. <https://doi.org/10.3758/s13423-022-02062-8> 
+- Jones, L. L., **Kmiecik, M. J.**, Irwin, J. L., Morrison, R. G. (2022). Differential effects of semantic distance, distractor salience, and relations in verbal analogy. *Psychonomic Bulletin & Review, 29*, 1480--1491. <https://doi.org/10.3758/s13423-022-02062-8>
 
--   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
-    Harte, S. E., Hellman, K. M. (2022). Cortical Mechanisms of Visual
-    Hypersensitivity in Women at Risk for Chronic Pelvic Pain. *PAIN, 163*(6),
-    1035-1048. doi:
-    [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx)
+- **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., Hellman, K. M. (2022). Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain. *PAIN, 163*(6), 1035-1048. doi: [10.1097/j.pain.0000000000002469](https://journals.lww.com/pain/abstract/9000/cortical_mechanisms_of_visual_hypersensitivity_in.97906.aspx)
 
--   **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing
-    Levels of Relational Complexity: Perceptual, Analogical, and System
-    Mappings. *Journal of Cognitive Neuroscience*, *33*(3), 357-376.
-    <https://doi.org/10.1162/jocn_a_01618>
+- **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. *Journal of Cognitive Neuroscience*, *33*(3), 357-376. <https://doi.org/10.1162/jocn_a_01618>
 
--   Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**,
-    Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N.
-    (2019). Executive Function Training in Chronic Traumatic Brain Injury
-    Patients: Study Protocol. *TRIALS. 20*:435
-    <https://doi.org/10.21203/rs.2.273/v1>
+- Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. *TRIALS. 20*:435 <https://doi.org/10.21203/rs.2.273/v1>
 
--   **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time
-    course of semantic and relational processing during verbal analogical
-    reasoning. *Brain and Cognition*, *129*, 25-34.
-    <https://doi.org/10.1016/j.bandc.2018.11.012>
+- **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. *Brain and Cognition*, *129*, 25-34. <https://doi.org/10.1016/j.bandc.2018.11.012>
 
--   **Kmiecik, M. J.**, Rodgers, B. N., Martinez, D. M., Chapman, S. B., &
-    Krawczyk, D. C. (2018). A method for characterizing semantic and lexical
-    properties of sentence completions in traumatic brain
-    injury. *Psychological Assessment*, *30*(5), 645-655. <http://dx.doi.org/10.1037/pas0000510>
+- **Kmiecik, M. J.**, Rodgers, B. N., Martinez, D. M., Chapman, S. B., & Krawczyk, D. C. (2018). A method for characterizing semantic and lexical properties of sentence completions in traumatic brain injury. *Psychological Assessment*, *30*(5), 645-655. <http://dx.doi.org/10.1037/pas0000510>
 
--   Stockdale, L. A., Morrison, R. G., **Kmiecik, M. J.**, Garbarino, J., &
-    Silton, R. L. (2015). Emotionally anesthetized: media violence induces
-    neural changes during emotional face
-    processing. *Social Cognitive and Affective Neuroscience*, *10*(10), 1373-1382. doi:
-    [10.1093/scan/nsv025](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces)
+- Stockdale, L. A., Morrison, R. G., **Kmiecik, M. J.**, Garbarino, J., & Silton, R. L. (2015). Emotionally anesthetized: media violence induces neural changes during emotional face processing. *Social Cognitive and Affective Neuroscience*, *10*(10), 1373-1382. doi: [10.1093/scan/nsv025](https://academic.oup.com/scan/article/10/10/1373/1648617/Emotionally-anesthetized-media-violence-induces)
 
 <br />
 
@@ -287,10 +263,7 @@ reactable(
 
 - **Kmiecik, M. J.**, Iwaki, H., & Daneault, J.-F. (2025). [Open Science Guide for Parkinson's Research](https://mjff-researchcommunity.github.io/open-science-guide/). _Zenodo_. [https://doi.org/10.5281/zenodo.14984669](https://doi.org/10.5281/zenodo.14984669)
 
--   Pongpipat, E. E., Miranda, G. G., **Kmiecik, M. J.** (2019). A Practical
-    Extension of Introductory Statistics in Psychology using R. *Free online
-    textbook written in `bookdown` and `R`.* Read it here:
-    <https://rpsystats.com/>
+- Pongpipat, E. E., Miranda, G. G., **Kmiecik, M. J.** (2019). A Practical Extension of Introductory Statistics in Psychology using R. *Free online textbook written in `bookdown` and `R`.* Read it here: <https://rpsystats.com/>
 
 <br />
 
@@ -306,20 +279,11 @@ reactable(
 
 - Stagaman, K., **Kmiecik, M. J.**, Wetzel, M., Aslibekyan, S., Filshtein Sonmez, T., Fontanillas, P., Holmes, M., Walk, S., Houser, M., Norcliffe-Kaufmann, L. (2024) Oral and gut microbiome profiles in early Parkinson’s disease. *Research Square*. doi: <https://doi.org/10.21203/rs.3.rs-3750719/v1>
 
--   **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Schloetter, M., Rowbotham, H. M., Cannon, P., Shelton, J. F., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2023). Genetic Analysis and Natural History of Parkinson’s Disease Due to the LRRK2 G2019S Variant. *MedRxiv*, 2023.10.26.23297636. doi: <https://doi.org/10.1101/2023.10.26.23297636>
+- **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Schloetter, M., Rowbotham, H. M., Cannon, P., Shelton, J. F., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2023). Genetic Analysis and Natural History of Parkinson’s Disease Due to the LRRK2 G2019S Variant. *MedRxiv*, 2023.10.26.23297636. doi: <https://doi.org/10.1101/2023.10.26.23297636>
 
--   **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022).
-    Multimodal Hypersensitivity Derived from Quantitative Sensory Testing
-    Predicts Long-Term Pelvic Pain Outcome. *MedRxiv*, 2022.04.01.22272964. doi:
-    <https://doi.org/10.1101/2022.04.01.22272964>
-    [<a href ="https://github.com/mkmiecik14/mmh" target="_blank" style="color: #FFFFFF">GitHub
-    Repo</a>]{.label .label-primary}
-    [<a href ="https://osf.io/27ky9/?view_only=90108c59ca8a4431800492a5686b7ef2" target="_blank" style="color: #FFFFFF">OSF Project</a>]{.label .label-success}
+- **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Long-Term Pelvic Pain Outcome. *MedRxiv*, 2022.04.01.22272964. doi: <https://doi.org/10.1101/2022.04.01.22272964> <a href="https://github.com/mkmiecik14/mmh" target="_blank" class="badge rounded-pill bg-primary">GitHub Repo</a> <a href="https://osf.io/27ky9/?view_only=90108c59ca8a4431800492a5686b7ef2" target="_blank" class="badge rounded-pill bg-success">OSF Project</a>
 
--   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
-    Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual
-    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. *MedRxiv*,
-    2020.12.03.20242032. doi: <https://doi.org/10.1101/2020.12.03.20242032>
+- **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2020). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. *MedRxiv*, 2020.12.03.20242032. doi: <https://doi.org/10.1101/2020.12.03.20242032>
 
 <br />
 
@@ -333,8 +297,7 @@ reactable(
 
 ## Dissertation
 
--   **Kmiecik, M. J.** (2019). [The Time Course of Meaning Construction with
-    Varying Expectations](https://hdl.handle.net/10735.1/9357).
+- **Kmiecik, M. J.** (2019). [The Time Course of Meaning Construction with Varying Expectations](https://hdl.handle.net/10735.1/9357).
 
 <br />
 
@@ -342,63 +305,33 @@ reactable(
 
 ## Papers
 
--   **Kmiecik, M.** & Morrison, R.G. (2013). [Semantic Distance Modulates the N400
-    Event-Related Potential in Verbal Analogical
-    Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N.
-    Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive
-    Science Society. Austin, TX: Cognitive Science Society.
+- **Kmiecik, M.** & Morrison, R.G. (2013). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) In M. Knauff, M. Pauen, & N. Sebanz (Eds.), Proceedings of the 35th Annual Conference of the Cognitive Science Society. Austin, TX: Cognitive Science Society.
 
 <br />
 
 ## Talks
 
-- **Kmiecik, M. J.**, Weldon, C. H., Xu, W., Guan, A., McIntyre, M., Schneider, R. B., Auton, A., Aslibekyan, S. (2026). Age-Related Hearing Loss in Parkinson's Disease and APOE E4 Carriers. Abstract presented at the annual AD/PD meeting, Copenhagen, Denmark. 
+- **Kmiecik, M. J.**, Weldon, C. H., Xu, W., Guan, A., McIntyre, M., Schneider, R. B., Auton, A., Aslibekyan, S. (2026). Age-Related Hearing Loss in Parkinson's Disease and APOE E4 Carriers. Abstract presented at the annual AD/PD meeting, Copenhagen, Denmark.
 
-- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G., Schneider, R., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D., Tung, J., Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). The Role of Polygenic Background and APOE E4 in Monogenic and Idiopathic Parkinson's Disease. 
- _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
+- **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G., Schneider, R., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D., Tung, J., Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). The Role of Polygenic Background and APOE E4 in Monogenic and Idiopathic Parkinson's Disease. _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
 
--   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
-    Harte, S. E., & Hellman, K. M. (Sept. 2021). Cortical Mechanisms of Visual
-    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Flash talk
-    presented at The University of Chicago Postdoctoral Symposium.
+- **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Sept. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Flash talk presented at The University of Chicago Postdoctoral Symposium.
 
--   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
-    Harte, S. E., & Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual
-    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk
-    presented at the International Association for the Study of Pain (IASP)
-    Neuropathic Pain SIG (NeuPSIG) webinar series. Link to talk
-    [here](https://www.pathlms.com/iasp/courses/30608/video_presentations/223042).
+- **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (Dec. 2021). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Data blitz talk presented at the International Association for the Study of Pain (IASP) Neuropathic Pain SIG (NeuPSIG) webinar series. Link to talk [here](https://www.pathlms.com/iasp/courses/30608/video_presentations/223042).
 
--   **Kmiecik, M. J.** (November, 2019). Effective Presentations of Quantitative
-    Information: A Study in Edward Tufte. Talk presented at the inaugural [UT
-    Dallas BrainHack](https://brainhack-dallas.github.io/mini-brainhack-utd/),
-    Dallas, TX.
+- **Kmiecik, M. J.** (November, 2019). Effective Presentations of Quantitative Information: A Study in Edward Tufte. Talk presented at the inaugural [UT Dallas BrainHack](https://brainhack-dallas.github.io/mini-brainhack-utd/), Dallas, TX.
 
--   **Kmiecik, M. J.**, Nagele, M., Sharma, R., Vaughn, A. Thakur, P., &
-    Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and
-    Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk
-    presented at the Brain Performance Institute's Inaugural TBI Research
-    Showcase. Dallas, TX.
+- **Kmiecik, M. J.**, Nagele, M., Sharma, R., Vaughn, A. Thakur, P., & Krawczyk, D. C. (December, 2018). A Method for Characterizing Semantic and Lexical Properties of Sentence Completions in Traumatic Brain Injury. Talk presented at the Brain Performance Institute's Inaugural TBI Research Showcase. Dallas, TX.
 
--   **Kmiecik, M. J.** & Krawczyk, D. C. (2017, October). Reasoning With Complex
-    Relational Structures. Talk given at the UT Dallas School of Behavioral and
-    Brain Sciences Cognition and Neuroscience program annual Fall retreat.
-    Dallas, TX.
+- **Kmiecik, M. J.** & Krawczyk, D. C. (2017, October). Reasoning With Complex Relational Structures. Talk given at the UT Dallas School of Behavioral and Brain Sciences Cognition and Neuroscience program annual Fall retreat. Dallas, TX.
 
--   **Kmiecik, M.** & Morrison, R.G. (2013, August). [Semantic Distance Modulates
-    the N400 Event-Related Potential in Verbal Analogical
-    Reasoning.](http://ecommons.luc.edu/ulurpa/1/) Paper presented at the 35th
-    Annual Conference of the Cognitive Science Society, Berlin, Germany.
+- **Kmiecik, M.** & Morrison, R.G. (2013, August). [Semantic Distance Modulates the N400 Event-Related Potential in Verbal Analogical Reasoning.](http://ecommons.luc.edu/ulurpa/1/) Paper presented at the 35th Annual Conference of the Cognitive Science Society, Berlin, Germany.
 
 <br />
 
 ## Workshops
 
--   Dutcher, A., **Kmiecik, M. J.**, & Beaton, D. (2016, April). Analyzing
-    multi-block data: A tutorial of Multiple Factor Analysis in R. Workshop
-    presented at the Society for Applied Multivariate Research, Dallas, Texas.
-    ([*MFA Workshop Slides*](https://www.researchgate.net/publication/301200852_Analyzing_Multi-Block_Data_A_Tutorial_of_Multiple_Factor_Analysis_in_R)
-    / [*MFA Workshop R Code*](https://www.researchgate.net/publication/301201126_FinalCode) )
+- Dutcher, A., **Kmiecik, M. J.**, & Beaton, D. (2016, April). Analyzing multi-block data: A tutorial of Multiple Factor Analysis in R. Workshop presented at the Society for Applied Multivariate Research, Dallas, Texas. ([*MFA Workshop Slides*](https://www.researchgate.net/publication/301200852_Analyzing_Multi-Block_Data_A_Tutorial_of_Multiple_Factor_Analysis_in_R) / [*MFA Workshop R Code*](https://www.researchgate.net/publication/301201126_FinalCode) )
 
 <br />
 
@@ -436,191 +369,69 @@ reactable(
 
 - **Kmiecik, M. J.**, Coker, D., Heilbron, K., Aslibekyan, S., Shelton, J. F., Cannon, P., Norcliffe-Kaufmann, L. (August 2023). The natural history of Parkinson’s disease in LRRK2 G2019S carriers. Poster presented at the International Congress of Parkinson’s Disease and Movement Disorders, Copenhagen, Denmark. *Movement Disorders*, *38*(S1), S455–521. <https://doi.org/10.1002/mds.29543>
 
--   **Kmiecik, M. J.**, Tu, F. F., Darnell, S., Harber, K., Hellman, K. M. (2022,
-    Nov.). [Early cortical mechanisms of visual discomfort in premenarchal
-    adolescents](https://www.researchgate.net/publication/365540248_Early_Cortical_Mechanisms_of_Visual_Discomfort_in_Premenarchal_Adolescents).
-    Poster presented at the Society for Neuroscience Annual Meeting, San Diego,
-    California.
+- **Kmiecik, M. J.**, Tu, F. F., Darnell, S., Harber, K., Hellman, K. M. (2022, Nov.). [Early cortical mechanisms of visual discomfort in premenarchal adolescents](https://www.researchgate.net/publication/365540248_Early_Cortical_Mechanisms_of_Visual_Discomfort_in_Premenarchal_Adolescents). Poster presented at the Society for Neuroscience Annual Meeting, San Diego, California.
 
--   **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022, Sept.).
-    [Multimodal Hypersensitivity Predicts Pelvic Pain Outcome 4 Years
-    Later](https://www.researchgate.net/publication/363650653_Multimodal_Hypersensitivity_Predicts_Pelvic_Pain_Outcome_4_Years_Later).
-    Poster presented at the International Association for the Study of Pain
-    (IASP) World Congress on Pain, Toronto, Canada.
+- **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., Hellman, K. M. (2022, Sept.). [Multimodal Hypersensitivity Predicts Pelvic Pain Outcome 4 Years Later](https://www.researchgate.net/publication/363650653_Multimodal_Hypersensitivity_Predicts_Pelvic_Pain_Outcome_4_Years_Later). Poster presented at the International Association for the Study of Pain (IASP) World Congress on Pain, Toronto, Canada.
 
--   Darnell, S., Tu, F. F., Harber, K., Sain, C., **Kmiecik, M. J.**, Hellman, K. M.
-    (2022, Sept.). Menstrual, Sensory, and Psychological Factors Predict New
-    Onset Chronic Pelvic Pain. Poster presented at the International
-    Association for the Study of Pain (IASP) World Congress on Pain, Toronto,
-    Canada.
+- Darnell, S., Tu, F. F., Harber, K., Sain, C., **Kmiecik, M. J.**, Hellman, K. M. (2022, Sept.). Menstrual, Sensory, and Psychological Factors Predict New Onset Chronic Pelvic Pain. Poster presented at the International Association for the Study of Pain (IASP) World Congress on Pain, Toronto, Canada.
 
--   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
-    Harte, S. E., & Hellman, K. M. (2022, March). Cortical Mechanisms of Visual
-    Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster presented
-    at the Chicago Chapter of the Society for Neuroscience annual meeting,
-    Chicago, IL.
+- **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2022, March). Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain. Poster presented at the Chicago Chapter of the Society for Neuroscience annual meeting, Chicago, IL.
 
--   **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E.,
-    Harte, S. E., & Hellman, K. M. (2021, Oct.). [Cortical Mechanisms of Visual
-    Hypersensitivity in Women At Risk for Chronic Pelvic
-    Pain.](https://www.researchgate.net/publication/355493213_Cortical_Mechanisms_of_Visual_Hypersensitivity_in_Women_at_Risk_for_Chronic_Pelvic_Pain)
-    Poster presented at the 24th annual scientific meeting of the International
-    Pelvic Pain Society (IPPS), Baltimore, MD.
+- **Kmiecik, M. J.**, Tu, F. F., Silton, R. L., Dillane, K. E., Roth, G. E., Harte, S. E., & Hellman, K. M. (2021, Oct.). [Cortical Mechanisms of Visual Hypersensitivity in Women At Risk for Chronic Pelvic Pain.](https://www.researchgate.net/publication/355493213_Cortical_Mechanisms_of_Visual_Hypersensitivity_in_Women_at_Risk_for_Chronic_Pelvic_Pain) Poster presented at the 24th annual scientific meeting of the International Pelvic Pain Society (IPPS), Baltimore, MD.
 
--   **Kmiecik, M. J.**, Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020,
-    May). [The Time Course of Meaning Construction with Varying
-    Expectations](https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations).
-    Poster presented virtually at the Cognitive Neuroscience Society's annual
-    conference, Boston, MA.
+- **Kmiecik, M. J.**, Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, May). [The Time Course of Meaning Construction with Varying Expectations](https://www.researchgate.net/publication/341298262_The_Time_Course_of_Meaning_Construction_with_Varying_Expectations). Poster presented virtually at the Cognitive Neuroscience Society's annual conference, Boston, MA.
 
--   Kim, L. M., Lundie, M. J., **Kmiecik, M. J.**, Dasara, H., & Krawczyk, D. C.
-    (2020, May). [The Nuances of Norepinephrine: Salivary Alpha Amylase's Role
-    as a Biomarker in tDCS - Directed Judgment & Decision
-    Making.](https://www.researchgate.net/publication/343193718_The_Nuances_of_Norepinephrine_Investigating_the_Role_of_Salivary_Alpha_Amylase_on_tDCS_-_Modulated_Decision_Making)
-    Poster presented virtually at the Cognitive Neuroscience Society's annual
-    conference, Boston, MA.
+- Kim, L. M., Lundie, M. J., **Kmiecik, M. J.**, Dasara, H., & Krawczyk, D. C. (2020, May). [The Nuances of Norepinephrine: Salivary Alpha Amylase's Role as a Biomarker in tDCS - Directed Judgment & Decision Making.](https://www.researchgate.net/publication/343193718_The_Nuances_of_Norepinephrine_Investigating_the_Role_of_Salivary_Alpha_Amylase_on_tDCS_-_Modulated_Decision_Making) Poster presented virtually at the Cognitive Neuroscience Society's annual conference, Boston, MA.
 
--   **Kmiecik, M. J.**, Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020,
-    March). The Time Course of Meaning Construction with Varying Expectations.
-    Poster was to be presented at the Society for Neuroscience Chicago Chapter
-    annual meeting, Chicago, IL. \* Cancelled due to COVID-19
+- **Kmiecik, M. J.**, Kim, L. M., Maguire, M. J., Hart, J., Krawczyk, D. C. (2020, March). The Time Course of Meaning Construction with Varying Expectations. Poster was to be presented at the Society for Neuroscience Chicago Chapter annual meeting, Chicago, IL. \* Cancelled due to COVID-19
 
--   Kim, L. M., Lundie, M. J., **Kmiecik, M. J.**, Dasara, H., & Krawczyk, D. C.
-    (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha
-    Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster
-    presented at the Society for Personality and Social Psychology's annual
-    conference, New Orleans, LA.
+- Kim, L. M., Lundie, M. J., **Kmiecik, M. J.**, Dasara, H., & Krawczyk, D. C. (2020, February). A Nudge of Norepinephrine: Investigating Salivary Alpha Amylase as a Biomarker of tDCS - Augmented Decision Making. Poster presented at the Society for Personality and Social Psychology's annual conference, New Orleans, LA.
 
--   Nagele, M., **Kmiecik, M. J.**, Chang, Z., Martinez, D., Juarez, M.,
-    Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C.
-    (2019, August). [Using the Virtual Multiple Errands Task (VMET) to Assess
-    Executive Functioning in Traumatic Brain
-    Injury.](https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury)
-    Poster presented at the Military Health System Research Symposium annual
-    meeting, Kissimmee, FL.
+- Nagele, M., **Kmiecik, M. J.**, Chang, Z., Martinez, D., Juarez, M., Khachaturyan, M., Lundie, M., Kim, L., Didehbani, N., & Krawczyk, D. C. (2019, August). [Using the Virtual Multiple Errands Task (VMET) to Assess Executive Functioning in Traumatic Brain Injury.](https://www.researchgate.net/publication/335433628_Using_the_Virtual_Multiple_Errands_Task_VMET_to_Assess_Executive_Functioning_in_Traumatic_Brain_Injury) Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
 
--   Chang, Z., **Kmiecik, M. J.**, Martinez, D., Nagele, M., Lundie, M., Cole, R.,
-    Kim, L., Khachaturyan, M., Balloun, B., Juarez, M., Didehbani, N., Clover,
-    M., Rule, G., Scott, G., & Krawczyk, D. C. (2019, August). Using a
-    Virtual-Reality Based Rehabilitation Program to Enhance Daily Functioning in
-    Veterans Surviving Traumatic Brain Injury. Poster presented at the Military
-    Health System Research Symposium annual meeting, Kissimmee, FL.
+- Chang, Z., **Kmiecik, M. J.**, Martinez, D., Nagele, M., Lundie, M., Cole, R., Kim, L., Khachaturyan, M., Balloun, B., Juarez, M., Didehbani, N., Clover, M., Rule, G., Scott, G., & Krawczyk, D. C. (2019, August). Using a Virtual-Reality Based Rehabilitation Program to Enhance Daily Functioning in Veterans Surviving Traumatic Brain Injury. Poster presented at the Military Health System Research Symposium annual meeting, Kissimmee, FL.
 
--   Nagele, M. M., **Kmiecik, M. J.**, & Krawczyk, D. C. (2019, April).
-    Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster
-    presented at UT Dallas School of Behavioral and Brain Sciences Psychological
-    Sciences annual meeting, Dallas, TX.
+- Nagele, M. M., **Kmiecik, M. J.**, & Krawczyk, D. C. (2019, April). Self-Awareness of Executive Dysfunction in Traumatic Brain Injury. Poster presented at UT Dallas School of Behavioral and Brain Sciences Psychological Sciences annual meeting, Dallas, TX.
 
--   **Kmiecik, M. J.**, Martin A. D., Kim, L. M., Perez, R., Martinez, D. M.,
-    Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of
-    Reasoning Ability and Relational Cueing in Solving Relational
-    Match-to-Sample
-    Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems).
-    Poster presented at the Cognitive Neuroscience Society annual meeting, San
-    Francisco, CA.
+- **Kmiecik, M. J.**, Martin A. D., Kim, L. M., Perez, R., Martinez, D. M., Pongpipat, E. E., & Krawczyk, D. C. (2019, March). [The Influence of Reasoning Ability and Relational Cueing in Solving Relational Match-to-Sample Problems](https://www.researchgate.net/publication/332029326_The_Influence_of_Reasoning_Ability_and_Relational_Cueing_in_Solving_Relational_Match-to-Sample_Problems). Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
 
--   Kim, L. M., **Kmiecik, M. J.**, Martinez, D. M., Martin A. D., & Krawczyk, D. C.
-    (2019, March). [The Similar Situations Task: Measuring Differing Levels of
-    Reasoning Using Scene
-    Analogies](https://www.researchgate.net/publication/332058003_The_Similar_Situations_Task_Measuring_Differing_Levels_of_Reasoning_Using_Scene_Analogies).
-    Poster presented at the Cognitive Neuroscience Society annual meeting, San
-    Francisco, CA.
+- Kim, L. M., **Kmiecik, M. J.**, Martinez, D. M., Martin A. D., & Krawczyk, D. C. (2019, March). [The Similar Situations Task: Measuring Differing Levels of Reasoning Using Scene Analogies](https://www.researchgate.net/publication/332058003_The_Similar_Situations_Task_Measuring_Differing_Levels_of_Reasoning_Using_Scene_Analogies). Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
 
--   Kais, L.A., Lee, C., **Kmiecik, M. J.**, Silton, R.L. (2018, February). The
-    Influence of Affect on Interference Processing in Blocked and Mixed
-    Presentations of a Stroop Color-Word Task. Poster presented at the annual
-    meeting of the International Neuropsychological Society: Washington, D.C.
+- Kais, L.A., Lee, C., **Kmiecik, M. J.**, Silton, R.L. (2018, February). The Influence of Affect on Interference Processing in Blocked and Mixed Presentations of a Stroop Color-Word Task. Poster presented at the annual meeting of the International Neuropsychological Society: Washington, D.C.
 
--   **Kmiecik, M. J.**, Perez, R., Dandu, H., Krawczyk, D. C. (2017, August).
-    [Reasoning with Complex Relational
-    Structures.](https://www.researchgate.net/publication/318969662_Reasoning_With_Complex_Relational_Structures)
-    Poster presented at the Fourth International Conference on Analogical
-    Reasoning, Paris, France.
+- **Kmiecik, M. J.**, Perez, R., Dandu, H., Krawczyk, D. C. (2017, August). [Reasoning with Complex Relational Structures.](https://www.researchgate.net/publication/318969662_Reasoning_With_Complex_Relational_Structures) Poster presented at the Fourth International Conference on Analogical Reasoning, Paris, France.
 
--   Martinez, D. M., **Kmiecik, M. J.**, Kamat, P. S., Schauer, G. F.,
-    Krawczyk, D. C. (2017, August). Aspects of Cognition and Clinical
-    Symptomology in Analogical Reasoning. Poster presented at the Fourth
-    International Conference on Analogical Reasoning, Paris, France.
+- Martinez, D. M., **Kmiecik, M. J.**, Kamat, P. S., Schauer, G. F., Krawczyk, D. C. (2017, August). Aspects of Cognition and Clinical Symptomology in Analogical Reasoning. Poster presented at the Fourth International Conference on Analogical Reasoning, Paris, France.
 
--   **Kmiecik, M. J.**, Martinez, D., Young, L.R., Krawczyk, D.C. (2016, November).
-    [Functional and Structural Neural Patterns in Mild-Moderate Chronic-Phase
-    Traumatic Brain
-    Injury.](https://www.researchgate.net/publication/309457305_Functional_and_Structural_Neural_Patterns_in_Mild-Moderate_Chronic-Phase_Traumatic_Brain_Injury)
-    Archives of Physical Medicine and Rehabilitation, 97(10), e55. doi:
-    10.1016/j.apmr.2016.08.167
+- **Kmiecik, M. J.**, Martinez, D., Young, L.R., Krawczyk, D.C. (2016, November). [Functional and Structural Neural Patterns in Mild-Moderate Chronic-Phase Traumatic Brain Injury.](https://www.researchgate.net/publication/309457305_Functional_and_Structural_Neural_Patterns_in_Mild-Moderate_Chronic-Phase_Traumatic_Brain_Injury) Archives of Physical Medicine and Rehabilitation, 97(10), e55. doi: 10.1016/j.apmr.2016.08.167
 
--   Martinez, D., **Kmiecik, M. J.**, Chapman, S., Krawczyk, D.C. (2016, November).
-    [Observing Changes in Cognition, Mood, and White Matter in Chronic TBI Using
-    Multiple Factor Analysis After Cognitive
-    Intervention.](https://www.researchgate.net/publication/308601754_Observing_Changes_in_Cognition_Mood_and_White_Matter_in_Chronic_TBI_Using_Multiple_Factor_Analysis_After_Cognitive_Intervention)
-    Archives of Physical Medicine and Rehabilitation, 97(10), e75. doi:
-    10.1016/j.apmr.2016.08.229
+- Martinez, D., **Kmiecik, M. J.**, Chapman, S., Krawczyk, D.C. (2016, November). [Observing Changes in Cognition, Mood, and White Matter in Chronic TBI Using Multiple Factor Analysis After Cognitive Intervention.](https://www.researchgate.net/publication/308601754_Observing_Changes_in_Cognition_Mood_and_White_Matter_in_Chronic_TBI_Using_Multiple_Factor_Analysis_After_Cognitive_Intervention) Archives of Physical Medicine and Rehabilitation, 97(10), e75. doi: 10.1016/j.apmr.2016.08.229
 
--   **Kmiecik, M. J.**, Schauer, G.F., Martinez, D., & Krawczyk, D.C. (2016, April).
-    [The Similar Situations Task: An Assessment of Analogical Reasoning in
-    Healthy and Clinical
-    Populations.](https://www.researchgate.net/publication/299782139_The_Similar_Situations_Task_An_Assessment_of_Analogical_Reasoning_in_Healthy_and_Clinical_Populations)
-    Poster presented at the Cognitive Neuroscience Society annual meeting, New
-    York, NY.
+- **Kmiecik, M. J.**, Schauer, G.F., Martinez, D., & Krawczyk, D.C. (2016, April). [The Similar Situations Task: An Assessment of Analogical Reasoning in Healthy and Clinical Populations.](https://www.researchgate.net/publication/299782139_The_Similar_Situations_Task_An_Assessment_of_Analogical_Reasoning_in_Healthy_and_Clinical_Populations) Poster presented at the Cognitive Neuroscience Society annual meeting, New York, NY.
 
--   **Kmiecik, M. J.**, Chapman, S., & Krawczyk, D., (2015). Executive Functioning
-    in Traumatic Brain Injury: A Detailed Investigation of the Hayling Test.
-    Archives of Physical Medicine and Rehabilitation, 96(10), e97-e98. doi:
-    10.1016/j.apmr.2015.08.326
+- **Kmiecik, M. J.**, Chapman, S., & Krawczyk, D., (2015). Executive Functioning in Traumatic Brain Injury: A Detailed Investigation of the Hayling Test. Archives of Physical Medicine and Rehabilitation, 96(10), e97-e98. doi: 10.1016/j.apmr.2015.08.326
 
--   Stockdale, L., Morrison, R. G., **Kmiecik, M.**, Palumbo, R., Garbarino, J., &
-    Silton, R. L. (September, 2014). Negative valence systems distinctly
-    influence bottom-up and top-down attentional processes. Paper presented at
-    the Society for Psychophysiological Research, Atlanta, GA.
+- Stockdale, L., Morrison, R. G., **Kmiecik, M.**, Palumbo, R., Garbarino, J., & Silton, R. L. (September, 2014). Negative valence systems distinctly influence bottom-up and top-down attentional processes. Paper presented at the Society for Psychophysiological Research, Atlanta, GA.
 
--   Palumbo, R. T., Stockdale, L., **Kmiecik, M. J.**, Silton, R. L.,
-    Morrison, R. G. (2014, July). The effect of short-term exposure to film
-    violence on emotional facial processing. Poster presented at the 36th annual
-    meeting of the Cognitive Science Society, Quebec City, Canada.
+- Palumbo, R. T., Stockdale, L., **Kmiecik, M. J.**, Silton, R. L., Morrison, R. G. (2014, July). The effect of short-term exposure to film violence on emotional facial processing. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
 
--   Brisson, R., **Kmiecik, M. J.**, & Morrison, R. G. (2014, July). The effect of
-    semantic and relational similarity on the N400 event-related potential in
-    verbal analogical reasoning. Poster presented at the 36th annual meeting of
-    the Cognitive Science Society, Quebec City, Canada.
+- Brisson, R., **Kmiecik, M. J.**, & Morrison, R. G. (2014, July). The effect of semantic and relational similarity on the N400 event-related potential in verbal analogical reasoning. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
 
--   Irwin, J.L., Jones, L.L., **Kmiecik, M. J.**, Unsworth, N., & Morrison, R. G.
-    (2014, July). Attention to detail predicts better verbal analogy
-    performance. Poster presented at the 36th annual meeting of the Cognitive
-    Science Society, Quebec City, Canada.
+- Irwin, J.L., Jones, L.L., **Kmiecik, M. J.**, Unsworth, N., & Morrison, R. G. (2014, July). Attention to detail predicts better verbal analogy performance. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
 
--   Jones, L.L., Irwin, J.L., **Kmiecik, M. J.**, Unsworth, N., & Morrison, R. G.
-    (2014, July). Working memory and interference control in verbal analogy.
-    Poster presented at the 36th annual meeting of the Cognitive Science
-    Society, Quebec City, Canada.
+- Jones, L.L., Irwin, J.L., **Kmiecik, M. J.**, Unsworth, N., & Morrison, R. G. (2014, July). Working memory and interference control in verbal analogy. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
 
--   Morrison, R. G., **Kmiecik, M. J.**, Irwin, J.L., Unsworth, N., Jones, L.L.
-    (2014, July). Working memory and crystallized knowledge in visual analogy.
-    Poster presented at the 36th annual meeting of the Cognitive Science
-    Society, Quebec City, Canada.
+- Morrison, R. G., **Kmiecik, M. J.**, Irwin, J.L., Unsworth, N., Jones, L.L. (2014, July). Working memory and crystallized knowledge in visual analogy. Poster presented at the 36th annual meeting of the Cognitive Science Society, Quebec City, Canada.
 
--   Brisson, R.J., **Kmiecik, M. J.**, Sweis, A.S. & Morrison, R.G. (2014, April).
-    The Effect of Semantic and Relational Similarity on the N400 in Verbal
-    Analogical Reasoning. Poster presented at the Cognitive Neuroscience Society
-    annual meeting, Boston, MA.
+- Brisson, R.J., **Kmiecik, M. J.**, Sweis, A.S. & Morrison, R.G. (2014, April). The Effect of Semantic and Relational Similarity on the N400 in Verbal Analogical Reasoning. Poster presented at the Cognitive Neuroscience Society annual meeting, Boston, MA.
 
--   Stockdale, L., Palumbo, R., **Kmiecik, M.**, Silton, R.L. & Morrison, R.G.
-    (2014, April). The Effects of Media Violence on the Neural Correlates of
-    Emotional Facial Processing: An ERP Investigation. Poster presented at the
-    Cognitive Neuroscience Society annual meeting, Boston, MA.
+- Stockdale, L., Palumbo, R., **Kmiecik, M.**, Silton, R.L. & Morrison, R.G. (2014, April). The Effects of Media Violence on the Neural Correlates of Emotional Facial Processing: An ERP Investigation. Poster presented at the Cognitive Neuroscience Society annual meeting, Boston, MA.
 
--   **Kmiecik, M. J.**, Brisson, R.J., & Morrison, R.G. (2013, April). Semantic
-    distance in verbal analogical reasoning modulates the N400 event-related
-    potential. Poster presented at the Cognitive Neuroscience Society annual
-    meeting, San Francisco, CA.
+- **Kmiecik, M. J.**, Brisson, R.J., & Morrison, R.G. (2013, April). Semantic distance in verbal analogical reasoning modulates the N400 event-related potential. Poster presented at the Cognitive Neuroscience Society annual meeting, San Francisco, CA.
 
--   Morrison, R.G., **Kmiecik, M.** & Bharani, K.L. (2012, April). When analogy is
-    like priming: The N400 in verbal analogical reasoning. Poster presented at
-    the Cognitive Neuroscience Society annual meeting, Chicago, IL.
+- Morrison, R.G., **Kmiecik, M.** & Bharani, K.L. (2012, April). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Cognitive Neuroscience Society annual meeting, Chicago, IL.
 
--   Morrison, R.G., **Kmiecik, M.** & Bharani, K.L. (2012, March). When analogy is
-    like priming: The N400 in verbal analogical reasoning. Poster presented at
-    the Society for Neuroscience Chicago Chapter 2012 annual meeting, Chicago,
-    IL.
+- Morrison, R.G., **Kmiecik, M.** & Bharani, K.L. (2012, March). When analogy is like priming: The N400 in verbal analogical reasoning. Poster presented at the Society for Neuroscience Chicago Chapter 2012 annual meeting, Chicago, IL.
 
 <br />
 
@@ -665,7 +476,7 @@ reactable(
 
 # Invited Talks
 
-- **Age-Related Hearing Loss in Parkinson's Disease and APOE E4 Carriers.** (March 2026). Radboud University Medical Center, Nijmegen, Netherlands. 
+- **Age-Related Hearing Loss in Parkinson's Disease and APOE E4 Carriers.** (March 2026). Radboud University Medical Center, Nijmegen, Netherlands.
 
 - **Genetic Modifiers of Parkinson’s Disease** (2025, December 2) Neuroscience Seminar, Loyola University Chicago
 
@@ -675,32 +486,23 @@ reactable(
 
 - **Genetic analysis and natural history of LRRK2 G2019S Parkinson's disease** (April 2024) The Michael J. Fox Foundation Data Consortium
 
--   **Parkinson's Disease: Ancestry and the Microbiome** (November 2023) American Parkinson's Disease Association: Virginia Chapter
+- **Parkinson's Disease: Ancestry and the Microbiome** (November 2023) American Parkinson's Disease Association: Virginia Chapter
 
--   **Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for
-    Chronic Pelvic Pain** (March 2021) Neuroscience Seminar, Loyola University
-    Chicago
+- **Cortical Mechanisms of Visual Hypersensitivity in Women at Risk for Chronic Pelvic Pain** (March 2021) Neuroscience Seminar, Loyola University Chicago
 
--   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
-    Brain Injury and Electrophysiology** (April 2020) Department of Obstetrics
-    and Gynecology Grand Rounds, Evanston Hospital
+- **Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology** (April 2020) Department of Obstetrics and Gynecology Grand Rounds, Evanston Hospital
 
--   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
-    Brain Injury and Electrophysiology** (March 2020) Neuroscience Seminar,
-    Loyola University Chicago
+- **Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology** (March 2020) Neuroscience Seminar, Loyola University Chicago
 
--   **Using Senseless Sentences to Study Cognition: Insights from Traumatic
-    Brain Injury and Electrophysiology** (December 2019) Frontiers of
-    BrainHealth Lecture Series, The University of Texas at Dallas
+- **Using Senseless Sentences to Study Cognition: Insights from Traumatic Brain Injury and Electrophysiology** (December 2019) Frontiers of BrainHealth Lecture Series, The University of Texas at Dallas
 
--   **Steps Toward Graduate School** (October 2016) Loyola Neuroscience Society,
-    Loyola University Chicago
+- **Steps Toward Graduate School** (October 2016) Loyola Neuroscience Society, Loyola University Chicago
 
-<br >
+<br />
 
 # Podcasts
 
--   **How Dr. Matthew Kmiecik uses OmniGraffle** (July 2023) The Omni Show. Listen [here](https://theomnishow.omnigroup.com/episode/how-dr-matther-kmiecik-uses-omnigraffle).
+- **How Dr. Matthew Kmiecik uses OmniGraffle** (July 2023) The Omni Show. Listen [here](https://theomnishow.omnigroup.com/episode/how-dr-matther-kmiecik-uses-omnigraffle).
 
 # Grants & Fellowships
 
@@ -885,7 +687,7 @@ reactable(
   )
 ```
 
-<br >
+<br />
 
 # Teaching Experience
 
