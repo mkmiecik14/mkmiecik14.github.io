@@ -232,6 +232,14 @@ reactable(
 
 ## Papers
 
+- Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Geurin, T., **Kmiecik, M. J.**, & Norcliffe-Kaufmann, L. (2026). Mechanism-Based Therapy With Ampreloxetine for Neurogenic Orthostatic Hypotension in Multiple System Atrophy. _Neurology, 107_(3), e218284. <https://doi.org/10.1212/WNL.0000000000218284>
+
+- Oosterhof, T. H., Mitchell, E., Ascherio, A., Aslibekyan, S., Azoidou, V., Beasley, K., Ben-Shlomo, Y., Bunnik, E., Carroll, C., Chahine, L., Corcos, D., Janssen Daalen, J. M., van Dijk, K. D., Dijkstra, B. W., Dommershuijsen, L., Dorsey, R., Evers, L. J. W., Helmich, R. C., Johansson, M., … Darweesh, S. K. L. (in press). Slow-SPEED: Protocol for three randomised trials of remotely delivered exercise to prevent Parkinson’s disease. _npj Parkinson’s Disease_. <https://doi.org/10.1038/s41531-026-01463-z>
+
+- Miner, A. E., **Kmiecik, M. J.**, Namburi, N., Dunckley, N., Adler, C. H., Driver-Dunckley, E. D., Nowinski, C. J., Gottesman, J., Tripodis, Y., Stern, R. A., McKee, A. C., Stein, T. D., Mez, J., Briggs, F. B. S., & Alosco, M. L. (in press). Associations Between Cumulative Head Trauma and Self-Reported Parkinsonism and Parkinson’s Disease in Former Soccer Players. _Movement Disorders_. <https://doi.org/10.1002/mds.70380>
+
+- Roth, G. E., Jabaay, K. M., Silton, R. L., Tu, F. F., Walker, L. S., Bohnert, A. M., **Kmiecik, M. J.**, & Hellman, K. M. (in press). Somatic Symptoms Before Menarche: The Role of Parents and Pain Sensitivity. _The Journal of Early Adolescence_. <https://doi.org/10.1177/02724316261457866>
+
 - **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Micheletti, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S.,  Norcliffe-Kaufmann, L. (2025). Genetic Modifiers of Parkinson's Disease: A Case–Control Study. _Annals of Clinical and Translational Neurology_, _12_(12), 2482–2494. <https://doi.org/10.1002/acn3.70176>
 
 - Reina, E. M., Hellman, K. M., **Kmiecik, M. J.**, Terkildsen, M. F., & Tu, F. F. (2025). Associations between menstrual pain and sexual function: the role of visceral hypersensitivity on developing sexual pain. _The Journal of Sexual Medicine_, _22_(1), 98-106. <https://doi.org/10.1093/jsxmed/qdae149>
@@ -270,9 +278,13 @@ reactable(
 
 ## Preprints
 
-- Kmiecik, M. J., O’Brien, L., Szpyhulsky, M., Iodice, V., Freeman, R., Jordan, J., Biaggioni, I., Kaufmann, H., Vickery, R., Miller, A., Saunders, E., Rushton, E., Valle, L., & Norcliffe-Kaufmann, L. (2026). The burden of neurogenic orthostatic hypotension in patients with multiple system atrophy – a real-world study (p. 2026.04.20.26351214). _medRxiv_. <https://doi.org/10.64898/2026.04.20.26351214>
+- **Kmiecik, M. J.**, Xu, W., Weldon, C. H., Guan, A., McIntyre, M. H., Bouchard, E. L., Team, 23andMe Research, Schneider, R. B., Auton, A., & Aslibekyan, S. (2026). Age-Related Speech-in-Noise Hearing Loss in Parkinson’s Disease and APOE E4 Carriers (p. 2026.06.08.26355175). _medRxiv_. <https://doi.org/10.64898/2026.06.08.26355175>
+
+- **Kmiecik, M. J.**, O’Brien, L., Szpyhulsky, M., Iodice, V., Freeman, R., Jordan, J., Biaggioni, I., Kaufmann, H., Vickery, R., Miller, A., Saunders, E., Rushton, E., Valle, L., & Norcliffe-Kaufmann, L. (2026). The burden of neurogenic orthostatic hypotension in patients with multiple system atrophy – a real-world study (p. 2026.04.20.26351214). _medRxiv_. <https://doi.org/10.64898/2026.04.20.26351214>
 
 - Oosterhof, T. H., Mitchell, E., Ascherio, A., Aslibekyan, S., Azoidou, V., Beasley, K., Ben-Shlomo, Y., Bunnik, E., Carroll, C., Chahine, L., Corcos, D., Daalen, J. M. J., Dijk, K. D. van, Dijkstra, B. W., Dommershuijsen, L., Dorsey, R., Evers, L. J. W., Helmich, R. C., Johansson, M., … Darweesh, S. K. L. (2026). Slow-SPEED: Protocol for three randomised trials of remotely delivered exercise to prevent Parkinson’s disease (p. 2026.03.05.26347705). _medRxiv_. <https://doi.org/10.64898/2026.03.05.26347705>
+
+- Okubadejo, N., Ojo, O. O., Abiodun, O., Abubakar, S., Abdulai, F., Achoru, C., Agabi, O., Agulanna, U., Akinyemi, R., Alaofin, W., Anyanwu, R., Erameh, C., Ezuduemoih, D., Ibrahim, A., Ikwenu, E., Imarhiagbe, F., Ishola, I., Iwuozo, E., Komolafe, M., … Program (GP2), G. P. G. (2026). Insights Into Parkinson’s Disease Genetics in African Populations: Expanded GWAS Identifies Ancestry-Specific and Cross-Population Risk Loci (p. 2026.03.01.26347367). _medRxiv_. <https://doi.org/10.64898/2026.03.01.26347367>
 
 - Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Geurin, T., **Kmiecik, M. J.**, & Norcliffe-Kaufmann, L. (2025). Precision therapy with ampreloxetine for neurogenic orthostatic hypotension in multiple system atrophy (p. 2025.08.12.25332833). _medRxiv_. <https://doi.org/10.1101/2025.08.12.25332833>
 
