@@ -39,7 +39,7 @@ education <-
     rbind(
       cbind(
         logo = c("23andMe-omni.png"),
-        inst = c("23andMe"),
+        inst = c("23andMe, Inc."),
         focus = c("Genetics & Parkinson's Disease"),
         degree = c("Postdoctoral Research Fellowship"),
         date = c("2022-2024")
@@ -55,7 +55,7 @@ education <-
       # UTD
       cbind(
         c("utd-omni.png"),
-        c("The Univeristy of Texas at Dallas"),
+        c("The University of Texas at Dallas"),
         c("Human Reasoning, Traumatic Brain Injury"),
         c("PhD Cognition and Neuroscience"),
         c("2014-2019")
@@ -125,7 +125,7 @@ prof_pos <-
         logo = c("23andMe-omni.png"), 
         pos = c("Scientist I"),
         dep = c("Research"),
-        inst = c("23andMe"),
+        inst = c("23andMe Research Institute"),
         date = c("2024-present")
         ),
       # 23andMe postdoc
@@ -133,7 +133,7 @@ prof_pos <-
         logo = c("23andMe-omni.png"), 
         pos = c("Postdoctoral Fellow"),
         dep = c("Research"),
-        inst = c("23andMe"),
+        inst = c("23andMe, Inc."),
         date = c("2022-2024")
         ),
       # shirley ryan
@@ -147,7 +147,7 @@ prof_pos <-
       # u of c
       cbind(
         c("uchicago-omni.png"),
-        c("Clincian Researcher"),
+        c("Clinician Researcher"),
         c("Department of Ob/Gyn"),
         c("The University of Chicago Pritzker School of Medicine"),
         c("2020-2022")
@@ -157,7 +157,7 @@ prof_pos <-
         c("ns-omni.png"), 
         c("Postdoctoral Research Fellowship"),
         c("Department of Ob/Gyn"),
-        c("NorthShore Univeristy HealthSystem"),
+        c("NorthShore University HealthSystem"),
         c("2020-2022")
         ),
       # luc teaching
@@ -181,7 +181,7 @@ prof_pos <-
         c("luc-omni.png"),
         c("Laboratory Manager"),
         c("Department of Psychology"),
-        c("Loyola Univeristy Chicago"),
+        c("Loyola University Chicago"),
         c("2013-2014")
         )
       )
@@ -234,11 +234,11 @@ reactable(
 
 - Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Geurin, T., **Kmiecik, M. J.**, & Norcliffe-Kaufmann, L. (2026). Mechanism-Based Therapy With Ampreloxetine for Neurogenic Orthostatic Hypotension in Multiple System Atrophy. _Neurology, 107_(3), e218284. <https://doi.org/10.1212/WNL.0000000000218284>
 
-- Oosterhof, T. H., Mitchell, E., Ascherio, A., Aslibekyan, S., Azoidou, V., Beasley, K., Ben-Shlomo, Y., Bunnik, E., Carroll, C., Chahine, L., Corcos, D., Janssen Daalen, J. M., van Dijk, K. D., Dijkstra, B. W., Dommershuijsen, L., Dorsey, R., Evers, L. J. W., Helmich, R. C., Johansson, M., … Darweesh, S. K. L. (in press). Slow-SPEED: Protocol for three randomised trials of remotely delivered exercise to prevent Parkinson’s disease. _npj Parkinson’s Disease_. <https://doi.org/10.1038/s41531-026-01463-z>
+- Oosterhof, T. H., Mitchell, E., Ascherio, A., Aslibekyan, S., Azoidou, V., Beasley, K., Ben-Shlomo, Y., Bunnik, E., Carroll, C., Chahine, L., Corcos, D., Janssen Daalen, J. M., van Dijk, K. D., Dijkstra, B. W., Dommershuijsen, L., Dorsey, R., Evers, L. J. W., Helmich, R. C., Johansson, M., … Darweesh, S. K. L. (2026). Slow-SPEED: Protocol for three randomised trials of remotely delivered exercise to prevent Parkinson’s disease. _npj Parkinson’s Disease_. <https://doi.org/10.1038/s41531-026-01463-z>
 
-- Miner, A. E., **Kmiecik, M. J.**, Namburi, N., Dunckley, N., Adler, C. H., Driver-Dunckley, E. D., Nowinski, C. J., Gottesman, J., Tripodis, Y., Stern, R. A., McKee, A. C., Stein, T. D., Mez, J., Briggs, F. B. S., & Alosco, M. L. (in press). Associations Between Cumulative Head Trauma and Self-Reported Parkinsonism and Parkinson’s Disease in Former Soccer Players. _Movement Disorders_. <https://doi.org/10.1002/mds.70380>
+- Miner, A. E., **Kmiecik, M. J.**, Namburi, N., Dunckley, N., Adler, C. H., Driver-Dunckley, E. D., Nowinski, C. J., Gottesman, J., Tripodis, Y., Stern, R. A., McKee, A. C., Stein, T. D., Mez, J., Briggs, F. B. S., & Alosco, M. L. (2026). Associations Between Cumulative Head Trauma and Self-Reported Parkinsonism and Parkinson’s Disease in Former Soccer Players. _Movement Disorders, 41_(9), 2325–2337. <https://doi.org/10.1002/mds.70380>
 
-- Roth, G. E., Jabaay, K. M., Silton, R. L., Tu, F. F., Walker, L. S., Bohnert, A. M., **Kmiecik, M. J.**, & Hellman, K. M. (in press). Somatic Symptoms Before Menarche: The Role of Parents and Pain Sensitivity. _The Journal of Early Adolescence_. <https://doi.org/10.1177/02724316261457866>
+- Roth, G. E., Jabaay, K. M., Silton, R. L., Tu, F. F., Walker, L. S., Bohnert, A. M., **Kmiecik, M. J.**, & Hellman, K. M. (2026). Somatic Symptoms Before Menarche: The Role of Parents and Pain Sensitivity. _The Journal of Early Adolescence_. Advance online publication. <https://doi.org/10.1177/02724316261457866>
 
 - **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G. M., Schneider, R. B., Shi, J., Guan, A., Tat, S., Micheletti, S., Stagaman, K., Gottesman, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Aslibekyan, S.,  Norcliffe-Kaufmann, L. (2025). Genetic Modifiers of Parkinson's Disease: A Case–Control Study. _Annals of Clinical and Translational Neurology_, _12_(12), 2482–2494. <https://doi.org/10.1002/acn3.70176>
 
@@ -248,7 +248,7 @@ reactable(
 
 - **Kmiecik, M. J.**, Micheletti, S., Coker, D., Heilbron, K., Shi, J., Stagaman, K., Filshtein Sonmez, T., Fontanillas, P., Shringarpure, S., Wetzel, M., Rowbotham, H. M., Cannon, P., Shelton, J., Hinds, D. A., Tung, J. Y., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (2024). Genetic analysis and natural history of Parkinson’s disease due to the LRRK2 G2019S variant. _Brain_, _147_(6), 1996–2008. <https://doi.org/10.1093/brain/awae073>
 
-- **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., & Hellman, K. M. (2023). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Pelvic Pain Outcome: an Observational Cohort Study. *PAIN*, *164*(9), 270-283. <http://dx.doi.org/10.1097/j.pain.0000000000002909>
+- **Kmiecik, M. J.**, Tu, F. F., Clauw, D. J., & Hellman, K. M. (2023). Multimodal Hypersensitivity Derived from Quantitative Sensory Testing Predicts Pelvic Pain Outcome: an Observational Cohort Study. *PAIN*, *164*(9), 2070-2083. <http://dx.doi.org/10.1097/j.pain.0000000000002909>
 
 - Shlobin, A. E., Tu, F. F., Sain, C. R., **Kmiecik, M. J.**, Kantarovich, D., Singh, L., Wang, C. E., & Hellman, K. M. (2023). Bladder Pain Sensitivity is a Potential Risk Factor for Irritable Bowel Syndrome. *Digestive Diseases and Sciences*, *68*, 3092–3102. <https://doi.org/10.1007/s10620-023-07868-7>
 
@@ -258,7 +258,7 @@ reactable(
 
 - **Kmiecik, M. J.**, Perez, R., Krawczyk, D.C. (2021). Navigating Increasing Levels of Relational Complexity: Perceptual, Analogical, and System Mappings. *Journal of Cognitive Neuroscience*, *33*(3), 357-376. <https://doi.org/10.1162/jocn_a_01618>
 
-- Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. *TRIALS. 20*:435 <https://doi.org/10.21203/rs.2.273/v1>
+- Krawczyk, D. C., Han, K., Martinez, D., Rakic, J., **Kmiecik, M. J.**, Chang, Z., Nguyen, L., Lundie, M., Cole, R., Nagele, M., Didehbani, N. (2019). Executive Function Training in Chronic Traumatic Brain Injury Patients: Study Protocol. *TRIALS. 20*:435 <https://doi.org/10.1186/s13063-019-3526-x>
 
 - **Kmiecik, M. J.**, Brisson, R. J., & Morrison, R. G. (2019). The time course of semantic and relational processing during verbal analogical reasoning. *Brain and Cognition*, *129*, 25-34. <https://doi.org/10.1016/j.bandc.2018.11.012>
 
@@ -278,13 +278,15 @@ reactable(
 
 ## Preprints
 
-- **Kmiecik, M. J.**, Xu, W., Weldon, C. H., Guan, A., McIntyre, M. H., Bouchard, E. L., Team, 23andMe Research, Schneider, R. B., Auton, A., & Aslibekyan, S. (2026). Age-Related Speech-in-Noise Hearing Loss in Parkinson’s Disease and APOE E4 Carriers (p. 2026.06.08.26355175). _medRxiv_. <https://doi.org/10.64898/2026.06.08.26355175>
+- **Kmiecik, M. J.**, Hellman, K. M., Darnell, S. E., Miller, G. E., & Tu, F. F. (2026). Multimodal hypersensitivity across the menarcheal transition is associated with pelvic pain in adolescents: a longitudinal study (p. 2026.09.09.26362449). _medRxiv_. <https://doi.org/10.64898/2026.09.09.26362449>
+
+- **Kmiecik, M. J.**, Xu, W., Weldon, C. H., Guan, A., McIntyre, M. H., Bouchard, E. L., 23andMe Research Team, Schneider, R. B., Auton, A., & Aslibekyan, S. (2026). Age-Related Speech-in-Noise Hearing Loss in Parkinson’s Disease and APOE E4 Carriers (p. 2026.06.08.26355175). _medRxiv_. <https://doi.org/10.64898/2026.06.08.26355175>
 
 - **Kmiecik, M. J.**, O’Brien, L., Szpyhulsky, M., Iodice, V., Freeman, R., Jordan, J., Biaggioni, I., Kaufmann, H., Vickery, R., Miller, A., Saunders, E., Rushton, E., Valle, L., & Norcliffe-Kaufmann, L. (2026). The burden of neurogenic orthostatic hypotension in patients with multiple system atrophy – a real-world study (p. 2026.04.20.26351214). _medRxiv_. <https://doi.org/10.64898/2026.04.20.26351214>
 
 - Oosterhof, T. H., Mitchell, E., Ascherio, A., Aslibekyan, S., Azoidou, V., Beasley, K., Ben-Shlomo, Y., Bunnik, E., Carroll, C., Chahine, L., Corcos, D., Daalen, J. M. J., Dijk, K. D. van, Dijkstra, B. W., Dommershuijsen, L., Dorsey, R., Evers, L. J. W., Helmich, R. C., Johansson, M., … Darweesh, S. K. L. (2026). Slow-SPEED: Protocol for three randomised trials of remotely delivered exercise to prevent Parkinson’s disease (p. 2026.03.05.26347705). _medRxiv_. <https://doi.org/10.64898/2026.03.05.26347705>
 
-- Okubadejo, N., Ojo, O. O., Abiodun, O., Abubakar, S., Abdulai, F., Achoru, C., Agabi, O., Agulanna, U., Akinyemi, R., Alaofin, W., Anyanwu, R., Erameh, C., Ezuduemoih, D., Ibrahim, A., Ikwenu, E., Imarhiagbe, F., Ishola, I., Iwuozo, E., Komolafe, M., … Program (GP2), G. P. G. (2026). Insights Into Parkinson’s Disease Genetics in African Populations: Expanded GWAS Identifies Ancestry-Specific and Cross-Population Risk Loci (p. 2026.03.01.26347367). _medRxiv_. <https://doi.org/10.64898/2026.03.01.26347367>
+- Okubadejo, N., Ojo, O. O., Abiodun, O., Abubakar, S., Abdulai, F., Achoru, C., Agabi, O., Agulanna, U., Akinyemi, R., Alaofin, W., Anyanwu, R., Erameh, C., Ezuduemoih, D., Ibrahim, A., Ikwenu, E., Imarhiagbe, F., Ishola, I., Iwuozo, E., Komolafe, M., … Global Parkinson's Genetics Program (GP2) (2026). Insights Into Parkinson’s Disease Genetics in African Populations: Expanded GWAS Identifies Ancestry-Specific and Cross-Population Risk Loci (p. 2026.03.01.26347367). _medRxiv_. <https://doi.org/10.64898/2026.03.01.26347367>
 
 - Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Geurin, T., **Kmiecik, M. J.**, & Norcliffe-Kaufmann, L. (2025). Precision therapy with ampreloxetine for neurogenic orthostatic hypotension in multiple system atrophy (p. 2025.08.12.25332833). _medRxiv_. <https://doi.org/10.1101/2025.08.12.25332833>
 
@@ -350,15 +352,15 @@ reactable(
 
 ## Poster Presentations
 
-- **Kmiecik, M. J.**, Weldon, C., Xu, W., Guan, A., McIntyre, M., Schneider, R., Auton, A., & Aslibekyan, S. (2026). Age-Related Hearing Loss in Idiopathic Parkinson’s Disease and APOE E4 Carriers. Poster to be presented at the annual International Congress of Parkinson’s Disease and Movement Disorders meeting, Seoul, Korea.
+- **Kmiecik, M. J.**, Weldon, C., Xu, W., Guan, A., McIntyre, M., Schneider, R., Auton, A., & Aslibekyan, S. (2026). Age-Related Hearing Loss in Idiopathic Parkinson’s Disease and APOE E4 Carriers. Poster presented at the International Congress of Parkinson’s Disease and Movement Disorders, Seoul, Korea. Parkinson's Disease. _Movement Disorders, 41_: S511-S1420. <https://doi.org/10.1002/mds.70479>
 
-- **Kmiecik, M. J.**, Norcliffe-Kaufmann, L., Xu, W., Weldon, C., Tran, V., Guan, A., McIntyre, M., & Aslibekyan, S. (2026). The Parkinson’s Impact Project: A Multimodal Longitudinal Study of Disease Development and Progression at the 23andMe Research Institute. Poster to be presented at the annual International Congress of Parkinson’s Disease and Movement Disorders meeting, Seoul, Korea.
+- **Kmiecik, M. J.**, Norcliffe-Kaufmann, L., Xu, W., Weldon, C., Tran, V., Guan, A., McIntyre, M., & Aslibekyan, S. (2026). The Parkinson’s Impact Project: A Multimodal Longitudinal Study of Disease Development and Progression at the 23andMe Research Institute. Poster presented at the International Congress of Parkinson’s Disease and Movement Disorders, Seoul, Korea. Parkinson's Disease. _Movement Disorders, 41_: S511-S1420. <https://doi.org/10.1002/mds.70479>
 
-- Schneider, R., Oosterhof, T., Prins, E., **Kmiecik, M. J.**, Aslibekyan, S., Hetrick, N., Porto, M., Schmier, K., Dorney, C., Noyce, A., Bloem, B., & Darweesh, S. (2026). Slow-SPEED-US: Initiation of a Remote Exercise Trial in LRRK2 and GBA1 Carriers. Poster to be presented at the annual International Congress of Parkinson’s Disease and Movement Disorders meeting, Seoul, Korea.
+- Schneider, R., Oosterhof, T., Prins, E., **Kmiecik, M. J.**, Aslibekyan, S., Hetrick, N., Porto, M., Schmier, K., Dorney, C., Noyce, A., Bloem, B., & Darweesh, S. (2026). Slow-SPEED-US: Initiation of a Remote Exercise Trial in LRRK2 and GBA1 Carriers. Poster presented at the International Congress of Parkinson’s Disease and Movement Disorders, Seoul, Korea. Parkinson's Disease. _Movement Disorders, 41_: S511-S1420. <https://doi.org/10.1002/mds.70479>
 
-- **Kmiecik, M. J.**, Weldon, C. H., Xu, W., Guan, A., McIntyre, Schneider, R. B., Auton, A., Aslibekyan, S. (2026). Age-related hearing loss in Parkinson's disease and APOE E4 carriers. Poster to be presented at the Planning for the Prevention of Parkinson's Disease and Related Synucleinopathies: A trial design forum meeting, Phoenix, Arizona.
+- **Kmiecik, M. J.**, Weldon, C. H., Xu, W., Guan, A., McIntyre, M., Schneider, R. B., Auton, A., Aslibekyan, S. (2026). Age-related hearing loss in Parkinson's disease and APOE E4 carriers. Poster presented at the Planning for the Prevention of Parkinson's Disease and Related Synucleinopathies: A trial design forum meeting, Phoenix, Arizona.
 
-- Knapp, K. T., Roth, G. E., **Kmiecik, M. J.**, Sass, S. M., Conley, C. S., & Silton, R. L. (2026). Technology-delivered mindfulness-based intervention improves dimensional psychopathology symptoms in college students with depression. Poster submitted for presentation at the Society for Research in Psychopathology, Columbus, OH.
+- Knapp, K. T., Roth, G. E., **Kmiecik, M. J.**, Sass, S. M., Conley, C. S., & Silton, R. L. (2026). Technology-delivered mindfulness-based intervention improves dimensional psychopathology symptoms in college students with depression. Poster presented at the Society for Research in Psychopathology, Columbus, OH.
 
 - Osborne, N. R., Darnell, S. E., **Kmiecik, M. J.**, Rhudy, J. L., Hellman, K. M., & Tu, F. F. (2026). Where is chronic pain-risk bred, in the spine or in the head? An EMG and EEG study of dysmenorrhea. Poster submitted to the International Association for the Study of Pain (IASP) World Congress on Pain, Bangkok, Thailand.
 
@@ -366,7 +368,7 @@ reactable(
 
 - **Kmiecik, M. J.**, Holmes, M. V., Fontanillas, P., Riboldi, G., Schneider, R., Shi, J., Guan, A., Tat, S., Stagaman, K., Gottesman, J., Hinds, D., Tung, J., Aslibekyan, S., Norcliffe-Kaufmann, L. (2025). The Role of Polygenic Background and APOE E4 in Monogenic and Idiopathic Parkinson's Disease. _Movement Disorders, 40_(S1), S413–S1072. <https://doi.org/10.1002/mds.30318>
 
-- Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Guerin, T., Kmiecik, M. J., & Norcliffe-Kaufmann, L. (Nov. 2025). Precision Therapy with Ampreloxetine for Neurogenic Orthostatic Hypotension in Multiple System Atrophy. Poster to be presented at the 36th International Symposium on the Autonomic Nervous System, Clearwater Beach, FL.
+- Freeman, R., Kaufmann, H., Biaggioni, I., Iodice, V., Jordan, J., Vickery, R., Geurin, T., **Kmiecik, M. J.**, & Norcliffe-Kaufmann, L. (Nov. 2025). Precision Therapy with Ampreloxetine for Neurogenic Orthostatic Hypotension in Multiple System Atrophy. Poster presented at the 36th International Symposium on the Autonomic Nervous System, Clearwater Beach, FL.
 
 - **Kmiecik, M. J.**, Riboldi, G. M., Schneider, R. B., Stagaman, K., Filshtein Sonmez, T., Guan, A., Wetzel, M., Fontanillas, P., 23andMe Research Team, Holmes, M. V., Aslibekyan, S., Norcliffe-Kaufmann, L. (Sept. 2024). LRRK2 and GBA Founder Mutations and their Interactions in Parkinson’s Disease. Genetics and Metabolic Diseases. _Movement Disorders, 39_: S740-S808. <https://doi.org/10.1002/mds.29955>
 
@@ -880,7 +882,7 @@ guest_lectures <-
         date = "2022"
       ),
       cbind(
-        topic = "Analogical Reasonng",
+        topic = "Analogical Reasoning",
         class = "Reasoning",
         prof = "Daniel C. Krawczyk, PhD",
         inst = "The University of Texas at Dallas",
